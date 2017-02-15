@@ -15,6 +15,11 @@
           <label for="password">Password</label>
           <input type="password" name="password" class="form-control">
         </div>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+          <input type="text" name="name">
+          <input type="file" name="file">
+          <!-- <input type="submit" value="Save"> -->
+        </form>    
         <button type="submit">Signup</button>
       </form>
     </div>

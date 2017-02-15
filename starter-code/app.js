@@ -1,3 +1,4 @@
+/*jshint esversion:6*/
 const express            = require('express');
 const path               = require('path');
 const favicon            = require('serve-favicon');
@@ -13,6 +14,8 @@ const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
+const multer             = require('multer');
+
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
@@ -28,7 +31,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   store: new MongoStore( { mongooseConnection: mongoose.connection })
-}))
+}));
 
 passport.serializeUser((user, cb) => {
   cb(null, user.id);
