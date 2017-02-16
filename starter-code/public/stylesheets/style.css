@@ -6,3 +6,8 @@ body {
 a {
   color: #00B7FF;
 }
+
+.profile-pic {
+  width: 200px;
+  height: 200px;
+}
