@@ -11,3 +11,28 @@ a {
   width: 200px;
   height: 200px;
 }
+
+.post-container {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  padding: 5px;
+  text-align: center;
+}
+
+.post-profile-pic {
+  width: 30px;
+  height: 30px;
+}
+
+.post-creator {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.post-pic {
+  width: 400px;
+  height: auto;
+}
+
+.post-content {
+}

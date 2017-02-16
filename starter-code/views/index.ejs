@@ -5,3 +5,12 @@
     <% } else {  %>
         <a href="/login">Login</a>
         <% } %>
+<p>----------------------------------------------------</p>
+<% posts.forEach((post) => { %>
+  <div class="post-container">
+    <img class="post-profile-pic" src="<%=post.creatorPic%>" alt="profilePic">
+    <span class="post-creator"><%=post.creatorName%></span><br>
+    <img class="post-pic" src="<%=post.picPath%>" alt="<%=post.picName%>">
+    <p class="post-content"><%=post.content%></p>
+  </div><br>
+<% }) %>

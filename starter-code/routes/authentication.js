@@ -7,6 +7,7 @@ const upload = multer({
     dest: './public/uploads/'
 });
 const User = require("../models/user");
+const Post = require("../models/post");
 const router = express.Router();
 const {
     ensureLoggedIn,
@@ -57,6 +58,18 @@ router.post('/upload', ensureLoggedIn('/login'),
 
 router.get('/new', ensureLoggedIn('/login'), (req, res, next) => {
   res.render('new');
+});
+
+router.post('/new', ensureLoggedIn('/login'), upload.single('file'), (req, res, next) => {
+  const caption = req.body.caption;
+  const fileName = req.file.filename;
+
+  const newPost = Post({content: caption, creatorId: req.user.id,
+    picPath: `/uploads/${fileName}`, picName: fileName});
+  newPost.save((err) => {
+    if (err) return next(err);
+  });
+  res.redirect('/');
 });
 
 router.get('/logout', ensureLoggedIn('/login'), (req, res) => {
