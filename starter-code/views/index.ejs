@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
-  </body>
+    <% posts.forEach(function(post) { %>
+      <h3>THIS IS A POST</h3>
+      <img src="<%= post.pic_path %>" alt="<%= post.pic_name %>" />
+      <p> <%= post.content %> </p>
+    <% })%>
+
+</body>
 </html>
