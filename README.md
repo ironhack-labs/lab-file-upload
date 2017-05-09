@@ -30,7 +30,7 @@ Complete all of the non-bonus iterations. No styling is required, but is suggest
 
 ## Introduction
 
-![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_c0b2a46765e63ac8ac589835f7bb92ea.png =500x)
+<img src="https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_c0b2a46765e63ac8ac589835f7bb92ea.png" width="500px">
 
 [Tumblr](tumblr.com) is an ultra popular microblogging website.
 
