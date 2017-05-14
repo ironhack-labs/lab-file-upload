@@ -1,17 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>IronTumblr</title>
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/stylesheets/style.css">
-    <script src="/bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
-  </head>
-  <body>
-    <div class="main-container">
-      <%- body -%>
+
+<head>
+  <meta charset="utf-8">
+  <title>IronTumblr</title>
+  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <script src="/bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+  <header>
+
+    <nav class="nav navbar-nav">
+      <div class="main-container">
+        <div class="row">
+
+          <div> <a href="/"> Home </a> </div>
+
+          <% if (typeof user !== 'undefined') { %>
+
+            <% if (user.role === 'admin') { %>
+              <div> <a href="/users"> Manage Users </a> </div>
+              <% } %>
+
+                <div><a href="/rooms"> Rooms </a> </div>
+                <div> <a href="/profile/edit"> Edit Profile </a> </div>
+                <div> <a href="/logout"> Log Out </a> </div>
+                <% } else { %>
+                  <div> <a href="/signup"> Sign Up </a> </div>
+                  <div> <a href="/login"> Log In </a> </div>
+                  <% } %>
+        </div>
+      </div>
+    </nav>
+    <br>
+  </header>
+  <%- body -%>
     </div>
     <script src="/javascripts/reward-donate.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
-  </body>
+</body>
+
 </html>
