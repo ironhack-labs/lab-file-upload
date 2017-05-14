@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Your Profile</title>
+</head>
+<body>
+  <h2><%=user.username%></h2>
+  <p><%=user.email%></p>
+  <img class="profile-pic" src="<%=user.profilePic.picPath%>" alt="<%=user.profilePic.picName%>">
+  <br><br>
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    <label for="file">Change profile picture</label><br>
+    <input type="file" name="file">
+    <input type="submit" value="Save">
+  </form>
+  <br><br>
+  <a href="/new">Create new post</a><br>
+  <a href="/">Go Home</a>
+</body>
+</html>
