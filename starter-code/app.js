@@ -7,7 +7,6 @@ const bodyParser         = require('body-parser');
 const expressLayouts     = require('express-ejs-layouts');
 const passport           = require('passport');
 const LocalStrategy      = require('passport-local').Strategy;
-const User               = require('./models/user');
 const bcrypt             = require('bcrypt');
 const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
@@ -28,7 +27,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   store: new MongoStore( { mongooseConnection: mongoose.connection })
-}))
+}));
 
 passport.serializeUser((user, cb) => {
   cb(null, user.id);
@@ -41,6 +40,7 @@ passport.deserializeUser((id, cb) => {
   });
 });
 
+const User               = require('./models/user');
 passport.use('local-login', new LocalStrategy((username, password, next) => {
   User.findOne({ username }, (err, user) => {
     if (err) {
@@ -57,41 +57,6 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
   });
 }));
 
-passport.use('local-signup', new LocalStrategy(
-  { passReqToCallback: true },
-  (req, username, password, next) => {
-    // To avoid race conditions
-    process.nextTick(() => {
-        User.findOne({
-            'username': username
-        }, (err, user) => {
-            if (err){ return next(err); }
-
-            if (user) {
-                return next(null, false);
-            } else {
-                // Destructure the body
-                const {
-                  username,
-                  email,
-                  password
-                } = req.body;
-                const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-                const newUser = new User({
-                  username,
-                  email,
-                  password: hashPass
-                });
-
-                newUser.save((err) => {
-                    if (err){ next(null, false, { message: newUser.errors }) }
-                    return next(null, newUser);
-                });
-            }
-        });
-    });
-}));
-
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
@@ -99,7 +64,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/bower_components', express.static(path.join(__dirname, 'bower_components/')))
+app.use('/bower_components', express.static(path.join(__dirname, 'bower_components/')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
