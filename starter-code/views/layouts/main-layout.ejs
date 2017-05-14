@@ -9,6 +9,19 @@
   </head>
   <body>
     <div class="main-container">
+      <header>
+        <h1>Welcome to IronTumblr</h1>
+      </header>
+      <nav>
+        <ul>
+          <li><a href="/signup">Sign Up</a></li>
+          <li><a href="/login">Log In</a></li>
+          <li><a href="/profile">Profile</a></li>
+          <form  action="/logout" method="post">
+          <button>Logout</button>
+          </form>
+        </ul>
+      </nav>
       <%- body -%>
     </div>
     <script src="/javascripts/reward-donate.js"></script>
