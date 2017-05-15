@@ -1,0 +1,8 @@
+<h3>Edit Post <%= post.content %></h3>
+
+<form action="/post/<%= post._id %>/new-comment" method="post">
+<label for="comment-content"> Comment</label>
+<input type="text" name="postComment">
+<br>
+<button>Submit</button>
+</form>
