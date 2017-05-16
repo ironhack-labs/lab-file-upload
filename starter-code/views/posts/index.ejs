@@ -1,0 +1,15 @@
+<% posts.forEach((aPost) => { %>
+    <h2><%= aPost.picName %></h2>
+    <img style="width: 200px" src="<%= aPost.picPath %>">
+    <p><%= aPost.content %>
+    <br>
+    <a href="/posts/<%= aPost._id %>/addcomment">Comment</a>
+    <br>
+    <% if(aPost.comments !== 'undefined') { %>
+      <h3>Comments</h3>
+      <% aPost.comments.forEach((oneComment) => { %>
+          <h2><%= oneComment.imageName %></h2>
+          <img style="width: 50px" src="<%= oneComment.imagePath %>">
+          <p><%= oneComment.content %>
+      <% }); }%>
+<% }) %>
