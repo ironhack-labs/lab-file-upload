@@ -10,19 +10,19 @@
        <h1>IronTumblr</h1>
        <ul>
          <li><a href="/">Home</a></li>
-         <% if (typeof user !== 'undefined') { %>
-            <li> <a href="/profile/edit"> Edit Profile </a> </li>
+         <% if (typeof username !== 'undefined') { %>
+            <li> <a href="/profile/edit"> Edit Profile</a></li>
+            <li> <a href="/post/new"><h3>Create new post</h3></a></li>
+            <li> <a href="/post/index">See Posts</a></li>
             <li> <a href="/logout"> Log Out </a> </li>
           <% } else { %>
             <li> <a href="/signup"> Sign Up </a> </li>
             <li> <a href="/login"> Log In </a> </li>
           <% } %>
-
        </ul>
      </header>
 
-    <!-- <%- body %> -->
-    
+
     <footer>
       Made by Alejandro Jimenez
     </footer>
