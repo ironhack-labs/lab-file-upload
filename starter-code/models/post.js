@@ -2,11 +2,15 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const CommentSchema = Schema({
-  content: String,
-  creatorId: {type: Schema.Types.ObjectId },
   imagePath: String,
-  imageName: String
+  imageName: String,
+  content: String,
+  creatorId: {type: Schema.Types.ObjectId }
 });
+
+const Comment = mongoose.model('Comment', CommentSchema);
+
+module.exports = Comment;
 
 const PostSchema = Schema({
   content: String,
@@ -16,8 +20,6 @@ const PostSchema = Schema({
   comments: [CommentSchema]
 });
 
-const Comment = mongoose.model('Comment', CommentSchema);
 const Post = mongoose.model('Post', PostSchema);
 
-module.exports = Comment;
 module.exports = Post;

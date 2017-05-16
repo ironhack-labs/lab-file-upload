@@ -1,8 +1,14 @@
-<h3>Edit Post <%= post.content %></h3>
+<h3>Add Comment to <%= post.content %></h3>
 
-<form action="/post/<%= post._id %>/new-comment" method="post">
+<form action="/post/<%= post._id %>/new-comment" method="post" enctype="multipart/form-data">
 <label for="comment-content"> Comment</label>
-<input type="text" name="postComment">
+<input id="comment-content"type="text" name="commentContent">
+<br>
+<label for="comment-image-path">Upload Picture</label>
+<input id="comment-image-path" type="file" name="commentImgPath">
+<br>
+<label for="comment-image-name">Picture Name</label>
+<input id="comment-image-name" type="text" name="commentImgName">
 <br>
 <button>Submit</button>
 </form>

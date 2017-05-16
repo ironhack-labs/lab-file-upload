@@ -58,18 +58,20 @@ router.get('/post/:id/new-comment', ensureLoggedIn(), (req, res, next) => {
   });
 });
 
-router.post('/post/:id/new-comment', ensureLoggedIn(), (req, res, next) => {
+router.post('/post/:id/new-comment', ensureLoggedIn(), myUploader.single('commentImgPath'), (req, res, next) => {
   const postId = req.params.id;
 
   const theComment = new Comment({
-    content:req.body.postComment
+    content: req.body.commentContent,
+    imagePath: `/uploads/${req.file.filename}`,
+    imageName: req.body.commentImgName,
+    creatorId: req.user.id,
   });
 
-  const postChanges = {
-    comments: theComment
-  };
+  console.log(`COMMENT: ${theComment}`);
 
-  Post.findByIdAndUpdate(postId, postChanges, (err, thePost) => {
+  Post.findByIdAndUpdate(postId, {$push: {comments: theComment}}, (err, thePost) => {
+    console.log(`THE POST: ${thePost}`);
     if(err){
       next(err);
       return;
