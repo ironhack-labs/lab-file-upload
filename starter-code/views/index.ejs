@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title><%=title1 %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
+<%if(typeof post !== 'undefined'){%>
+  <%post.forEach((onePost)=>{%>
+    <div class="post">
+  <p>Posted By: <a href=""><%=onePost.creatorId%> </a></p>
+  <li><a href="/<%=onePost._id%>/postpage"><%=onePost.picName%></a></li>
+  <img src="<%=onePost.picPath%>" alt="">
+
+    </div>
+  <%});%>
+
+<%}%>
+
   </body>
 </html>
