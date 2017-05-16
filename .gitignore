@@ -25,7 +25,12 @@ build/Release
 # Dependency directory
 # https://docs.npmjs.com/cli/shrinkwrap#caveats
 node_modules
-bower_components
 
 # Debug log from npm
 npm-debug.log
+
+# Ignore uploaded files
+public/uploads
+
+#Ignore development environment variables
+.env
