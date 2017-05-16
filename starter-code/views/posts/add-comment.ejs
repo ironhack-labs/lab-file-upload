@@ -1,0 +1,15 @@
+<h2>Add A Comment</h2>
+
+<form action="/posts/<%= post._id %>/addcomment" method="post" enctype="multipart/form-data">
+    <label for="comment-image-path">Upload Picture</label>
+    <input id="comment-image-path" type="file" name="commentImagePath">
+    <br>
+
+    <label for="comment-image-name">Picture Caption</label>
+    <input id="comment-image-name" type="text" name="commentImageName">
+    <br>
+    <label for="comment-content"> Comment</label>
+    <input type="text" name="postComment">
+    <br>
+    <button>Post Comment</button>
+</form>

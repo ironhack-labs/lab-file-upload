@@ -6,5 +6,13 @@
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
+     <% if(typeof user !== 'undefined') { %>
+         <h2>Hello, <%= user.username %></h2>
+         <img style="width: 200px;" src="<%= user.userpic %>">
+         <br>
+          <a href="/posts/new">Create Post</a>
+     <% } %>
+        <br>
+         <a href="/posts/index">See All Posts</a>
   </body>
 </html>
