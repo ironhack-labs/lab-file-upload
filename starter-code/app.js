@@ -1,4 +1,3 @@
-require("dotenv").config();
 const express            = require('express');
 const path               = require('path');
 const favicon            = require('serve-favicon');
@@ -16,6 +15,7 @@ const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const multer             = require('multer');
 
+require("dotenv").config();
 
 mongoose.connect(process.env.MONGODB_URI);
 
