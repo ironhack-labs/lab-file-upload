@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express            = require('express');
 const path               = require('path');
 const favicon            = require('serve-favicon');
@@ -15,7 +16,8 @@ const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const multer             = require('multer');
 
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
+
+mongoose.connect(process.env.MONGODB_URI);
 
 const app = express();
 
