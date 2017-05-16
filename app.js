@@ -16,7 +16,7 @@ const flash              = require('connect-flash');
 const multer             = require('multer');
 require("dotenv").config();
 
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect('mongodb://heroku_gf46cwxl:b2593fn509rq9j06pkg06pipor@ds143221.mlab.com:43221/heroku_gf46cwxl');
 
 const app = express();
 
