@@ -14,8 +14,9 @@ const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const Multer = require('Multer');
+require ('dotenv').config();
 
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
+mongoose.connect(process.env.MONGODB_URI);
 
 const app = express();
 
