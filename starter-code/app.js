@@ -81,6 +81,8 @@ app.use((req, res, next) => {
 // ===================================== ROUTES Start ==================================================
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const post = require('./routes/post-route');
+app.use('/', post);
 app.use('/', index);
 app.use('/', authRoutes);
 // ===================================== ROUTES End ==================================================

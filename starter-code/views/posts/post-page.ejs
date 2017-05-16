@@ -1,0 +1,31 @@
+<h1><%=post.picName%></h1>
+<p><%=post.content%> made by <strong><h3><%=users.username%></h3><strong></p>
+<img src="<%=post.picPath%>" alt="">
+<div class="reviews">
+
+<%if(typeof user !== 'undefined'){%>
+
+<%if(post.comment.length >-1){%>
+  <%post.comment.forEach((comment)=>{%>
+    <p><%=comment.content%></p>
+    <h5><%=comment.imageName%></h5>
+    <img src="<%=comment.imagePath%>" alt="">
+  <%});%>
+<%}%>
+
+<div class="create-review">
+  <form class="" action="/<%=post._id%>/new/comment" method="post" enctype="multipart/form-data">
+    <label for="input-content">Comment: </label>
+    <input id = "input-content" type="text" name="content" value="">
+    <br>
+    <label for="input-imagePath"> </label>
+    <input id = "input-imagePath" type="file" name="imagePath" value="">
+    <br>
+    <label for="input-imageName">Name of pic</label>
+    <input id = "input-imageName" type="text" name="imageName" value="">
+    <br>
+    <button>Submit</button>
+  </form>
+
+</div>
+<%}%>
