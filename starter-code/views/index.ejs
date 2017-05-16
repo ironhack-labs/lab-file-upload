@@ -1,30 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title><%=title1 %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-     <header>
-       <h1>IronTumblr</h1>
-       <ul>
-         <li><a href="/">Home</a></li>
-         <% if (typeof username !== 'undefined') { %>
-            <li> <a href="/profile/edit"> Edit Profile</a></li>
-            <li> <a href="/post/new"><h3>Create new post</h3></a></li>
-            <li> <a href="/post/index">See Posts</a></li>
-            <li> <a href="/logout"> Log Out </a> </li>
-          <% } else { %>
-            <li> <a href="/signup"> Sign Up </a> </li>
-            <li> <a href="/login"> Log In </a> </li>
-          <% } %>
-       </ul>
-     </header>
+    <h1>Welcome to IronTumblr</h1>
+<%if(typeof post !== 'undefined'){%>
+  <%post.forEach((onePost)=>{%>
+    <div class="post">
+  <p>Posted By: <a href=""><%=onePost.picPath%> </a></p>
+  <li><a href="/<%=onePost._id%>/postpage"><%=onePost.picName%></a></li>
+  <img src="<%=onePost.picPath%>" alt="">
+    </div>
+  <%});%>
+<%}%>
 
-
-    <footer>
-      Made by Alejandro Jimenez
-    </footer>
   </body>
 </html>
