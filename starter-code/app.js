@@ -15,7 +15,7 @@ const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const multer = require('multer');
 
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
+mongoose.connect('mongodb://heroku_2q4krw7p:4p8jd4tbh0iru05nkthsfh5eer@ds143131.mlab.com:43131/heroku_2q4krw7p');
 
 const app = express();
 
