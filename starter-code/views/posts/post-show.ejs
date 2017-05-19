@@ -1,0 +1,14 @@
+<%  if (typeof user !== 'undefined') { %>
+  <a href="/posts/my-posts"> Go Back </a>
+  <h2> <%= post.content %> Info </h2>
+  <p> Pic Name: <%= post.picName %> </p>
+  <img src="<%= post.picPath %>" alt="Lights" style="width:100%">
+  <br>
+  <% } else { %>
+<a href="/posts"> Go Back </a>
+<h2> <%= post.content %> Info </h2>
+<p> Pic Name: <%= post.picName %> </p>
+<img src="<%= post.picPath %>" alt="Lights" style="width:100%">
+<br>
+
+  <% } %>

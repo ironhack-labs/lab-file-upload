@@ -1,6 +1,7 @@
+
+
 <div class="container">
   <div class="row">
-    <%= message %>
     <div class="col-sm-6 centered-form">
       <form action="/signup" method="post" enctype="multipart/form-data">
         <div class="form-group">
@@ -23,6 +24,9 @@
 
         <button type="submit">Signup</button>
       </form>
+      <% if (typeof message !== "undefined") { %>
+        <div class="error"> <%= message %> </div>
+      <% } %>
     </div>
   </div>
 </div>

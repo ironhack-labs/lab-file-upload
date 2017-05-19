@@ -1,6 +1,8 @@
 <h2> Log In </h2>
 
-
+<% if (typeof message !== "undefined") { %>
+  <div class="error"> <%= message %> </div>
+<% } %>
 
 <div class="container">
   <div class="row">

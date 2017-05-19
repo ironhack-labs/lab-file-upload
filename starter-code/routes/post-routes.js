@@ -45,10 +45,10 @@ router.post('/posts',
 );
 
 router.get('/posts',
-  ensure.ensureLoggedIn('/login'),
+  // ensure.ensureLoggedIn('/login'),
   (req, res, next) => {
     Post.find(
-      { creatorId: req.user._id },
+      // { creatorId: req.user._id },
       (err, postsList) => {
         if (err) {
           next(err);
@@ -63,5 +63,62 @@ router.get('/posts',
     );
   }
 );
+
+router.get('/posts/my-posts',
+  ensure.ensureLoggedIn('/login'),
+  (req, res, next) => {
+    Post.find(
+      { creatorId: req.user._id },
+      (err, postsList) => {
+        if (err) {
+          next(err);
+          return;
+        }
+
+        res.render('posts/my-posts-view.ejs', {
+          posts: postsList,
+          successMessage: req.flash('success')
+        });
+      }
+    );
+  }
+);
+
+router.get('/posts/:id', (req, res, next) => {
+  const postId = req.params.id;
+
+  Post.findById(postId, (err, thePost) => {
+    if (err) {
+      next(err);
+      return;
+    }
+
+    if(!thePost) {
+      next();
+      return;
+    }
+
+    res.render('posts/post-show.ejs', {
+      post: thePost
+    });
+  });
+});
+
+
+router.post('/posts/:id/delete', (req, res, next) => {
+  ensure.ensureLoggedIn('/login');
+  const postId = req.params.id;
+  console.log(req.params.id);
+
+  Post.findByIdAndRemove(postId, (err, thePost) => {
+    if(err) {
+      next(err);
+      return;
+    }
+    res.redirect('/posts/my-posts');
+  });
+});
+
+
 
 module.exports = router;

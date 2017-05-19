@@ -114,6 +114,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/bower_components', express.static(path.join(__dirname, 'bower_components/')))
 app.use(express.static(path.join(__dirname, 'public')));
+app.use((req, res, next) => {
+  if (req.user) {
+    res.locals.user = req.user;
+  }
+  next();
+});
+// --------------------------------------------------
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');

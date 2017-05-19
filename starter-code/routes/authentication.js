@@ -4,14 +4,14 @@ const passport   = require('passport');
 const multer     = require('multer');
 const path       = require('path');
 const User       = require('../models/user.js');
-const router     = express.Router();
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+const router     = express.Router();
 
 
 
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
-    res.render('authentication/login', { errorMessage: req.flash('error', 'Please log in')});
+    res.render('authentication/login', {message: "You couldn't log in"});
 });
 
 router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
@@ -22,7 +22,7 @@ router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
 }));
 
 router.get('/signup', ensureLoggedOut(), (req, res) => {
-    res.render('authentication/signup', { message: req.flash('error')});
+    res.render('authentication/signup', { message: "error"});
 });
 
 const myUpload   = multer({

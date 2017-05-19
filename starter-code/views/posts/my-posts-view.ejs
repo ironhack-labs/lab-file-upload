@@ -1,3 +1,10 @@
+<% if (posts.length === 0) { %>
+
+  <h2> You don't have any posts yet </h2>
+
+
+<% } else { %>
+
   <h2> Posts </h2>
 
   <% if (successMessage.length > 0) { %>
@@ -15,7 +22,12 @@
                 <a href="/posts/<%= onePost._id %>">
                   View details
                 </a>
+                <form method="post" action="/posts/<%= onePost._id %>/delete">
+                  <button> Delete </button>
               </div>
-            </div>
+          </div>
+
+          </form>
         </div>
     <% }) %>
+<% } %>

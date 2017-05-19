@@ -13,16 +13,28 @@
     <header>
       <div class="col-sm-3">
         <li><a href="/">Home</a></li><br>
+        <li><a href="/posts"> Posts </a></li><br>
+
+        <%  if (typeof user !== 'undefined') { %>
+
+          <li><a href="/profile"> Profile </a></li><br>
+          <li><a href="/posts/my-posts"> My Posts </a></li><br>          
+          <li><a href="/posts/new"> Create a Post </a></li><br>
+          <li><a href="/logout"> Log Out</a></li><br>
+
+        <% } else { %>
+
         <li><a href="/signup"> Sign Up </a></li><br>
         <li><a href="/login"> Log In </a></li><br>
-        <li><a href="/profile"> Profile </a></li><br>
-        <li><a href="/logout"> Log Out</a></li><br>
-        <li><a href="/posts"> Posts </a></li><br>
-        <li><a href="/posts/new"> Create a Post </a></li><br>
+
+        <% } %>
       </div>
     </header>
     <div class="col-sm-9">
       <%- body -%>
     </div>
+    <footer>
+      <p> Made by Art©</p>
+    </footer>
   </body>
 </html>
