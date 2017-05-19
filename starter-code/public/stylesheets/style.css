@@ -1,7 +1,11 @@
+html{
+    height: 100%
+}
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-
+  height: 100%
 }
 
 img {
@@ -20,4 +24,19 @@ img {
   color: black;
   border-radius: 3px;
   padding: 15px;
+}
+
+.headpic {
+  position: relative;
+  left: 20px;
+}
+
+#my-menu {
+  border-right: 1px solid blue;
+  text-align: left;
+}
+
+#greetings {
+  font: "Lucida Grande";
+  font-color: blue;
 }

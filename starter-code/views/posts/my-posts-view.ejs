@@ -17,13 +17,14 @@
           <div class="thumbnail">
             <img src="<%= onePost.picPath %>" alt="Lights" style="width:100%">
               <div class="caption">
-                <p><%= onePost.content %> </p>
-                <p> <%= onePost.picName %> </p>
-                <a href="/posts/<%= onePost._id %>">
+                <p>Name: <%= onePost.content %> </p>
+                <p>Description: <%= onePost.picName %> </p>
+                <button><a href="/posts/<%= onePost._id %>">
                   View details
-                </a>
+                </a></button>
                 <form method="post" action="/posts/<%= onePost._id %>/delete">
                   <button> Delete </button>
+                </form>
               </div>
           </div>
 

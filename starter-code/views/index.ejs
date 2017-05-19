@@ -6,13 +6,26 @@
      <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>Welcome to IronTumblr</h1>
-    <% if (typeof user !== 'undefined') { %>
-      <p> Hello, <%= user.username %> </p>
+    <% if ( successMessage.length > 0 ) { %>
+      <div class='success'> <%= successMessage %> </div>
     <% } %>
+    <h1><center>Welcome to IronTumblr, home of microblogging</h1>
+    <center><h1><a href="/posts"> View All </a></h1>
+    <% posts.forEach((onePost) => { %>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <img src="<%= onePost.picPath %>" alt="Lights" style="width:100%">
+              <div class="caption">
+                <p>Name: <%= onePost.content %> </p>
+                <p>Description: <%= onePost.picName %> </p>
+                <a href="/posts/<%= onePost._id %>">
+                  View details
+                </a>
+              </div>
+            </div>
+        </div>
+    <% }) %>
+  </div>
   </body>
 </html>
-
-<% if ( successMessage.length > 0 ) { %>
-  <div class='success'> <%= successMessage %> </div>
-<% } %>

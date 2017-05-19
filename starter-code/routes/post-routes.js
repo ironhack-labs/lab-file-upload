@@ -4,6 +4,7 @@ const multer   = require('multer');
 const router   = express.Router();
 const path     = require('path');
 const Post     = require('../models/post.js');
+const Comment  = require('../models/comments.js');
 
 
 router.get('/posts/new',
@@ -118,6 +119,57 @@ router.post('/posts/:id/delete', (req, res, next) => {
     res.redirect('/posts/my-posts');
   });
 });
+
+router.get('/posts/:id',
+  ensure.ensureLoggedIn('/login'),
+  (req, res, next) => {
+    const postId = req.params.id;
+
+    Post.findById(postId, (err, thisPost) => {
+      if (err) {
+        next(err);
+        return;
+      }
+
+      res.render('/posts/add-comment.ejs', {
+        post: thisPost
+      });
+    });
+  }
+);
+
+router.post('/posts/:id',
+  ensure.ensureLoggedIn('/login'),
+  myUpload.single('imagePath'),
+  (req, res, next) => {
+    const postId = req.params.id;
+    const comment = new Comment({
+      content: req.body.contentName,
+      authorId: req.user._id,
+      imagePath: `/uploads/post-pics/${req.file.filename}`,
+      imageName: req.body.imageName,
+    });
+
+    Post.findOneAndUpdate (
+      postId,
+      {$push: {comments: comment}},
+      (err, thePost) => {
+        if (err) {
+          next(err);
+          return;
+        }
+
+        thePost.save((err) => {
+          if (err) {
+            next(err);
+            return;
+          }
+          res.redirect('/posts');
+        });
+      }
+    );
+  }
+);
 
 
 

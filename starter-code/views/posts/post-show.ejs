@@ -1,14 +1,32 @@
-<%  if (typeof user !== 'undefined') { %>
-  <a href="/posts/my-posts"> Go Back </a>
+
+  <a href="/posts"> Go Back </a>
   <h2> <%= post.content %> Info </h2>
   <p> Pic Name: <%= post.picName %> </p>
   <img src="<%= post.picPath %>" alt="Lights" style="width:100%">
-  <br>
-  <% } else { %>
-<a href="/posts"> Go Back </a>
-<h2> <%= post.content %> Info </h2>
-<p> Pic Name: <%= post.picName %> </p>
-<img src="<%= post.picPath %>" alt="Lights" style="width:100%">
+  <div class="container">
+    <div class="row">
+      <form action="/posts/:id" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="content-name-input"> Comment </label>
+          <input type="text" name="contentName" class="form-control"
+          placeholder="My comment">
+        </div>
+        <div class="form-group">
+          <label for="image-name-input"> Image Name </label>
+          <input type="text" name="imageName" class="form-control"
+          placeholder="What is it about?">
+        </div>
+        <div class="form-group">
+          <label for="image-photo-input"> Upload Photo </label>
+          <input type="file" name="imagePath"  class="form-control">
+        </div>
+        <button type="submit">Add comment!</button>
+      </form>
+    </div>
+  </div>
 <br>
 
-  <% } %>
+<% post.comments.forEach((onePost) => { %>
+  <h2><%= onePost.imageName %></h2>
+
+<% }) %>

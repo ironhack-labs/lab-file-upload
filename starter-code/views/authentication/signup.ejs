@@ -1,4 +1,7 @@
-
+<% if (message.length > 0) { %>
+  <div class="error"> <%= message %> </div>
+<% } %>
+<br>
 
 <div class="container">
   <div class="row">
@@ -24,9 +27,6 @@
 
         <button type="submit">Signup</button>
       </form>
-      <% if (typeof message !== "undefined") { %>
-        <div class="error"> <%= message %> </div>
-      <% } %>
     </div>
   </div>
 </div>

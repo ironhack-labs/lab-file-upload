@@ -71,7 +71,7 @@ passport.use('local-signup', new LocalStrategy(
               return;
             }
             if (user) {
-                return next(null, false);
+                return next(err, {message: 'Username is taken'});
             } else {
                 // Destructure the body
                 const {
