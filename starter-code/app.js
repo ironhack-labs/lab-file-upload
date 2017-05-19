@@ -63,11 +63,13 @@ passport.use('local-signup', new LocalStrategy(
   (req, username, password, next) => {
     // To avoid race conditions
     process.nextTick(() => {
-        User.findOne({
-            'username': username
-        }, (err, user) => {
-            if (err){ return next(err); }
-
+        User.findOne(
+          {'username': username},
+          (err, user) => {
+            if (err) {
+              next(err);
+              return;
+            }
             if (user) {
                 return next(null, false);
             } else {
@@ -92,9 +94,11 @@ passport.use('local-signup', new LocalStrategy(
                 });
 
                 newUser.save((err) => {
-                    if (err){ next(null, false, { message: newUser.errors });
-                   }
-                    return next(null, newUser);
+                    if (err) {
+                        next(null,false);
+                      }
+                      req.flash('success', 'You have registered succesfully!');
+                      return next(null, newUser);
                 });
             }
         });

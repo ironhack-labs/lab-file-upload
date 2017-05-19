@@ -1,19 +1,26 @@
 <h2> Add a New Post </h2>
 
-<form method="post" action="/posts" enctype="multipart/form-data">
-  <label for="post-name-input"> Post Name </label>
-  <input id="post-name-input" type="text" name="postName"
-    placeholder="My Awesome Post">
-  <br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 centered-form">
+      <form action="/posts" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="post-name-input"> Post Name </label>
+          <input type="text" name="postName" class="form-control"
+          placeholder="My post">
+        </div>
+        <div class="form-group">
+          <label for="picture-name-input"> Description </label>
+          <input type="text" name="picName" class="form-control"
+          placeholder="What is it about?">
+        </div>
+        <div class="form-group">
+          <label for="post-photo-input"> Upload Photo </label>
+          <input type="file" name="postPhoto"  class="form-control">
+        </div>
 
-  <label for="picture-name-input"> Description </label>
-  <textarea id="picture-name-input" name="picName"
-    placeholder="It's a beautiful picture in Space!"></textarea>
-  <br>
-
-  <label for="post-photo-input"> Upload Photo </label>
-  <input  id="post-photo-input" type="file" name="postPhoto">
-  <br>
-
-  <button> Save Post </button>
-</form>
+        <button type="submit">Post it!</button>
+      </form>
+    </div>
+  </div>
+</div>

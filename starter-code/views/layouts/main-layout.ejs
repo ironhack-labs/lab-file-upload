@@ -3,9 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>IronTumblr</title>
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheets/style.css">
-    <script src="/bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
   <body>
     <header>
@@ -15,13 +17,12 @@
         <li><a href="/login"> Log In </a></li><br>
         <li><a href="/profile"> Profile </a></li><br>
         <li><a href="/logout"> Log Out</a></li><br>
+        <li><a href="/posts"> Posts </a></li><br>
         <li><a href="/posts/new"> Create a Post </a></li><br>
       </div>
     </header>
     <div class="col-sm-9">
       <%- body -%>
     </div>
-    <script src="/javascripts/reward-donate.js"></script>
-    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
   </body>
 </html>

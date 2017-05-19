@@ -4,9 +4,20 @@ body {
 
 }
 
-header {
-
+img {
+  width: 30%;
 }
-a {
-  color: #00B7FF;
+
+.error {
+  background-color: red;
+  color: white;
+  border-radius: 3px;
+  padding: 15px;
+}
+
+.success {
+  background-color: chartreuse;
+  color: black;
+  border-radius: 3px;
+  padding: 15px;
 }
