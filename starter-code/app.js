@@ -6,6 +6,7 @@ const cookieParser       = require('cookie-parser');
 const bodyParser         = require('body-parser');
 const expressLayouts     = require('express-ejs-layouts');
 const passport           = require('passport');
+const multer             = require('multer');
 const LocalStrategy      = require('passport-local').Strategy;
 const User               = require('./models/user');
 const bcrypt             = require('bcrypt');
@@ -28,10 +29,10 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   store: new MongoStore( { mongooseConnection: mongoose.connection })
-}))
+}));
 
 passport.serializeUser((user, cb) => {
-  cb(null, user.id);
+  cb(null, user._id);
 });
 
 passport.deserializeUser((id, cb) => {
@@ -74,17 +75,25 @@ passport.use('local-signup', new LocalStrategy(
                 const {
                   username,
                   email,
-                  password
+                  password,
+                  photoAddress
                 } = req.body;
+
+                const photoUpload = req.file;
+                console.log(photoUpload);
+
+                console.log(req.body);
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  photoAddress: `/uploads/${req.file.filename}`
                 });
 
                 newUser.save((err) => {
-                    if (err){ next(null, false, { message: newUser.errors }) }
+                    if (err){ next(null, false, { message: newUser.errors });
+                   }
                     return next(null, newUser);
                 });
             }
@@ -104,8 +113,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const postRoutes = require('./routes/post-routes');
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/',postRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
