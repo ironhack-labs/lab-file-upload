@@ -8,10 +8,21 @@
     <script src="/bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
   </head>
   <body>
+  <nav>
+         <ul>
+        <li><a href="/"> Home </a></li>
+ 
+           <li><a href="/logout"> Log Out </a></li>
+         <% if (typeof user !== "undefined"){ %>
+         <% } else {%>
+           <li><a href="/signup"> Sign Up </a></li>
+           <li><a href="/login"> Log In </a></li>
+         <%}%>
+       </ul>
+      </nav>
     <div class="main-container">
       <%- body -%>
     </div>
-    <script src="/javascripts/reward-donate.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
   </body>
 </html>

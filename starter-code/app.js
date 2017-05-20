@@ -103,8 +103,9 @@ app.use('/bower_components', express.static(path.join(__dirname, 'bower_componen
 app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
-const authRoutes = require('./routes/authentication');
 app.use('/', index);
+
+const authRoutes = require('./routes/authentication');
 app.use('/', authRoutes);
 
 // catch 404 and forward to error handler
