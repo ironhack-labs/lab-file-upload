@@ -1,32 +1,49 @@
 
-  <a href="/posts"> Go Back </a>
-  <h2> <%= post.content %> Info </h2>
-  <p> Pic Name: <%= post.picName %> </p>
-  <img src="<%= post.picPath %>" alt="Lights" style="width:100%">
-  <div class="container">
-    <div class="row">
-      <form action="/posts/:id" method="post" enctype="multipart/form-data">
-        <div class="form-group">
-          <label for="content-name-input"> Comment </label>
-          <input type="text" name="contentName" class="form-control"
-          placeholder="My comment">
-        </div>
-        <div class="form-group">
-          <label for="image-name-input"> Image Name </label>
-          <input type="text" name="imageName" class="form-control"
-          placeholder="What is it about?">
-        </div>
-        <div class="form-group">
-          <label for="image-photo-input"> Upload Photo </label>
-          <input type="file" name="imagePath"  class="form-control">
-        </div>
-        <button type="submit">Add comment!</button>
-      </form>
-    </div>
-  </div>
+  <a class="hvr-grow" href="/posts"> Go Back </a><br>
+
+  <h2> Pic Name: <%= post.picName %> </h2>
+  <img class="one-pic-view" src="<%= post.picPath %>" alt="Lights">
 <br>
 
-<% post.comments.forEach((onePost) => { %>
-  <h2><%= onePost.imageName %></h2>
+<div class="detailBox">
+    <div class="titleBox">
+      <center><label class="hvr-grow">Comment Box </label>
+    </div>
+    <div class="commentBox">
 
-<% }) %>
+        <p class="taskDescription">Here's what other people think about the post</p>
+    </div>
+    <div class="actionBox">
+      <% post.comments.forEach((onePost) => { %>
+        <ul class="commentList">
+            <li>
+                <div class="commenterImage">
+                  <img src="<%= onePost.imagePath %>">
+                </div>
+                <div class="commentText">
+                    <p class="">Name: <%= onePost.imageName %></p> <span class="date sub-text">on <%= onePost.createdAt %></span>
+                </div>
+            </li>
+          </ul>
+      <% }) %>
+      <form action="/posts/<%=post._id%>" method="post" enctype="multipart/form-data" class="form-inline" role="form">
+          <div class="form-group">
+              <input class="form-control" type="text" placeholder="Your comments" name="imageName" />
+          </div>
+          <br>
+          <div class="form-group">
+            <input type="text" name="contentName" class="form-control"
+            placeholder="Image name">
+          </div>
+          <div class="form-group">
+              <button class="btn btn-default">Add</button>
+          </div>
+          <br>
+          <div class="form-group">
+            <!-- <label for="image-photo-input"> Upload Photo </label> -->
+            <input type="file" name="imagePath"  class="form-control">
+          </div>
+
+      </form>
+    </div>
+</div>

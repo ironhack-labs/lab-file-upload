@@ -3,6 +3,7 @@ const ensure   = require('connect-ensure-login');
 const multer   = require('multer');
 const router   = express.Router();
 const path     = require('path');
+const User     = require('../models/user.js');
 const Post     = require('../models/post.js');
 const Comment  = require('../models/comments.js');
 
@@ -88,6 +89,7 @@ router.get('/posts/my-posts',
 router.get('/posts/:id', (req, res, next) => {
   const postId = req.params.id;
 
+
   Post.findById(postId, (err, thePost) => {
     if (err) {
       next(err);
@@ -98,9 +100,10 @@ router.get('/posts/:id', (req, res, next) => {
       next();
       return;
     }
-
+    console.log(thePost.comment);
     res.render('posts/post-show.ejs', {
       post: thePost
+
     });
   });
 });
@@ -120,57 +123,63 @@ router.post('/posts/:id/delete', (req, res, next) => {
   });
 });
 
-router.get('/posts/:id',
-  ensure.ensureLoggedIn('/login'),
-  (req, res, next) => {
-    const postId = req.params.id;
-
-    Post.findById(postId, (err, thisPost) => {
-      if (err) {
-        next(err);
-        return;
-      }
-
-      res.render('/posts/add-comment.ejs', {
-        post: thisPost
-      });
-    });
-  }
+const myComment = multer(
+  { dest: path.join(__dirname, '../public/uploads/comments/') }
 );
-
 router.post('/posts/:id',
   ensure.ensureLoggedIn('/login'),
-  myUpload.single('imagePath'),
+  myComment.single('imagePath'),
   (req, res, next) => {
     const postId = req.params.id;
-    const comment = new Comment({
-      content: req.body.contentName,
-      authorId: req.user._id,
-      imagePath: `/uploads/post-pics/${req.file.filename}`,
-      imageName: req.body.imageName,
-    });
-
-    Post.findOneAndUpdate (
+    Post.findById(
       postId,
-      {$push: {comments: comment}},
-      (err, thePost) => {
+      (err, thisPost) => {
         if (err) {
           next(err);
           return;
         }
 
-        thePost.save((err) => {
-          if (err) {
-            next(err);
-            return;
+        if (thisPost) {
+          if (req.file) {
+            const newComment = new Comment ({
+            content: req.body.imageContent,
+            authorId: req.user._id,
+            imagePath: `/uploads/comments/${req.file.filename}`,
+            imageName: req.body.imageName
+            });
+              thisPost.comments.push(newComment);
+              thisPost.save((err) => {
+                if (err) {
+                  next(err);
+                  return;
+                }
+                console.log(thisPost);
+                res.redirect(`/posts/${thisPost._id}`);
+              });
+            console.log('first loop');
+          } else {
+            const newComment = new Comment ({
+              content: req.body.imageContent,
+              authorId: req.user._id,
+              imagePath: (typeof req.file !== "undefined") ? req.file : `/uploads/comments/${req.file}`,
+              imageName: req.body.imageName
+              });
+              thisPost.comments.push(newComment);
+              thisPost.save((err) => {
+                if (err) {
+                  next(err);
+                  return;
+                }
+                console.log(thisPost);
+                res.redirect(`/posts`);
+              });
+              console.log('second loop');
+              console.log(newComment);
           }
-          res.redirect('/posts');
-        });
+        }
       }
     );
   }
 );
-
-
 
 module.exports = router;

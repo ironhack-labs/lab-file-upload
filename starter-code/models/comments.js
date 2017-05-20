@@ -6,8 +6,8 @@ const commentSchema = new Schema(
   {
     content: {type: String},
     authorId: { type: Schema.Types.ObjectId},
-    imagePath: {type: String},
-    imageName: {type: String}
+    imagePath: {type: String, default: 'N/A'},
+    imageName: {type: String},
   },
   {
     timestamps: true

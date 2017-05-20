@@ -12,7 +12,7 @@
 <body>
   <header>
 
-    <div class="col-sm-3" id="my-menu">
+    <div class="col-sm-2" id="my-menu">
       <%  if (typeof user !== 'undefined') { %>
         <div class="headpic">
           <img src="<%= user.photoAddress %>" alt="Responsive image"  class="img-circle">
@@ -20,25 +20,25 @@
         </div>
 
       <% } %>
-      <h3><li><a href="/">Home</a></li><br>
-      <li><a href="/posts"> Posts </a></li><br>
+      <h3><a href="/" class="box hvr-float">Home</a><br>
+      <a href="/posts" class="box hvr-float"> Posts </a><br>
 
       <%  if (typeof user !== 'undefined') { %>
 
-        <li><a href="/profile"> Profile </a></li><br>
-        <li><a href="/posts/my-posts"> My Posts </a></li><br>
-        <li><a href="/posts/new"> Create a Post </a></li><br>
-        <li><a href="/logout"> Log Out </a></li><br></h3>
+        <a href="/profile" class="box hvr-float"> Profile </a><br>
+        <a href="/posts/my-posts" class="box hvr-float"> My Posts </a><br>
+        <a href="/posts/new" class="box hvr-float"> Create a Post </a><br>
+        <a href="/logout" class="box-auth hvr-underline-from-left"> Log Out </a><br></h3>
 
       <% } else { %>
 
-      <li><a href="/signup"> Sign Up </a></li><br>
-      <li><a href="/login"> Log In </a></li><br>
+      <a href="/signup" class="box-auth hvr-underline-from-left"> Sign Up </a><br>
+      <a href="/login" class="box-auth hvr-underline-from-left"> Log In </a><br>
 
       <% } %>
     </div>
   </header>
-  <div class="col-sm-9">
+  <div class="col-sm-10">
     <%- body -%>
   </div>
   <div class="footer navbar-fixed-bottom">
