@@ -105,7 +105,9 @@ router.get('/posts/:id', (req, res, next) => {
       post: thePost
 
     });
+
   });
+
 });
 
 
@@ -126,18 +128,23 @@ router.post('/posts/:id/delete', (req, res, next) => {
 const myComment = multer(
   { dest: path.join(__dirname, '../public/uploads/comments/') }
 );
+
 router.post('/posts/:id',
   ensure.ensureLoggedIn('/login'),
   myComment.single('imagePath'),
   (req, res, next) => {
+
+
     const postId = req.params.id;
     Post.findById(
       postId,
       (err, thisPost) => {
+
         if (err) {
           next(err);
           return;
         }
+
 
         if (thisPost) {
           if (req.file) {
