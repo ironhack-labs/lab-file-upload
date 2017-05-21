@@ -1,26 +1,28 @@
 <div class="container">
-  <div class="row">
-    <%= message %>
-    <div class="col-sm-6 centered-form">
-      <form action="/signup" method="post" enctype="multipart/form-data">
+    <h1>Sign Up</h1>
+    <div class="row">
+        <%= message %>
+            <div class="col-sm-6 centered-form">
+                <form action="/signup" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="room-photo-input"></label>
+                        <input id="room-photo-input" name="userPhoto" type="file" value="">
+                    </div>
 
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" name="username" class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" name="password" class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="user-photo-input"> Upload Photo </label>
-          <input  id="user-photo-input" type="file" name="userPhoto">
-        </div class="form-group">
-        <br>
-        <button type="submit">Signup</button>
-      </form>
+                    <button type="submit">Signup</button>
+                </form>
+            </div>
     </div>
-  </div>
 </div>
