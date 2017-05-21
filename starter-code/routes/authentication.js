@@ -39,7 +39,7 @@ router.post('/signup', ensureLoggedOut(), myUploader.single('userPhoto'), (req, 
 
     if (!password && !username) {
         res.render('authentication/signup', {
-            message: 'PLease Fill in the the require fields'
+            message: 'PLease fill in the the require fields'
         });
         return;
     }
@@ -72,7 +72,7 @@ router.post('/signup', ensureLoggedOut(), myUploader.single('userPhoto'), (req, 
                     next(err);
                     return;
                 }
-                req.flash('success','yay');
+                req.flash('success','ok');
                 res.redirect('/');
                 return;
             });
