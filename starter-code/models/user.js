@@ -4,18 +4,11 @@ const Schema = mongoose.Schema;
 
 const UserSchema = Schema({
     // All users
-    name: { type: String },
-    role: {
-      type: String,
-      enum: ['normal user', 'admin'],
-      default: 'normal user'
-    },
-
     username: { type: String },
     encryptedPassword: { type: String },
-    email: { type: String }
+    email: { type: String },
+    photoAddress: { type: String }
   },
-
   {
     timestamps: true
   }

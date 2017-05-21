@@ -1,27 +1,36 @@
-<div class="container">
-  <div class="row">
-    <%= message %>
+<%= message %>
+  <h1>Sign Up</h1>
+
+  <div class="container">
+    <div class="row">
       <div class="col-sm-6 centered-form">
-        <form action="/signup" method="post">
+        <form action="/signup" method="post" enctype="multipart/form-data">
           <div class="form-group">
-            <label for="username">Username</label>
+            <label for="username">Username:</label>
             <input type="text" name="username" class="form-control">
           </div>
+          <br>
+
           <div class="form-group">
-            <label for="email">Email</label>
+            <label for="email">Email:</label>
             <input type="text" name="email" class="form-control">
           </div>
+          <br>
+
           <div class="form-group">
-            <label for="password">Password</label>
+            <label for="password">Password:</label>
             <input type="password" name="password" class="form-control">
           </div>
+          <br>
+
           <div class="form-group">
             <label for="photo-input"> Upload Photo</label>
             <input id="photo-input" type="file" name="photo">
           </div>
           <br>
-          <button type="submit">Signup</button>
+
+          <button>Signup</button>
         </form>
       </div>
+    </div>
   </div>
-</div>
