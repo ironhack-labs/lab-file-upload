@@ -8,6 +8,19 @@
     <script src="/bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
   </head>
   <body>
+
+      <ul>
+        <%if(typeof user === 'undefined'){%>
+          <li><a href="/login">Login</a></li>
+            <li><a href="/signup">Sign Up</a></li>
+        <%}else{%>
+          <li><a href="/logout">Log Out</a></li>
+          <li><a href="/profile">Edit Profile</a></li>
+        <%}%>
+
+            <li><a href="/">Home</a></li>
+      </ul>
+
     <div class="main-container">
       <%- body -%>
     </div>
@@ -15,3 +28,5 @@
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
   </body>
 </html>
+
+
