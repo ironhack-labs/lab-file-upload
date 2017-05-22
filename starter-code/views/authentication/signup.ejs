@@ -1,9 +1,14 @@
-<%= message %>
-  <h1>Sign Up</h1>
+  <h2>Sign Up</h2>
 
+  <div class="error">
+    <%= message %>
+  </div>
+  <br>
+
+<br>
   <div class="container">
     <div class="row">
-      <div class="col-sm-6 centered-form">
+      <div class="centered-form">
         <form action="/signup" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label for="username">Username:</label>
@@ -24,9 +29,9 @@
           <br>
 
           <div class="form-group">
-            <label for="photo-input"> Upload Photo</label>
+            <label for="photo-input"></label>
             <input id="photo-input" type="file" name="photo">
-          </div>
+        </div>
           <br>
 
           <button>Signup</button>

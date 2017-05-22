@@ -2,32 +2,36 @@
 <html>
 
 <head>
-  <title> <%=title %> </title>
-  <link rel='stylesheet' href='/stylesheets/style.css'/>
+  <title>
+    <%=title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 
 <body>
   <h1>Welcome to IronTumblr</h1>
+  <br>
 
   <%if(typeof post !== 'undefined'){%>
-    <p> Hello, <%= user.username %>. </p>
     <%post.forEach((onePost)=>{%>
 
-      <div class="post">
-        <p>Made By Creator Id:
-          <a href=""><%=onePost.creatorId%></a>
-        </p>
+      <div class="box">
+        <div class="col-xs-6 col-md-4">
+          <p>Made By Creator Id:
+            <%=onePost.creatorId%>
+          </p>
 
-        <div>
           <a href="/<%=onePost._id%>/postpage">
             <%=onePost.picName%>
           </a>
           <br>
 
-          <br>
+          <img src="<%=onePost.picPath%>">
         </div>
-        <img src="<%=onePost.picPath%>">
       </div>
+
+
+      <br>
       <%});%>
         <%}%>
 

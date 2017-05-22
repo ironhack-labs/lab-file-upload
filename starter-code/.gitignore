@@ -5,6 +5,9 @@ public/post
 
 public/comments
 
+#bower
+bower_components
+
 #Ignore development variables
 .env
 

@@ -5,11 +5,46 @@ body {
 
 a {
   color: #00B7FF;
+  text-align: center;
 }
+
+.navbar-default{
+  text-align: center;
+  padding-top: 10px;
+}
+
+.error{
+  background-color: red;
+  font-size: 20px;
+  border-radius: 5px;
+}
+
 img {
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 5px;
-    width: 250px;
-    height: 250px;
+    width: 350px;
+    height: 350px;
+    text-align: center;
+}
+
+.input-imageName{
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+}
+
+.box{
+  text-align: center;
+}
+
+.form-control{
+  text-align: center;
+}
+
+.align{
+  text-align: right;
 }

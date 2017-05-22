@@ -1,46 +1,50 @@
-  <h1>Post: <%=post.picName%> </h1>
-  <h2>Content: <%=post.content%> </h2>
-  <h3>made by <strong><%=users.username%> <strong></h3>
-  <img src="<%=post.picPath%>" alt="">
-  <div class="reviews">
+<h1>Post: <%=post.picName%></h1>
+<br>
+<p>Content: <%=post.content%> </p>
+<br>
+<p>Made by: <strong><%=users.username%><strong></p>
+<img src="<%=post.picPath%>" alt="">
+<div class="reviews">
 
-    <%if(typeof user !== 'undefined'){%>
+<%if(typeof user !== 'undefined'){%>
+<hr>
+<h3>Comments</h3>
+<%if(post.comment.length >-1){%>
+  <%post.comment.forEach((comment)=>{%>
+    <p>Comment: <%=comment.content%></p>
+    <h5>Picture Name: <%=comment.imageName%></h5>
+    <img src="<%=comment.imagePath%>" alt="" class="input-imageName">
+<br>
+  </div>
+  <%});%>
+<%}%>
 
-      <%if(post.comment.length >-1){%>
-        <%post.comment.forEach((comment)=>{%>
-          <p>
-            <%=comment.content%>
-          </p>
-          <h5><%=comment.imageName%></h5>
-          <img src="<%=comment.imagePath%>">
-          <%});%>
-            <%}%>
+    <hr>
+    <h3>Write your Comment </h3>
+    <div class="create-review">
+      <form class="" action="/<%=post._id%>/new/comment" method="post" enctype="multipart/form-data">
+        <label for="input-imageName">Name of Post:</label>
+        <br>
+        <input id="input-imageName" type="text" name="imageName">
+        <br>
 
-              <div class="create-review">
-                <form class="" action="/<%=post._id%>/new/comment" method="post" enctype="multipart/form-data">
-                  <label for="input-imageName">Name of Post:</label>
-                  <br>
-                  <input id="input-imageName" type="text" name="imageName">
-                  <br>
+        <br>
+        <label for="input-content">Comment: </label>
+        <br>
+        <textarea id="input-content" type="text" name="content" class="form-control"> </textarea>
+        <br>
 
-                  <br>
-                  <label for="input-content">Comment: </label>
-                  <br>
-                  <textarea id="input-content" type="text" name="content" class="form-control"> </textarea>
-                  <br>
+        <br>
+        <div>
+          <label for="input-imagePath"> </label>
+          <input id="input-imagePath" type="file" name="imagePath">
+        </div>
+        <br>
 
-                  <br>
-                  <div align="center">
-                  <label for="input-imagePath"> </label>
-                  <input id="input-imagePath" type="file" name="imagePath">
-                </div>
-                  <br>
+        <button>Submit</button>
+      </form>
 
+    </div>
+    <%}%>
 
-
-                  <br>
-                  <button type="button" class="btn btn-default">Submit</button>
-                </form>
-
-              </div>
-              <%}%>
+</center>
