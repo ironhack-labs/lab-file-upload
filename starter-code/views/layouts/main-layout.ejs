@@ -3,11 +3,37 @@
   <head>
     <meta charset="utf-8">
     <title>IronTumblr</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
   </head>
   <body>
+    <header>
+      <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">IronTumblr</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/">Home</a></li>
+          <% if (typeof user !== 'undefined') { %>
+            <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+            <li><a href="/posts/new"><span class="glyphicon glyphicon-pencil"></span> New Post</a></li>
+            <li><a href="/posts"><span class="glyphicon glyphicon-th-list"></span> Post List</a></li>
+          <% } else { %>
+            <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+          <% } %>
+        </ul>
+      </div>
+    </nav>
+    </header>
     <div class="main-container">
       <%- body -%>
     </div>
