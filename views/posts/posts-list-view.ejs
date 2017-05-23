@@ -1,0 +1,21 @@
+  <h2> Posts </h2>
+
+  <% if (successMessage.length > 0) { %>
+    <div class="success"> <%= successMessage %> </div>
+  <% } %>
+
+    <% posts.forEach((onePost) => { %>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <img src="<%= onePost.picPath %>" alt="Lights" style="width:100%">
+              <div class="caption">
+                <p>Name: <%= onePost.content %> </p>
+                <p>Description: <%= onePost.picName %> </p>
+                <a href="/posts/<%= onePost._id %>">
+                  View details
+                </a>
+              </div>
+            </div>
+        </div>
+    <% }) %>

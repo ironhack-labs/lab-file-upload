@@ -1,0 +1,32 @@
+<% if (message.length > 0) { %>
+  <div class="error"> <%= message %> </div>
+<% } %>
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 centered-form">
+      <form action="/signup" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" name="username" class="form-control"
+          placeholder="My name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" name="email" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" name="password" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="photoAddress">Picture</label>
+          <input type="file" name="photoAddress"  class="form-control">
+        </div>
+
+        <button type="submit">Signup</button>
+      </form>
+    </div>
+  </div>
+</div>

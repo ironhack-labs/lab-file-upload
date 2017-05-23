@@ -1,0 +1,34 @@
+<% if (posts.length === 0) { %>
+
+  <h2> You don't have any posts yet </h2>
+
+
+<% } else { %>
+
+  <h2> Posts </h2>
+
+  <% if (successMessage.length > 0) { %>
+    <div class="success"> <%= successMessage %> </div>
+  <% } %>
+
+    <% posts.forEach((onePost) => { %>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <img src="<%= onePost.picPath %>" alt="Lights" style="width:100%">
+              <div class="caption">
+                <p>Name: <%= onePost.content %> </p>
+                <p>Description: <%= onePost.picName %> </p>
+                <button><a href="/posts/<%= onePost._id %>">
+                  View details
+                </a></button>
+                <form method="post" action="/posts/<%= onePost._id %>/delete">
+                  <button> Delete </button>
+                </form>
+              </div>
+          </div>
+
+          </form>
+        </div>
+    <% }) %>
+<% } %>
