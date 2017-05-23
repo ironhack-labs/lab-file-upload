@@ -13,8 +13,10 @@ const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
+const multer             = require('multer');
+require ('dotenv').config();
 
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
+mongoose.connect('mongodb://localhost:27017/tumblr-lab');
 
 const app = express();
 
@@ -28,9 +30,10 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   store: new MongoStore( { mongooseConnection: mongoose.connection })
-}))
+}));
 
-passport.serializeUser((user, cb) => {
+passport.serializeUser(
+  (user, cb) => {
   cb(null, user.id);
 });
 
@@ -41,15 +44,16 @@ passport.deserializeUser((id, cb) => {
   });
 });
 
-passport.use('local-login', new LocalStrategy((username, password, next) => {
-  User.findOne({ username }, (err, user) => {
+passport.use('local-login', new LocalStrategy((username, encryptedPassword, next) => {
+  User.findOne({ username },
+    (err, user) => {
     if (err) {
       return next(err);
     }
     if (!user) {
       return next(null, false, { message: "Incorrect username" });
     }
-    if (!bcrypt.compareSync(password, user.password)) {
+    if (!bcrypt.compareSync(encryptedPassword, user.encryptedPassword)) {
       return next(null, false, { message: "Incorrect password" });
     }
 
@@ -59,7 +63,7 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
 
 passport.use('local-signup', new LocalStrategy(
   { passReqToCallback: true },
-  (req, username, password, next) => {
+  (req, username, encryptedPassword, next) => {
     // To avoid race conditions
     process.nextTick(() => {
         User.findOne({
@@ -74,17 +78,19 @@ passport.use('local-signup', new LocalStrategy(
                 const {
                   username,
                   email,
-                  password
+                  ncryptedPassword,
+                  photo
                 } = req.body;
-                const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+                const hashPass = bcrypt.hashSync(encryptedPassword, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  encryptedPassword: hashPass,
+                  photo: `/uploads/${req.file.filename}`
                 });
 
                 newUser.save((err) => {
-                    if (err){ next(null, false, { message: newUser.errors }) }
+                    if (err){ next(null, false, { message: newUser.errors }); }
                     return next(null, newUser);
                 });
             }
@@ -92,20 +98,35 @@ passport.use('local-signup', new LocalStrategy(
     });
 }));
 
-app.use(flash());
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/bower_components', express.static(path.join(__dirname, 'bower_components/')))
+app.use('/bower_components', express.static(path.join(__dirname, 'bower_components/')));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 
+app.use((req, res, next) => {
+  if (req.user) {
+    // Creates a variable "user" for views
+    res.locals.user = req.user;
+  }
+
+  next();
+});
+
+//-------------------ROUTES HERE------------------------------------
 const index = require('./routes/index');
-const authRoutes = require('./routes/authentication');
 app.use('/', index);
+
+const authRoutes = require('./routes/authentication.js');
 app.use('/', authRoutes);
+
+const postRoutes = require('./routes/post-route.js');
+app.use('/', postRoutes);
+//-------------------------------------------------------------------
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

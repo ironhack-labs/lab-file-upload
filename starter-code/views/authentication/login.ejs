@@ -1,19 +1,26 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-6 centered-form">
-      <form action="/login" method="post">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" name="username" class="form-control">
-        </div>
+<h2> Log In </h2>
 
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" name="password" class="form-control">
-        </div>
-
-        <button type="submit">Login</button>
-      </form>
-    </div>
+<% if (message.length > 0) { %>
+  <div class="error">
+    <%= message %>
   </div>
-</div>
+  <% } %>
+  <br>
+
+          <form method="post" action="/login">
+
+            <div class="form-group">
+              <label for="username">Username:</label>
+              <input type="text" name="username" class="form-control">
+            </div>
+            <br>
+
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" name="password" class="form-control">
+            </div>
+            <br>
+            <button>Login</button>
+          </form>
+
+    </div>
