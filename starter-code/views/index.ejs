@@ -6,5 +6,22 @@
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
+    <% if(typeof user !== 'undefined') { %>
+      <div class="col-lg-12 col-sm-12">
+        <div class="card hovercard">
+            <div class="card-background">
+                <img class="card-bkimg" alt="" src="">
+            </div>
+            <div class="useravatar">
+                <img alt="" src="<%= user.pictureProfile %>">
+            </div>
+            <div class="card-info"> <span class="card-title"><%= user.username %></span></div>
+        </div>
+      </div>
+    <% } %>    
   </body>
 </html>
+
+
+            
+    

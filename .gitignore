@@ -29,3 +29,12 @@ bower_components
 
 # Debug log from npm
 npm-debug.log
+
+# vscode
+.vscode
+
+# Ignore uploaded files
+starter-code/public/uploads
+
+# Ignore development environment variables
+.env

@@ -13,6 +13,9 @@ const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
+const multer             = require('multer');
+
+
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
@@ -28,7 +31,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   store: new MongoStore( { mongooseConnection: mongoose.connection })
-}))
+}));
 
 passport.serializeUser((user, cb) => {
   cb(null, user.id);
@@ -57,6 +60,7 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
   });
 }));
 
+
 passport.use('local-signup', new LocalStrategy(
   { passReqToCallback: true },
   (req, username, password, next) => {
@@ -74,13 +78,15 @@ passport.use('local-signup', new LocalStrategy(
                 const {
                   username,
                   email,
-                  password
+                  password,
+                  pictureProfile
                 } = req.body;
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  pictureProfile: `/uploads/${req.file.filename}`
                 });
 
                 newUser.save((err) => {
@@ -99,13 +105,30 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/bower_components', express.static(path.join(__dirname, 'bower_components/')))
+app.use('/bower_components', express.static(path.join(__dirname, 'bower_components/')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-const index = require('./routes/index');
-const authRoutes = require('./routes/authentication');
+
+// This middleware sets the user variable for all views
+// only if logged in for user: req.user     for all renders!
+app.use((req, res, next) => {
+  if (req.user) {
+    // Creates a variable "user" for views
+    res.locals.user = req.user;
+  }
+
+  next();
+});
+
+
+
+
+const index       = require('./routes/index');
+const authRoutes  = require('./routes/authentication');
+const postRoutes  = require('./routes/post');
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/', postRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

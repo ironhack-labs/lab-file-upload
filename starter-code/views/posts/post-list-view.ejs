@@ -1,0 +1,20 @@
+<% if (posts.length === 0) { %>
+  <h2> You Don't Have Posts Yet </h2>
+<% } else { %>
+  <h2> Your Posts </h2>
+  <% if (successMessage.length > 0) { %>
+    <div class="success"> <%= successMessage %> </div>
+  <% } %>
+  <ul>
+    <% posts.forEach((onePost) => { %>
+      <li>
+        <h3> <%= onePost.picName %> </h3>
+        <p> <%= onePost.content %> </p>
+        <img src="<%= onePost.picPath %>">
+      </li>
+    <% }) %>
+  </ul>
+<% } %>
+<a href="/posts/new">
+  Create a Posts
+</a>
