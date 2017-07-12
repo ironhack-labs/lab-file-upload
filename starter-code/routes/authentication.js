@@ -1,6 +1,9 @@
 const express    = require('express');
 const passport   = require('passport');
 const router     = express.Router();
+const multer  = require('multer');
+const upload = multer({ dest: './public/uploads/' });
+const User = require('../models/user');
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
@@ -17,7 +20,7 @@ router.get('/signup', ensureLoggedOut(), (req, res) => {
     res.render('authentication/signup', { message: req.flash('error')});
 });
 
-router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
+router.post('/signup', upload.single('photo') ,ensureLoggedOut(), passport.authenticate('local-signup', {
   successRedirect : '/',
   failureRedirect : '/signup',
   failureFlash : true
@@ -29,9 +32,25 @@ router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
     });
 });
 
-router.post('/logout', ensureLoggedIn('/login'), (req, res) => {
+router.get('/logout', ensureLoggedIn('/login'), (req, res) => {
     req.logout();
     res.redirect('/');
 });
+
+// Route to upload from project base path
+
+
+// router.post('/upload', upload.single('photo'), function(req, res){
+//
+//   user = new User({
+//     name: req.body.name,
+//     pic_path: `/uploads/${req.file.filename}`,
+//     pic_name: req.file.originalname
+//   });
+//
+//   user.save((err) => {
+//       res.redirect('/');
+//   });
+// });
 
 module.exports = router;
