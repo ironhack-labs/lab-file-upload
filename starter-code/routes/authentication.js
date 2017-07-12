@@ -1,9 +1,10 @@
-const express    = require('express');
-const passport   = require('passport');
-const router     = express.Router();
-const multer  = require('multer');
+const express = require('express');
+const passport = require('passport');
+const router = express.Router();
+const multer = require('multer');
 const upload = multer({ dest: './public/uploads/' });
 const User = require('../models/user');
+const Post = require('../models/post');
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
