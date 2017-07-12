@@ -13,7 +13,7 @@ const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
-
+const post = require('./models/post');
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
 const app = express();
@@ -28,7 +28,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   store: new MongoStore( { mongooseConnection: mongoose.connection })
-}))
+}));
 
 passport.serializeUser((user, cb) => {
   cb(null, user.id);
@@ -80,11 +80,12 @@ passport.use('local-signup', new LocalStrategy(
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  photo: req.file.filename,
                 });
 
                 newUser.save((err) => {
-                    if (err){ next(null, false, { message: newUser.errors }) }
+                    if (err){ next(null, false, { message: newUser.errors }); }
                     return next(null, newUser);
                 });
             }
@@ -99,13 +100,14 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/bower_components', express.static(path.join(__dirname, 'bower_components/')))
+app.use('/bower_components', express.static(path.join(__dirname, 'bower_components/')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/', post);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
