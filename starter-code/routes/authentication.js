@@ -2,6 +2,8 @@ const express    = require('express');
 const passport   = require('passport');
 const router     = express.Router();
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+var multer = require('multer');
+const user = require('../models/user');
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
     res.render('authentication/login', { message: req.flash('error')});
@@ -32,6 +34,24 @@ router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
 router.post('/logout', ensureLoggedIn('/login'), (req, res) => {
     req.logout();
     res.redirect('/');
+});
+
+var upload = multer({ dest: './public/uploads/' });
+
+router.post('/upload', upload.single('photo'), function(req, res){
+
+  pic = new user({
+
+    name: req.body.name,
+    pic_path: `/uploads/${req.file.filename}`,
+    pic_name: req.file.originalname
+  });
+  console.log(req.body);
+console.log(req.file);
+
+  pic.save((err) => {
+      res.redirect('/');
+  });
 });
 
 module.exports = router;
