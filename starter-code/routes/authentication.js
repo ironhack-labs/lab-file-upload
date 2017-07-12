@@ -1,3 +1,5 @@
+const multer = require('multer');
+const upload = multer({dest: './public/uploads/'});
 const express    = require('express');
 const passport   = require('passport');
 const router     = express.Router();
@@ -17,7 +19,7 @@ router.get('/signup', ensureLoggedOut(), (req, res) => {
     res.render('authentication/signup', { message: req.flash('error')});
 });
 
-router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
+router.post('/signup', upload.single('photo'), ensureLoggedOut(), passport.authenticate('local-signup', {
   successRedirect : '/',
   failureRedirect : '/signup',
   failureFlash : true
