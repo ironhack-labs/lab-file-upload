@@ -1,2 +1,31 @@
+<h1>Welcome <%= user.username %></h1>
 
-    <h1>Welcome to IronTumblr</h1>
+<% if (!user) { %>
+    <a class="auth-link" href="/login">Login</a>
+    You don't have an account.<a class="auth-link" href="/signup">Sign up here</a>
+  <% }else{ %>
+    <button><a class="auth-link" href="/profile">View your profile</a></button>
+    <br><br>
+    <button><a class="auth-link" href="/logout">Logout</a></button>
+    <br><br>
+    <button><a class="auth-link" href="/post/new">Create New Post</a></button>
+    <br><br>
+  <% } %>
+
+  <br><br>
+  <h2>Posts</h2>
+<hr>
+  <div class="row">
+    <% posts.forEach((post) => { %>
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <img src="<%= post.pic_path %>" alt="<%= post.pic_name %>">
+        <div class="caption">
+          <h5>Author: <b><%= post.creatorId %></b></h5>
+          <p><%= post.content %></p>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+
+  </div>
