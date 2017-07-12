@@ -13,6 +13,7 @@ const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
+const multer             = require ('multer');
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
@@ -78,9 +79,10 @@ passport.use('local-signup', new LocalStrategy(
                 } = req.body;
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
-                  username,
-                  email,
-                  password: hashPass
+                  username: req.body.username,
+                  email: req.body.email,
+                  password: hashPass,
+                  pic_name: req.file.filename
                 });
 
                 newUser.save((err) => {
