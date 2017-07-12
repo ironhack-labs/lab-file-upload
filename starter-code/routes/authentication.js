@@ -38,20 +38,5 @@ router.get('/logout', ensureLoggedIn('/login'), (req, res) => {
     res.redirect('/');
 });
 
-// Route to upload from project base path
-
-
-// router.post('/upload', upload.single('photo'), function(req, res){
-//
-//   user = new User({
-//     name: req.body.name,
-//     pic_path: `/uploads/${req.file.filename}`,
-//     pic_name: req.file.originalname
-//   });
-//
-//   user.save((err) => {
-//       res.redirect('/');
-//   });
-// });
 
 module.exports = router;

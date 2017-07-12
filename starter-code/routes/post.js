@@ -5,14 +5,15 @@ const User = require('../models/user');
 const Post = require('../models/post');
 const router = express.Router();
 const postUpload = multer({ dest: './public/uploads/' });
+const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
-router.get('/post/new',(req, res, next) => {
+router.get('/post/new',ensureLoggedIn('/login'),(req, res, next) => {
     res.render('posts/new-post.ejs');
   });
 
-router.post('/posts', postUpload.single('postPhoto'), (req, res, next) => {
+router.post('/posts',ensureLoggedIn('/login') ,postUpload.single('postPhoto'), (req, res, next) => {
   console.log(req.file);
-  post = new Post ({
+  const post = new Post ({
     content: req.body.postName,
     creatorId: req.user._id,
     picPath: `uploads/${req.file.filename}`,
@@ -23,7 +24,7 @@ router.post('/posts', postUpload.single('postPhoto'), (req, res, next) => {
   });
 });
 
-router.get('/posts', (req,res,next) => {
+router.get('/posts', ensureLoggedIn('/login'), (req,res,next) => {
   Post.find(
       // { creatorId: req.user._id },
       (err, postsList) => {
@@ -40,5 +41,28 @@ router.get('/posts', (req,res,next) => {
   }
 );
 
+
+router.get('/posts/:id', ensureLoggedIn('/login') ,(req, res, next) => {
+  const postId = req.params.id;
+
+  Post.findById(postId, (err, post) => {
+    if (err) {
+      next(err);
+      return;
+    }
+
+    if(!post) {
+      next();
+      return;
+    }
+    console.log(post.comment);
+    res.render('posts/post-show.ejs', {
+      post: post
+
+    });
+
+  });
+
+});
 
 module.exports = router;
