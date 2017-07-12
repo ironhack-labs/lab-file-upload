@@ -60,6 +60,7 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
 passport.use('local-signup', new LocalStrategy(
   { passReqToCallback: true },
   (req, username, password, next) => {
+    console.log(req.file);
     // To avoid race conditions
     process.nextTick(() => {
         User.findOne({
@@ -74,13 +75,15 @@ passport.use('local-signup', new LocalStrategy(
                 const {
                   username,
                   email,
-                  password
+                  password,
+                  picture
                 } = req.body;
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  picture: req.file.filename
                 });
 
                 newUser.save((err) => {
@@ -104,8 +107,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const postRoutes = require('./routes/post');
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/posts', postRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

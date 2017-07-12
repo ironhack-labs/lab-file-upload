@@ -6,5 +6,18 @@
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
+    <a href="/posts">Posts</a>
+    <div class="user-pane">
+      <%- (user != null)
+        ? ` <h3>Hi ${user.username}</h3>
+            <a href="/logout">Log out</a><br>
+            <img src="uploads/${user.picture}" width="80" >
+          `
+        : ` <h3>Hi anonimous!</h3>
+            <h3>Have account? <a href="/login">Log in</a></h3>
+            <h3>Not? <a href="/signup">Sign up</a></h3>
+          `
+      %>
+    </div>
   </body>
 </html>
