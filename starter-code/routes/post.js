@@ -15,7 +15,7 @@ router.post('/posts', postUpload.single('postPhoto'), (req, res, next) => {
   post = new Post ({
     content: req.body.postName,
     creatorId: req.user._id,
-    picPath: `public/uploads/${req.file.filename}`,
+    picPath: `uploads/${req.file.filename}`,
     picName: req.body.picName
   });
   post.save((err) => {
@@ -23,6 +23,22 @@ router.post('/posts', postUpload.single('postPhoto'), (req, res, next) => {
   });
 });
 
+router.get('/posts', (req,res,next) => {
+  Post.find(
+      // { creatorId: req.user._id },
+      (err, postsList) => {
+        if (err) {
+          next(err);
+          return;
+        }
+
+        res.render('posts/post-list.ejs', {
+          posts: postsList,
+        });
+      }
+    );
+  }
+);
 
 
 module.exports = router;
