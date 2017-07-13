@@ -76,11 +76,13 @@ passport.use('local-signup', new LocalStrategy(
                   email,
                   password
                 } = req.body;
+                const photo = req.file.filename
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  pic_path: photo
                 });
 
                 newUser.save((err) => {
@@ -99,8 +101,9 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/bower_components', express.static(path.join(__dirname, 'bower_components/')))
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')))
+
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
