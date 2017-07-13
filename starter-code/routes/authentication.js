@@ -3,6 +3,11 @@ const passport   = require('passport');
 const router     = express.Router();
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
+// Include multer middleware and indicate destination files
+const multer = require('multer');
+const upload = multer({dest: './public/uploads/'});
+
+
 router.get('/login', ensureLoggedOut(), (req, res) => {
     res.render('authentication/login', { message: req.flash('error')});
 });
@@ -13,11 +18,14 @@ router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
   failureFlash : true
 }));
 
+
 router.get('/signup', ensureLoggedOut(), (req, res) => {
     res.render('authentication/signup', { message: req.flash('error')});
 });
 
-router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
+// IMPORTANT -> Include middleware to upload the image
+// 2 middleware y passport.authentica es la funcion final
+router.post('/signup', upload.single('image'), ensureLoggedOut(), passport.authenticate('local-signup', {
   successRedirect : '/',
   failureRedirect : '/signup',
   failureFlash : true

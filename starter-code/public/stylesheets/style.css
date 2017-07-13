@@ -1,8 +1,33 @@
 body {
-  padding: 50px;
+  padding: 5px 20px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+section {
+  border: 1px solid #b9b7b7;
+  background: rgba(175, 175, 175, 0.61);
+  padding: 10px 40px;
+  text-align: center;
+}
+
+section img {
+  border-radius: 50px;
+  height: 80px;
+  width: 80px;
+}
+
+.thumbnail {
+  height: 350px;
+  width:100%;
+   overflow:hidden;
+}
+
+.thumbnail img{
+  max-height: 260px;
+  height: auto;
+  width: 100%;
 }
