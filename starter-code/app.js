@@ -8,6 +8,7 @@ const expressLayouts     = require('express-ejs-layouts');
 const passport           = require('passport');
 const LocalStrategy      = require('passport-local').Strategy;
 const User               = require('./models/user');
+const Post               = require('./models/post');
 const bcrypt             = require('bcrypt');
 const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
@@ -106,8 +107,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const postRoutes = require('./routes/post');
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/', postRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
