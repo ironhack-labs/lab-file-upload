@@ -33,6 +33,28 @@ router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
     });
 });
 
+router.get('/upload', ensureLoggedIn('/login'), (req, res) => {
+    res.render('authentication/upload', {
+        user : req.user
+    });
+});
+
+router.post('/upload', ensureLoggedIn('/login'),
+    upload.single('file'),
+    function(req, res, next) {
+      let content= req.body.content;
+      let userId = req.user.id;
+      let picName= req.file.filename;
+      const newPost = new Post({
+        content: content,
+        userId: userId,
+        picName: picName
+      });
+      newPost.save((err) => {
+      res.redirect('/profile');
+  });
+    });
+
 router.get('/logout', ensureLoggedIn('/login'), (req, res) => {
     req.logout();
     res.redirect('/');
