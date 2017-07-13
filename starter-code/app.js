@@ -28,7 +28,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   store: new MongoStore( { mongooseConnection: mongoose.connection })
-}))
+}));
 
 passport.serializeUser((user, cb) => {
   cb(null, user.id);
@@ -42,7 +42,9 @@ passport.deserializeUser((id, cb) => {
 });
 
 passport.use('local-login', new LocalStrategy((username, password, next) => {
+
   User.findOne({ username }, (err, user) => {
+
     if (err) {
       return next(err);
     }
@@ -62,6 +64,7 @@ passport.use('local-signup', new LocalStrategy(
   (req, username, password, next) => {
     // To avoid race conditions
     process.nextTick(() => {
+      console.log("test2");
         User.findOne({
             'username': username
         }, (err, user) => {
@@ -80,11 +83,13 @@ passport.use('local-signup', new LocalStrategy(
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  photo: req.body.name
                 });
 
                 newUser.save((err) => {
-                    if (err){ next(null, false, { message: newUser.errors }) }
+                  console.log("test2");
+                    if (err){ next(null, false, { message: newUser.errors }); }
                     return next(null, newUser);
                 });
             }
@@ -99,7 +104,6 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/bower_components', express.static(path.join(__dirname, 'bower_components/')))
 app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
