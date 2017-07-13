@@ -73,6 +73,8 @@ passport.use('local-signup', new LocalStrategy({
   },
   (req, username, password, next) => {
     // To avoid race conditions
+    console.log('LOCAL BODY', req.body);
+    console.log('LOCAL FILE', req.file);
 
     process.nextTick(() => {
       User.findOne({
@@ -134,11 +136,9 @@ const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
 const post = require('./routes/post');
 
+// app.use('/post', post);
 app.use('/', index);
-app.use('/', post);
 app.use('/', authRoutes);
-
-
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

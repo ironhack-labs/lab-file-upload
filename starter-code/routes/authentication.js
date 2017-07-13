@@ -24,6 +24,7 @@ router.get('/signup', ensureLoggedOut(), (req, res) => {
 });
 
 // IMPORTANT -> Include middleware to upload the image
+// 2 middleware y passport.authentica es la funcion final
 router.post('/signup', upload.single('image'), ensureLoggedOut(), passport.authenticate('local-signup', {
   successRedirect : '/',
   failureRedirect : '/signup',

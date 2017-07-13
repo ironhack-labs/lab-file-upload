@@ -21,7 +21,7 @@
       <div class="thumbnail">
         <img src="<%= post.pic_path %>" alt="<%= post.pic_name %>">
         <div class="caption">
-          <h5>Author: <b><%= post.creatorId %></b></h5>
+          <h5>Author: <b><%= post.creatorId.username %></b></h5>
           <p><%= post.content %></p>
         </div>
       </div>
