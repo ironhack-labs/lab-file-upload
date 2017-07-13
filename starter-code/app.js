@@ -15,7 +15,7 @@ const mongoose = require('mongoose');
 const flash = require('connect-flash');
 const multer = require('multer');
 const upload = multer({ dest: './public/uploads/' });
-
+const authRoutes= require('./routes/authentication');
 mongoose.connect('mongodb://localhost:27017/tumblr-lab');
 
 const app = express();
@@ -125,7 +125,7 @@ app.use('/bower_components', express.static(path.join(__dirname, 'bower_componen
 app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
-const authRoutes = require('./routes/authentication');
+
 app.use('/', index);
 app.use('/', authRoutes);
 
