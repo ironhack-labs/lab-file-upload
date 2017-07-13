@@ -43,7 +43,7 @@ router.post('/upload', ensureLoggedIn('/login'),
     upload.single('file'),
     function(req, res, next) {
       let content= req.body.content;
-      let userId = req.user.id;
+      let userId = user.id;
       let picName= req.file.filename;
       const newPost = new Post({
         content: content,
