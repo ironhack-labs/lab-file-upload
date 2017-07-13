@@ -28,7 +28,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   store: new MongoStore( { mongooseConnection: mongoose.connection })
-}))
+}));
 
 passport.serializeUser((user, cb) => {
   cb(null, user.id);
@@ -52,7 +52,6 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
     if (!bcrypt.compareSync(password, user.password)) {
       return next(null, false, { message: "Incorrect password" });
     }
-
     return next(null, user);
   });
 }));
@@ -60,6 +59,7 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
 passport.use('local-signup', new LocalStrategy(
   { passReqToCallback: true },
   (req, username, password, next) => {
+    console.log(req.file)
     // To avoid race conditions
     process.nextTick(() => {
         User.findOne({
@@ -80,11 +80,13 @@ passport.use('local-signup', new LocalStrategy(
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  pic_path: req.file.path,
+                  pic_name: req.file.originalname
                 });
 
                 newUser.save((err) => {
-                    if (err){ next(null, false, { message: newUser.errors }) }
+                    if (err){ next(null, false, { message: newUser.errors }); }
                     return next(null, newUser);
                 });
             }
@@ -99,8 +101,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/bower_components', express.static(path.join(__dirname, 'bower_components/')))
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/bower_components', express.static(path.join(__dirname, 'bower_components/')));
+app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
@@ -109,7 +111,7 @@ app.use('/', authRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  const err = new Error('Not Found');
+  const err = new Error('Donde vas');
   err.status = 404;
   next(err);
 });
