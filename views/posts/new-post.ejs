@@ -1,0 +1,26 @@
+<h2> Add a New Post </h2>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 centered-form">
+      <form action="/posts" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="post-name-input"> Post Name </label>
+          <input type="text" name="postName" class="form-control"
+          placeholder="My post">
+        </div>
+        <div class="form-group">
+          <label for="picture-name-input"> Description </label>
+          <input type="text" name="picName" class="form-control"
+          placeholder="What is it about?">
+        </div>
+        <div class="form-group">
+          <label for="post-photo-input"> Upload Photo </label>
+          <input type="file" name="postPhoto"  class="form-control">
+        </div>
+
+        <button type="submit">Post it!</button>
+      </form>
+    </div>
+  </div>
+</div>
