@@ -1,0 +1,14 @@
+<div class="container">
+  <h3> Posts </h3>
+  <a href="/posts/new"> New Post</a>
+  <h4>Latest: </h4>
+  <%-
+    posts.map(post=>
+      `<div>
+        <h5>${post.picName}</h5>
+        <img src="uploads/${post.picPath}" height="150">
+        <p>${post.content}</p>
+      </div>`
+    ).join('');
+  %>
+</div>
