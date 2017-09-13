@@ -1,0 +1,24 @@
+
+<div class="container">
+  <h3> Create Post </h3>
+  <a href="/posts"> Back</a>
+  <div class="col-sm-6 centered-form">
+    <form action="/posts/new" method="post" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="content">Username</label>
+        <textarea name="content" rows="8" cols="80" class="form-control">
+          You have 140 characters left...
+        </textarea>
+      </div>
+      <div class="form-group">
+        <label for="picName">Pic name</label>
+        <input type="text" name="picName" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="photo">User picture</label>
+        <input type="file" name="photo" value="">
+      </div>
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</div>
