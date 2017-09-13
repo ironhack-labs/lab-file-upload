@@ -14,7 +14,9 @@ const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
+require("dotenv").config();
+
+mongoose.connect(process.env.MONGODB_URI);
 
 const app = express();
 
@@ -28,7 +30,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   store: new MongoStore( { mongooseConnection: mongoose.connection })
-}))
+}));
 
 passport.serializeUser((user, cb) => {
   cb(null, user.id);
