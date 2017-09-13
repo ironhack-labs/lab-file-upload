@@ -8,28 +8,38 @@ const expressLayouts     = require('express-ejs-layouts');
 const passport           = require('passport');
 const LocalStrategy      = require('passport-local').Strategy;
 const User               = require('./models/user');
+const Photo              = require('./models/photo');
 const bcrypt             = require('bcrypt');
 const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
-
+require("dotenv").config();
 const app = express();
+
+mongoose.connect(process.env.MONGODB_URI, {useMongoClient: true}).then( ()=> console.log("Conectado a BD"));
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.set('layout', 'layouts/main-layout');
 app.use(expressLayouts);
 
+
+
+
 app.use(session({
   secret: 'tumblrlabdev',
   resave: false,
   saveUninitialized: true,
   store: new MongoStore( { mongooseConnection: mongoose.connection })
-}))
+}));
 
+require('./passport/serializers');
+require('./passport/local');
+app.use(passport.initialize());
+app.use(passport.session());
 passport.serializeUser((user, cb) => {
   cb(null, user.id);
 });
@@ -84,7 +94,7 @@ passport.use('local-signup', new LocalStrategy(
                 });
 
                 newUser.save((err) => {
-                    if (err){ next(null, false, { message: newUser.errors }) }
+                    if (err){ next(null, false, { message: newUser.errors }); }
                     return next(null, newUser);
                 });
             }
@@ -99,7 +109,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/bower_components', express.static(path.join(__dirname, 'bower_components/')))
+app.use('/bower_components', express.static(path.join(__dirname, 'bower_components/')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
