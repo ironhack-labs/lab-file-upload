@@ -5,6 +5,7 @@ var multer = require('multer');
 /* GET home page. */
 var upload = multer({ dest: './public/uploads/' });
 
+
 var pictures = [];
 
 router.get('/', (req, res, next) => {
@@ -24,5 +25,7 @@ router.post('/upload', upload.single('photo'),function(req, res, next) {
       res.redirect('/');
   });
 });
+
+
 
 module.exports = router;
