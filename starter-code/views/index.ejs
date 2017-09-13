@@ -1,7 +1,30 @@
-<h1>Welcome to IronTumblr</h1>
+<h1><%= welcome %></h1>
 
+<div class="container">
+<% posts.forEach(post => { %>
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img src="<%= post.picPath %>" alt="<%= post.picName %>">
+      <div class="caption">
+        <p><%= post.content %></p>
+      </div>
+      <div class="media">
+        <div class="media-left">
+          <!-- <img class="media-object" src=" post.creator.picture.pic_path %>" alt=" post.creator.picture.pic_name %>"> -->
+        </div>
+        <div class="media-body">
+          <!-- <p class="media-heading">by  post.creator.username %></p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+<% }) %>
+</div>
 
-
-<a href="/login">Log In</a>
-<a href="/signup">Sign Up</a>
-<a href="/logout">Log Out</a>
+<% if(user) { %>
+<a href="/posts/new" class="btn btn-success">Create post</a>
+<a href="/logout" class="btn btn-default">Log Out</a>
+<% } else { %>
+<a href="/signup" class="btn btn-primary">Sign up</a>
+<a href="/login" class="btn btn-primary">Log in</a>
+<% } %>
