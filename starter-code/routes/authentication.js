@@ -38,4 +38,5 @@ router.post('/logout', ensureLoggedIn('/login'), (req, res) => {
     res.redirect('/');
 });
 
+
 module.exports = router;
