@@ -2,8 +2,9 @@ const express    = require('express');
 const passport   = require('passport');
 const router     = express.Router();
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
-const multer  = require('multer');
-const upload = multer({ dest: './public/uploads/' });
+const multer    = require('multer');
+const upload    = multer({ dest: './public/uploads/' });
+const User      = require("../models/user");
 
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
@@ -11,7 +12,7 @@ router.get('/login', ensureLoggedOut(), (req, res) => {
 });
 
 router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
-  successRedirect : '/',
+  successRedirect : '/profile',
   failureRedirect : '/login',
   failureFlash : true
 }));
@@ -21,20 +22,15 @@ router.get('/signup', ensureLoggedOut(), (req, res) => {
 });
 
 router.post('/signup', ensureLoggedOut(), upload.single('photo'), passport.authenticate('local-signup', {
-  successRedirect : '/',
+  successRedirect : '/profile',
   failureRedirect : '/signup',
   failureFlash : true
 }));
-
-router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
-    res.render('authentication/profile', {
-        user : req.user
-    });
-});
 
 router.get('/logout', ensureLoggedIn('/login'), (req, res) => {
     req.logout();
     res.redirect('/');
 });
+
 
 module.exports = router;
