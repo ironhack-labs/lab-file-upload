@@ -20,6 +20,12 @@
         <input type="file" name="photo">
         <button type="submit">Signup</button>
       </form>
+      <% pictures.forEach(img => {%>
+      <div class="picture">
+        <img src="/uploads/<%= p.imgURL %>" width=100/>
+        <h3><%= img.name %></h3>
+      </div>
+    <% }) %>
     </div>
   </div>
 </div>

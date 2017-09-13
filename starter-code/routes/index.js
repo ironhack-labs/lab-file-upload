@@ -7,7 +7,6 @@ var upload = multer({ dest: './public/uploads/' });
 
 var pictures = [];
 
-
 router.get('/', (req, res, next) => {
   res.render('index', { title: 'Express - Generated with IronGenerator' });
 });
