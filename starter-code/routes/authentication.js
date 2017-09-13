@@ -21,25 +21,25 @@ router.get('/signup', ensureLoggedOut(), (req, res) => {
     res.render('authentication/signup', { message: req.flash('error')});
 });
 
-router.post('/upload',upload.single('photo'), function(req, res){
-
-  user = new User({
-    name: req.body.name,
-    email: req.body.email,
-    passwrod: req.body.passwrod,
-    pic_path: `/uploads/${req.file.photo}`,
-    pic_name: req.file.photo
-  });
-
-  user.save()
-    .then(user => res.redirect('/'))
-    .catch(e => res.render("/", { message: "Something went wrong" }))
-});
-// router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
-//   successRedirect : '/',
-//   failureRedirect : '/signup',
-//   failureFlash : true
-// }));
+// router.post('/upload',upload.single('photo'), function(req, res){
+//
+//   user = new User({
+//     name: req.body.name,
+//     email: req.body.email,
+//     passwrod: req.body.passwrod,
+//     pic_path: `/uploads/${req.file.photo}`,
+//     pic_name: req.file.photo
+//   });
+//
+//   user.save()
+//     .then(user => res.redirect('/'))
+//     .catch(e => res.render("/", { message: "Something went wrong" }))
+// });
+router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
+  successRedirect : '/',
+  failureRedirect : '/signup',
+  failureFlash : true
+}));
 
 router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
     res.render('authentication/profile', {

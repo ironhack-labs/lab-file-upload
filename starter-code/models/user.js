@@ -3,10 +3,13 @@ const Schema   = mongoose.Schema;
 
 const UserSchema = Schema({
   username: String,
-  pic_path: String,
-  pic_name: String,
   email:    String,
-  password: String
+  password: String,
+  picture: {
+    name: String,
+    pic_path: String,
+    pic_name: String
+  }
 });
 
 const User = mongoose.model('User', UserSchema);
