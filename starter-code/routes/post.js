@@ -30,4 +30,25 @@ router.post('/add',ensureLoggedIn('/login'),upload.single('photo'),(req,res,next
   .catch((err)=>console.log(err))
 })
 
+router.get('/edit/:id', ensureLoggedIn('/login'), (req, res, next)=>{
+  Post.findOne({ "_id" : req.params.id})
+      .then((post)=>res.render('edit',{post}))
+      .catch((e)=>console.log(e))
+})
+
+router.post('/edit/:id', ensureLoggedIn('/login'),upload.single('photo'),(req, res, next) =>{
+  const postId = req.params.id
+  const updates = {
+    content : req.body.content,
+    creatorId : req.session._id,
+    picture : {
+      pic_path: `/uploads/${req.file.filename}`,
+      pic_name : req.file.originalname
+    }
+  }
+  Post.findByIdAndUpdate(postId, updates)
+        .then(()=> res.redirect('/'))
+        .catch((err)=>console.log(err))
+})
+
 module.exports = router;
