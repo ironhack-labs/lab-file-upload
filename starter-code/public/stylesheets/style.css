@@ -1,3 +1,4 @@
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -5,4 +6,14 @@ body {
 
 a {
   color: #00B7FF;
+}
+
+.user-pane{
+  display: inline-block;
+  border: 3px solid black;
+  border-radius: 15px;
+  padding: 15px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
 }

@@ -1,18 +1,18 @@
-const express            = require('express');
-const path               = require('path');
-const favicon            = require('serve-favicon');
-const logger             = require('morgan');
-const cookieParser       = require('cookie-parser');
-const bodyParser         = require('body-parser');
-const expressLayouts     = require('express-ejs-layouts');
-const passport           = require('passport');
-const LocalStrategy      = require('passport-local').Strategy;
-const User               = require('./models/user');
-const bcrypt             = require('bcrypt');
-const session            = require('express-session');
-const MongoStore         = require('connect-mongo')(session);
-const mongoose           = require('mongoose');
-const flash              = require('connect-flash');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const expressLayouts = require('express-ejs-layouts');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const User = require('./models/user');
+const bcrypt = require('bcrypt');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+const mongoose = require('mongoose');
+const flash = require('connect-flash');
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
@@ -99,13 +99,14 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/bower_components', express.static(path.join(__dirname, 'bower_components/')))
 app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const postRoutes = require('./routes/post');
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/posts', postRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

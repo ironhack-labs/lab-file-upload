@@ -6,5 +6,14 @@
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
+    <form action="/create/<%=user._id%>" method="post" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="content" style="display:block">Contenido</label>
+        <textarea rows="4" cols="38" name="content" style="display:block" placeholder="Insert post content here"></textarea>
+      </div>
+          <input type="file" name="post-image">
+        <br>
+      <button type="submit">Enviar</button>
+    </form>
   </body>
 </html>

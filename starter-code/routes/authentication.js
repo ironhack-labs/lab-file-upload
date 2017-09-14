@@ -1,7 +1,10 @@
 const express    = require('express');
 const passport   = require('passport');
 const router     = express.Router();
+const multer     = require('multer')
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+
+const Post       = require("../models/post.js")
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
     res.render('authentication/login', { message: req.flash('error')});
@@ -33,5 +36,8 @@ router.post('/logout', ensureLoggedIn('/login'), (req, res) => {
     req.logout();
     res.redirect('/');
 });
+
+
+
 
 module.exports = router;
