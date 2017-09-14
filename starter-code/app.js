@@ -88,7 +88,7 @@ passport.use('local-signup', new LocalStrategy(
                 });
 
                 newUser.save((err) => {
-                    if (err){ next(null, false, { message: newUser.errors }) }
+                    if (err){ next(null, false, { message: newUser.errors });}
                     return next(null, newUser);
                 });
             }
