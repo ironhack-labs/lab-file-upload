@@ -127,42 +127,42 @@ passport.deserializeUser((id, cb) => {
   });
 });
 
+//does not really work...
+// passport.use('local-signup', new LocalStrategy(
+//         User.findOne({
+//             'username': username
+//         }, (err, user) => {
+//             if (err){ return next(err); }
+//
+//             if (user) {
+//                 return next(null, false);
+//             } else {
+//                 const {
+//                   username,
+//                   email,
+//                   password,
+//
+//                 } = req.body;
+//                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+//                 const createUser = new User({
+//                   username,
+//                   email,
+//                   password: hashPass,
+//                   picture: {
+//                     name: req.body.name,
+//                     pic_path: `/uploads/${req.file.filename}`,
+//                     pic_name: req.file.name
+//                   }
+//
+//                 });
+//
+//                 createUser.save((err) => {
+//                     if (err){ next(null, false, { message: createUser.errors }) }
+//                     return next(null, newUser);
+//                 });
+//             }
+//         })));
 
-passport.use('local-signup', new LocalStrategy(
-        User.findOne({
-            'username': username
-        }, (err, user) => {
-            if (err){ return next(err); }
-
-            if (user) {
-                return next(null, false);
-            } else {
-                const {
-                  username,
-                  email,
-                  password,
-
-                } = req.body;
-                const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-                const newUser = new User({
-                  username,
-                  email,
-                  password: hashPass,
-                  picture: {
-                    name: req.body.name,
-                    pic_path: `/uploads/${req.file.filename}`,
-                    pic_name: req.file.originalname
-                  }
-
-                });
-
-                newUser.save((err) => {
-                    if (err){ next(null, false, { message: newUser.errors }) }
-                    return next(null, newUser);
-                });
-            }
-        })));
-    
 
 app.use(flash());
 app.use(passport.initialize());
