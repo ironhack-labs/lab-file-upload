@@ -23,12 +23,14 @@ app.set('view engine', 'ejs');
 app.set('layout', 'layouts/main-layout');
 app.use(expressLayouts);
 
+
 app.use(session({
   secret: 'tumblrlabdev',
   resave: false,
   saveUninitialized: true,
   store: new MongoStore( { mongooseConnection: mongoose.connection })
 }))
+
 
 passport.serializeUser((user, cb) => {
   cb(null, user.id);
