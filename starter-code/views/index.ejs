@@ -6,5 +6,24 @@
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
+    <%posts.forEach((p)=>{%>
+      <p><%= p.content %></p>
+      <img src="<%=p.picture.pic_path%>">
+      <% if(loggedUser != null){%>
+        <a href="/edit/<%= p._id%>">Edit Post</a>
+            <%}%>
+      <%})%>
+
+    <% if(loggedUser != null){%>
+      <form  action="/logout" method="post">
+        <button>LogOut</button>
+      </form>
+      <a href="/add">Add New Post </a>
+        <%}else{%>
+          <a href="/login">Log In </a> | <a href="/signup">Sign Up </a>
+        <%}%>
+
+
+
   </body>
 </html>

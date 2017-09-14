@@ -74,13 +74,19 @@ passport.use('local-signup', new LocalStrategy(
                 const {
                   username,
                   email,
-                  password
+                  password,
                 } = req.body;
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+                console.log(req.file)
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  picture : {
+                    name : req.file.pic_name,
+                    pic_path: `/uploads/${req.file.filename}`,
+                    pic_name : req.file.originalname
+                  }
                 });
 
                 newUser.save((err) => {
@@ -100,13 +106,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/bower_components', express.static(path.join(__dirname, 'bower_components/')))
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '.public')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const post = require('./routes/post')
 app.use('/', index);
 app.use('/', authRoutes);
-
+app.use('/', post);
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');

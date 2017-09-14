@@ -1,0 +1,7 @@
+<h2>EDIT POST</h2>
+
+<form  action="/edit/<%= post._id%>" method="post" enctype="multipart/form-data">
+  <textarea name="content" cols="10" rows="5" value="<%= post.content%>"></textarea>
+  <input type="file" name="photo" value="<%= post.picture %>">
+  <button type="submit" name="button">Send</button>
+</form>
