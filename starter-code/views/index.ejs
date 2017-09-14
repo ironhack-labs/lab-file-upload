@@ -8,6 +8,9 @@
       <div class="caption">
         <p><%= post.content %></p>
       </div>
+      <% if(user) { %>
+        <p><a href="/comments/new/<%= post._id %>" class="btn btn-primary">Comment</a></p>
+      <% } %>
       <div class="media">
         <div class="media-left">
           <!-- <img class="media-object" src=" post.creator.picture.pic_path %>" alt=" post.creator.picture.pic_name %>"> -->
@@ -15,6 +18,14 @@
         <div class="media-body">
           <!-- <p class="media-heading">by  post.creator.username %></p> -->
         </div>
+      </div>
+      <div class="list-group">
+      <% post.comments.forEach(comment => { %>
+        <p class="list-group-item-heading">Autor commentario</p>
+        <p class="list-group-item-text"><%= comment.content %></p>
+        <img class="media-object" src="<%= comment.picPath %>" alt="<%= comment.picName %>">
+      </div>
+      <% }) %>
       </div>
     </div>
   </div>
