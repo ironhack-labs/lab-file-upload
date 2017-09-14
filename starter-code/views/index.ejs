@@ -6,5 +6,24 @@
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
+    <div>
+      <a href="/signup">Sign up</a> |
+      <a href="/login">Log in</a>
+      <% if (user) {%>
+        | <a href="/logout">Log out</a>
+      <% } %>
+    </div>
+
+    <div id="container">
+      <h2> Posts: </h2>
+      <% posts.forEach( function(e) {%>
+        <div>
+          <img src="<%= e.picture.pic_path %>" alt="">
+          <p><%= e.content %> from <%= e.user_name %> Created at <%= moment(e.created_at).format("LL, LTS") %></p>
+          <a href="/comment">comment</a>
+        </div>
+      <% }) %>
+    </div>
+
   </body>
 </html>
