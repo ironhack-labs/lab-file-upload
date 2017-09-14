@@ -45,5 +45,10 @@ router.post('/profile', ensureLoggedIn('/login'), upload.single('photo'), (req, 
   }).catch( err => next(err) )
 });
 
+router.get("/comment", ensureLoggedIn('/login'), (req, res, next) => {
+  res.render('authentication/comment')
+});
+
+
 
 module.exports = router;

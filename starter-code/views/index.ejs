@@ -20,9 +20,10 @@
         <div>
           <img src="<%= e.picture.pic_path %>" alt="">
           <p><%= e.content %> from <%= e.user_name %> Created at <%= moment(e.created_at).format("LL, LTS") %></p>
+          <a href="/comment">comment</a>
         </div>
       <% }) %>
     </div>
-    
+
   </body>
 </html>
