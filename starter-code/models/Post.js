@@ -7,11 +7,8 @@ const PostSchema = Schema({
   userId: String,
   comment: {
     content: String,
-    authorId: String,
-    {
-      timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
-    }
-  }
+    authorId: String
+  },
   img: {
     pic_path: String,
     pic_name: String
