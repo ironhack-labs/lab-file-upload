@@ -2,7 +2,7 @@
   <div class="row">
     <%= message %>
       <div class="col-sm-6 centered-form">
-        <form action="/signup" method="post">
+        <form enctype="multipart/form-data" action="/signup" method="post">
           <div class="form-group">
             <label for="username">Username</label>
             <input type="text" name="username" class="form-control">
@@ -17,15 +17,11 @@
           </div>
           <br>
           <button type="submit">Signup</button>
-        </form>
-        <section>
           <h2>Upload your photo</h2>
-          <form action="/signup" method="post" enctype="multipart/form-data">
-            <input type="text" name="picName">
-            <input type="file" name="file">
-            <input type="submit" value="Save">
-          </form>
-        </section>
+          <input type="text" name="picName">
+          <input type="file" name="file">
+          <!-- <input type="submit" value="Save"> -->
+        </form>
         <br>
         <a href="/">HOME</a>
         </form>
