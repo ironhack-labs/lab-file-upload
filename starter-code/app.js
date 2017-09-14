@@ -14,6 +14,8 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const mongoose = require('mongoose');
 const flash = require('connect-flash');
+const multer  = require('multer');
+
 
 require("dotenv").config();
 const app = express();
@@ -135,8 +137,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+//const Picture = require('../models/photo');
+
 app.use('/', index);
 app.use('/', authRoutes);
+//app.use('/', Picture);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
