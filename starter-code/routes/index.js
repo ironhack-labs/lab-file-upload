@@ -5,17 +5,13 @@ const User    = require('../models/user')
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  Post.find()
-    .then(posts => {
-      // let postWithCreator = []
-      posts.forEach(post => {
-        // post.creator = User.findById(post.creatorId)
-        // console.log(post.creator);})
+  Post.find().populate('creatorId')
+    .then(posts =>
       res.render('index', {
         welcome: 'Welcome to IronTumblr',
         posts: posts,
         user: req.user
-      })})})
+      }))
     .catch(err => console.log(err))
 })
 

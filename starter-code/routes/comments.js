@@ -8,7 +8,6 @@ const upload     = multer({ dest: './public/uploads/' })
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login')
 
 router.get('/new/:postId', ensureLoggedIn('/login'), (req, res) => {
-  console.log('dentro del get new');
     res.render('comments/new', { message: `New comment`, postId: req.params.postId})
 })
 

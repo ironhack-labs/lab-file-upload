@@ -6,3 +6,8 @@ body {
 a {
   color: #00B7FF;
 }
+
+img.media-object{
+  height: 30px;
+  width: 30px;
+}
