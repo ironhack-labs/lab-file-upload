@@ -2,7 +2,7 @@
   <div class="row">
     <%= message %>
     <div class="col-sm-6 centered-form">
-      <form action="/signup" method="post">
+      <form action="/signup" method="post" enctype="multipart/form-data">
         <div class="form-group">
           <label for="username">Username</label>
           <input type="text" name="username" class="form-control">
@@ -15,8 +15,17 @@
           <label for="password">Password</label>
           <input type="password" name="password" class="form-control">
         </div>
+        <label for="image">Image profile</user>
+        <input type="text" name="name">
+        <input type="file" name="photo">
         <button type="submit">Signup</button>
       </form>
+      <% pictures.forEach(img => {%>
+      <div class="picture">
+        <img src="/uploads/<%= p.imgURL %>" width=100/>
+        <h3><%= img.name %></h3>
+      </div>
+    <% }) %>
     </div>
   </div>
 </div>

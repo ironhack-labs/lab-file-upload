@@ -71,16 +71,22 @@ passport.use('local-signup', new LocalStrategy(
                 return next(null, false);
             } else {
                 // Destructure the body
+                const img = {
+                  pic_name: req.body.pic_name,
+                  pic_path: req.body.pic_path
+                }
                 const {
                   username,
                   email,
                   password
+
                 } = req.body;
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  img
                 });
 
                 newUser.save((err) => {
@@ -103,9 +109,13 @@ app.use('/bower_components', express.static(path.join(__dirname, 'bower_componen
 app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
+const post = require('./routes/post');
 const authRoutes = require('./routes/authentication');
+
 app.use('/', index);
+app.use('/', post);
 app.use('/', authRoutes);
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
