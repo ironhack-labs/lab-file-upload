@@ -1,7 +1,8 @@
 const express = require('express');
 const router  = express.Router();
-var multer  = require('multer');
-var upload = multer({ dest: 'uploads/' })
+const multer  = require('multer');
+// Route to upload from project base path
+const upload = multer({ dest: 'uploads/' }) 
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const bcryptSalt = 10;
@@ -9,8 +10,7 @@ const bcryptSalt = 10;
 const passport = require("passport");
 const ensureLogin = require("connect-ensure-login");
 const Picture = require('../models/picture');
-// Route to upload from project base path
-var upload = multer({ dest: './public/uploads/' });
+ 
 
 /* GET home page. */
 router
@@ -63,5 +63,17 @@ router
 }));
 
 
+router
+.get('/profile', ensureAuthenticated, (req, res) => {
+	res.render('authentication/profile', {user: req.user});
+});
+
+function ensureAuthenticated(req, res, next) {
+	if (req.isAuthenticated()) {
+		return next(); 
+	} else {
+		res.redirect('/login')
+	}
+}
 
 module.exports = router;
