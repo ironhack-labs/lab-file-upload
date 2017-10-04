@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express            = require('express');
 const path               = require('path');
 const favicon            = require('serve-favicon');
@@ -17,7 +18,10 @@ var multer  = require('multer');
 var upload = multer({ dest: './public/uploads/' });
 
 
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
+mongoose.connect(process.env.MONGODB_URI);
+
+// mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
+
 
 const app = express();
 
