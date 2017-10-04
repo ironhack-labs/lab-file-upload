@@ -2,21 +2,32 @@
   <div class="row">
     <%= message %>
     <div class="col-sm-6 centered-form">
-      <form action="/signup" method="post">
+      <form action="/signup" method="post" enctype="multipart/form-data">
         <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" name="username" class="form-control">
+          <label>Username
+            <input type="text" name="username" class="form-control">
+          </label>
         </div>
         <div class="form-group">
-          <label for="email">Email</label>
-          <input type="text" name="email" class="form-control">
+          <label>Upload your photo
+            <input type="file" name="photo" class="form-control">
+          </label>
         </div>
         <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" name="password" class="form-control">
+        <div class="form-group">
+          <label>Email
+            <input type="text" name="email" class="form-control">
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="password">Password
+            <input type="password" name="password" class="form-control">
+          </label>
         </div>
         <button type="submit">Signup</button>
       </form>
+      <p>Already have an account?</p>
+      <a href="/login">login</a>
     </div>
   </div>
 </div>
