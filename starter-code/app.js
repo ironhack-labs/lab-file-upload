@@ -61,6 +61,7 @@ passport.use('local-signup', new LocalStrategy(
   { passReqToCallback: true },
   (req, username, password, next) => {
     // To avoid race conditions
+    console.log("DEBUG req.body:", req.body);
     process.nextTick(() => {
         User.findOne({
             'username': username
@@ -71,10 +72,19 @@ passport.use('local-signup', new LocalStrategy(
                 return next(null, false);
             } else {
                 // Destructure the body
+
                 const {
                   username,
                   email,
-                  password
+                  password,
+                  // picture: {
+                  //   name: String,
+                  //   path: String
+                  // }
+                },
+                // {
+                //   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
+                // }
                 } = req.body;
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
