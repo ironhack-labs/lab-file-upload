@@ -38,6 +38,10 @@ router.get(
   }
 );
 
+router.get('/posts', ensureLoggedIn('/login'), upload.single('photo'), (req, res) => {
+  res.render('index')
+})
+
 router.post('/logout', ensureLoggedIn('/login'), (req, res) => {
     req.logout();
     res.redirect('/');

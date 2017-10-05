@@ -1,0 +1,16 @@
+<div>
+    <h2>Hi <%= user.username %></h2>
+
+    <form action="/posts/new" method="post" id="new-post" enctype="multipart/form-data">
+        <label>Post <input type="text" name="postText" maxlength="150"
+            placeholder="What's going on ?"></label>
+                <input type="text" name="name" />
+                <input type="file" name="photo" />
+                <img src="<%= post.imgPath %>" alt="<%= post.imgName %>" />
+            <button>Post !</button>
+
+            <% if (typeof(errorMessage) !== 'undefined') { %>
+                <div><%= errorMessage %></div>
+            <% } %>
+    </form>
+</div>

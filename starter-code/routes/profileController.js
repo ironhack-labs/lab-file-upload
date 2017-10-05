@@ -31,7 +31,7 @@ const upload = multer({dest: './public/uploads'})
          })
  })
 
- profileController.post('/:id/edit',  upload.single("photo"),
+ profileController.post('/:id/edit', upload.single("photo"),
  (req, res, next) => {
       const userId = req.params.id
  

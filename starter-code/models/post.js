@@ -6,7 +6,8 @@ const postSchema = new Schema({
         type: String,
         required: [true, "Post can't be empty"]
     },
-    creatorId: String,
+    creatorId:String,
+    username: String,
     imgPath: String,
     imgName: String
 },{
