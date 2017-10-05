@@ -13,6 +13,7 @@ const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
+const Picture = require('./models/pictures');
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
@@ -104,8 +105,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const postRoute = require('./routes/posts');
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/', postRoute) ;
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
