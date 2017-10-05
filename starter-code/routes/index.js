@@ -4,11 +4,10 @@ const { ensureLoggedIn, ensureLoggedOut } = require("connect-ensure-login");
 const Post = require("../models/post");
 
 /* GET home page. */
-router.get("/", ensureLoggedOut(), (req, res, next) => {
+router.get("/", ensureLoggedOut("/indexConnected"), (req, res, next) => {
   Post.find({}).exec((err, posts) => {
     res.render("index");
   });
-  next();
 });
 
 router.get("/", ensureLoggedIn("/"), (req, res) => {
