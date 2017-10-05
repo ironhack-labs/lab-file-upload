@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express            = require('express');
 const path               = require('path');
 const favicon            = require('serve-favicon');
@@ -13,8 +14,10 @@ const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
+const multer             = require('multer');
+const upload             = multer({ dest: './public/uploads/' });
 
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
+mongoose.connect(process.env.MONGODB_URI);
 
 const app = express();
 
@@ -74,15 +77,20 @@ passport.use('local-signup', new LocalStrategy(
                 const {
                   username,
                   email,
-                  password
+                  password,
                 } = req.body;
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+                // const extToClean = req.file.mimetype
+                // const extProcess = extToClean.split("/");
+                // const extension = extProcess[extProcess.length-1];
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  picPath: `/uploads/${req.file.filename}`
                 });
 
+                //debugger
                 newUser.save((err) => {
                     if (err){ next(null, false, { message: newUser.errors }) }
                     return next(null, newUser);
@@ -101,6 +109,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/bower_components', express.static(path.join(__dirname, 'bower_components/')))
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
