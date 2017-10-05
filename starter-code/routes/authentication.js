@@ -1,7 +1,8 @@
 const express = require('express');
 const passport = require('passport');
-const multer = require('multer');
-const upload = multer({ dest: './public/uploads/' });
+const User = require('../models/user')
+const debug = require('debug')
+const bodyParser = require('body-parser');
 
 
 const router = express.Router();
@@ -21,39 +22,74 @@ router.get('/signup', ensureLoggedOut(), (req, res) => {
   res.render('authentication/signup', { message: req.flash('error') });
 });
 
-router.post('/signup', upload.single('photo'), passport.authenticate('local-signup', {
-    failureRedirect: '/signup',
-    failureFlash: true
-  }, ((req, res) => {
-    const { username, email, password, avatar } = req.body;
-    const user = {
-      username,
-      email,
-      password,
-      avatar: {
-        name: req.body.name,
-        path: `/uploads/${req.body.filename}`,
-        filename: req.body.filename,
-      }
-    }
-  }).then(UserInfo => )
-})
-//(req, res) => {}))
-// }).then(userInfo => {
-//   (upload.single('photo'), ((req, res) => {
-//     userInfo[avatar] = {
-//       name: req.body.name,
-//       path: `/uploads/${req.body.filename}`,
-//       filename: req.body.filename,
-//     }
-//     userInfo.save((err) => {
-//       if (err) return res.render('authentication/signup', { error: 'Upload failed' })
-//       else {
-//         return res.redirect('/')
-//       }
-//     })
-//   }))
+// router.post('/signup', ensureLoggedOut(), ((req, res) => {
+//   debug
+//   console.log('******************* RES EXIST :')
+//   console.log(passport.authenticate.value())
+//   const data = new Promise((req, res) => {
+//     console.log(passport.authenticate('signup'))
+//     passport.authenticate('signup')
+//   })
+//   console.log('******************* RES EXIST :', data)
+//   data.resolve()
+//     // }).then(log => {
+//     //   console.log(log)
+//     //   return log
+//     // }))
+
+//     // .then(res => {
+//     //   console.log("WAITED FOR REGISTER")
+//     //   res.redirect('/signup')
+//     // })
+//     .catch(err => console.log(err))
 // }))
+
+router.post('/signup', function(req, res, next) {
+  passport.authenticate('signup', function(err, user, info) {
+    if (err) {
+      return res.json(500, {
+        err: err,
+        sessionId: req.session.id
+      });
+    }
+    if (!user) {
+      return res.json(400, {
+        err: info,
+        sessionId: req.session.id
+      });
+    }
+    req.login(user, function(err) {
+      if (err) {
+        return res.json({
+          err: 'Could not login user',
+          sessionId: req.session.id
+        });
+      }
+      res.json(201, {
+        user: user,
+        sessionId: req.session.id
+      });
+    });
+  })(req, res, next);
+});
+
+//   {
+//   successRedirect: '/',
+//   failureRedirect: '/login',
+//   failureFlash: true
+// }
+
+
+// const promise = new Promise(
+//   (req, res) => {
+//     const result = passport.authenticate(req, res, next)
+//     console.log(result.toString())
+//     return result
+//   })
+
+
+
+
 
 router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
   res.render('authentication/profile', {
@@ -66,13 +102,5 @@ router.post('/logout', ensureLoggedIn('/login'), (req, res) => {
   res.redirect('/');
 });
 
-router.post('/upload', ((req, res) => {
-const avatar = {
-  name: req.body.name,
-  path: `/uploads/${req.body.filename}`,
-  filename: req.body.filename,
 
-}
-}))
-})
 module.exports = router;
