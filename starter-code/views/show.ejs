@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <img src="<%= user.pic_path %>" alt="<%= user.userme %> Picture">
+    <h1>Welcome <%= user.username %>!!!</h1>
+    <a href="/">Home page</a>
+    <br>
+    <a href="/logout">logout</a>
+        <br>
+    <hr>
+    <br>
+    <fieldset>
+      <legend>Create a post</legend>
+      <form action="/show" method="post" enctype="multipart/form-data">
+        <label> Put your story here:
+          <textarea name="content" value=""></textarea>
+        </label>
+
+        <label> Upload here an image:
+          <input type="file" name="picture" value="">
+        </label>
+        <label> Add a tag to your image:
+          <input type="text" name="tag" value="">
+        </label>
+          <input type="submit"  value="Post it!">
+      </form>
+    </fieldset>
+    <br>
+    <br>
+    <h2>Posts</h2>
+  </body>
+</html>

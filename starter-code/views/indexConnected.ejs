@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>Welcome to IronTumblr</h1>
-
-    <p>New to IronTumblr?</p>
-    <a href="/signup">SignUp</a>
-    <p>Already have an account?</p>
-    <a href="/login">login</a>
-
+    <img src="<%= user.pic_path %>" alt="<%= user.userme %> Picture">
+    <h1>Welcome <%= user.username %>!!!</h1>
+    <a href="/show">My profile</a>
+    <a href="/logout">logout</a>
+    <br>
+    <hr>
+    <br>
     <h2>Posts</h2>
+
     <% posts.forEach(post =>{ %>
       <div class="container">
       <img src="<%= post.pic_path %>" alt="<%= post.picName%>">
