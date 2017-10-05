@@ -1,10 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
+</head>
+
+<body>
     <h1>Welcome to IronTumblr</h1>
-  </body>
+    <div id="container">
+
+        <% if(user) {%>
+            <form action="/logout" method="post">
+                <button>LogOut</button>
+            </form>
+            <%} else {%>
+
+                <a href="/login">Log In </a> | <a href="/signup">Sign Up </a>
+
+    </div>
+    <%}
+
+</body>
+
 </html>
