@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>Express - Generated with IronGenerator</title>
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+	</head>
+	<body>
+	<h1>Welcome to your profile page</h1>
+
+	<% if(user) { %>
+		<h3>You are loged in as <%= user.username %></h3>
+		<h4> your photo object </h4>
+		<img src="<%= user.photo.path %>" alt="<%= user.photo.originalName %>">
+	<% } %>
+	<br>
+	<a href="/">Home</a>
+	</body>
+</html>

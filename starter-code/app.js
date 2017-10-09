@@ -23,6 +23,7 @@ app.set('view engine', 'ejs');
 app.set('layout', 'layouts/main-layout');
 app.use(expressLayouts);
 
+
 app.use(session({
   secret: 'tumblrlabdev',
   resave: false,
@@ -64,12 +65,15 @@ passport.use('local-signup', new LocalStrategy(
     process.nextTick(() => {
         User.findOne({
             'username': username
-        }, (err, user) => {
+        })
+        .populate("photo")
+        .exec((err, user) => {
             if (err){ return next(err); }
 
             if (user) {
                 return next(null, false);
             } else {
+                console.log("DEBUG user", user);
                 // Destructure the body
                 const {
                   username,
