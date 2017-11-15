@@ -6,5 +6,13 @@
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
+    <a href="/login">Login</a>
+    <a href="/signup">Signup</a>
+
+    <% for(var x = 0; x < posts.length; x++) { %>
+      <p><%= posts[x].content %></p>
+      <img src="<%= posts[x].picPath %>">
+      <a href="/posts/<%= posts[x]._id %>">Show </a>
+    <% } %>
   </body>
 </html>
