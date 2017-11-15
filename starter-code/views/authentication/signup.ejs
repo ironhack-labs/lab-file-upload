@@ -7,7 +7,7 @@
           <label for="username">Username</label>
           <input type="text" name="username" class="form-control">
         </div>
-        <div class="form-group">
+            <div class="form-group">
           <label for="email">Email</label>
           <input type="text" name="email" class="form-control">
         </div>
@@ -15,6 +15,14 @@
           <label for="password">Password</label>
           <input type="password" name="password" class="form-control">
         </div>
+        <section>
+  <h4>Upload your photo</h4>
+  <input action="/upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="photo">
+    </form>
+</section>
+<br>
+<br>
         <button type="submit">Signup</button>
       </form>
     </div>
