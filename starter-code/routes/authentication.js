@@ -2,6 +2,8 @@ const express    = require('express');
 const passport   = require('passport');
 const router     = express.Router();
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+const Picture = require('../models/Picture');
+const Post = require('../models/Post');
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
     res.render('authentication/login', { message: req.flash('error')});
@@ -24,9 +26,12 @@ router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', 
 }));
 
 router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
+  Picture.find((err, pictures) => {
     res.render('authentication/profile', {
-        user : req.user
+        user : req.user,
+        pictures,
     });
+  })
 });
 
 router.post('/logout', ensureLoggedIn('/login'), (req, res) => {
