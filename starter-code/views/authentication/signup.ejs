@@ -1,22 +1,31 @@
 <div class="container">
-  <div class="row">
-    <%= message %>
-    <div class="col-sm-6 centered-form">
-      <form action="/signup" method="post">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" name="username" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="text" name="email" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" name="password" class="form-control">
-        </div>
-        <button type="submit">Signup</button>
-      </form>
-    </div>
-  </div>
+ <div class="row">
+   <%= message %>
+   <div class="col-sm-6 centered-form">
+     <form action="/signup" method="post" enctype="multipart/form-data">
+       <div class="form-group">
+         <label for="username">Username</label>
+         <input type="text" name="username" class="form-control">
+       </div>
+           <div class="form-group">
+         <label for="email">Email</label>
+         <input type="text" name="email" class="form-control">
+       </div>
+       <div class="form-group">
+         <label for="password">Password</label>
+         <input type="password" name="password" class="form-control">
+       </div>
+       <div>
+          <h4>Upload your photo</h4>
+         <input type="text" name="name">
+         <input type="file" name="photo">
+         <input type="submit" value="Save">
+       </div>
+
+<br>
+<br>
+       <button type="submit">Signup</button>
+     </form>
+   </div>
+ </div>
 </div>
