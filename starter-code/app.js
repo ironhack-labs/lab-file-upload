@@ -13,6 +13,7 @@ const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
+const multer             = require('multer');
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
@@ -80,7 +81,11 @@ passport.use('local-signup', new LocalStrategy(
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  picture: {
+                    pic_path: `/uploads/${req.file.filename}`,
+                    pic_name: req.file.originalname
+                  }
                 });
 
                 newUser.save((err) => {
@@ -104,8 +109,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const postRoutes = require('./routes/posts');
+
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/posts', postRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

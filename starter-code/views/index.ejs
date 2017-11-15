@@ -5,6 +5,23 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <% if (user) { %>
+    <h1>Heya <%= user.username %> :)</h1>
+    <form action="/logout" method="POST">
+      <input type="submit" value="Log out">
+    </form><br>
+
+    <a href="/posts/new">Create post</a>
+    <% } else { %>
     <h1>Welcome to IronTumblr</h1>
+    <a href="/login">Login</a> - <a href="/signup">Signup</a>
+    <% } %>
+
+    <% posts.forEach(post => { %>
+      <img src="<%= post.picPath %>.jpg" />
+      <p> <%= post.pic_name %> </p>
+      <p> <%= post.content %> </p>
+      <p> Author: <%= post.creatorId %> </p>
+    <% }) %>
   </body>
 </html>
