@@ -7,17 +7,7 @@
     <script src="/js/jquery-3.2.1.min.js"></script>
   </head>
   <body>
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="/signup">Sign Up</a></li>
-            <li><a href="/login">Log in</a>
-            <li><a href="/logout">Log out</a>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <% include nav-bar.ejs %>
     <div class="main-container">
       <%- body -%>
     </div>
