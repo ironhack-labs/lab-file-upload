@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
-const UserSchema = Schema({
- username: String,
- email:    String,
- password: String,
- pic_path: String,
-pic_name: String
+const PostSchema = Schema({
+  content: String,
+  creatorID: String,
+  pic_path: String,
+  pic_name: String
+
 });
 
-const User = mongoose.model('User', UserSchema);
+const Post = mongoose.model('Post', PostSchema);
 
-module.exports = User;
+module.exports = Post;
