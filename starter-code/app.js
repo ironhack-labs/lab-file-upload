@@ -8,12 +8,14 @@ const expressLayouts     = require('express-ejs-layouts');
 const passport           = require('passport');
 const LocalStrategy      = require('passport-local').Strategy;
 const User               = require('./models/user');
-const Picture               = require('./models/picture');
 const bcrypt             = require('bcrypt');
 const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
+const index = require('./routes/index');
+const authRoutes = require('./routes/authentication');
+const postRoute = require('./routes/posts');
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
@@ -53,7 +55,6 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
     if (!bcrypt.compareSync(password, user.password)) {
       return next(null, false, { message: "Incorrect password" });
     }
-
     return next(null, user);
   });
 }));
@@ -67,7 +68,6 @@ passport.use('local-signup', new LocalStrategy(
             'username': username
         }, (err, user) => {
             if (err){ return next(err); }
-
             if (user) {
                 return next(null, false);
             } else {
@@ -75,15 +75,18 @@ passport.use('local-signup', new LocalStrategy(
                 const {
                   username,
                   email,
-                  password
+                  password,
                 } = req.body;
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  picture: {
+                    pic_path: `/uploads/${req.file.filename}`,
+                    pic_name: req.file.originalname,
+                  }
                 });
-
                 newUser.save((err) => {
                     if (err){ next(null, false, { message: newUser.errors }) }
                     return next(null, newUser);
@@ -103,31 +106,23 @@ app.use(cookieParser());
 app.use('/bower_components', express.static(path.join(__dirname, 'bower_components/')))
 app.use(express.static(path.join(__dirname, 'public')));
 
-const index = require('./routes/index');
-const authRoutes = require('./routes/authentication');
-const postRoutes = require('./routes/posts');
 
 app.use('/', index);
 app.use('/', authRoutes);
-app.use('/posts', postRoutes);
-
-
+app.use('/post', postRoute);
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
-
 // error handler
 app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
   // render the error page
   res.status(err.status || 500);
   res.render('error');
 });
-
 module.exports = app;

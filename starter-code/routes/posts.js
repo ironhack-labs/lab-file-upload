@@ -7,7 +7,7 @@ const upload     = multer({ dest: './public/uploads/' })
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login')
 
 
-router.get('/new', ensureLoggedIn('/login'), (req, res) => {
+router.get('/new', (req, res) => {
     res.render('posts/new', { message: `New post`})
 })
 router.post('/new', ensureLoggedIn('/login'), upload.single('photo'), (req, res, next) => {

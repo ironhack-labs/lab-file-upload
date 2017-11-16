@@ -12,8 +12,7 @@ router.get('/', (req, res, next) => {
 
 // Route to upload from project base path
 
-router
-.post('/upload', upload.single('photo'), function(req, res){
+router.post('/upload', upload.single('photo'), function(req, res){
 
   const pic = new Picture({
     name: req.body.name,
