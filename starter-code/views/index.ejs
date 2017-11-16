@@ -6,5 +6,34 @@
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
+    <form class="" action="/signup" method="post">
+      <button type="submit" name="button">Sign up</button>
+    </form><br>
+    <form class="" action="/login" method="post">
+      <button type="submit" name="button">Log in</button>
+    </form><br>
+    <form class="" action="/logout" method="post">
+      <button type="submit" name="button">Logout</button>
+    </form>
+
+    <h2>Posts</h2>
+ <div>
+   <%if(posts){%>
+     <%posts.forEach(e => {%>
+       <div>
+         <h3><%=e.pic_name%></h3>
+         <img src="<%= e.pic_path %>" alt="<%= e.pic_name %>" height="300"/>
+         <p><%=e.content%></p>
+       </div>
+     <%})%>
+   <%}%>
+ </div>
+
+ <form action="/" method="post" enctype="multipart/form-data">
+   <textarea name="content" cols="30" rows="10"></textarea><br>
+   <input type="file" name="postpic" required>
+   <input type="submit">
+ </form>
+
   </body>
 </html>
