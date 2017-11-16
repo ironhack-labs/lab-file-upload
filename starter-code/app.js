@@ -14,7 +14,7 @@ const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
+mongoose.connect('mongodb://localhost:27017/tumblr-lab-development', {useMongoClient: true});
 
 const app = express();
 
@@ -99,7 +99,6 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/bower_components', express.static(path.join(__dirname, 'bower_components/')))
 app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
