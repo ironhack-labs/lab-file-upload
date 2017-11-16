@@ -1,20 +1,23 @@
-const express            = require('express');
-const path               = require('path');
-const favicon            = require('serve-favicon');
-const logger             = require('morgan');
-const cookieParser       = require('cookie-parser');
-const bodyParser         = require('body-parser');
-const expressLayouts     = require('express-ejs-layouts');
-const passport           = require('passport');
-const LocalStrategy      = require('passport-local').Strategy;
-const User               = require('./models/user');
-const bcrypt             = require('bcrypt');
-const session            = require('express-session');
-const MongoStore         = require('connect-mongo')(session);
-const mongoose           = require('mongoose');
-const flash              = require('connect-flash');
+const express = require('express');
+const path = require('path');
+const favicon  = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const expressLayouts = require('express-ejs-layouts');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const User = require('./models/user');
+const bcrypt = require('bcrypt');
+const session = require('express-session');
+const multer = require('multer');
+const MongoStore = require('connect-mongo')(session);
+const mongoose = require('mongoose');
+const flash= require('connect-flash');
+const Picture = require('./models/pictures');
 
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
+mongoose.connect('mongodb://localhost/tumblr-lab-development');
+
 
 const app = express();
 
@@ -28,7 +31,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   store: new MongoStore( { mongooseConnection: mongoose.connection })
-}))
+}));
 
 passport.serializeUser((user, cb) => {
   cb(null, user.id);
@@ -84,7 +87,7 @@ passport.use('local-signup', new LocalStrategy(
                 });
 
                 newUser.save((err) => {
-                    if (err){ next(null, false, { message: newUser.errors }) }
+                    if (err){ next(null, false, { message: newUser.errors });}
                     return next(null, newUser);
                 });
             }
@@ -99,8 +102,11 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/bower_components', express.static(path.join(__dirname, 'bower_components/')))
+app.use('/node_modules', express.static(path.join(__dirname, 'node_modules/')));
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
