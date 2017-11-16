@@ -5,7 +5,7 @@ const multer = require('multer');
 const uploadsDir = '/uploads/post-pictures/';
 const upload = multer({ dest: "." + uploadsDir});
 const Post = require('../models/Post');
-//const Comment = require('../models/Comment');
+const Comment = require('../models/Comment');
 const {
   ensureLoggedIn,
   ensureLoggedOut
@@ -44,30 +44,20 @@ router.get('/post/show/:id', (req, res, next) => {
     });
 });
 
-router.post('/post/show/:id', [upload.single('picture'), ensureLoggedIn()], (req, res, next) => {
+router.post('/post/show/:id', ensureLoggedIn(), upload.single('picture'), (req, res, next) => {
   const postID = req.params.id;
-  let imgPath, imgName;
-  if (req.file) {
-    imgPath = `${uploadsDir}${req.file.filename}`;
-    imgName = req.file.originalname;
-  }
-  const commentData = {
+  const newComment = {
     content: req.body.content,
     authorId: req.user._id,
-    imagePath: imgPath,
-    imageName: imgName
+    imagePath: req.file ? `${uploadsDir}${req.file.filename}` : '',
+    imageName: req.file ? req.file.originalname : '',
   };
-  Post.findById(postID, (err, post) => {
-    post.comments.push(commentData);
-    post.save()
-      .then((post) => {
-        return post;
-      })
-      .catch((err) => {
-        next(err);
-      });
-  })
+  Post.findByIdAndUpdate(postID, {$push: {'comments': newComment }}, {new: true})
     .then((post) => {
+      // post.populate('comment.0.authorId')
+      //post.comments.forEach((c, i)=> console.log('=====' + post.populate(`comments.${i}.authorId`)))
+      // post.populate('authorId')
+      // console.log(post.populate('comments.0.authorId'));
       res.render('post/show', {post, user:req.user});
     })
     .catch((err) => {

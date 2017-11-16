@@ -3,5 +3,6 @@
   <% if (comment.imageName !== '') { %>
     <p><img src="<%= comment.imagePath %>" class="img-responsive"></p>
   <% } %>
+  <p><small>Posted by</small> <%= comment.authorId.username %></p>
 </div>
 <hr>
