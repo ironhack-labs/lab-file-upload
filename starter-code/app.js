@@ -7,16 +7,19 @@ const bodyParser         = require('body-parser');
 const expressLayouts     = require('express-ejs-layouts');
 const passport           = require('passport');
 const LocalStrategy      = require('passport-local').Strategy;
-const User               = require('./models/user');
-const bcrypt             = require('bcrypt');
 const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
+const User               = require('./models/user');
+const bcrypt             = require('bcrypt');
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
 const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -80,7 +83,10 @@ passport.use('local-signup', new LocalStrategy(
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  picture: { pic_path: `/uploads/${req.file.filename}`,
+                            pic_name: req.file.originalname
+                          }
                 });
 
                 newUser.save((err) => {
@@ -96,8 +102,6 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/bower_components', express.static(path.join(__dirname, 'bower_components/')))
 app.use(express.static(path.join(__dirname, 'public')));
