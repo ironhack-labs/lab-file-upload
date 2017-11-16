@@ -1,13 +1,30 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-6">
-      <article>
-        <h2><%= post.title %></h2>
-        <img src="<%= post.picPath %>" class="img-responsive">
-        <div>
-          <%= post.content %>
+    <article class="col-sm-8">
+    <% include content.ejs %>
+    </article>
+    <div class="col-sm-4">
+      <h3>Comments</h3>
+      <% if (post.comments.length > 0) { %>
+        <% post.comments.forEach((comment) => { %>
+          <% include comment.ejs %>
+        <% }) %>
+      <% } %>
+      <form action="/post/show/<%= post.id %>" method="post" name="comment" enctype="multipart/form-data">
+        <legend>Add a comment to this post</legend>
+        <div class="form-group">
+          <label for="content">Your comment</label>
+          <textarea name="content" class="form-control" rows="4" cols="40"></textarea>
         </div>
-      </article>
+        <div class="form-group">
+          <label for="image">Add a picture</label>
+          <input type="file" name="picture">
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">Post comment</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

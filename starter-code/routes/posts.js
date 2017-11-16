@@ -5,6 +5,7 @@ const multer = require('multer');
 const uploadsDir = '/uploads/post-pictures/';
 const upload = multer({ dest: "." + uploadsDir});
 const Post = require('../models/Post');
+//const Comment = require('../models/Comment');
 const {
   ensureLoggedIn,
   ensureLoggedOut
@@ -32,9 +33,40 @@ router.post('/post/new', [upload.single('picture'), ensureLoggedIn()], (req, res
     });
 });
 
-router.get('/post/show/:id', (req, res) => {
+router.get('/post/show/:id', (req, res, next) => {
   const postID = req.params.id;
   Post.findById(postID)
+    .then((post) => {
+      res.render('post/show', {post, user:req.user});
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+router.post('/post/show/:id', [upload.single('picture'), ensureLoggedIn()], (req, res, next) => {
+  const postID = req.params.id;
+  let imgPath, imgName;
+  if (req.file) {
+    imgPath = `${uploadsDir}${req.file.filename}`;
+    imgName = req.file.originalname;
+  }
+  const commentData = {
+    content: req.body.content,
+    authorId: req.user._id,
+    imagePath: imgPath,
+    imageName: imgName
+  };
+  Post.findById(postID, (err, post) => {
+    post.comments.push(commentData);
+    post.save()
+      .then((post) => {
+        return post;
+      })
+      .catch((err) => {
+        next(err);
+      });
+  })
     .then((post) => {
       res.render('post/show', {post, user:req.user});
     })

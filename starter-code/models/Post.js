@@ -1,12 +1,22 @@
 const mongoose = require("mongoose");
-const Schema   = mongoose.Schema;
+const Schema = mongoose.Schema;
+
+const commentSchema = new Schema({
+  content: String,
+  authorId: Schema.Types.ObjectId,
+  imagePath: String,
+  imageName: String,
+}, {
+  timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
+});
 
 const postSchema = new Schema({
   title: String,
   content: String,
   creatorId: Schema.Types.ObjectId,
   picPath: String,
-  picName: String
+  picName: String,
+  comments: [commentSchema]
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 });
