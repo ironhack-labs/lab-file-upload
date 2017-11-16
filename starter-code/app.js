@@ -12,6 +12,8 @@ const bcrypt             = require('bcrypt');
 const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const flash              = require('connect-flash');
+const debug = require('debug');
+
 
 // Mongoose configuration
 const mongoose = require("mongoose");
