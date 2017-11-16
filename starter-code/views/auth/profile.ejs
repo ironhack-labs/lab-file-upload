@@ -1,0 +1,8 @@
+<h2>Bienvenido a tu perfil</h2>
+
+<section>
+  <% User.forEach(function(a) { %>
+    <h3><%= a.name %></h3>
+    <img src="<%= a.pic_path %>" alt="<%= a.pic_name %>" />
+  <% })%>
+</section>
