@@ -1,0 +1,13 @@
+
+<h3>Posts list%></h3>
+<% if (typeof(posts) !== "undefined") { %>
+  <ul>
+    <% posts.forEach(post => { %>
+      <li><%= post.content %></li>
+      <a href="/post/show/<%= post._id %>">See all</a>
+    <% }); %>
+  </ul>
+<% } else { %>
+  <p>There are no posts for this creator</p>
+<% } %>
+<a href="/post/create">Create new post</a>
