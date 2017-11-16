@@ -16,8 +16,8 @@ const mongoose = require('mongoose');
 const flash= require('connect-flash');
 const Picture = require('./models/pictures');
 
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
-mongoose.connect('mongodb://localhost/lab-express-file-upload');
+mongoose.connect('mongodb://localhost/tumblr-lab-development');
+
 
 const app = express();
 
@@ -102,7 +102,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/bower_components', express.static(path.join(__dirname, 'bower_components/')));
+app.use('/node_modules', express.static(path.join(__dirname, 'node_modules/')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
