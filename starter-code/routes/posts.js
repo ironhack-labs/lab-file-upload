@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const Post = require('../models/post');
-const Commentary = require('../models/commentary')
+const Commentary = require('../models/commentary');
 const mongoose = require ('mongoose');
 const multer = require('multer');
 const upload = multer({ dest: './public/uploads/' });
@@ -10,8 +10,12 @@ const bodyParser = require('body-parser').json();
 router.get('/', (req, res, next) => {
   let userLogged = req.user;
   Post.find({},"creatorId content pic_path")
+    .populate('creatorId')
     .exec()
-    .then((result) => res.render('index', { result , userLogged}))
+    .then((result) => {
+      console.log(result);
+      res.render('index', { result , userLogged});
+    })
     .catch(()=> console.log("Error finding"));
 });
 

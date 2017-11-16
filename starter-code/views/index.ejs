@@ -9,7 +9,7 @@
     <% if(userLogged){ %>
     <a href="/create"><button>Create new Post</button></a>
     <a href="/showOwn"><button>Check my Posts</button></a>
-
+    <a href="/"><button>Edit my profile</button></a>
     <form action="/logout" method="post">
       <br><button>Logout</button>
     </form>
@@ -18,7 +18,7 @@
       <a href="/signup"><button>signup</button></a><br><br>
     <% } %>
     <% if (result.length != 0) { result.forEach((element) => { %>
-      <%=element.creatorId%><br>
+      <%=element.creatorId.username%><br>
       <%=element.content%><br>
       <form action="/<%= element.id%>/show" methor="post">
         <button>Look Post</button>

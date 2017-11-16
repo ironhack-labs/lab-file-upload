@@ -28,7 +28,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   store: new MongoStore( { mongooseConnection: mongoose.connection })
-}))
+}));
 
 passport.serializeUser((user, cb) => {
   cb(null, user.id);
@@ -104,6 +104,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use('/bower_components', express.static(path.join(__dirname, 'bower_components/')))
+// optional: app
+// For charge in front this directories
+// app.use('/dist/jquery', express.static(path.join(__dirname, 'node_modules/jquery/dist/')))
+// app.use('/dist/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/')))
 app.use(express.static(path.join(__dirname, 'public')));
 
 const authRoutes = require('./routes/authentication');
