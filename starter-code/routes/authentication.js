@@ -28,11 +28,16 @@ router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', 
 
 //Con este get me encargo de cargar desde un principio la imagen, y si no hay, desde el ejs muestro o no en función de si 'picture' es undefined o no
 router.get('/profile', ensureLoggedIn('/login'), (req, res, next) => {
-  Picture.find((err, pictures) => {
-    res.render('authentication/profile', {
-      picture:picture,
-      user : req.user
-    })
+  Picture.find((err, picture) => {
+    console.log(picture);
+    if (picture){
+      res.render('authentication/profile', {
+        picture:picture,user : req.user})
+    } else {
+      res.render('authentication/profile', {
+        picture:undefined,user : req.user})
+
+    }
   })
 });
 
@@ -48,10 +53,9 @@ router.get('/profile/edit', ensureLoggedIn('/login'), (req, res) => {
 router.post('/profile/edit',
   upload.single('photo'),
   function(req, res){
-
   const pic = new Picture({
     name: req.body.name,
-    pic_path: `/uploads/${req.file.filename}`,
+    pic_path: `${req.file.filename}`,
     pic_name: req.file.originalname
   });
 

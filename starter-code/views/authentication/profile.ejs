@@ -1,7 +1,7 @@
 <h2>PROFILE PAGE</h2>
 <h3>WELCOME <%= user.username%>!</h3>
-<% if(picture != 'undefined') { %> <!--Qué falla en esta línea?-->
-  <img src="<%= picture.pic_path %>" alt="<%= picture.pic_name %>" />
+<% if(picture.length > 0) { %> <!--Qué falla en esta línea?-->
+  <img src="/uploads/<% picture[0].pic_path %>" alt="<%= picture[0].pic_name %>" />
 <% } %>
 <a href="/profile/edit">Update your photo!</a>
 <form action="/logout" method="POST">
