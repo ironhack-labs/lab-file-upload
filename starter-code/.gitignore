@@ -1,5 +1,3 @@
-.DS_Store
-._.DS_Store
 # Logs
 logs
 *.log
@@ -31,3 +29,7 @@ bower_components
 
 # Debug log from npm
 npm-debug.log
+<<<<<<< HEAD
+.DS_Store
+=======
+>>>>>>> 74e97773181d53fedfa6b3dc4d0f244443b7b58b
