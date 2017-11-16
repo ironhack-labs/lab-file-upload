@@ -1,0 +1,11 @@
+<form id="post-form" action="/comment/create" method="post" enctype="multipart/form-data">
+  <input type="hidden" name="postId" value="<%= postId %>">
+  <br><br>
+  <label for="content">Content</label><br>
+  <textarea form="post-form" rows="4" cols="20" name="content"></textarea>
+  <br><br>
+  <label for="photo">Picture</label><br>
+  <input type="file" name="photo">
+  <br><br>
+  <button type="submit">Create</button>
+</form>
