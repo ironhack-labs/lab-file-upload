@@ -2,25 +2,25 @@
   <div class="row">
     <%= message %>
     <div class="col-sm-6 centered-form">
-      <form action="/signup" method="post" enctype="multipart/form-data">
+      <form action="/signup" method="post" enctype="multipart/form-data" required>
         <div class="form-group">
           <label for="username">Username</label>
-          <input type="text" name="username" class="form-control">
+          <input type="text" name="username" class="form-control" required>
         </div>
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="text" name="email" class="form-control">
+          <input type="text" name="email" class="form-control" required>
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" name="password" class="form-control">
+          <input type="password" name="password" class="form-control" required>
         </div>
         <div class="upload">
-          <input type="text" name="name">
-          <input type="file" name="photo">
+          <input type="file" name="photo" required>
         </div>
         <button type="submit">Signup</button>
       </form>
+      <a href="/"><button>GO MENU</button></a>
     </div>
   </div>
 </div>

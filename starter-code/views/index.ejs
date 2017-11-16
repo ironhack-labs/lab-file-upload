@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>Tumblr</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
+    <% if(userLogged){ %>
+    <a href="/create"><button>Create new Post</button></a>
+    <a href="/showOwn"><button>Check my Posts</button></a>
+
+    <form action="/logout" method="post">
+      <br><button>Logout</button>
+    </form>
+    <% } else {%>
+      <a href="/login"><button>login</button></a>
+      <a href="/signup"><button>signup</button></a><br><br>
+    <% } %>
+    <% if (result.length != 0) { result.forEach((element) => { %>
+      <%=element.creatorId%><br>
+      <%=element.content%><br>
+      <form action="/<%= element.id%>/show" methor="post">
+        <button>Look Post</button>
+      </form>
+      <img width="100px" src="<%=element.pic_path%>"><br>
+    <% })} else { %>
+      <p> There isnt any post here...<a href="/create">Why not write your first?</a></p>
+    <%}%>
   </body>
 </html>

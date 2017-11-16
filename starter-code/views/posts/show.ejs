@@ -1,0 +1,18 @@
+<a href="/"><button>Go back</button></a>
+    <%=postResult.content%><br>
+    <img width="200px" src="<%=postResult.pic_path%>"><br>
+<% if (userLogged){ %>
+    <form action="/<%=postResult.id%>/addCommentary" method="POST" enctype="multipart/form-data">
+      <label for="contentComment">Comments:</label><br>
+      <textarea type="text" name="contentComment" id="contentComment" required></textarea><br>
+      <input type="file" name="photo"><br>
+      <button> Add Comment! </button>
+    </form>
+<% } %>
+    <% if (commentResult.length != 0) { %>
+<% commentResult.forEach((comment) => { %>
+  <%=comment.content%>
+  <%=comment.authorId%>
+  <% if(comment.imagePath) {%>
+  <img width="100px" src="<%=comment.imagePath%>">
+<% }})} %>

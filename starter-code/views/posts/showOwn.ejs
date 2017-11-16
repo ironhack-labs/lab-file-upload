@@ -1,0 +1,17 @@
+<br><br><a href="/"><button>Go back</button></a>
+<h2> Your Posts & Photos </h2>
+  <% if (result.length != 0) { result.forEach((element) => { %>
+    <%=element.content%><br>
+    <img width="100px" src="<%=element.pic_path%>"><br>
+    <form action="/<%=element.id%>/edit" method="get">
+      <button>Edit Post</button></a>
+    </form>
+    <form action="/<%=element.id%>/delete" method="post">
+      <button>Delete Post</button></a><br>
+    </form>
+    <form action="/<%=element.id%>/show" method="get">
+      <button>Show Post complete</button></a><br>
+    </form>
+  <% })} else { %>
+    <p> There isnt any post here...<a href="/create">Why not write your first?</a></p>
+  <%}%>

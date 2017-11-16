@@ -101,15 +101,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use('/bower_components', express.static(path.join(__dirname, 'bower_components/')))
 app.use(express.static(path.join(__dirname, 'public')));
 
-const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
-app.use('/', index);
+const posts = require('./routes/posts');
 app.use('/', authRoutes);
+app.use('/', posts)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
