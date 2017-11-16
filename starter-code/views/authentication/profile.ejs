@@ -1,0 +1,8 @@
+<ul>
+  <li>Username: <%= user.username %></li>
+  <li>Email: <%= user.email %></li>
+  <% if (picture !== null) {%>
+    <img src="<%= picture.pic_path %>" alt="<%= picture.pic_name %>" />
+  <% } %>
+</ul>
+<a href="/profile/upload">Upload profile photo</a>
