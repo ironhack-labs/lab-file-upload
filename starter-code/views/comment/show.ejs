@@ -1,0 +1,11 @@
+
+<h3>Comments</h3>
+<% if (typeof(comments) !== "undefined") { %>
+  <ul>
+    <% comments.forEach(comment => { %>
+      <li><%= comment.content %></li>
+    <% }); %>
+  </ul>
+<% } else { %>
+  <p>There are no posts for this creator</p>
+<% } %>
