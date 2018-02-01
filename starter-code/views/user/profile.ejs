@@ -37,16 +37,21 @@
               </div>
             </form>
             <section>
-              <h2>Upload your photo</h2>
-              <form action="/user/upload" method="post" enctype="multipart/form-data">
-                <div class="form-group">
-                  <input type="text" name="name"class="form-control" placeholder="Picture name">
-                  <input type="file" name="photo" class="form-control">
-                  <input type="submit" value="Save" class="btn btn-default">
-                </div>
-              </form>
-              <% if (typeof(pic) != 'undefined') { %>
-                <%= pic.name %>
+              
+              <% if (typeof(picture) != 'undefined') { %>
+                <h2>You got a picture upload</h2>
+                <p><strong>Name:</strong> <%=picture.name%></p>
+                <p><strong>Picture name:</strong> <%=picture.pic_name%></p>
+                <img src="<%=picture.pic_path%>" alt="" height="100px">
+              <% } else{%>
+                <h2>Upload your photo</h2>
+                <form action="/user/upload" method="post" enctype="multipart/form-data">
+                  <div class="form-group">
+                    <input type="text" name="name"class="form-control" placeholder="Picture name">
+                    <input type="file" name="photo" class="form-control">
+                    <input type="submit" value="Save" class="btn btn-default">
+                  </div>
+                </form>
               <% } %>
 
           </section>
