@@ -61,11 +61,13 @@ module.exports.setup = (passport) => {
               email,
               password
             } = req.body;
+            const imgURL="https://vignette.wikia.nocookie.net/kotlc/images/a/a8/10546i3DAC5A5993C8BC8C.jpg/revision/latest/scale-to-width-down/310?cb=20170111040640";
             const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
             const newUser = new User({
               username,
               email,
-              password: hashPass
+              password: hashPass,
+              imgURL
             });
 
             newUser.save((err) => {

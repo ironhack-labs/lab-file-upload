@@ -14,6 +14,8 @@ const mongoose = require('mongoose');
 
 const index = require('./routes/index');
 const auth = require('./routes/auth.routes');
+const user = require('./routes/user.routes');
+
 // Import DB config
 require('./config/db.config');
 require('./config/passport.config').setup(passport);
@@ -49,6 +51,7 @@ app.use(passport.session());
 
 app.use('/', auth);
 app.use('/', index);
+app.use('/user', user);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

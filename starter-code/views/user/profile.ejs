@@ -1,0 +1,58 @@
+<h1>Welcome to your profile</h1>
+
+<% if (typeof(user) != 'undefined') { %>
+  <div>
+      <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+          <form action="/update" method="POST">
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <i class="fa fa-user"></i>
+                </span>
+                <input type="text" name="username" class="form-control" placeholder="Username" value="<%= typeof user != 'undefined' && user.username ? user.username : '' %>">
+              </div>
+              <% if (typeof(error) != 'undefined' && error.username) { %>
+                <label class="control-label">
+                  <%= error.username %>
+                </label>
+                <% } %>
+            </div>
+      
+            <div class="form-group <%= typeof error != 'undefined' && error.imgURL ? 'has-error' : '' %>">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <i class="fa fa-lock"></i>
+                </span>
+                <input type="imgURL" name="imgURL" class="form-control" placeholder="imgURL"  value="<%= typeof user != 'undefined' && user.imgURL ? user.imgURL : '' %>">
+              </div>
+              <% if (typeof(error) != 'undefined' && error.imgURL) { %>
+                <label class="control-label">
+                  <%= error.imgURL %>
+                </label>
+                <% } %>
+            </div>
+            <div class="form-group <%= typeof error != 'undefined' && error.email ? 'has-error' : '' %>">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <i class="fa fa-lock"></i>
+                </span>
+                <input type="text" name="email" class="form-control" placeholder="Email" value="<%= typeof user != 'undefined' && user.email ? user.email : '' %>">
+              </div>
+              <% if (typeof(error) != 'undefined' && error.email) { %>
+                <label class="control-label">
+                  <%= error.email %>
+                </label>
+                <% } %>
+            </div>
+      
+            <div class="form-actions">
+              <button type="submit" class="btn btn-block btn-primary">UPDATE</button>
+            </div>
+          </form>
+    <form action="/logout" method="post">
+      <button type="submit" class="btn btn-danger">Log Out</button>
+    </form>
+  </div>
+  <% } %>
+
+
