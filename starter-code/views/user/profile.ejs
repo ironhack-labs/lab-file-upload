@@ -17,20 +17,7 @@
                 </label>
                 <% } %>
             </div>
-      
-            <div class="form-group <%= typeof error != 'undefined' && error.imgURL ? 'has-error' : '' %>">
-              <div class="input-group">
-                <span class="input-group-addon">
-                  <i class="fa fa-lock"></i>
-                </span>
-                <input type="imgURL" name="imgURL" class="form-control" placeholder="imgURL"  value="<%= typeof user != 'undefined' && user.imgURL ? user.imgURL : '' %>">
-              </div>
-              <% if (typeof(error) != 'undefined' && error.imgURL) { %>
-                <label class="control-label">
-                  <%= error.imgURL %>
-                </label>
-                <% } %>
-            </div>
+    
             <div class="form-group <%= typeof error != 'undefined' && error.email ? 'has-error' : '' %>">
               <div class="input-group">
                 <span class="input-group-addon">
@@ -43,12 +30,27 @@
                   <%= error.email %>
                 </label>
                 <% } %>
-            </div>
-      
-            <div class="form-actions">
-              <button type="submit" class="btn btn-block btn-primary">UPDATE</button>
-            </div>
-          </form>
+              </div>
+              
+              <div class="form-actions">
+                <button type="submit" class="btn btn-block btn-primary">UPDATE</button>
+              </div>
+            </form>
+            <section>
+              <h2>Upload your photo</h2>
+              <form action="/user/upload" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                  <input type="text" name="name"class="form-control" placeholder="Picture name">
+                  <input type="file" name="photo" class="form-control">
+                  <input type="submit" value="Save" class="btn btn-default">
+                </div>
+              </form>
+              <% if (typeof(pic) != 'undefined') { %>
+                <%= pic.name %>
+              <% } %>
+
+          </section>
+
     <form action="/logout" method="post">
       <button type="submit" class="btn btn-danger">Log Out</button>
     </form>
