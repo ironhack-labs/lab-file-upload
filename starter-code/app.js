@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
 const passport = require('passport');
-const bcrypt = require('bcrypt');
+
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
@@ -16,7 +16,7 @@ const index = require('./routes/index');
 const auth = require('./routes/auth.routes');
 // Import DB config
 require('./config/db.config');
-require('./config/passport.config');
+require('./config/passport.config').setup(passport);
 
 const app = express();
 
