@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <h1>Welcome to IronTumblr</h1>
+  <a href="/login">Login</a>
+  <a href="/profile">Profile</a>
+  <a href="/signup">Signup</a>
+  <form action="/logout" method="post">
+    <button>Logout</button>
+  </form>
+  <h2>Posts</h2>
+  <div class="allposts">
+    <%if(posts){%>
+      <%posts.forEach(e => {%>
+        <div class="post">
+          <h3>
+            <%=e.pic_name%>
+          </h3>
+          <img src="<%= e.pic_path %>" alt="<%= e.pic_name %>" height="300" />
+          <p>
+            <%=e.content%>
+          </p>
+          <%if(user){%>
+            <a href="/comment">
+              <button>Comment</button>
+            </a>
+            <%}%>
+              <a href="/comment/show">
+                <button>Show Comments</button>
+              </a>
+        </div>
+        <%})%>
+          <%}%>
+  </div>
+</body>
+
+</html>
