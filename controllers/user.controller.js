@@ -2,10 +2,12 @@ const User = require('../models/user.model');
 
 
 module.exports.show = (req, res, next) => {
-// res.send("req.params.id=="+req.params.id);
 res.render('user/profile',{flash: req.flash()});
+};
+module.exports.update = (req, res, next) => {
+console.log(req.user);
 
-  //flash: req.flash()
+res.render('user/update');
 };
 
 
