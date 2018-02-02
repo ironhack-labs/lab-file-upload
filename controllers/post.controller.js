@@ -11,8 +11,6 @@ module.exports.create = (req, res, next) => {
 };
 
 module.exports.doCreate = (req, res, next) => {
-  // console.log("req.file======="+req.file);
-  // console.log(req.body);
   if (!req.file) {
     res.render('post/new', {
       error: {
@@ -27,10 +25,6 @@ module.exports.doCreate = (req, res, next) => {
       _creator: req.user._id
     });
     const file_name = req.file.originalname;
-    // console.log("pic==="+pic);
-    // console.log("file_name==="+file_name);
-
-
     if (!pic.content || !pic.pic_path || !pic.pic_name) {
       res.render('post/new', {
         error: {
@@ -40,6 +34,20 @@ module.exports.doCreate = (req, res, next) => {
         }
       });
     }
+    pic.save()
+      .then(() => {
+        res.redirect('/posts');
+      })
+      .catch(error => {
+        if (error instanceof mongoose.Error.ValidationError) {
+          res.render('error', {
+            message:"Error in save a picture in DB",
+            error: error.errors
+          });
+        } else {
+          next(error);
+        }
+      });
     // else {
     //   pic.save()
     //     .then(() => {

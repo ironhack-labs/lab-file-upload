@@ -23,7 +23,8 @@ module.exports.doSignup = (req, res, next) => {
                 user.save()
                     .then(() => {
                         res.redirect('/login');
-                    }).catch(error => {
+                    })
+                    .catch(error => {
                         if (error instanceof mongoose.Error.ValidationError) {
                             res.render('auth/signup', {
                                 user: user,
