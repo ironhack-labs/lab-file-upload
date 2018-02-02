@@ -7,12 +7,16 @@ module.exports.signup = (req, res, next) => {
 };
 
 module.exports.doSignup = (req, res, next) => {
-    User.findOne({ email: req.body.email })
+    User.findOne({
+            email: req.body.email
+        })
         .then(user => {
             if (user != null) {
-                res.render('auth/signup', { 
-                    user: user, 
-                    error: { email: 'User already register' } 
+                res.render('auth/signup', {
+                    user: user,
+                    error: {
+                        email: 'User already register'
+                    }
                 });
             } else {
                 user = new User(req.body);
@@ -21,15 +25,15 @@ module.exports.doSignup = (req, res, next) => {
                         res.redirect('/login');
                     }).catch(error => {
                         if (error instanceof mongoose.Error.ValidationError) {
-                            res.render('auth/signup', { 
-                                user: user, 
-                                error: error.errors 
+                            res.render('auth/signup', {
+                                user: user,
+                                error: error.errors
                             });
                         } else {
                             next(error);
                         }
                     });
-            }  
+            }
         })
         .catch(error => next(error));
 };
@@ -42,8 +46,10 @@ module.exports.doLogin = (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
     if (!email || !password) {
-        res.render('auth/login', { 
-            user: { email: email }, 
+        res.render('auth/login', {
+            user: {
+                email: email
+            },
             error: {
                 email: email ? '' : 'Email is required',
                 password: password ? '' : 'Password is required'
@@ -54,14 +60,16 @@ module.exports.doLogin = (req, res, next) => {
             if (error) {
                 next(error);
             } else if (!user) {
-                res.render('auth/login', { error: validation });
+                res.render('auth/login', {
+                    error: validation
+                });
             } else {
                 req.login(user, (error) => {
                     if (error) {
                         next(error);
                     } else {
-                        req.flash('Welcome to your personal profile!!');
-                        res.redirect('/users/'+req.user._id);
+                        req.flash('info', 'Welcome to your personal profile!!');
+                        res.redirect('/users/' + req.user._id);
                     }
                 });
             }
