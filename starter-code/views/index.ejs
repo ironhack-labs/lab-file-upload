@@ -5,7 +5,7 @@
   <title>
     <%= title %>
   </title>
-  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='../public/stylesheets/style.css' />
 </head>
 
 <body>
@@ -22,11 +22,11 @@
       <%posts.forEach(e => {%>
         <div class="post">
           <h3>
-            <%=e.pic_name%>
+            <%=picture.pic_name%>
           </h3>
-          <img src="<%= e.pic_path %>" alt="<%= e.pic_name %>" height="300" />
+          <img src="<%= picture.pic_path %>" alt="<%= picture.pic_name %>" height="300" />
           <p>
-            <%=e.content%>
+            <%=picture.content%>
           </p>
           <%if(user){%>
             <a href="/comment">

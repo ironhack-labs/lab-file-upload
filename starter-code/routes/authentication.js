@@ -2,6 +2,8 @@ const express = require("express");
 const passport = require("passport");
 const router = express.Router();
 const { ensureLoggedIn, ensureLoggedOut } = require("connect-ensure-login");
+const multer  = require('multer');
+const upload = multer({ dest: './public/uploads/' });
 const Picture = require("../models/pictures");
 const Post = require('../models/Post');
 
@@ -22,7 +24,7 @@ router.post(
   })
 );
 
-router.get("/signup", ensureLoggedOut(), (req, res) => {
+router.get("/signup",  upload.single('photo'),ensureLoggedOut(), (req, res) => {
   res.render("authentication/signup", { message: req.flash("error") });
 });
 

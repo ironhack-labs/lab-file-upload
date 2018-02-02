@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 var multer = require("multer");
 const Picture = require("../models/picture");
-const Post = require("../models/Post");
+const Post = require("../models/post");
+const Comment = require('../models/comment');
 
 /* GET home page. */
 router.get("/", (req, res, next) => {
