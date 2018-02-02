@@ -2,9 +2,14 @@ const User = require('../models/user.model');
 const mongoose = require('mongoose');
 
 module.exports.show = (req, res, next) => {
-  res.render('user/profile', {
-    flash: req.flash()
+  User.findById(req.params.id)
+  .then((user)=>{
+    res.render('user/profile', {
+      flash: req.flash(),
+      user
+    });
   });
+  
 };
 module.exports.update = (req, res, next) => {
   res.render('user/update');

@@ -7,10 +7,20 @@
                 <h1><%= flash.info %></h1>              
             </div>
           <% } %>
-          <p>Here is your control panel: What do you want to do?</p>
-          <a class="btn btn-default" href="<%=session.id%>/edit">Edit my profile</a>
-          <a class="btn btn-default" href="/posts">Watch Posts</a>
-          <a class="btn btn-default" href="/posts/new">Create a Post</a>
+          <% if (typeof(user) !== 'undefined') { %>
+                <h4><%= user.name %></h4>              
+                <h4><%= user.email %></h4>              
+                <h4><%= user.imgUrl %></h4>              
+          <% } %>
+          <% if (typeof(user) !== 'undefined') { %>
+            <% if ((user._id).equals(session._id)) { %>
+                  <p>Here is your control panel: What do you want to do?</p>
+                  <a class="btn btn-default" href="<%=session.id%>/edit">Edit my profile</a>
+                  <a class="btn btn-default" href="/posts">Watch Posts</a>
+                  <a class="btn btn-default" href="/posts/new">Create a Post</a>
+            <% } %>            
+          <% } %>
+
       </div>
   </div>
 </div>

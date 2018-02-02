@@ -3,7 +3,14 @@ const Picture = require('../models/picture.model');
 const mongoose = require('mongoose');
 
 module.exports.index = (req, res, next) => {
-  res.render('post/index');
+  Picture.find()
+    .then((pictures) => {
+      console.log(pictures);
+
+      res.render('post/index', {
+        pictures: pictures
+      });
+    });
 };
 
 module.exports.create = (req, res, next) => {
@@ -41,25 +48,12 @@ module.exports.doCreate = (req, res, next) => {
       .catch(error => {
         if (error instanceof mongoose.Error.ValidationError) {
           res.render('error', {
-            message:"Error in save a picture in DB",
+            message: "Error in save a picture in DB",
             error: error.errors
           });
         } else {
           next(error);
         }
       });
-    // else {
-    //   pic.save()
-    //     .then(() => {
-    //       //falta flash
-    //       res.redirect('/post/index');
-    //     })
-    //     .catch(error => {
-    //       if (error) {
-    //         console.log(error);
-    //         res.redirect('/error');
-    //       }
-    //     });
-    // }
   }
 };

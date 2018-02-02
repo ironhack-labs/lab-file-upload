@@ -3,8 +3,7 @@ const mongoose = require("mongoose");
 const postSchema = new mongoose.Schema({
   content: {
     type: String,
-    required: [true, 'Post need a content'],
-    unique: true
+    required: [true, 'Post need a content']
   },  
   pic_path: {
     type: String,
