@@ -1,0 +1,63 @@
+.main-container {
+  padding-top: 25px;
+}
+
+nav.navbar {
+  box-shadow: 0px 4px 10px 0 rgba(22,22,22,0.08);
+  margin-bottom: 0;
+}
+
+.nav > li > a {
+  color: black;
+}
+
+.nav > li.nav-logo {
+  width: 174px;
+  display: block;
+  position: absolute;
+  left: 50%;
+  margin-left: -87px;
+}
+
+.nav-logo-image {
+  height: 17px;
+  width: 100%;
+}
+
+.nav > .li-logout {
+  padding: 7px;
+}
+
+.btn-logout {
+  color: black;
+}
+
+.home-heading {
+  background-color: #E3ECFA;
+  height: 75vh;
+  padding: 0 30%;
+  position: relative;
+}
+
+.home-heading-wrapper {
+  padding: 0 5%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.home-heading-wrapper > h1 {
+  font-size: 9rem;
+}
+
+.home-heading-wrapper > p {
+  font-size: 2rem;
+}
+
+.m-t-50 {
+  margin-top: 50px;
+}
+
+.input-group-addon .fa {
+  width: 12px;
+}
