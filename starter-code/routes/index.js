@@ -2,9 +2,13 @@ const express = require("express");
 const router = express.Router();
 var multer = require("multer");
 const Picture = require("../models/picture");
+const Post = require("../models/Post");
+
 /* GET home page. */
 router.get("/", (req, res, next) => {
-  res.render("index", { title: "Express - Generated with IronGenerator" });
+  Post.find({}, (err, posts) => {
+    res.render("index", { title: "IronTumblr", posts, user: req.user });
+  });
 });
 
 var upload = multer({ dest: "./public/uploads/" });
@@ -18,6 +22,19 @@ router.post("/upload", upload.single("photo"), function(req, res) {
 
   pic.save(err => {
     res.redirect("/");
+  });
+});
+
+router.post("/post/:id", upload.single("photo"), function(req, res) {
+  const post = new Post({
+    content: req.body.content,
+    pic_path: `/uploads/${req.file.filename}`,
+    pic_name: req.file.originalname,
+    creatorId: req.params.id
+  });
+
+  post.save(err => {
+    res.redirect("/profile");
   });
 });
 
