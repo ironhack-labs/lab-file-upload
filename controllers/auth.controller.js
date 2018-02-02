@@ -4,7 +4,7 @@ const passport = require('passport');
 
 module.exports.signup = (req, res, next) => {
     res.render('auth/signup');
-}
+};
 
 module.exports.doSignup = (req, res, next) => {
     User.findOne({ email: req.body.email })
@@ -32,11 +32,11 @@ module.exports.doSignup = (req, res, next) => {
             }  
         })
         .catch(error => next(error));
-}
+};
 
 module.exports.login = (req, res, next) => {
     res.render('auth/login');
-}
+};
 
 module.exports.doLogin = (req, res, next) => {
     const email = req.body.email;
@@ -60,15 +60,16 @@ module.exports.doLogin = (req, res, next) => {
                     if (error) {
                         next(error);
                     } else {
-                        res.redirect('/');
+                        req.flash('Welcome to your personal profile!!');
+                        res.redirect('/users/'+req.user._id);
                     }
                 });
             }
         })(req, res, next);
     }
-}
+};
 
 module.exports.logout = (req, res, next) => {
     req.logout();
     res.redirect('/login');
-}
+};

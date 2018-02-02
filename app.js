@@ -9,12 +9,14 @@ const MongoStore = require('connect-mongo')(session);
 const passport = require('passport');
 const mongoose = require('mongoose');
 const expressLayouts = require('express-ejs-layouts');
+const flash = require("connect-flash");
 
 require('./configs/db.config');
 require('./configs/passport.config').setup(passport);
 
 const home = require('./routes/home.routes');
 const auth = require('./routes/auth.routes');
+const user = require('./routes/user.routes');
 
 const app = express();
 
@@ -27,6 +29,7 @@ app.set('layout', 'layouts/main');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
+app.use(flash());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -57,6 +60,7 @@ app.use(function (req, res, next) {
 
 app.use('/', home);
 app.use('/', auth);
+app.use('/users', user);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

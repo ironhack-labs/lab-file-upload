@@ -18,7 +18,7 @@
                 <% } %>
                 <li class="nav-logo">
                     <a href="#" class="nav-logo-link">
-                        <img class="nav-logo-image" src="https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_8c904a3bee158b96cdaf0cad6900b4b2.png"
+                        <img class="nav-logo-image" src="http://cdn.embed.ly/providers/logos/tumblr.png"
                             alt="Kickstarter Logo">
                     </a>
                 </li>
@@ -38,7 +38,7 @@
                 </li>
                 <% } else { %>
                     <li>
-                        <a href="#"><%= session.email %></a>
+                        <a href="/users/<%= session.id %>"><%= session.email %></a>
                     </li>
                     <li>
                         <a href="/logout"><i class="fa fa-sign-out"></i></a>
