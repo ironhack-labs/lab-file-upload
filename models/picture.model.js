@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
 const postSchema = new mongoose.Schema({
-  name: {
+  content: {
     type: String,
-    required: [true, 'Post need a name'],
+    required: [true, 'Post need a content'],
     unique: true
   },  
   pic_path: {
@@ -17,8 +17,7 @@ const postSchema = new mongoose.Schema({
   _creator: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: [true, `That user got already a photo`],
-    unique:true
+    required: [true, `Couldnt match the post with the user`]
   }
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }

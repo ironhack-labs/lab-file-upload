@@ -7,12 +7,4 @@ router.get('/:id', secure.isAuthenticated, userController.show);
 router.get('/:id/edit', secure.isAuthenticated, userController.update);
 router.post('/:id/', secure.isAuthenticated, userController.doUpdate);
 
-
-// router.post('/signup', secure.nonAuthenticated, userController.doSignup);
-
-// router.get('/login', secure.nonAuthenticated, userController.login);
-// router.post('/login', secure.nonAuthenticated, userController.doLogin);
-
-// router.get('/logout', secure.isAuthenticated, userController.logout);
-
 module.exports = router;

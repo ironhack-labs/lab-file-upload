@@ -13,7 +13,7 @@
             <ul class="nav navbar-nav">
                 <% if (session.email) { %>
                     <li>
-                        <a href="#"><i class="fa fa-edit"></i> Start a Project</a>
+                        <a href="/posts/new"><i class="fa fa-edit"></i> Create a post</a>
                     </li>
                 <% } %>
                 <li class="nav-logo">
@@ -25,7 +25,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="#">
+                    <a href="/posts">
                         <span class="glyphicon glyphicon-search"></span>
                     </a>
                 </li>
