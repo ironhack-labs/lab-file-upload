@@ -8,20 +8,28 @@ const expressLayouts     = require('express-ejs-layouts');
 const passport           = require('passport');
 const LocalStrategy      = require('passport-local').Strategy;
 const User               = require('./models/user');
+const Picture               = require('./models/picture');
 const bcrypt             = require('bcrypt');
 const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
+
 
 const app = express();
+app.set('port', process.env.PORT || 3002);
+var server = app.listen(app.get('port'), function() {
+  console.log('Express server listening on port ' + server.address().port);
+});
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.set('layout', 'layouts/main-layout');
 app.use(expressLayouts);
+
+
 
 app.use(session({
   secret: 'tumblrlabdev',
@@ -104,12 +112,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
 const commentRoute = require('./routes/comment');
-const postsRoutes = require('./routes/posts');
+const postRoutes = require('./routes/post');
+const pictureRoutes = require('./routes/picture');
 
 app.use('/', index);
-app.use('/', authRoutes);
+app.use('/', authRoute);
 app.use('/comment', commentRoute);
-app.use('/', postsRoutes);
+app.use('/post', postRoute);
+app.use('/picture', pictureRoute);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

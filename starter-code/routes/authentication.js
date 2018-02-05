@@ -3,8 +3,9 @@ const passport = require("passport");
 const router = express.Router();
 const { ensureLoggedIn, ensureLoggedOut } = require("connect-ensure-login");
 const multer  = require('multer');
+const mongoose = require('mongoose');
 const upload = multer({ dest: './public/uploads/' });
-const Picture = require("../models/pictures");
+const Picture = require("../models/Picture");
 const Post = require('../models/Post');
 
 
@@ -39,11 +40,11 @@ router.post(
 );
 
 router.get("/profile", ensureLoggedIn("/login"), (req, res) => {
-  Picture.find((err, pictures) => {
+  Picture.find((err, picture) => {
     res.render("authentication/profile", {
       user: req.user,
       user: req.user,
-      pictures
+      picture
     });
   });
 });

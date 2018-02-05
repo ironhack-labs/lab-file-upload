@@ -5,7 +5,7 @@ const express    = require('express');
  const multer  = require('multer');
  const upload = multer({ dest: './public/uploads' });
  
- const Post = require("../models/Post");
+ const Picture = require("../models/Picture");
 
 
  module.exports = router;
