@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <div class="home-heading text-center row">
+    <div class="home-heading-wrapper">
+      <h1>Here you can see all posts</h1>
+
+
+      <p>Do you want create a post??</p>
+      <a class="btn btn-default" href="/posts/new">Create a Post</a>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+          <h3>Posts of users:</h3>
+            <% if (typeof(pictures) !== 'undefined') { %>
+                <% pictures.forEach((picture) => { %>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <p><a href="/users/<%= picture._creator %>"><strong>@<%= picture._creator %></strong></a> 
+                            <p><%= picture.content %></p>
+                            <img src="<%=picture.pic_path%>" alt="" height="100px">
+                        </div>
+                    </div>
+                <% }); %>
+            <% } %>
+        </div>
+    </div>
+</div>
