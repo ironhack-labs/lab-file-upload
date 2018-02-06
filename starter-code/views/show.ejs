@@ -1,0 +1,11 @@
+<h2>Comments</h2>
+ <%if(com){%>
+   <%com.forEach(e => {%>
+     <div class="comment">
+       <h3><%=e.pic_name%></h3>
+       <img src="<%= post.picPath %>" height="300"/>
+       <p><%=e.content%></p>
+     </div>
+   <%})%>
+ <%}%>
+ <a href="/"><button>Back</button></a>

@@ -7,21 +7,34 @@ const bodyParser         = require('body-parser');
 const expressLayouts     = require('express-ejs-layouts');
 const passport           = require('passport');
 const LocalStrategy      = require('passport-local').Strategy;
-const User               = require('./models/user');
+const User               = require('./models/User');
+const Picture            = require('./models/Picture');
 const bcrypt             = require('bcrypt');
 const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
+const index = require('./routes/index');
+const authRoute = require('./routes/authentication');
+const commentRoute = require('./routes/comment');
+const postRoute = require('./routes/post');
+const pictureRoute = require('./routes/picture');
 
-const app = express();
+var app = express();
+app.set('port', process.env.PORT || 3001);
+var server = app.listen(app.get('port'), function() {
+  console.log('Express server listening on port ' + server.address().port);
+  return server.listen.apply(server, arguments);
+});
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.set('layout', 'layouts/main-layout');
 app.use(expressLayouts);
+
+
 
 app.use(session({
   secret: 'tumblrlabdev',
@@ -101,10 +114,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-const index = require('./routes/index');
-const authRoutes = require('./routes/authentication');
+
+
 app.use('/', index);
-app.use('/', authRoutes);
+app.use('/authentication', authRoute);
+app.use('/comment', commentRoute);
+app.use('/post', postRoute);
+app.use('/picture', pictureRoute);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -123,5 +139,8 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+
 
 module.exports = app;
