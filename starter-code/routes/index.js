@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
 var multer = require("multer");
-const Picture = require("../models/picture");
-const Post = require("../models/post");
-const Comment = require('../models/comment');
+const Picture = require("../models/Picture");
+const Post = require("../models/Post");
+const Comment = require('../models/Comment');
+var upload = multer({ dest: './public/uploads/' });
 
 /* GET home page. */
 router.get("/", (req, res, next) => {
@@ -12,9 +13,9 @@ router.get("/", (req, res, next) => {
   });
 });
 
-var upload = multer({ dest: "./public/uploads/" });
 
-router.post("/upload", upload.single("photo"), function(req, res) {
+
+router.post("/uploads", upload.single("photo"), function(req, res) {
   const pic = new Picture({
     name: req.body.name,
     pic_path: `/uploads/${req.file.filename}`,
@@ -22,7 +23,7 @@ router.post("/upload", upload.single("photo"), function(req, res) {
   });
 
   pic.save(err => {
-    res.redirect("/");
+    res.redirect("/profile");
   });
 });
 

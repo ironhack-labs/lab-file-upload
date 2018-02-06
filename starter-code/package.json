@@ -28,8 +28,8 @@
   "main": "app.js",
   "author": "",
   "license": "ISC",
-  "description": "",
   "devDependencies": {
     "nodemon": "^1.14.12"
-  }
+  },
+  "description": ""
 }

@@ -9,6 +9,6 @@ const UserSchema = Schema({
   pic_name: String
 });
 
-const User = mongoose.model('User', UserSchema);
+var User = mongoose.model('User', UserSchema);
 
 module.exports = User;

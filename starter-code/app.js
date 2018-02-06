@@ -7,17 +7,21 @@ const bodyParser         = require('body-parser');
 const expressLayouts     = require('express-ejs-layouts');
 const passport           = require('passport');
 const LocalStrategy      = require('passport-local').Strategy;
-const User               = require('./models/user');
-const Picture               = require('./models/picture');
+const User               = require('./models/User');
+const Picture               = require('./models/Picture');
 const bcrypt             = require('bcrypt');
 const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 
+const index = require('./routes/index');
+const authRoute = require('./routes/authentication');
+const commentRoute = require('./routes/comment');
+const postRoute = require('./routes/post');
+const pictureRoute = require('./routes/picture');
 
-
-const app = express();
+var app = express();
 app.set('port', process.env.PORT || 3002);
 var server = app.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + server.address().port);
@@ -109,14 +113,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-const index = require('./routes/index');
-const authRoutes = require('./routes/authentication');
-const commentRoute = require('./routes/comment');
-const postRoutes = require('./routes/post');
-const pictureRoutes = require('./routes/picture');
+
 
 app.use('/', index);
-app.use('/', authRoute);
+app.use('/authentication', authRoute);
 app.use('/comment', commentRoute);
 app.use('/post', postRoute);
 app.use('/picture', pictureRoute);
