@@ -8,7 +8,7 @@ const expressLayouts     = require('express-ejs-layouts');
 const passport           = require('passport');
 const LocalStrategy      = require('passport-local').Strategy;
 const User               = require('./models/User');
-const Picture               = require('./models/Picture');
+const Picture            = require('./models/Picture');
 const bcrypt             = require('bcrypt');
 const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
@@ -22,9 +22,10 @@ const postRoute = require('./routes/post');
 const pictureRoute = require('./routes/picture');
 
 var app = express();
-app.set('port', process.env.PORT || 3002);
+app.set('port', process.env.PORT || 3001);
 var server = app.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + server.address().port);
+  return server.listen.apply(server, arguments);
 });
 
 
@@ -138,5 +139,8 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+
 
 module.exports = app;

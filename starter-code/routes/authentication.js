@@ -1,13 +1,19 @@
 const express = require("express");
 const passport = require("passport");
 var multer = require("multer");
-const router = express.Router();
+
 const { ensureLoggedIn, ensureLoggedOut } = require("connect-ensure-login");
 var upload = multer({ dest: './public/uploads/' });
 const Picture = require("../models/Picture");
 const Post = require('../models/Post');
 
 
+var router = express.Router();
+
+/* GET home page. */
+router.get('/', function(req, res) {
+  res.render('auth', { title: 'Express' });
+});
 
 
 router.get("/login", ensureLoggedOut(), (req, res) => {

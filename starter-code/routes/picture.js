@@ -8,4 +8,10 @@ const express    = require('express');
  const Picture = require("../models/Picture");
 
 
+
+/* GET home page. */
+router.get('/', function(req, res) {
+  res.render('picture', { title: 'Express' });
+});
+
  module.exports = router;
