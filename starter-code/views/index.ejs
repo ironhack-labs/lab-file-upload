@@ -16,10 +16,11 @@
     <a href="/login">Log in</a>
     <% } %>
 
-    <% posts.forEach(post => { %>
+    <% posts.reverse().forEach(post => { %>
     <hr>
       <p> <%= post.content %></p>
       <p> Author: <%= post.creatorId %></p>
+      <a>Add comment</a>
     <% }) %>
   </body>
 </html>
