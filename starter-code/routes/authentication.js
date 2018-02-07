@@ -8,7 +8,7 @@ router.get('/login', ensureLoggedOut(), (req, res) => {
 });
 
 router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
-  successRedirect : '/home',
+  successRedirect : '/',
   failureRedirect : '/login',
   failureFlash : true
 }));

@@ -6,22 +6,28 @@ const User = require('../models/user');
 const moment = require('moment');
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
-router.get("/home/:id", (req, res) => {
+router.get("/profile/:id", (req, res) => {
+    const paraid = req.params.id;
+    let currentid = req.user._id;
+    if (req.isUnauthenticated()) {
+        currentid = 0;
+    }
     Post
         // .find({creatorId : User._id})
-        .find({creatorId : req.user._id})
+        .find({ creatorId: req.params.id })
         .sort({
             created_at: -1
         })
         .exec((err, posts) => {
-            console.log(posts);
-            res.render(`profile/home/${id}`, {
+            res.render(`profile/profile`, {
                 posts,
-                moment
+                moment,
+                paraid,
+                currentid,
+               
             });
         });
 })
-
 
 router.get("/createpost", (req, res, next) => {
     res.render("profile/createpost");
