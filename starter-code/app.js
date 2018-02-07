@@ -105,6 +105,7 @@ const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/posts/new   ', post-routes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
