@@ -1,10 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
+    <br>
+    <% if (users.length > 0) { %>
+      <% users.forEach(function(user) { %>
+          <div class="user-container">
+              <label>Mira el Tumblr de <a href="profile/<%=user._id%>"</a><%= user.username %></a></label>
+          </div>
+          <br>
+  <% }) %>
+  <% } else { %>
+      <div class="user-container no-users">
+          <p>The users is empty</p>
+      </div>
+  <% } %>
+    <a href="/login">Log in</a>
+    <br>
+    <a href="/signup">Sign up</a>
+    <br>
+    <a href="/logout">Log out</a>
   </body>
 </html>
