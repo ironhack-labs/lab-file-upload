@@ -16,6 +16,7 @@ const flash              = require('connect-flash');
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
+
 const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -28,14 +29,14 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   store: new MongoStore( { mongooseConnection: mongoose.connection })
-}))
+}));
 
 passport.serializeUser((user, cb) => {
   cb(null, user.id);
 });
 
 passport.deserializeUser((id, cb) => {
-  User.findById(id, (err, user) => {
+  User.findById(id).populate('profileImage').exec((err, user) => {
     if (err) { return cb(err); }
     cb(null, user);
   });
@@ -101,10 +102,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use((req, res, next) => {
+res.locals.user = req.user;
+next();
+});
+
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const postRoutes = require('./routes/post');
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/', postRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

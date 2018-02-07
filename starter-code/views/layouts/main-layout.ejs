@@ -7,6 +7,20 @@
     <link rel="stylesheet" href="/stylesheets/style.css">
   </head>
   <body>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/profile">Profile</a>
+      <a href="/new">Create post</a>
+      <% if (!user) { %>
+        <a href="/signup">Signup</a>
+        <a href="/login">Login</a>
+      <% } else {%>
+        <span>Welcome back <%= user.username %></span>
+        <form action="/logout" method="POST">
+          <button>Logout</button>
+        </form> 
+        <% } %>
+    </nav>
     <div class="main-container">
       <%- body -%>
     </div>

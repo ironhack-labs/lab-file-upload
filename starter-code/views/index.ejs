@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-  </body>
-</html>
+<h1>
+  Welcome to IronTumblr</h1>
+
+<div class="container">
+  <% posts.forEach(post => { %>
+    <div class="row">
+      <div class="col-lg-12">
+        <h4>
+          <%= post.content %>
+        </h4>
+        <div>
+          <img style="height: 200px;" src="<%= post.picture.path %>" alt="<%= post.picture.originalName %>">
+        </div>
+        <div>
+          <a href="/show/<%= post._id %>" class="btn">Show post</a>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <% }) %>
+</div>

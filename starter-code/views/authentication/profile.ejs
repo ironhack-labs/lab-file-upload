@@ -1,0 +1,14 @@
+    <section>
+        <h2>Upload your photo</h2>
+        <form action="/upload/<%= user._id %>" method="post" enctype="multipart/form-data">
+          <input type="text" name="name">
+          <input type="file" name="photo">
+          <input type="submit" value="Save">
+        </form>
+      </section>
+<% if(user.profileImage) { %>
+      <section>
+          <h3><%= user.profileImage.name %></h3>
+          <img src="<%= user.profileImage.path %>" alt="<%= user.profileImage.originalName %>" />
+      </section>
+  <% } %>
