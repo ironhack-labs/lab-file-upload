@@ -1,0 +1,14 @@
+form action="/coment/<%= post._id %>/coments" method="POST">
+  <div>
+    <label for="authorId">Write a comment, <%=user.username%></label>
+    <input type="hidden" name="authorId" value="<%=user._id%>" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="content">Content</label>
+    <textarea name="content" rows="3" cols="90"></textarea>
+  </div>
+
+  <button type="submit">Submit Review</button>
+
+</form>

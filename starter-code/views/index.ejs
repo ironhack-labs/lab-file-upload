@@ -30,7 +30,7 @@
       <br>
       
         
-        <% posts.forEach( p => { %>
+        <% posts.reverse().forEach( p => { %>
           <p> <%= p.content %></p>
           <p>From @<%= p.creator %> </p>
           <hr>
