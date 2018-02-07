@@ -5,6 +5,21 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+     <% if (user) { %>
+    <h1>Hi <%= user.username %></h1>
+    <a href="/logout">Logout</a>
+    <a href="/posts/new">Create post</a>
+    <% } else { %>
     <h1>Welcome to IronTumblr</h1>
+    <a href="/signup">Sign Up</a>
+    <br>
+    <a href="/login">Log in</a>
+    <% } %>
+
+    <% posts.forEach(post => { %>
+    <hr>
+      <p> <%= post.content %></p>
+      <p> Author: <%= post.creatorId %></p>
+    <% }) %>
   </body>
 </html>
