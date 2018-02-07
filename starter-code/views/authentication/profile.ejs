@@ -1,0 +1,16 @@
+<h1>You are, <span style="color: red;"><%= user.username%></span>. You are. </h1>
+
+<br>
+<br>
+<lu>
+    <% posts.forEach(function(post) { %>
+      <li>
+          <span><%= post.content %></span>
+     </li>
+      <% }) %>
+</lu>
+<br>
+<br>
+
+<a href="/">Index</a>
+<a href="/logout">Logout</a>
