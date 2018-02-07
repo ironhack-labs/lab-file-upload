@@ -1,0 +1,20 @@
+<a href="/createpost">Create Post</a>
+<div></div>
+<div id="timeline">
+    <% if (posts.length > 0) { %>
+        <% posts.forEach(function(post) { %>
+            <div class="post-container">
+                <label>Contenido: </label><p><%= post.content %></p>
+                <!-- <label>picPath: </label><p><%= post.picPath %></p>
+                <label>picName: </label><p><%= post.picName %></p> -->
+                <label>Created at: </label><p><%= moment(post.created_at).format("LL, LTS") %></p>
+            </div>
+            <br>
+    <% }) %>
+    <% } else { %>
+        <div class="post-container no-posts">
+            <p>The posts is empty</p>
+        </div>
+    <% } %>
+</div>
+<a href="/logout">Log out!</a>
