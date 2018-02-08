@@ -1,5 +1,17 @@
-<h1>hola desde profile.ejs</h1>
+<% if (user) { %>
+    <h1>Hi <%= user.username %></h1>
+    <a href="/">Ir inicio</a> | 
+    <a href="/logout">Desconexión</a> | 
+    <a href="/new">Crea un nuevo post</a>   
+    <% } else { %>
+    <h1>Welcome to IronTumblr</h1>
+    <a href="/signup">Sign Up</a>
+    <br>
+    <a href="/login">Log in</a>
+    <% } %>
 
-<br><br><br><br>
-<a href="/">Ir inicio</a> | 
-<a href="/logout">Desconexión</a>
+    <% posts.reverse().forEach(post => { %>
+    <hr>
+      <p> <%= post.content %></p>
+      <p> Author: <%= post.creatorId %></p>
+    <% }) %>
