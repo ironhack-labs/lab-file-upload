@@ -6,3 +6,10 @@ body {
 a {
   color: #00B7FF;
 }
+#lista{
+  list-style: none;
+  display: inline-flex
+}
+.lista1{
+  padding:10px;
+}
