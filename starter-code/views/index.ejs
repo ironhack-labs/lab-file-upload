@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>IronTumblr</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
+    <a href="/posts/new">New Post</a>
+
+    <h3>Posts</h3>
+    <hr>
+    <% if (posts.length > 0) { %>
+    <% posts.forEach(function(post) { %>
+        <div>
+            <h4>
+                <%= post.content %>
+            </h4>
+            <p>
+              <%= post._id%>
+            </p>
+        </div>
+        <hr>
+  <% }) %>
+<% } else { %>
+    <div>
+        <p>The list is empty</p>
+    </div>
+<% } %>
   </body>
 </html>

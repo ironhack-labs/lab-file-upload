@@ -25,7 +25,6 @@ router.post("/posts/new/:id", ensureLoggedIn('/login'), (req, res) => {
       content,
       creatorId: {userId}
     });
-    console.log(newPost)
     newPost.save(err => {
       res.redirect("/");
     });
