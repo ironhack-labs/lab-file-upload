@@ -1,10 +1,48 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-  </body>
-</html>
+<div class="container" id="home-feed">
+  <div class="row">
+    <div class="col-sm-12">
+      <h3 class="text-center">News Feed</h3>
+      <% posts.forEach((p)=>{ %>
+        <div class="row row-feed">
+          <div class="col-sm-3 text-right post-meta">
+            <p>Published by
+              <a href="profile/<%= p.creatorId %>">
+                <% if(user && p.creatorId == user._id ){ %> me
+                  <% } else {%>
+                    <span class="capitalize">
+                      <%=p.creatorName %>
+                    </span>
+                    <% } %>
+              </a>
+              <br> on
+              <%= p.created_at%>
+            </p>
+            <% if(user && p.creatorId == user._id ){ %>
+              <div class="edit-post-link">
+                <a href="edit-post/<%= p._id %>">
+                  <i class="fas fa-pencil-alt"></i> Edit post</a>
+              </div>
+              <% } %>
+          </div>
+          <div class="col-sm-9">
+            <p>
+              <%=p.content %>
+            </p>
+            <h5>Comment</h5>
+            <form action="/" method="POST">
+              <div class="form-group">
+                <textarea class="form-control" type="text" name="comment"></textarea>
+              </div>
+              <div class="form-group">
+                <input type="text" value="<%= user._id %>" hidden name="authorId">
+                <input type="text" value="<%= p._id %>" hidden name="postId">
+                <input type="text" value="<%= user.username %>" hidden name="authorName"> </div>
+              <button class="btn btn-success">Comment!</button>
+            </form>
+          </div>
+        </div>
+        <hr class="dotted">
+        <% }) %>
+    </div>
+  </div>
+</div>
