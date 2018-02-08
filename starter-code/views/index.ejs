@@ -11,21 +11,19 @@
     <h3>Posts</h3>
     <hr>
     <% if (posts.length > 0) { %>
-    <% posts.forEach(function(post) { %>
-        <div>
-            <h4>
+      <% posts.forEach(function(post) { %>
+          <div>
+              <h4>
                 <%= post.content %>
-            </h4>
-            <p>
-              <%= post._id%>
-            </p>
+              </h4>
+              <a href="/posts/show/<%= post._id %>">View post</a>
+          </div>
+          <hr>
+    <% }) %>
+    <% } else { %>
+        <div>
+            <p>The list is empty</p>
         </div>
-        <hr>
-  <% }) %>
-<% } else { %>
-    <div>
-        <p>The list is empty</p>
-    </div>
-<% } %>
+    <% } %>
   </body>
 </html>

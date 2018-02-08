@@ -20,7 +20,7 @@ router.post("/posts/new/:id", ensureLoggedIn('/login'), (req, res) => {
     });
     return;
   }
-  User.findById(userId).exec((err, user) => {
+  User.findById(userId).exec().then((err, user) => {
     let newPost = Post({
       content,
       creatorId: {userId}
@@ -28,8 +28,15 @@ router.post("/posts/new/:id", ensureLoggedIn('/login'), (req, res) => {
     newPost.save(err => {
       res.redirect("/");
     });
-  });
+  }).catch(e => next(e));
 })
+
+router.get("/posts/show/:postId", (req, res, next) => {
+  const postId = req.params.postId;
+  Post.findById(postId).exec().then( post => {
+    res.render("posts/show", {post});
+  }).catch(e => next(e))
+});
 
 
 module.exports = router;
