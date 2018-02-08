@@ -6,5 +6,13 @@
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
+    <section>
+      <h2>Upload your photo</h2>
+      <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="text" name="name">
+        <input type="file" name="photo">
+        <input type="submit" value="Save">
+      </form>
+    </section>
   </body>
 </html>
