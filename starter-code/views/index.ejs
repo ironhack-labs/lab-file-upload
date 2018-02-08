@@ -6,5 +6,20 @@
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
+    <br>
+    <br>
+
+    <lu>
+    <% posts.forEach(function(post) { %>
+      <li>
+          <span><%= post.content %></span>
+     </li>
+      <% }) %>
+    </lu>
+    <br>
+    <br>
+    <a href="/signup">Signup</a>
+    <a href="/login">Login</a>
+    <a href="/logout">Logout</a>
   </body>
 </html>
