@@ -8,7 +8,7 @@ router.get('/login', ensureLoggedOut(), (req, res) => {
 });
 
 router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
-  successRedirect : '/',
+  successRedirect : '/profile',
   failureRedirect : '/login',
   failureFlash : true
 }));
@@ -29,7 +29,8 @@ router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
     });
 });
 
-router.post('/logout', ensureLoggedIn('/login'), (req, res) => {
+router.get('/logout', ensureLoggedIn('/login'), (req, res) => {
+    console.log('Desconectando...');
     req.logout();
     res.redirect('/');
 });
