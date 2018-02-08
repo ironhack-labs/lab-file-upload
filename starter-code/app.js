@@ -103,6 +103,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const thread = require ('./routes/post-routes.js');
 app.use('/', index);
 app.use('/', authRoutes);
 app.use('/posts/new   ', post-routes);

@@ -11,7 +11,10 @@ const postSchema = new Schema(
     user_id: {
       type: Schema.Types.ObjectId,
       ref: "User"
-    }
+    },
+    comments_arr: {
+      type: [],
+    },
   },
   {
     timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
