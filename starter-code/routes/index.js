@@ -29,16 +29,15 @@ router.post('/', (req, res) => {
     comment,
     authorId,
     authorName,
-    postId
   };
   console.log(updates);
-/*
+
   Post.findByIdAndUpdate(postId, updates, (err, product) => {
     if (err) {
       return next(err);
     }
     return res.redirect('/');
-  }); */
+  });
 })
 
 module.exports = router;

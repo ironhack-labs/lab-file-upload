@@ -57,28 +57,5 @@ router.get('/edit-post/:postId', (req, res) => {
     });
 })
 
-/* CRUD -> UPDATE POST POST FORM to db */
-router.post('/edit-post/:postId', (req, res) => {
-    const postId = req.params.postId;
-    const {
-        content,
-        creatorId,
-        creatorName
-    } = req.body;
-
-    const updates = {
-        content
-    };
-
-    Post.findByIdAndUpdate(postId, updates, (err, product) => {
-        if (err) {
-            return next(err);
-        }
-        return res.redirect('/');
-    });
-})
-
-
-
 
 module.exports = router;
