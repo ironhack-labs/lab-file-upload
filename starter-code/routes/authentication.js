@@ -32,6 +32,7 @@ router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
 router.post('/logout', ensureLoggedIn('/login'), (req, res) => {
     req.logout();
     res.redirect('/');
+    console.log("you are logged out")
 });
 
 module.exports = router;

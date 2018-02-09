@@ -1,10 +1,44 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-  </body>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <% if (user) { %>
+    <h1>Welcome Home
+      <%= user.username %> !</h1>
+    <form action="/logout" method="POST">
+      <input type="submit" value="Log out">
+    </form>
+    <br>
+    <a href="/posts/create">Create post</a>
+    <%} else { %>
+
+
+
+      <h1>Welcome to IronTumblr</h1>
+
+      <a href="/signup">Signup</a>
+      <a href="/login">Login</a>
+      <% } %>
+      <br>
+      <br>
+      
+        
+        <% posts.reverse().forEach( p => { %>
+          <p> <%= p.content %></p>
+          <p>From @<%= p.creator %> </p>
+          <hr>
+         <% })%> 
+
+  
+    
+
+</body>
+
 </html>
