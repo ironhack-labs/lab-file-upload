@@ -6,5 +6,18 @@
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
+    <% for (var i=0; i<posts.length; i++) { %>
+        <section>
+          <a href=<%="/"+posts[i]._id%>
+            <p><%=posts[i].content%></p>
+              <img src=<%= posts[i].picPath %> alt=<%= posts[i].picName %> />
+            </a>
+              <% if (user._id==posts[i].creatorId){ %>
+                <a href=<%="/"+posts[i]._id+"/edit"%> ><button>Edit Post</button></a>
+              <% } %>
+        </section>
+    <% } %>
+
+    <a href="/logout"><button>Logout</button></a>
   </body>
 </html>

@@ -1,0 +1,9 @@
+
+        <h3>Edit your post</h3>
+        <form action=<%="/"+post._id%> method="post" enctype="multipart/form-data">
+          <input type="text" name="name" placeholder="nombre del archivo">
+          <input type="file" name="photo" accept="image/png">
+          <textarea name="content"><%=post.content%></textarea>
+          <br>
+          <input type="submit" value="Save">
+        </form>

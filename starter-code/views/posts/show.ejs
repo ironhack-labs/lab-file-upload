@@ -1,0 +1,22 @@
+<section>
+          <p><%=post.content%></p>
+            <img src=<%= post.picPath %> alt=<%= post.picName %> />
+            <% if (user!=undefined){%>
+                <% if (user._id==post.creatorId){ %>
+                    <a href=<%="/"+post._id+"/edit"%> ><button>Edit Post</button></a>
+                  <% } %>
+            <%}%>
+            
+            <% for (var j=0; j<post.comments.length; j++){ %>
+                <p><%=post.comments[j].content%></p>
+                <% if (post.comments[j].picPath!=null){ %>
+                    <img src=<%= post.comments[j].picPath %> alt=<%= post.comments[j].picName %> />
+                <%} %>
+            <%} %>
+            <% if (user!=undefined){%>
+                <form action=<%="/"+post._id+"/comment"%> method="post">
+                <input type=text placeholder="Comment" name="content">
+                <input type="submit" value="Comment!">
+                </form>
+             <%} %>
+      </section>
