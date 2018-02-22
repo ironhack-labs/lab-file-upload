@@ -1,6 +1,8 @@
 const express    = require('express');
 const passport   = require('passport');
 const router     = express.Router();
+const multer =require('multer');
+const upload = multer({dest: 'public/uploads/profile-picture'});
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
