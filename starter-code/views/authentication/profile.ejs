@@ -1,0 +1,19 @@
+<h2><%=user.username%></h2>
+
+<section>
+  <%if(picture.path !== undefined){%>
+  <img src="<%=picture.path%>">
+  <% } %>
+</section>
+
+<section>
+  <h4>Upload your photo</h4>
+  <form action="/profile" method="post" enctype="multipart/form-data">
+    <input type="file" name="photo" accept="image/*">
+    <input type="submit" value="Save">
+    <p class="account-message">
+      Do you want to logout?
+      <a href="/logout">Logout</a>
+    </p>
+  </form>
+</section>
