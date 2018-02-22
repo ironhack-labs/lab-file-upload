@@ -80,6 +80,8 @@ passport.use('local-signup', new LocalStrategy(
                 const newUser = new User({
                   username,
                   email,
+                  picPath: `/uploads/profile-pictures/${file.filename}`,
+                  picName: file.originalname,
                   password: hashPass
                 });
 
@@ -103,8 +105,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const postRoutes    = require('./routes/posts');
+
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/posts', postRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
