@@ -20,7 +20,11 @@ router.get('/', (req, res, next) => {
     if (req.user!=undefined){
       res.redirect("/index")
     } else {
-      res.render('home', { title: 'Express - Generated with IronGenerator', posts:doc });
+      if (!doc){
+        res.send("No hay nada");
+      } else {
+        res.render('home', { title: 'Express - Generated with IronGenerator', posts:doc });
+      }
     }
   })
 });
@@ -117,7 +121,6 @@ router.post("/new", upload.single('photo'), (req, res, next) => {
 
 router.get("/:id", (req, res, next)=>{
   Post.findOne({_id: req.params.id}, (err, doc)=>{
-    console.log(doc.comments)
     res.render("posts/show", {post: doc, user: req.user})
   })
 })
@@ -165,7 +168,6 @@ router.post("/:id/comment", ensureLoggedIn(),(req, res, next)=>{
             let array=post.comments
             array.push(comment)
             post.comments= array;
-                console.log(post.comments)
                 post.save((error2)=>{
                   if (error2) {
                     next(error2);

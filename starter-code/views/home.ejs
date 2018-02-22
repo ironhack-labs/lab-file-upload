@@ -6,14 +6,15 @@
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
-    <% for (var i=0; i<posts.length; i++) { %>
-            <section>
-              <a href=<%="/"+posts[i]._id%>
-                <p><%=posts[i].content%></p>
-                  <img src=<%= posts[i].picPath %> alt=<%= posts[i].picName %> />
-                </a>
-            </section>
-        <% } %>
+      <% for (var i=0; i<posts.length; i++) { %>
+        <section>
+          <a href=<%="/"+posts[i]._id%>
+            <p><%=posts[i].content%></p>
+              <img src=<%= posts[i].picPath %> alt=<%= posts[i].picName %> />
+            </a>
+        </section>
+    <%} %>
+    
     <a href="/login"><button>Login</button></a>
 
     <a href="/signup"><button>Signup</button></a>
