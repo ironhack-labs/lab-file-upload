@@ -1,0 +1,19 @@
+
+<section>
+    <h3><%=user.username%></h3>
+    <%if(user.profilePic!=undefined){ %>
+
+      <img src="<%= user.profilePic.path %>" alt="<%= user.profilePic.originalName %>" />
+    <%}%>
+</section>
+<h2>Update your photo</h2>
+<form action="/profile" method="post" enctype="multipart/form-data">
+  <input type="text" name="name" placeholder="nombre del archivo" required>
+  <input type="file" name="photo" accept="image/png" required>
+  <input type="submit" value="Save">
+</form>
+
+<a href="/new" ><button>Create new Post</button></a>
+
+
+<a href="/index" ><button>Go to Home</button></a>
