@@ -3,7 +3,8 @@ require("dotenv").config();
 const cloudinary = require('cloudinary');
 const cloudinaryStorage = require('multer-storage-cloudinary');
 const multer = require('multer');
-
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_NAME,
@@ -16,7 +17,7 @@ var storage = cloudinaryStorage({
   folder: 'lab-upload',
   allowedFormats: ['jpg', 'png'],
   filename: function (req, file, cb) {
-    cb(null, `${Math.floor(Math.random() * 3000)}`);
+    cb(null,bcrypt.hashSync(`${Math.floor(Math.random() * 300000)}`, saltRounds) );
   }
 });
 
