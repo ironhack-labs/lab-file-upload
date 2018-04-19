@@ -8,6 +8,7 @@
     <h1>Welcome to IronTumblr</h1>
     <div>
       {{#each users}}
+        <img class="img img-circle" src="{{this.imgPath}}" height="40px" alt="logo">
         <li>{{this.username}}</li>
       {{/each}}
     </div>

@@ -26,7 +26,17 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   store: new MongoStore( { mongooseConnection: mongoose.connection })
-}))
+}));
+
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 passport.serializeUser((user, cb) => {
   cb(null, user.id);
@@ -55,6 +65,8 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
   });
 }));
 
+
+
 passport.use('local-signup', new LocalStrategy(
   { passReqToCallback: true },
   (req, username, password, next) => {
@@ -70,6 +82,7 @@ passport.use('local-signup', new LocalStrategy(
                 return next(null, false);
             } else {
                 // Destructure the body
+                
                 const {
                   username,
                   email,
@@ -79,7 +92,9 @@ passport.use('local-signup', new LocalStrategy(
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  imgName: req.file.originalname,
+                  imgPath: req.file.url,
                 });
 
                 newUser.save((err) => {
@@ -91,14 +106,7 @@ passport.use('local-signup', new LocalStrategy(
     });
 }));
 
-app.use(flash());
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 const index = require('./routes/index');
 app.use('/', index);
