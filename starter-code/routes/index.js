@@ -10,8 +10,6 @@ router.get('/', (req, res, next) => {
 const uploadHandler = multer({ dest: './public/uploads/' });
 router.post('/upload', uploadHandler.single('photo'), (req, res, next) => {
   
-  console.log(req.body);
-  console.log(req.file.filename);
   res.redirect('/')
 });
 

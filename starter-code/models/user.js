@@ -4,9 +4,8 @@ const Schema = mongoose.Schema;
 const UserSchema = Schema({
 	username: String,
 	email: String,
-  photo:{
-    filename: String,  
-  }
+  photo:String,
+  photoPath: String
 });
 
 const User = mongoose.model('User', UserSchema);
