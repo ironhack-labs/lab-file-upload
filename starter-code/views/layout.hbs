@@ -2,11 +2,14 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>IronTumblr</title>
+    {{!-- <title>IronTumblr</title> --}}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="/stylesheets/style.css">
   </head>
   <body>
+    <div class="nav navbar">
+      <a href="/authentication/login">Login</a> |  <a href="/authentication/signup">Signup</a> | <a href="/authentication/logout">Logout</a>
+    </div>
     <div class="main-container">
       {{{body}}}
     </div>

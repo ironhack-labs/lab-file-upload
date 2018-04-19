@@ -59,6 +59,7 @@ passport.use('local-signup', new LocalStrategy(
   { passReqToCallback: true },
   (req, username, password, next) => {
     // To avoid race conditions
+    console.log("Entering passport");
     process.nextTick(() => {
         User.findOne({
             'username': username
@@ -100,9 +101,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
-const authRoutes = require('./routes/authentication');
 app.use('/', index);
-app.use('/', authRoutes);
+
+const authRoutes = require('./routes/authentication');
+app.use('/authentication', authRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

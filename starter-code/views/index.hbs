@@ -6,5 +6,10 @@
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
+    <div>
+      {{#each users}}
+        <li>{{this.username}}</li>
+      {{/each}}
+    </div>
   </body>
 </html>
