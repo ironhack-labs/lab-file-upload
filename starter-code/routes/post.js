@@ -4,6 +4,26 @@ const router     = express.Router();
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 const uploadCloud = require("../config/cloudinary.js");
 
+
+router.get('/new', ensureLoggedIn('/auth/login'), (req, res) => {
+
+  res.render('post/new');
+});
+
+
+router.post("/new",[ensureLoggedIn(), uploadCloud.single("photo")],
+passport.authenticate("local-signup", {
+        successRedirect: "/",
+        failureRedirect: "/auth/login",
+        failureFlash: true
+    })
+);
+
+
+
+
+
+//---------------------------------------------------------------------------
 router.get('/login', ensureLoggedOut(), (req, res) => {
     res.render('authentication/login', { message: req.flash('error')});
 });
