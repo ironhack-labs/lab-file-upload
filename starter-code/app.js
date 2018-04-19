@@ -90,7 +90,7 @@ passport.use(
             } else {
               // Destructure the body
               const { username, email, password } = req.body;
-              const { photo } = req.file;
+              const photo = req.file.filename;
               const hashPass = bcrypt.hashSync(
                 password,
                 bcrypt.genSaltSync(8),
@@ -99,13 +99,15 @@ passport.use(
               const newUser = new User({
                 username,
                 email,
-                password: hashPass
+                password: hashPass,
+                photo
               });
 
               newUser.save(err => {
                 if (err) {
                   next(null, false, { message: newUser.errors });
                 }
+                console.log(req.file);
                 return next(null, newUser);
               });
             }
