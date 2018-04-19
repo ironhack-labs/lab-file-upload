@@ -5,6 +5,21 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>Welcome to IronTumblr</h1>
+    <h1>Welcome to {{user.username}}</h1>
+    {{#if user}}
+    <a href="/logout">logout</a>
+    <form action="/posts" method="post">
+    <div class="form-group">
+      <label for="content">content</label>
+      <input type="text" name="content" class="form-control">
+      <button type="submit">post</button>
+    </div>    
+    </form>
+    {{else}}
+    <a href="/login">login</a>
+    <a href="/signup">signup</a>
+    {{/if}}
+    
+
   </body>
 </html>
