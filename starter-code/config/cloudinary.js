@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const cloudinary = require('cloudinary');
 const cloudinaryStorage = require('multer-storage-cloudinary');
 const multer = require('multer');
@@ -14,7 +16,7 @@ var storage = cloudinaryStorage({
   folder: 'lab-upload',
   allowedFormats: ['jpg', 'png'],
   filename: function (req, file, cb) {
-    cb(null, 'my-file-name');
+    cb(null, `${Math.floor(Math.random * 3000)}`);
   }
 });
 

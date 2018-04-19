@@ -6,5 +6,13 @@
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
+
+    <a href="/logout">Log out</a>
+    <a href="/login">Log in</a>
+    <a href="/signup">Signup</a>
+
+    {{#each user}}
+    <h2>User: {{username}}</h2>
+    {{/each}}
   </body>
 </html>
