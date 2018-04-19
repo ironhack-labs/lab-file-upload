@@ -1,10 +1,9 @@
 const express = require("express");
 const uploadCloud = require("../config/cloudinary.js");
-const User = require("../models/user");
-const picture = require("../models/pictures");
+const Post = require("../models/post");
 const router = express.Router();
 
-router.get("/", (req, res, next) => {
+router.get("/posts/new", (req, res, next) => {
   const userId = req.session.passport.user;
   const imgPath = "";
   if (userId) {
@@ -17,7 +16,11 @@ router.get("/", (req, res, next) => {
     imgPath
   };
 
-  res.render("index", { userData });
+  res.render("posts/new", { userData });
+});
+
+router.get("/posts/show", (req, res, next) => {
+  res.redirect("/");
 });
 
 module.exports = router;

@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,WAAW;EACP,UAAU,EAAE,KAAK",
+"sources": ["sass/_profile.scss"],
+"names": [],
+"file": "style.css"
+}
