@@ -17,6 +17,7 @@ const hbs = require("hbs");
 
 mongoose.connect("mongodb://localhost:27017/tumblr-lab-development");
 
+
 const app = express();
 
 app.set("views", path.join(__dirname, "views"));
@@ -71,17 +72,12 @@ passport.use(
       // To avoid race conditions
       process.nextTick(() => {
         User.findOne(
-          {
-            username: username
-          },
+          { username: username },
           (err, user) => {
-            if (err) {
-              return next(err);
-            }
+            if (err) { return next(err); }
 
-            if (user) {
-              return next(null, false);
-            } else {
+            if (user) { return next(null, false); }
+            else {
               // Destructure the body
               const { username, email, password } = req.body;
               const hashPass = bcrypt.hashSync(
