@@ -26,10 +26,16 @@ router.post(
   "/signup",
   [ensureLoggedOut(),
   uploadCloud.single("profile-pic")],
+
+
+
   passport.authenticate("local-signup", {
     successRedirect: "/",
     failureRedirect: "/signup",
     failureFlash: true
+
+
+    
   })
 );
 
