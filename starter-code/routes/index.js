@@ -1,7 +1,5 @@
 const express = require("express");
-const uploadCloud = require("../config/cloudinary.js");
-const User = require("../models/user");
-const picture = require("../models/pictures");
+const Post = require("../models/post");
 const router = express.Router();
 
 router.get("/", (req, res, next) => {
@@ -17,7 +15,11 @@ router.get("/", (req, res, next) => {
     imgPath
   };
 
-  res.render("index", { userData });
+  Post.find().then(posts => {
+    console.log(posts);
+    res.render("index", { userData, posts });
+  });
+
 });
 
 module.exports = router;
