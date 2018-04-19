@@ -3,6 +3,9 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+a { color: #00B7FF; }
+
+.main-container {
+  margin: 2rem;
+  background-color: lightyellow;
 }
