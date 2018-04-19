@@ -21,6 +21,13 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+app.use(flash());
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(session({
   secret: 'tumblrlabdev',
   resave: false,
@@ -78,7 +85,8 @@ passport.use('local-signup', new LocalStrategy(
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  photo
                 });
 
                 newUser.save((err) => {
@@ -90,14 +98,9 @@ passport.use('local-signup', new LocalStrategy(
     });
 }));
 
-app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
