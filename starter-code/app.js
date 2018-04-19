@@ -91,6 +91,7 @@ passport.use(
               // Destructure the body
               const { username, email, password } = req.body;
               const photo = req.file.filename;
+              const photoPath = req.file.path;
               const hashPass = bcrypt.hashSync(
                 password,
                 bcrypt.genSaltSync(8),
@@ -100,7 +101,8 @@ passport.use(
                 username,
                 email,
                 password: hashPass,
-                photo
+                photo,
+                photoPath
               });
 
               newUser.save(err => {
@@ -124,8 +126,10 @@ app.use(passport.session());
 
 const index = require("./routes/index");
 const authRoutes = require("./routes/authentication");
+const post = require("./routes/post");
 app.use("/", index);
 app.use("/", authRoutes);
+app.use("/post", post);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
