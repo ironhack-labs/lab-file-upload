@@ -1,8 +1,7 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+#profileImg {
+  max-height: 200px; }
 
-a {
-  color: #00B7FF;
-}
+.post-image {
+  height: 200px; }
+
+/*# sourceMappingURL=style.css.map */

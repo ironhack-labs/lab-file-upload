@@ -1,9 +1,25 @@
-const express = require('express');
-const router  = express.Router();
+const express = require("express");
+const Post = require("../models/post");
+const router = express.Router();
 
-/* GET home page. */
-router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Express - Generated with IronGenerator' });
+router.get("/", (req, res, next) => {
+  const userId = req.session.passport.user;
+  const imgPath = "";
+  if (userId) {
+    if (userId.profileImg) {
+      imgPath = userId.profileImg.path;
+    }
+  }
+  let userData = {
+    userId,
+    imgPath
+  };
+
+  Post.find().then(posts => {
+    console.log(posts);
+    res.render("index", { userData, posts });
+  });
+
 });
 
 module.exports = router;

@@ -1,0 +1,15 @@
+<h1>Welcome to your profile page!</h1>
+
+<h2>Upload a profile photo!</h2>
+<form action="/upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="photo">
+    <input type="submit" value="Save">
+</form>
+
+<div class="container-fluid">
+    <div class="container">
+        {{#if profileImg}}
+            <img src="{{profileImg.path}}" id="profileImg" class="rounded float-left img-thumbnail" alt="profile-picture">
+        {{/if}}
+    </div>
+</div>
