@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-  </body>
-</html>
+<h1>Welcome to IronTumblr</h1>
+
+
+{{#if user}}
+
+<a href="/auth/logout">LOG OUT</a>
+
+<a href="/auth/profile">VIEW MY PROFILE</a>
+
+
+{{else}} 
+<a href="auth/login">LOG IN</a>
+<a href="auth/signup">SIGN UP</a>
+<a href="/post">VIEW POSTS</a>
+
+
+{{/if}}
