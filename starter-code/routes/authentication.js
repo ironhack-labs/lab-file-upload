@@ -1,6 +1,6 @@
 const express = require("express");
 const passport = require("passport");
-const uploadCloud = require("../config/cloudinary.js");
+const uploadCloud = require("../config/cloudinary");
 const multer = require("multer");
 const picture = require("../models/pictures");
 const User = require("../models/user");
@@ -57,7 +57,7 @@ router.get("/logout", ensureLoggedIn("/login"), (req, res) => {
 
 const upload = multer({ dest: process.env.CLOUDINARY_URL  });
 
-router.post("/upload", upload.single("photo"), function(req, res) {
+router.post("/upload", uploadCloud.single("photo"), function(req, res) {
   let date = new Date();
 
   userId = req.session.passport.user;

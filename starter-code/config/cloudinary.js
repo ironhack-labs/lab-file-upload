@@ -14,9 +14,10 @@ var storage = cloudinaryStorage({
   folder: 'folder-name',
   allowedFormats: ['jpg', 'png'],
   filename: function (req, file, cb) {
-    cb(null, 'my-file-name');
+    photo = new Date().getTime();
+    cb(undefined, photo);
   }
 });
 
-const uploadCloud = multer({ storage: storage }).single('file');
+const uploadCloud = multer({ storage: storage });
 module.exports = uploadCloud;
