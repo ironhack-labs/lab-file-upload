@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const PostSchema = Schema(
   {
     content: String,
-    creatorId: String,
+    creatorId: Schema.Types.ObjectId,
     picPath: String,
     picName: String
   },
@@ -13,6 +13,6 @@ const PostSchema = Schema(
   }
 );
 
-const User = mongoose.model("Post", PostSchema);
+const Post = mongoose.model("Post", PostSchema);
 
 module.exports = Post;

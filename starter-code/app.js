@@ -121,7 +121,7 @@ app.use(passport.session());
 
 const index = require("./routes/index");
 const authRoutes = require("./routes/authentication");
-const postRouter = requiere("./routes/postRouter")
+const postRouter = require("./routes/postRouter")
 app.use("/", index);
 app.use("/", authRoutes);
 app.use("/post", postRouter)
