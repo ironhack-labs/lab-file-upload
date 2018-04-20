@@ -69,6 +69,8 @@ passport.use('local-signup', new LocalStrategy(
                 return next(null, false);
             } else {
                 // Destructure the body
+                //const { username, email, password } = req.body;
+                const photo = req.file.filename;
                 const {
                   username,
                   email,
@@ -78,7 +80,8 @@ passport.use('local-signup', new LocalStrategy(
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  photo
                 });
 
                 newUser.save((err) => {
@@ -101,8 +104,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const postRouter = require("./routes/postRouter")
 app.use('/', index);
 app.use('/', authRoutes);
+app.use("/postRouter", postRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
