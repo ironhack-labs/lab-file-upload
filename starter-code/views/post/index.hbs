@@ -1,0 +1,14 @@
+<h1> LISTA DE POSTS </h1>
+
+{{#if user}}
+<a href="/post/new"> ADD A NEW POST</a>
+<br>
+<a href="/auth/profile"> GO TO MY PROFILE</a>
+
+{{/if}} 
+
+{{#each posts}}
+<p>CONTENT: {{this.content}} </p>
+<img src="{{this.picPath}}" width=250> 
+<br> {{/each}}
+
