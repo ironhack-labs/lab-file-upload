@@ -7,12 +7,12 @@ const multer = require("multer");
 const upload = multer({dest: './public/uploads'});
 
 // GET new
-router.get("/new", ensureLoggedIn(), (req, res, next) => {
+router.get("/new", ensureLoggedIn("/login"), (req, res, next) => {
   res.render("post/new");
 })
 
 // POST new
-router.post("/new", [ensureLoggedIn(), upload.single("photo")], (req, res, next) => {
+router.post("/new", [ensureLoggedIn("/login"), upload.single("photo")], (req, res, next) => {
   const { content } = req.body;
   const picPath = req.file.path;
   const picName = req.file.filename;
@@ -37,6 +37,14 @@ router.post("/new", [ensureLoggedIn(), upload.single("photo")], (req, res, next)
 })
 
 // GET show
+router.get("/:id", (req, res, next) => {
+  const id = req.params.id;
+
+  Post.findById(id)
+  .then( data => {
+    res.render("post/show", {data})
+  })
+})
 
 // GET index
 router.get("/", (req, res, next) => {

@@ -1,6 +1,9 @@
+<h1>Post list</h1>
 {{#each data}}
 <div class="post">
-  <h2>{{content}}</h2>
+  <h2><a href="/post/{{id}}">{{content}}</a></h2>
   <img src="/{{picPath}}" alt="{{picName}}">
 </div>
 {{/each}}
+
+<a href="/">Back to home</a>
