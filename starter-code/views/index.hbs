@@ -6,5 +6,19 @@
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
+
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <input type="text" name="name">
+      <input type="file" name="photo">
+      <input type="submit" value="Save">
+    </form>
+
+    {{#each pictures}}
+      <div class="container">
+        <h4>{{this.name}}</h4>
+        <img src="{{this.path}}" alt="{{this.originalName}}" class="picture">
+      </div>
+    {{/each}}
+
   </body>
 </html>
