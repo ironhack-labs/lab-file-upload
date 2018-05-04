@@ -4,9 +4,10 @@ const router     = express.Router();
 const multer     = require('multer');
 const upload     = multer({ dest: './public/uploads/' });
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+const Post       = require('../models/post');
 
 router.post('/new', upload.single('picPath'), ensureLoggedIn(), (req, res) => {
-    console.log(req.body);
+    Post.create({...req.body,creatorId:req.user._id});
     res.send('Post creado');
 });
 
