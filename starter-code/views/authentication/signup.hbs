@@ -2,19 +2,32 @@
   <div class="row">
     {{ message }}
     <div class="col-sm-6 centered-form">
-      <form action="/signup" method="post">
+      {{!-- <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="image">Image</label>
+          <input type="text" name="name">
+          <input type="file" name="photo">
+          <input class="uploadButton" type="submit" value="Upload Image">
+      </form> --}}
+      <form action="/signup" method="post" enctype="multipart/form-data">
+        <label for="image">Image</label>
+          <input type="text" name="name">
+          <input type="file" name="photo">
         <div class="form-group">
+          <br>
           <label for="username">Username</label>
           <input type="text" name="username" class="form-control">
         </div>
+        <br>
         <div class="form-group">
           <label for="email">Email</label>
           <input type="text" name="email" class="form-control">
         </div>
+        <br>
         <div class="form-group">
           <label for="password">Password</label>
           <input type="password" name="password" class="form-control">
         </div>
+        <br>
         <button type="submit">Signup</button>
       </form>
     </div>
