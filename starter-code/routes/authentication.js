@@ -7,7 +7,7 @@ const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 const Post       = require('../models/post');
 
 router.post('/new', upload.single('picPath'), ensureLoggedIn(), (req, res) => {
-    Post.create({...req.body,creatorId:req.user._id});
+    Post.create({...req.body,creatorId:req.user._id,picPath:req.file.path});
     res.send('Post creado');
 });
 
