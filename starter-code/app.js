@@ -15,7 +15,6 @@ const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const hbs                = require('hbs');
 const multer             = require('multer');
-const upload             = multer({dest: './public/uploads'});
 
 mongoose.connect(process.env.MONGODB_URI);
 
