@@ -5,6 +5,12 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>Welcome to IronTumblr</h1>
+    <h1>Welcome to IronTumblr</h1><br>
+    {{!-- {{#if req.session.user}} --}}
+    <a href="/logout"><button>Logout!</button></a>
+    {{!-- {{else}} --}}
+    <a href="/signup"><button>Sign Up!</button></a>
+    <a href="/login"><button>Login!</button></a>
+    {{!-- {{/if}} --}}
   </body>
 </html>
