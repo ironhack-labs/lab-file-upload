@@ -6,11 +6,13 @@
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1><br>
-    {{!-- {{#if req.session.user}} --}}
+    {{#if req.session.passport.user}}
+    <a href="/post"><button>View Posts</button></a>
+    <a href="/post/create"><button>Create Post</button></a>
     <a href="/logout"><button>Logout!</button></a>
-    {{!-- {{else}} --}}
+    {{else}}
     <a href="/signup"><button>Sign Up!</button></a>
     <a href="/login"><button>Login!</button></a>
-    {{!-- {{/if}} --}}
+    {{/if}}
   </body>
 </html>
