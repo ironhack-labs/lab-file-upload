@@ -1,4 +1,17 @@
+<a href="/"><input type="button" value="Home"></a>
+<a href="/post/create"><button>Create Post!</button></a>
+<div class="container">
 {{#each post}}
-    {{this.content}}
-    <img src="{{this.picPath}}" style="height: 200">
+<div class="post">
+    <img src="{{this.picPath}}" class="post-image">
+    <p class="post-text">{{this.content}}</p>
+    {{#each this.comments}}
+    <div class="comment">
+        <p>{{this.content}}</p>
+        <img src="{{this.picPath}}" class="comment-image">
+    </div>
+    {{/each}}
+    <a href="/post/comment/{{this._id}}">Comment</a>
+</div>
 {{/each}}
+</div>

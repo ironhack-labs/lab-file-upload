@@ -43,4 +43,45 @@ router.post('/create', ensureLoggedIn('/login'), uploadCloud.single('photo'), (r
         })
 });
 
+router.get('/comment/:id', ensureLoggedIn('/login'), (req, res, next) => {
+    const id = req.params.id;
+    res.render('comments/create', {id});
+});
+
+router.post('/comment/:id', ensureLoggedIn('/login'), uploadCloud.single('photo'), (req, res, next) => {
+    let comment;
+    if (req.file){
+        comment = {
+            content: req.body.content,
+            authorId: req.session.passport.user,
+            picPath: req.file.secure_url,
+            picName: req.file.originalname
+        };
+    } else {
+        comment = {
+            content: req.body.content,
+            authorId: req.session.passport.user
+        };
+    }
+    
+    // console.log(req.file);
+    Post.findOne({'_id': req.params.id})
+        .then(post => {
+            post.comments.push(comment);
+            post.save()
+                .then(post => {
+                    res.redirect('/post');
+                    // console.log(post);
+                })
+                .catch(err => {
+                    console.log('Can\'t help you out here be balling too hard:', err);
+                    next();
+                })
+        })
+        .catch(err => {
+            console.log('Comment on me and i\'ll show you what it\'s really like to be criticised:', err);
+            next();
+        });
+});
+
 module.exports = router;
