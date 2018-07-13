@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express            = require('express');
 const path               = require('path');
 const favicon            = require('serve-favicon');
@@ -14,7 +16,12 @@ const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const hbs                = require('hbs')
 
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
+mongoose.connect(process.env.DB, { useMongoClient: true })
+  .then(() => {
+    console.log('Connected to Mongo!')
+  }).catch(err => {
+    console.error('Error connecting to mongo', err)
+  });
 
 const app = express();
 
@@ -72,13 +79,15 @@ passport.use('local-signup', new LocalStrategy(
                 const {
                   username,
                   email,
-                  password
+                  password,
+                  profilePicURL
                 } = req.body;
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  profilePicURL
                 });
 
                 newUser.save((err) => {

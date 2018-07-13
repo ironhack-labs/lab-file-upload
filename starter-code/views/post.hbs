@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row post">
+    <div class="post-cover" style="background: url('{{picPath}}') no-repeat top center;"></div>
+    <h2 class="cover-title">{{picName}}</h2>
+    <p>Autor: {{creatorId.username}}</p>
+    <p>{{content}}</p>
+    {{#if user}}
+      <h3 class="col-sm-12">Agregar Comentario</h3>
+      <form action="/comment/{{_id}}" class="col-sm-6" method="POST">
+        <div class="form-group">
+          <input type="text" name="content" class="form-control" placeholder="Escribe aqui tu comentario...">
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Comentar</button>
+      </form>
+      <h3 class="col-sm-12">Comentarios</h3>
+      {{#each comments as |com|}}
+        <div class="col-sm-12 comentario">
+          <h4>{{com.content}}</h4>
+          <p>Autor: {{com.creatorId.username}}</p>
+        </div>
+      {{/each}}
+    {{else}}
+      <p><a href="/login">Login</a> para comentar y ver comentarios</p>
+    {{/if}}
+  </div>
+</div>
