@@ -1,7 +1,17 @@
 const express    = require('express');
 const passport   = require('passport');
 const router     = express.Router();
+const Post = require('../models/Post');
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+
+
+// router.get('/posts',(req,res)=>{
+//     res.render('posts');
+// })
+
+//multer config
+const multer = require('multer');
+const upload = multer({dest: './public/assets'});
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
     res.render('authentication/login', { message: req.flash('error')});

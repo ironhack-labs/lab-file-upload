@@ -1,0 +1,18 @@
+
+<h1>Welcome to IronTumblr</h1>
+<h3>See any posts you like?</h3>
+<form validated action="/post" method="POST" enctype="multipart/form-data">
+    <p>
+      Name of post:
+      <input type="text" name="picName" placeholder="Image heading">
+    </p>
+    <p>
+      Author ID:
+      <input type="text" name="creatorID">
+    </p>
+     <p>
+      Content
+      <input type="file" multiple name="photo">
+    </p>
+    <input type="submit">
+</form>
