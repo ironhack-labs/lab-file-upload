@@ -1,6 +1,6 @@
-const express    = require('express');
-const passport   = require('passport');
-const router     = express.Router();
+const express = require('express');
+const passport = require('passport');
+const router = express.Router();
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
