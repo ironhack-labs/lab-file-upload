@@ -2,9 +2,18 @@ const express    = require('express');
 const passport   = require('passport');
 const router     = express.Router();
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+//para subir fotos
+const uploadCloud = require("../helpers/cloudinary")
+
+
+function changeBody (req,res,next){
+    if (req.body.photoURL)
+    req.body.photoURL = "/assets/" + req.file.filename;
+    return next()
+}
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
-    res.render('authentication/login', { message: req.flash('error')});
+    res.render('./authentication/login', { message: req.flash('error')});
 });
 
 router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
@@ -13,18 +22,18 @@ router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
   failureFlash : true
 }));
 
-router.get('/signup', ensureLoggedOut(), (req, res) => {
+router.get("/signup", ensureLoggedOut(), (req, res) => {
     res.render('authentication/signup', { message: req.flash('error')});
 });
 
-router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
+router.post("/signup", ensureLoggedOut(),uploadCloud.single("photo"),changeBody, passport.authenticate('local-signup', {
   successRedirect : '/',
   failureRedirect : '/signup',
   failureFlash : true
 }));
 
 router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
-    res.render('authentication/profile', {
+    res.render('./authentication/profile', {
         user : req.user
     });
 });
