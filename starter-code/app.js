@@ -1,3 +1,4 @@
+require('dovnet').config
 const express            = require('express');
 const path               = require('path');
 const favicon            = require('serve-favicon');
@@ -13,6 +14,7 @@ const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const hbs                = require('hbs')
+const Post = require('../models/post')
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
@@ -78,7 +80,7 @@ passport.use('local-signup', new LocalStrategy(
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
                 });
 
                 newUser.save((err) => {

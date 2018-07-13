@@ -1,0 +1,15 @@
+<form action="/post/create" method="post" enctype="multipart/form-data">
+    <label for="content">Content</label>
+    <input type="text" name="content" placeholder="">
+
+    <p>
+
+    <label for="photo">Picture</label>
+    <input type="file" name="photo">
+
+    <p>
+
+    <input type="submit" value="upload"> 
+
+</form>
+<a href="/post"><input type="button" value="View Posts"></a> 
