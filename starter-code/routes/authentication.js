@@ -24,6 +24,7 @@ router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', 
 }));
 
 router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
+    
     res.render('authentication/profile', {
         user : req.user
     });
