@@ -1,0 +1,12 @@
+<div class="container">
+  <h2>Todos nuestros Posts</h2>
+  {{#each posts as |post|}}
+    <div class="row post-box">
+      <img src="{{post.picPath}}" alt="{{post.picName}}" class="col-sm-6">
+      <div class="col-sm-6">
+        <h3><a href="/post/{{post._id}}">{{post.picName}}</a></h3>
+        <p>Autor: {{post.creatorId.username}}</p>
+      </div>
+    </div>
+  {{/each}}
+</div>

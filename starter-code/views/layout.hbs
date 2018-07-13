@@ -8,6 +8,19 @@
   </head>
   <body>
     <div class="main-container">
+      <ul>
+        {{#if user}}
+          <li><a href="/">Profile</a></li>
+          <li><a href="/post/new">Create Post</a></li>
+          <li><a href="/posts">View Posts</a></li>
+          <li><a href="/logout">Logout</a></li>
+        {{else}}
+          <li><a href="/posts">View Posts</a></li>
+          <li><a href="/signup">SignUp</a></li>
+          <li><a href="/login">Login</a></li>
+        {{/if}}
+      </ul>
+      <h1>IronTumblr</h1>
       {{{body}}}
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
