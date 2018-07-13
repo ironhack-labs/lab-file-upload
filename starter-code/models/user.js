@@ -5,7 +5,7 @@ const userSchema = new Schema({
   username: String,
   email:    String,
   password: String,
-  photoURL: Schema.Types.Mixed
+  photoURL: String,
 });
 
 module.exports=require("mongoose").model("user",userSchema)
