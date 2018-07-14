@@ -5,6 +5,18 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>Welcome to IronTumblr</h1>
+    <h1>Welcome to IronTumblr{{#if user}}, {{user}}{{/if}}</h1>
   </body>
+  {{#unless user}}
+  <a href="/signup">Sign Up</a>
+  <br>
+  <a href="/login">Log in</a>
+  <br>
+  {{/unless}}
+  {{#if user}}
+  <a href="/profile">Check my profile</a>
+  <br>
+  <a href="/logout">Log out</a>
+  <br>
+  {{/if}}
 </html>
