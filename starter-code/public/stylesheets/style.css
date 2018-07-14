@@ -6,3 +6,16 @@ body {
 a {
   color: #00B7FF;
 }
+
+article {
+  display: inline-block;
+  float: left;
+  width: 200px;
+  margin: 1em;
+  background-color: #eee;
+  padding: 1em;
+}
+
+.clearfix {
+  clear: both;
+}
