@@ -14,4 +14,29 @@
       <p>{{post.content}}</p>
     </div>
   </div>
+  {{#if user}}
+    <div class="row">
+      <div class="col">
+        <hr>
+        <h3>New comment</h3>
+        {{#if errorMessage}}
+          <div class="alert alert-danger" role="alert">
+            {{ errorMessage }}
+          </div>
+        {{/if}}
+        {{> commentsForm post}}
+      </div>
+    </div>
+  {{/if}}
+  {{#if post.comments}}
+    <div class="row">
+      <div class="col">
+        <hr>
+        <h3>Comments</h3>
+      </div>
+    </div>
+    {{#each post.comments}}
+      {{> comment this}}
+    {{/each}}
+  {{/if}}
 </div>

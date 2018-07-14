@@ -18,3 +18,7 @@ a:hover h5 {
 .card:hover {
   border-color: rgba(0, 0, 0, 0.3);
 }
+
+.svg-inline--fa {
+  vertical-align: -.125em !important;
+}

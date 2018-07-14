@@ -71,10 +71,15 @@ router.get("/delete/:id", ensureLoggedIn(), (req, res) => {
 router.get("/:id", (req, res, next) => {
   Post.findById(req.params.id)
     .populate("creatorId")
+    .populate("comments.authorId")
     .then(post => {
       post.date = post.createdAt ? moment(post.createdAt).format("MM-DD-YYYY") : "";
+      
+      post.comments.forEach(e => {
+        e.formatDate = moment(e.date).format('MM-DD-YYYY');
+      });
 
-      res.render("post/show", { post });
+      res.render("post/show", { post, errorMessage: req.flash("errorMessage") });
     })
     .catch(err => {
       next(err);

@@ -8,8 +8,12 @@
         {{/if}}
         {{creatorId.username}}
       </h5>
-      <small><i class="far fa-calendar-alt"></i> {{date}}</small>
-      <div>
+      <small>
+        <i class="far fa-calendar-alt"></i> {{date}}
+        <span class="ml-1 mr-1">| </span>
+        <i class="fas fa-comment"></i> {{comments.length}}
+      </small>
+      <div class="mt-2">
         <a href="/posts/{{_id}}" class="btn btn-outline-info">View post</a>
         {{#if canRemove}}
         <a href="/posts/delete/{{_id}}" class="btn btn-outline-danger">
