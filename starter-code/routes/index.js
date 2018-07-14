@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const Picture = require('../models/picture');
-const User = require('../models/user');
+const { ensureLoggedIn } = require('connect-ensure-login');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -10,9 +10,10 @@ router.get('/', (req, res, next) => {
 });
 
 /*GET profile*/
-router.get('/profile', (req, res, next) => {
+router.get('/profile', ensureLoggedIn(), (req, res, next) => {
   Picture.findById(req.user.profilePic)
     .then(pic=>{
+      console.log(pic);
       res.render('profile',{user: req.user, pic});
     })
 });

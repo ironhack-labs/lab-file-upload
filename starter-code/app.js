@@ -91,8 +91,7 @@ passport.use('local-signup', new LocalStrategy( { passReqToCallback: true },
           } = req.body;
           const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
           const profilePic = new Picture({
-              name: req.body.name,
-              path: `uploads/${req.file.filename}`,
+              path: `/uploads/${req.file.filename}`,
               originalName: req.file.originalname
           })
           const newUser = new User({
@@ -122,12 +121,14 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads',express.static(path.join(__dirname, 'uploads')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const postRoutes = require('./routes/post');
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/', postRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

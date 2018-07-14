@@ -3,7 +3,6 @@ const Schema   = mongoose.Schema;
 
 
 const PictureSchema = Schema({
-  name: String,
   path:    String,
   originalName: String
 }, {
