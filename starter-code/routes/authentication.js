@@ -16,6 +16,7 @@ router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
 }));
 
 router.get('/signup', ensureLoggedOut(), (req, res) => {
+    console.log("vamos a signup")
     res.render('authentication/signup', { message: req.flash('error')});
 });
 

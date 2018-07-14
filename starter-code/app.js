@@ -30,6 +30,14 @@ app.use(session({
   store: new MongoStore( { mongooseConnection: mongoose.connection })
 }))
 
+app.use((req, res, next) => {
+  if (req.session.passport) {   
+    console.log("cookie on")
+    res.locals.user = req.session.passport.user;  
+  }
+  next();
+});
+
 passport.serializeUser((user, cb) => {
   cb(null, user.id);
 });

@@ -1,0 +1,14 @@
+  <img src="../{{picPath}}" alt="{{picName}}">
+  <p>{{content}} posted by {{creatorId.username}} at {{updated_at}}</p>
+
+  <form action="/comments/{{_id}}/newComment" method="post" enctype="multipart/form-data">
+  <div class="image">
+    <label for="image">Image Comment</label>
+    <input type="file" name="image">
+  </div>
+  <div class="content">
+    <label for="content">Your Comment</label>
+    <input type="text" name="content" placeholder="Enter your message" required>
+  </div>
+    <input type="submit" value="Submit">
+</form>
