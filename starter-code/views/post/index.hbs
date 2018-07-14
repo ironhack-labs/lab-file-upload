@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-sm-8">
+      <h1>Your posts</h1>
+    </div>
+    <div class="col-12 col-sm-4 text-right">
+      <a class="btn btn-outline-success" href="/posts/create">New post</a>
+    </div>
+  </div>
+  <div class="row">
+    {{#each posts}}
+      {{> post this}}
+    {{/each}}
+  </div>
+</div>

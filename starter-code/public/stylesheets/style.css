@@ -1,3 +1,20 @@
 body {
   padding: 50px 0;
 }
+
+textarea {
+  resize: none;
+  height: 150px;;
+}
+
+.card {
+  transition: border 300ms;
+}
+
+a:hover h5 {
+  text-decoration: none;
+}
+
+.card:hover {
+  border-color: rgba(0, 0, 0, 0.3);
+}

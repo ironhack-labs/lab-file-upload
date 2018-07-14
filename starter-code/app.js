@@ -14,6 +14,8 @@ mongoose.connect("mongodb://localhost:27017/tumblr-lab-development");
 
 const app = express();
 
+hbs.registerPartials(path.join(__dirname, '/views/partials'));
+
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
@@ -46,8 +48,10 @@ app.use((req, res, next) => {
 
 const index = require("./routes/index");
 const authRoutes = require("./routes/authentication");
+const postsRoutes = require("./routes/postsRouter");
 app.use("/", index);
 app.use("/", authRoutes);
+app.use("/posts", postsRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

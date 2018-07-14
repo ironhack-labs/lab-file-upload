@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col col-sm-6">
+      <img class="img-thumbnail" src="{{post.picPath}}{{post.picName}}" alt="">
+    </div>
+    <div class="col col-sm-6">
+      <h4>
+        {{#if post.creatorId.profilePic}}
+          <img class="img-fluid" src="/users/{{post.creatorId.profilePic}}" alt="" width="30">
+        {{/if}}
+        {{post.creatorId.username}}
+      </h4>
+      <small><i class="far fa-calendar-alt"></i> {{post.date}}</small>
+      <p>{{post.content}}</p>
+    </div>
+  </div>
+</div>

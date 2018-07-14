@@ -4,4 +4,9 @@
       <h1>Welcome to IronTumblr</h1>
     </div>
   </div>
+  <div class="row">
+    {{#each posts}}
+      {{> post this}}
+    {{/each}}
+  </div>
 </div>

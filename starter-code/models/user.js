@@ -7,6 +7,7 @@ const UserSchema = Schema({
   password: String,
   profilePic: String
 });
+UserSchema.set('timestamps', true);
 
 const User = mongoose.model("User", UserSchema);
 
