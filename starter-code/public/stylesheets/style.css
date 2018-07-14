@@ -1,8 +1,84 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+.main-container{
+  background: white;
+  margin:0;
+  height:100vh;
+
+
+}
+.main-container > *{
+  margin-bottom: 30px
+  
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  align-items: center;
+  background: rgb(32, 31, 31)
+}
+#user-info > * {
+  display: block;
+}
+.posts-row > *{
+margin:20px}
+.posts-row{
+  text-align: center
+}
+.post {
+  display: inline-block;
+  border: 1px solid rgb(233, 230, 230);
+  border-radius: 5px
+}
+.post > *{
+  margin-bottom:10px;
+  
+}
+
+.post img{
+  width: 500px
+}
+.post span{
+  word-wrap: break-word; 
+}
+.show-post-container{
+  width: 100%;
+  text-align: center;
+}
+.post-info img{
+  width: 500px;
+}
+
+.show-post-container > *{
+  margin-bottom: 70px
+}
+.comment-info{
+  border-top:1px solid grey
+}
+.comment-info img{
+  width: 50px
+}
+.comment{
+  margin-bottom: 20px
+}
+.comment-form > *{
+  vertical-align: middle
+}
+.show-post-container form > *{
+  margin:10px
+}
+#user-options > *{
+  margin: 10px;
+  font-size: 18px;
+  border-bottom: 2px solid white
+
+}
+.new-post-btn{
+  width: 100px;
 }

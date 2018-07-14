@@ -8,6 +8,25 @@
   </head>
   <body>
     <div class="main-container">
+      <header>
+    <a href="/"><h1>Welcome to IronTumblr</h1></a>
+    {{#if user}}
+    <div id="user-info">
+      <img src="{{user.picture}}" style="width: 100px;height:100px"="">
+      <a href="/logout">Log out</a>
+      <a href="/post/{{user._id}}">My posts</a>
+
+    </div>
+
+    {{/if}} {{#unless user}}
+    <div id="user-options">
+      <a href="/login">Log in</a>
+      <a href="/signup">Sign up</a>
+    </div>
+
+    {{/unless}}
+    
+  </header>
       {{{body}}}
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
