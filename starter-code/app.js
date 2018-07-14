@@ -12,9 +12,11 @@ const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
-const hbs                = require('hbs')
+const hbs                = require('hbs');
 
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/tumblr-lab-development', { useMongoClient: true })
+.then(data => console.log("Mongo connected!!"))
 
 const app = express();
 
@@ -72,13 +74,19 @@ passport.use('local-signup', new LocalStrategy(
                 const {
                   username,
                   email,
-                  password
+                  password,
                 } = req.body;
+
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  profilePic: {
+                    path: `/uploads/${req.file.filename}`,
+                    originalName: req.file.originalname
+                  }
                 });
 
                 newUser.save((err) => {
@@ -99,10 +107,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use((req, res, next) => {
+  res.locals.title = "IronTumblr";
+  res.locals.user = req.user;
+  next();
+})
+
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const postRoutes = require('./routes/postRouter');
+const commentRoutes = require('./routes/commentRouter');
+
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/post', postRoutes);
+app.use('/comment', commentRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

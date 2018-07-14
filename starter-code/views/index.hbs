@@ -6,5 +6,28 @@
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
+
+    {{#unless user}}
+      <a href="/login">Login</a><br><br>
+      <a href="/signup">Sign Up</a><br><br>
+    {{/unless}}
+
+    {{#if user}}
+      <h3>Hi, {{user.username}}</h3>
+      <a href="/logout">Log Out</a><br><br>
+    {{/if}}
+
+    <div>
+      {{#each posts}}
+      <article>
+        <a href="/post/{{_id}}"><img src="{{picture.path}}" alt="" width="200"></a>
+        <p>{{content}}</p>
+        <sub>{{creatorId.username}}</sub>
+      </article>
+      {{/each}}
+    </div>
+
+    <div class="clearfix"></div><br>
+    <a href="/post/create">Create Post</a>
   </body>
 </html>

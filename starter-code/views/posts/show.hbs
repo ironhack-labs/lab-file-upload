@@ -1,0 +1,39 @@
+<div>
+    <a href="/">Go home</a> <br> <br>
+    
+    <div style="background-color: #eee; padding: 1em">
+        <img src="{{post.picture.path}}" width="300" style="display: block; margin: auto"><br> <br>
+        <p style="text-align: center">{{post.content}}</p>
+    </div>
+
+    <h3>Comments</h3>
+    <div>
+        {{#each post.comments}}
+        <article>
+            {{#if picture.path}} <img src="{{picture.path}}" alt="" width="300"> {{/if}}
+            <p>{{content}}</p>
+            <sub>{{authorId.username}}</sub>
+            <hr>
+        </article>
+        {{/each}}
+    </div>
+
+    <br>
+    
+    {{#if user}}
+    <h3>New comment</h3>
+    <form action="/comment/create" method="POST" enctype="multipart/form-data">
+        <label for="content">Post Content</label> <br>
+        <textarea name="content" id="" cols="30" rows="5"></textarea>
+
+        <br><br>
+
+        <label for="picture">Picture</label>
+        <input type="file" name="picture">
+
+        <br><br>
+        <input type="hidden" name="postId" value="{{post._id}}">
+        <input type="submit" value="Create comment">
+    </form>
+    {{/if}}
+</div>
