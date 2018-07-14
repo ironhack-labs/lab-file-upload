@@ -10,7 +10,7 @@ router.get('/login', ensureLoggedOut(), (req, res) => {
 });
 
 router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
-  successRedirect : '/',
+  successRedirect : '/profile',
   failureRedirect : '/login',
   failureFlash : true
 }));
@@ -20,7 +20,7 @@ router.get('/signup', ensureLoggedOut(), (req, res) => {
 });
 
 router.post('/signup', ensureLoggedOut(), upload.single('photo'), passport.authenticate('local-signup', {
-  successRedirect : '/',
+  successRedirect : '/profile',
   failureRedirect : '/signup',
   failureFlash : true
 }))
