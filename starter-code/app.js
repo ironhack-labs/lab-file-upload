@@ -13,6 +13,9 @@ const MongoStore = require('connect-mongo')(session);
 const mongoose = require('mongoose');
 const flash = require('connect-flash');
 const hbs = require('hbs')
+const multer = require('multer');
+const picture = require('./models/picture');
+const upload = multer({dest: './public/uploads'});
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
@@ -55,7 +58,7 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
   });
 }));
 
-passport.use('local-signup', new LocalStrategy(
+passport.use('local-signup', upload.single('photo'), new LocalStrategy(
   { passReqToCallback: true },
   (req, username, password, next) => {
     // To avoid race conditions
@@ -68,6 +71,14 @@ passport.use('local-signup', new LocalStrategy(
             if (user) {
                 return next(null, false);
             } else {
+                //inserting the pic
+                const pic = new Picture({
+                  name: req.body.name,
+                  path: `uploads/${req.file.filename}`,
+                  originalName: req.file.originalname
+                });
+                pic.save(err => {res.redirect('/')});
+
                 // Destructure the body
                 const {
                   username,

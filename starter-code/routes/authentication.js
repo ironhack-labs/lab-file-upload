@@ -21,7 +21,8 @@ router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', 
   successRedirect : '/',
   failureRedirect : '/signup',
   failureFlash : true
-}));
+}))
+
 
 router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
     res.render('authentication/profile', {
