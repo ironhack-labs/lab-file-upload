@@ -1,6 +1,24 @@
-<h1>Explore awesome posts!</h1>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Explore awesome posts!</h1>
+    <p class="lead">Great people sharing awesome things</p>
+  </div>
+</div>
+
+<div class="flex">
 {{#each posts}}
-  <img src="{{picPath}}" alt="{{picName}}" width="150px"> 
-  <p>{{content}} posted by {{creatorId}}</p>
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="{{picPath}}" alt="{{picName}}">
+  <div class="card-body">
+    <h5 class="card-title">{{content}}</h5>
+    <p class="card-text">Posted by {{creatorId}}</p>
+    <a href="#" class="btn btn-primary">More</a>
+  </div>
+</div>
 {{/each}}
+</div>

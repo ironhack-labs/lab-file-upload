@@ -6,3 +6,13 @@ body {
 a {
   color: #00B7FF;
 }
+
+.flex {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+

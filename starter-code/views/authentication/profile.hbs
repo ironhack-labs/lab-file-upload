@@ -1,7 +1,38 @@
-<img src="{{user.profilePic.path}}" alt="{{user.profilePic.originalName}}" style="width: 150px">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+  crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="/stylesheets/style.css">
 
-<h1>Howdy {{user.username}}?</h1>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">IronTumblr</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-<a href="/post/new">Wanna create a post?</a>
-<br></br>
-<a href="/logout"> Log Out? </a>
+
+
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <div class="row">
+  <div class="col"><img src="{{user.profilePic.path}}" alt="{{user.profilePic.originalName}}" style="width: 150px"></div>
+  <div class="col">
+   <h1 class="display-4">Howdy {{user.username}}? </h1>
+    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p> </div>
+  {{!-- <div class="w-100"></div> --}}
+</div>
+</div>
+</div>
+<div class="flex">
+<a type="submit" class="btn btn-success" href="/post/new">Wanna create a post?<a>
+
