@@ -80,7 +80,7 @@ passport.use('local-signup', new LocalStrategy(
                   email,
                   password: hashPass
                 });
-
+console.log(newUser)
                 newUser.save((err) => {
                     if (err){ next(null, false, { message: newUser.errors }) }
                     return next(null, newUser);
@@ -102,7 +102,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
 app.use('/', index);
-app.use('/', authRoutes);
+app.use('/auth', authRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
