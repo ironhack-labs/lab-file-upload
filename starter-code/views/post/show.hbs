@@ -1,0 +1,33 @@
+<div class="show-container">
+    <div>
+        <img src="{{post.picPath}}" alt="">
+        <p>{{post.content}}</p>
+    </div>
+    <div class="comment-info">
+        {{#if comments}}
+        <strong><h4>Comments</h4></strong>
+        {{#each comments}}
+        <div class="comment">
+            <span>{{content}}</span>
+            {{#if picPath}}
+            <img src="{{picPath}}" alt="" height="500" width="500">
+            {{/if}}
+        </div>
+        {{/each}} {{/if}}
+        <div>
+        <form action="/comment/new/{{post._id}}" method="post" enctype="multipart/form-data">
+            <div>
+                <label for="content">Comment</label>
+                <textarea name="content" cols="30" rows="1"></textarea>
+
+                <label for="file">Image</label>
+                <input type="file" name="file" style="display:inline-block">
+            </div>
+            
+
+            <button class="btn btn-primary btn-sm" type="submit">Add comment</button>
+        </form>
+        </div>
+    </div>
+
+</div>
