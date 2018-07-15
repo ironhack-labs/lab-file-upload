@@ -3,6 +3,7 @@
 <img src="{{img.path}}" alt="{{img.originalName}}">
 <h2>{{content}}</h2>
 <h3>Created by {{creatorId.username}}</h3>
+<a href="/posts/{{_id}}">Comments ({{comments.length}})</a>
 {{/each}}
 
 <form action="/posts" method="POST", enctype="multipart/form-data">

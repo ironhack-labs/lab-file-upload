@@ -10,13 +10,11 @@ const upload = multer({dest: './uploads'});
 router.get('/posts', ensureLoggedIn('/login'), (req, res, next) => {
   Post.find({}).populate('img').populate('creatorId')
     .then(post => {
-      console.log(post);
       res.render('post/list', { post })})
     .catch(e => console.log(e));
 });
 
 router.post('/posts', ensureLoggedIn('/login'), upload.single('img'), (req, res, next) => {
-  console.log(req.user);
   const postImg = new Picture({
     path: `/uploads/${req.file.filename}`,
     originalName: req.file.originalname
@@ -32,6 +30,14 @@ router.post('/posts', ensureLoggedIn('/login'), upload.single('img'), (req, res,
         .then(()=>{
           res.redirect('/');
         })
+    })
+    .catch(e=>console.log(e));
+})
+
+router.get('/posts/:id', ensureLoggedIn('/login'), (req,res,next)=>{
+  Post.findById(req.params.id).populate('comments').populate('img').populate('creatorId')
+    .then(post =>{
+      res.render('post/post', post)
     })
     .catch(e=>console.log(e));
 })
