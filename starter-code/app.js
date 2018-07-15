@@ -28,6 +28,8 @@ mongoose
   });
 const app = express();
 
+hbs.registerPartials(path.join(__dirname, '/views/partials'));
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
@@ -111,11 +113,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "uploads")));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const postsRoutes = require("./routes/postRouter");
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/', postsRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

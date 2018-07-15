@@ -10,4 +10,5 @@ const postSchema = Schema({
     timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 });
 
-module.exports= Post;
+const Post = mongoose.model('Post', postSchema);
+module.exports = Post;
