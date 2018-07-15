@@ -75,9 +75,11 @@ passport.use('local-signup', new LocalStrategy(
                   password
                 } = req.body;
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+                console.log(req.file)
                 const newUser = new User({
                   username,
                   email,
+                  avatar: req.file.filename,
                   password: hashPass
                 });
 
@@ -98,11 +100,21 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'uploads')))
+
+app.use((req, res, next) => {
+  res.locals.title = "IronTumblr";
+  res.locals.user = req.user;
+
+  next();
+});
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const postRoutes = require('./routes/post');
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/', postRoutes)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

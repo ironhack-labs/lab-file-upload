@@ -5,6 +5,28 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <nav>
+      <ul>
+        {{#if user}}
+          <li>
+            <a href="/post/new"> New Post </a>
+          </li>
+          <li> <a href="/logout"> Log Out </a> </li>
+        {{else}}
+          <li> <a href="/signup"> Sign Up </a> </li>
+          <li> <a href="/login"> Log In </a> </li>
+        {{/if}}
+      </ul>
+    </nav>
     <h1>Welcome to IronTumblr</h1>
+    {{#if posts}}
+    <h2>All posts</h2>
+    <ul>
+      {{#each posts}}
+      <li>{{this.content}}</li>
+      <a href="/post/{{this._id}}">View complete post</a>
+      {{/each}}
+    </ul>
+    {{/if}}
   </body>
 </html>
