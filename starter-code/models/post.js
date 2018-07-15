@@ -11,3 +11,5 @@ const PostSchema = Schema({
 PostSchema.set('timestamps', true);
 
 const Post = mongoose.model('Post', PostSchema);
+
+module.exports = Post
