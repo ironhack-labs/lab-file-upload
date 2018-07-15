@@ -1,0 +1,16 @@
+<div>
+  <img src="{{post.picPath}}" width="300" style="display: block; margin: auto">
+  <br>
+  <p>{{post.content}}</p>
+</div>
+
+<h3>Comments</h3>
+<div>
+  {{#each post.comments}}
+    {{#if picture.path}}
+    <img src="{{picture.path}}" alt="" width="300"> 
+    {{/if}}
+    <p>{{content}}</p>
+    <p>{{authorId.username}}</p>
+  {{/each}}
+</div>
