@@ -8,7 +8,7 @@ const UserSchema = Schema({
   profilePic: {
     path: String,
     originalName: String
-  } 
+  }
 });
 
 const User = mongoose.model('User', UserSchema);
