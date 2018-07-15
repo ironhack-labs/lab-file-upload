@@ -14,7 +14,7 @@ const mongoose = require("mongoose");
 const flash = require("connect-flash");
 const hbs = require("hbs");
 
-mongoose.connect(process.env.DBURL);
+mongoose.connect(process.env.MONGODB_URI);
 
 const app = express();
 
