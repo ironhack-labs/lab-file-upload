@@ -1,6 +1,10 @@
 {
   "name": "tumblr-lab",
   "version": "0.0.0",
+  "engines": {
+    "node": "10.4.1",
+    "npm": "6.1.0"
+  },
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
