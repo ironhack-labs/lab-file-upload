@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Welcome to IronTumblr</h1>
+   {{#if isUserLoggedIn }}
+  <p> Hello, {{ currentUserInfo.name }}. </p>
+{{/if}}
+
+<nav>
+  <ul>
+    {{#if isUserLoggedIn }}
+     <li> <a href="/launderers"> Find a Launderer </a> </li>
+      <li> <a href="/dashboard"> See Dashboard </a> </li>
+      <li> <a href="/logout"> Log Out </a> </li>
+    {{else}}
+      <li> <a href="/signup"> Sign Up </a> </li>
+      <li> <a href="/login"> Log In </a> </li>
+      <li> <a href="/logout"> Log Out </a> </li>
+    {{/if}}
+  </ul>
+</nav>
   </body>
 </html>
