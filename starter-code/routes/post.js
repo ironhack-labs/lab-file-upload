@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const Posts = require('../models/post');
 const multer = require('multer');
 const upload = multer({dest: './public/uploads'});
+const hbs = require('hbs');
 
 router.get('/post', (req, res) => {
   Posts.find()
@@ -31,8 +32,32 @@ router.post('/post/new', ensureLoggedIn(), upload.single('image'), (req, res, ne
 
   newPost.save()
     .then( () =>{
-      console.log("Post inserte succesfully");
+      console.log("Post inserted succesfully");
       res.redirect('/post');
     })
 })
+
+router.get('/post/comment/:id', ensureLoggedIn(), (req, res, next) => {
+  Posts.findById(req.params.id).then(post => {
+  res.render('post/com', {post});
+  
+})
+
+  router.post('/post/comment/:id', ensureLoggedIn(), upload.single('image'), (req, res, next) => {
+  const { comcontent } = req.body
+  Posts.findOneAndUpdate(req.params.id, {$set:{
+    comcontent: req.body.content,
+    authorId: req.user._id,
+    comimagePath: `uploads/${req.file.filename}`,
+    comimageName: req.file.originalname
+  }}, {returnNewDocument: true})
+  .then( post => {
+    console.log("Post commented succesfully");
+    res.redirect('/post');
+  }) 
+  .catch(error => console.log(error));
+});
+});
+
 module.exports = router;
+

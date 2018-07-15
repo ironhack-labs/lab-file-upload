@@ -1,0 +1,11 @@
+<form action="/post/comment/{{post.id}}" method="post" enctype="multipart/form-data">
+  <div class="image">
+    <label for="image">Pick a nice picture</label>
+    <input type="file" name="image">
+  </div>
+  <div class="content">
+    <label for="comment">and comment something about this post</label>
+    <input type="text" name="content" placeholder="Your smart comment in here">
+  </div>
+    <input type="submit" value="Comment!">
+</form>

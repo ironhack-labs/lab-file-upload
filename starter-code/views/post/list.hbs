@@ -13,12 +13,13 @@
 <div class="flex">
 {{#each posts}}
 <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="{{picPath}}" alt="{{picName}}">
+  <img class="card-img-top" src="{{picPath}}" alt="{{picName}}" width="150px">
   <div class="card-body">
     <h5 class="card-title">{{content}}</h5>
     <p class="card-text">Posted by {{creatorId}}</p>
-    <a href="#" class="btn btn-primary">More</a>
+    <a href="/post/comment/{{_id}}" class="btn btn-primary">Comment this post</a>
   </div>
 </div>
 {{/each}}
 </div>
+
