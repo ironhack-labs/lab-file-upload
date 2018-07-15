@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <img src="{{user.profilePic.path}}" alt="{{user.profilePic.originalName}}" style="width: 150px">
+      
+      <h1>Hola {{user.username}}</h1>
+      
+      <a href="/post">Show me the posts!</a>
+    </div>
+    <div class="col-md-9">
+      <h2> Your posts...</h2>
+       {{#each posts}}
+    <div class="post">
+      <img src="{{picPath}}" alt="{{picName}}">
+      <p>{{content}} posted by {{creatorId.username}} at {{updated_at}}</p>
+      <div class="comments">
+      {{#if comments}}
+        <h3>Comments</h3>
+          {{#each comments}}
+            <p>
+              <div class="comment">
+                {{#if imageName}}
+                    <img src="../{{imagePath}}" alt="{{imageName}}"> 
+                {{/if}}
+                <p>{{content}}</p> 
+                <div class="tag">
+                  commented by {{authorId}}<br> 
+                  at {{updated_at}}
+                </div>
+              </div>
+            </p>
+          {{/each}}
+      {{/if}}
+      <a href="/post/delete/{{_id}}">delete post & comments</a>
+      </div>
+    </div>
+  {{/each}}
+    </div>
+  </div>
+</div>

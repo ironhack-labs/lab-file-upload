@@ -1,18 +1,20 @@
-const express            = require('express');
-const path               = require('path');
-const favicon            = require('serve-favicon');
-const logger             = require('morgan');
-const cookieParser       = require('cookie-parser');
-const bodyParser         = require('body-parser');
-const passport           = require('passport');
-const LocalStrategy      = require('passport-local').Strategy;
-const User               = require('./models/user');
-const bcrypt             = require('bcrypt');
-const session            = require('express-session');
-const MongoStore         = require('connect-mongo')(session);
-const mongoose           = require('mongoose');
-const flash              = require('connect-flash');
-const hbs                = require('hbs')
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const User = require('./models/user');
+const bcrypt = require('bcrypt');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+const mongoose = require('mongoose');
+const flash = require('connect-flash');
+const hbs = require('hbs')
+const multer = require('multer');
+const upload = multer({dest: './public/uploads'});
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
@@ -27,6 +29,13 @@ app.use(session({
   saveUninitialized: true,
   store: new MongoStore( { mongooseConnection: mongoose.connection })
 }))
+
+app.use((req, res, next) => {
+  if (req.session.passport) {   
+    res.locals.user = req.session.passport.user;  
+  }
+  next();
+});
 
 passport.serializeUser((user, cb) => {
   cb(null, user.id);
@@ -78,7 +87,12 @@ passport.use('local-signup', new LocalStrategy(
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  profilePic: {
+                    name: req.body.name,
+                    path: `uploads/${req.file.filename}`,
+                    originalName: req.file.originalname
+                  }
                 });
 
                 newUser.save((err) => {
@@ -101,8 +115,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const postRoutes = require('./routes/post')
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/', postRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

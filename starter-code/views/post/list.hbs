@@ -1,0 +1,36 @@
+
+<div class="container">
+  <h1>All the posts</h1>
+  {{#each posts}}
+    <div class="post">
+      <img src="{{picPath}}" alt="{{picName}}">
+      <p>{{content}}</p>
+      <div class="tag">
+        posted by {{creatorId.username}}<br> 
+        at {{updated_at}}
+      </div>
+      <!-- Cómo puedo hacer referencia aquí a user para que solo se muestren los comentarios si el usuario está logueado??? si hago un #if user estaría haciendo referencia a post.user que no existe -->
+      <div class="comments">
+      {{#if comments}}
+        <h3>Comments</h3>
+          {{#each comments}}
+            <p>
+              <div class="comment">
+                {{#if imageName}}
+                    <img src="../{{imagePath}}" alt="{{imageName}}"> 
+                {{/if}}
+                <p>{{content}}</p> 
+                <div class="tag">
+                  commented by {{authorId}}<br> 
+                  at {{updated_at}}
+                </div>
+              </div>
+              <!-- Aquí tendría que hacer un populate de segundo nivel para poder acceder al valor de username dentro de authorId, no sé cómo hacerlo... -->
+            </p>
+          {{/each}}
+      {{/if}}
+      <a href="/comments/{{_id}}">comment</a>
+      </div>
+    </div>
+  {{/each}}
+</div>
