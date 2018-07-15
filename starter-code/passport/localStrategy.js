@@ -22,6 +22,7 @@ passport.use("local-login", new LocalStrategy((username, password, next) => {
 
 passport.use("local-signup", new LocalStrategy({ passReqToCallback: true },
     (req, username, password, next) => {
+      
       // To avoid race conditions
       process.nextTick(() => {
         User.findOne({username})
