@@ -1,0 +1,16 @@
+<div class="wrapper">
+    <div class="container">
+        <h1>Profile</h1>
+        <ul>
+            <li>username
+                <p>{{user.username}}</p>
+            </li>
+            <li>Email
+                <p>{{user.email}}</p>
+            </li>
+        </ul>
+        {{#if user.profilePic}}
+        <img src="/uploads/users/{{user.profilePic}}"> {{/if}}
+    </div>
+</div>
+<a href="/" class="waves-effect waves-light btn links">Go back</a>
