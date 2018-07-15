@@ -1,0 +1,13 @@
+<div class="wrapper">
+    <div class="container">
+        <h2>New comment</h2>
+        <form action="/comments/{{_id}}/new" method="post" enctype="multipart/form-data">
+            <label for="image">Upload an image </label>
+            <input type="file" name="image">
+            <label for="content">Comment </label>
+            <textarea rows="3" name="comment" placeholder="Enter your comment" required></textarea>
+            <button type="submit" class="waves-effect waves-light btn links">Comment</button>
+        </form>
+        <a href="/posts" class="waves-effect waves-light btn links">Go back</a>
+    </div>
+</div>

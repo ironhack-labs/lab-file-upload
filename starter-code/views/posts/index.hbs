@@ -1,0 +1,26 @@
+<a href="/posts/new">New post</a>
+
+<div class="container">
+    <h1>All the posts</h1>
+    {{#each posts}}
+    <div>
+        <img src="{{picPath}}" alt="{{picName}}">
+        <p>{{content}}</p>
+        <div class="tag">
+            Posted by {{creatorId.username}} at {{updated_at}}
+        </div>
+        <div>
+            {{#if comments}}
+            <h2>Comments</h2>
+            {{#each comments}}
+                    {{#if imageName}}
+                    <img src="../{{imagePath}}" alt="{{imageName}}">
+                    {{/if}}
+                    <p>{{content}}</p>
+            {{/each}}
+            {{/if}}
+            <a href="/comments/{{_id}}">comment</a>
+        </div>
+    </div>
+    {{/each}}
+</div>

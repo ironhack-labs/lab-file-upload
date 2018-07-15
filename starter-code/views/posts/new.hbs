@@ -1,0 +1,15 @@
+<div class="wrapper">
+    <div class="container whiteBack">
+        <h2>New post</h2>
+        <form action="/posts/new" method="post" enctype="multipart/form-data">
+            <div class="row form">
+                <label for="image">Upload an image </label>
+                <input type="file" name="image" required>
+                <label for="content">Message </label>
+                <textarea rows="3" name="content" placeholder="Enter your message" required></textarea>
+                <button type="submit" class="waves-effect waves-light btn links">Post</button>
+            </div>
+        </form>
+        <a href="/posts" class="waves-effect waves-light btn links">Go back</a>
+    </div>
+</div>
