@@ -44,20 +44,25 @@ router.get('/post/comment/:id', ensureLoggedIn(), (req, res, next) => {
 })
 
   router.post('/post/comment/:id', ensureLoggedIn(), upload.single('image'), (req, res, next) => {
-  const { comcontent } = req.body
-  Posts.findOneAndUpdate(req.params.id, {$set:{
-    comcontent: req.body.content,
-    authorId: req.user._id,
-    comimagePath: `uploads/${req.file.filename}`,
-    comimageName: req.file.originalname
-  }}, {returnNewDocument: true})
+  Posts.findByIdAndUpdate(req.params.id)
   .then( post => {
+    post.comments.push({
+      comcontent:req.body.content,
+      authorId: req.user._id,
+      comimagePath: `uploads/${req.file.filename}`,
+      comimageName: req.file.originalname
+    })
+    console.log(post)
     console.log("Post commented succesfully");
     res.redirect('/post');
   }) 
   .catch(error => console.log(error));
-});
+  });
 });
 
 module.exports = router;
 
+// parent.children.push({ name: 'Liesl' });
+// var subdoc = parent.children[0];
+// console.log(subdoc) // { _id: '501d86090d371bab2c0341c5', name: 'Liesl' }
+// subdoc.isNew; // true

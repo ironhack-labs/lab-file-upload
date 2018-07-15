@@ -8,11 +8,15 @@ a {
 }
 
 .flex {
-  margin-top: 30px;
+  margin-top: 40px;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
   text-align: center;
 }
 
+.center {
+  margin-top: 40px;
+  text-align: center;
+}
 
