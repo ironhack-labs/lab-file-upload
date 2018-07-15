@@ -1,0 +1,26 @@
+<div class="col col-sm-6 col-md-3">
+  <div class="card mb-3">
+    <img class="card-img-top" src="{{picPath}}{{picName}}" alt="">
+    <div class="card-body">
+      <h5 class="card-title">
+        {{#if creatorId.profilePic}}
+          <img class="img-fluid" src="/users/{{creatorId.profilePic}}" alt="" width="30">
+        {{/if}}
+        {{creatorId.username}}
+      </h5>
+      <small>
+        <i class="far fa-calendar-alt"></i> {{date}}
+        <span class="ml-1 mr-1">| </span>
+        <i class="fas fa-comment"></i> {{comments.length}}
+      </small>
+      <div class="mt-2">
+        <a href="/posts/{{_id}}" class="btn btn-outline-info">View post</a>
+        {{#if canRemove}}
+        <a href="/posts/delete/{{_id}}" class="btn btn-outline-danger">
+          <i class="far fa-trash-alt"></i>
+        </a>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>

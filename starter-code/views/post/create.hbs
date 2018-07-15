@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-sm-8">
+      <h1>New post</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      {{#if errorMessage}}
+      <div class="alert alert-danger" role="alert">
+        {{ errorMessage }}
+      </div>
+      {{/if}}
+      <form action="/posts/create" method="post" enctype="multipart/form-data">
+        <div class="form-group row">
+          <label for="picture" class="col-sm-3 col-form-label">Picture</label>
+          <div class="col-sm-9">
+            <input type="file" class="form-control-file" id="picture" name="picture" required>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="content" class="col-sm-3 col-form-label">Content</label>
+          <div class="col-sm-9">
+            <textarea name="content" id="content" class="form-control" required></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-9 offset-sm-3">
+            <button class="btn btn-outline-info" type="submit">Add</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

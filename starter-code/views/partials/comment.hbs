@@ -1,0 +1,17 @@
+<div class="row mb-3">
+  <div class="col col-sm-3">
+    {{#if imageName}}
+    <img class="img-fluid" src="{{imagePath}}{{imageName}}" alt="">
+    {{/if}}
+  </div>
+  <div class="col col-sm-9">
+    <h5>
+      {{#if authorId.profilePic}}
+        <img class="img-fluid" src="/users/{{authorId.profilePic}}" alt="" width="30">
+      {{/if}}
+      {{authorId.username}}
+    </h5>
+    <small>{{formatDate}}</small>
+    <p>{{content}}</p>
+  </div>
+</div>
