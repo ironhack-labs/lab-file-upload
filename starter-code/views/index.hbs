@@ -7,6 +7,9 @@
   <body>
     <h1>Welcome to IronTumblr</h1>
     <br>
+    {{#if user}}
+        <a href="/logout">Logout</a>
+    {{else}}
     <a href="/signup">Go to Sign up</a>
     <br>
     <br>
@@ -15,6 +18,6 @@
     <br>
     <br>
     <br>
-    <a href="/logout">Logout</a>
+    {{/if}}
   </body>
 </html>
