@@ -2,7 +2,7 @@
 <h3>{{post.img.originalName}}</h3>
 <h3>{{post.creatorId.username}}</h3>
 <hr>
-<form action="/post/{{post._id}}" method="post" enctype="multipart/form-data">
+<form action="/post/{{post._id}}/comment" method="post" enctype="multipart/form-data">
 <textarea name="content" cols="30" rows="4"></textarea>
 <input type="file" name="img" >
 <button>Comment</button>
