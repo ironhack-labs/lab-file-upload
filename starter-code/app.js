@@ -14,7 +14,14 @@ const mongoose = require("mongoose");
 const flash = require("connect-flash");
 const hbs = require("hbs");
 
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.Promise = Promise;
+mongoose
+  .connect(process.env.MONGODB_URI, {useMongoClient: true})
+  .then(() => {
+    console.log('Connected to Mongo!')
+  }).catch(err => {
+    console.error('Error connecting to mongo', err)
+  });
 
 const app = express();
 
