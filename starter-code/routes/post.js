@@ -4,6 +4,7 @@ const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 const multer = require("multer")
 const upload = multer ({dest:"./public/uploads/"})
 const Post = require("../models/Post")
+
 const Comment = require("../models/Comment")
 
 /* GET home page. */
@@ -13,7 +14,7 @@ router.get('/new', ensureLoggedIn(),(req, res, next) => {
 
 router.post('/new/:id',upload.single("file"), ensureLoggedIn(),(req, res, next) => {
     const {content} = req.body
-    const picPath = `/uploads/${req.file.filename}`
+    const picPath = `${upload}${req.file.filename}`
     const picName = req.file.filename
     const creatorId= req.params.id
     Post.create([{content,picPath,picName,creatorId}])

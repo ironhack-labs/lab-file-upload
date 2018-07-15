@@ -14,7 +14,7 @@ const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const hbs                = require('hbs')
 const multer = require('multer');
-const upload = multer({dest: './public/uploads'});
+const upload = multer({dest: './public/uploads/'});
 const Picture = require("./models/Picture");
 //const dbname=process.env.DBURL;
 
@@ -96,37 +96,19 @@ passport.use("local-signup",new LocalStrategy({ passReqToCallback: true },
                 username,
                 email,
                 password: hashPass,
-                profilePic: {
-                  name: req.body.name,
-                  path: `uploads/${req.file.filename}`,
-                  originalName: req.file.originalname
-                }
+                photo:req.file.filename,
+                 
+              
 
               });
-              Picture.create([pic])
-              .then(e => {
-                newUser.picture=e[0].path
-                newUser.save((err,u) => {
-                  if (err) {
-                    next(null, false, { message: newUser.errors });
-                  }
-                  return next(null, u);
-                })
-                .catch(err=>{
-                  console.log("error creating user")
-                })
-              })
-              .catch(err=>{
-                console.log("error creating pic")
-              })
-            }
-          }
-        );
-      });
-    }
-  )
-);
-
+              newUser.save((err) => {
+                if (err){ next(null, false, { message: newUser.errors }) }
+                return next(null, newUser);
+            });
+        }
+    });
+});
+}));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
@@ -135,6 +117,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, 'uploads')))
 
 app.use((req, res, next) => {
   res.locals.user = req.user
