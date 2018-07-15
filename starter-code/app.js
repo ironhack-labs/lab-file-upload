@@ -14,7 +14,15 @@ const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const hbs                = require('hbs')
 
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
+
+mongoose.Promise = Promise;  //preguntar esto
+mongoose
+  .connect("mongodb://localhost/tumblr-lab-development", {useMongoClient: true})
+  .then(() => {
+    console.log('Connected to Mongo!')
+  }).catch(err => {
+    console.error('Error connecting to mongo', err)
+  });
 
 const app = express();
 
@@ -27,6 +35,8 @@ app.use(session({
   saveUninitialized: true,
   store: new MongoStore( { mongooseConnection: mongoose.connection })
 }))
+
+
 
 passport.serializeUser((user, cb) => {
   cb(null, user.id);
@@ -74,11 +84,17 @@ passport.use('local-signup', new LocalStrategy(
                   email,
                   password
                 } = req.body;
+
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+                
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  profilePic: {
+                    path: `/uploads/${req.file.filename}`,
+                    originalName: req.file.originalname
+                  } 
                 });
 
                 newUser.save((err) => {
@@ -99,10 +115,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use((req, res, next) => {  //no entiendo bien esto, ojo! poner aqui que sino no te reconoce al hacer login
+  res.locals.title = "IronTumblr";
+  res.locals.user = req.user;
+  next();
+})
+
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+
+
 app.use('/', index);
 app.use('/', authRoutes);
+
+
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

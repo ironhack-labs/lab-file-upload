@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-sm-6">
+      <h2>Profile</h2>
+      <p>{{user.name}}</p>
+    </div>
+    <div class="col-12 col-sm-6">
+      {{#if user.profilePic}}
+      <img src="{{user.profilePic.path}}" alt="{{user.profilePic.originalName}}">
+      {{/if}}
+    </div>
+    </div>
+  </div>
+</div>      
