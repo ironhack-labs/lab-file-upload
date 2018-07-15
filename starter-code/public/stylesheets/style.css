@@ -6,3 +6,62 @@ body {
 a {
   color: #00B7FF;
 }
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  align-items: center;
+  
+}
+.btn-primary{
+  margin: 20px;
+}
+
+.posts > *{
+margin: 20px;
+padding: 20px;
+text-align: center;
+}
+
+.post {
+  display: inline-block;
+  border: 1px solid rgb(233, 230, 230);
+  border-radius: 5px
+}
+.post > *{
+  margin-bottom:10px;
+  
+}
+
+.post img{
+  width: 500px;
+}
+.post span{
+  word-wrap: break-word; 
+}
+
+.show-container{
+  width: 900px;
+  text-align: center;
+  margin:10px;
+  height: 500px;
+  
+}
+.post-info img{
+  width: 500px;
+  height: 500px;
+}
+
+.container-show > *{
+  margin-bottom: 70px;
+
+}
+.comment-info img{
+  width: 50px;
+}
+.comment{
+  margin-bottom: 20px;
+  max-width: 500px;
+  max-height:500px; 
+}

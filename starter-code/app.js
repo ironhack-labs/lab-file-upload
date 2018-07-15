@@ -13,8 +13,21 @@ const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const hbs                = require('hbs')
+const multer = require('multer');
+const upload = multer({dest: './public/uploads'});
+const Picture = require("./models/Picture");
+//const dbname=process.env.DBURL;
 
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
+//mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
+
+mongoose.Promise = Promise;
+mongoose
+  .connect('mongodb://localhost:27017/tumblr-lab-development', {useMongoClient: true})
+  .then(() => {
+    console.log('Connected to Mongo!')
+  }).catch(err => {
+    console.error('Error connecting to mongo', err)
+  });
 
 const app = express();
 
@@ -55,58 +68,91 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
   });
 }));
 
-passport.use('local-signup', new LocalStrategy(
-  { passReqToCallback: true },
-  (req, username, password, next) => {
-    // To avoid race conditions
-    process.nextTick(() => {
-        User.findOne({
-            'username': username
-        }, (err, user) => {
-            if (err){ return next(err); }
+passport.use("local-signup",new LocalStrategy({ passReqToCallback: true },
+    (req, username, password, next) => {
+      // To avoid race conditions
+      process.nextTick(() => {
+        User.findOne(
+          {
+            username: username
+          },
+          (err, user) => {
+            if (err) {
+              return next(err);
+            }
 
             if (user) {
-                return next(null, false);
+              return next(null, false);
             } else {
-                // Destructure the body
-                const {
-                  username,
-                  email,
-                  password
-                } = req.body;
-                const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-                const newUser = new User({
-                  username,
-                  email,
-                  password: hashPass
-                });
+              // Destructure the body
+              const { username, email, password } = req.body;
+            
+              const hashPass = bcrypt.hashSync(
+                password,
+                bcrypt.genSaltSync(8),
+                null
+              );
+              const newUser = new User({
+                username,
+                email,
+                password: hashPass,
+                profilePic: {
+                  name: req.body.name,
+                  path: `uploads/${req.file.filename}`,
+                  originalName: req.file.originalname
+                }
 
-                newUser.save((err) => {
-                    if (err){ next(null, false, { message: newUser.errors }) }
-                    return next(null, newUser);
-                });
+              });
+              Picture.create([pic])
+              .then(e => {
+                newUser.picture=e[0].path
+                newUser.save((err,u) => {
+                  if (err) {
+                    next(null, false, { message: newUser.errors });
+                  }
+                  return next(null, u);
+                })
+                .catch(err=>{
+                  console.log("error creating user")
+                })
+              })
+              .catch(err=>{
+                console.log("error creating pic")
+              })
             }
-        });
-    });
-}));
+          }
+        );
+      });
+    }
+  )
+);
 
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(logger('dev'));
+app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
-const index = require('./routes/index');
-const authRoutes = require('./routes/authentication');
-app.use('/', index);
-app.use('/', authRoutes);
+app.use((req, res, next) => {
+  res.locals.user = req.user
+  next();
+})
+const index = require("./routes/index");
+const authRoutes = require("./routes/authentication");
+const post = require("./routes/post");
+const comment = require("./routes/comment");
+
+app.use("/", index);
+app.use("/", authRoutes);
+app.use("/post",post)
+app.use("/comment",comment)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  const err = new Error('Not Found');
+  const err = new Error("Not Found");
   err.status = 404;
   next(err);
 });
@@ -115,11 +161,10 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
+  res.locals.error = req.app.get("env") === "development" ? err : {};
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render("error");
 });
 
 module.exports = app;

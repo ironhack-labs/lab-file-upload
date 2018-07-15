@@ -1,21 +1,27 @@
 <div class="container">
-  <div class="row">
+  <div class="form-group row">
     {{ message }}
     <div class="col-sm-6 centered-form">
-      <form action="/signup" method="post">
-        <div class="form-group">
-          <label for="username">Username</label>
+      
+      <form action="/signup" method="post"  enctype="multipart/form-data">
+         
+         <div class="form-group row">
+          <label for="image">Profile</label>
+          <input type="file" name="image" class="form-control">
+        </div>
+        <div class="form-group row">
+          <label for="username">Name</label>
           <input type="text" name="username" class="form-control">
         </div>
-        <div class="form-group">
+        <div class="form-group row">
           <label for="email">Email</label>
           <input type="text" name="email" class="form-control">
         </div>
-        <div class="form-group">
+        <div class="form-group row">
           <label for="password">Password</label>
           <input type="password" name="password" class="form-control">
         </div>
-        <button type="submit">Signup</button>
+        <button type="submit" class="btn btn-outline-success btn btn-primary btn-sm">Signup</button>
       </form>
     </div>
   </div>
