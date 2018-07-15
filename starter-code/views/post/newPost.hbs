@@ -1,11 +1,13 @@
-<form action="/post/newPost" method="post" enctype="multipart/form-data">
-  <div class="image">
-    <label for="image">Image Post</label>
-    <input type="file" name="image" required>
-  </div>
-  <div class="content">
-    <label for="content">Message Post</label>
-    <input type="text" name="content" placeholder="Enter your message" required>
-  </div>
-    <input type="submit" value="Submit">
-</form>
+<div class="container">
+  <form action="/post/newPost" method="post" enctype="multipart/form-data">
+    <div class="image">
+      <label for="image">Image for the Post:</label>
+      <input type="file" name="image" required>
+    </div>
+    <div class="content">
+      <label for="content">Message Post:</label>
+      <textarea rows="6" name="content" placeholder="Enter your message" required></textarea>
+    </div>
+      <input type="submit" value="Submit">
+  </form>
+</div>

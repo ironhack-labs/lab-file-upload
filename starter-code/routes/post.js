@@ -13,7 +13,6 @@ router.get('/post', (req, res) => {
 //    .populate('comments.authorId', 'username')
     .sort({updated_at: -1})
     .then( (posts) => {
-      console.log(posts[0])
       res.render('post/list', {posts});
     })
     .catch( (err) => {
@@ -70,4 +69,12 @@ router.post('/comments/:id/newComment', upload.single('image'), (req, res, next)
     });
 });
 
+router.get('/post/delete/:id', (req, res, next) => {
+  console.log ("in delete")
+  Posts.findByIdAndRemove(req.params.id)
+    .then( (post) => {
+      console.log("Post deleted");
+      res.redirect("/profile");
+    })
+})
 module.exports = router;

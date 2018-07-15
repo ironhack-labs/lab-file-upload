@@ -4,7 +4,11 @@
   {{#each posts}}
     <div class="post">
       <img src="{{picPath}}" alt="{{picName}}">
-      <p>{{content}} posted by {{creatorId.username}} at {{updated_at}}</p>
+      <p>{{content}}</p>
+      <div class="tag">
+        posted by {{creatorId.username}}<br> 
+        at {{updated_at}}
+      </div>
       <!-- Cómo puedo hacer referencia aquí a user para que solo se muestren los comentarios si el usuario está logueado??? si hago un #if user estaría haciendo referencia a post.user que no existe -->
       <div class="comments">
       {{#if comments}}

@@ -58,3 +58,11 @@ a {
   color: gray;
   text-align: right;
 }
+
+form .image, form .content{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  width: 400px;
+  padding: 20px 0;
+}

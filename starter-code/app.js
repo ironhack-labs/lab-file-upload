@@ -32,7 +32,6 @@ app.use(session({
 
 app.use((req, res, next) => {
   if (req.session.passport) {   
-    console.log("cookie on")
     res.locals.user = req.session.passport.user;  
   }
   next();

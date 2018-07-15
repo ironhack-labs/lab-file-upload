@@ -5,7 +5,9 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>Welcome to IronTumblr</h1>
+    <h1>Welcome to IronTumblr, 
+      {{#if user}}{{user.username}}{{/if}}
+      {{#unless user}} anonymous user who should have been registered...{{/unless}}</h1>
     <a href="/post">Show me the posts!</a>
   </body>
 </html>
