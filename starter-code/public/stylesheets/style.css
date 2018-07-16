@@ -1,8 +1,11 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif;
+  width: 100%;
+  background-color: #3A445E;
 }
 
 a {
   color: #00B7FF;
+  text-decoration: none;
 }
