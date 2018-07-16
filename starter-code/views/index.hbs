@@ -1,19 +1,34 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-    {{#if posts}}
-      <ul>
-      {{#each posts}}
-        <li>Text: {{content}} - </li>
-        <img src="/{{picPath}}" alt="">
-      {{/each}}
-      </ul>
-    {{/if}}
-    <a href="/login">Log in</a>
-  </body>
+  <h1>Welcome to IronTumblr</h1>
+
+  {{#unless user}}
+  <a href="/login">Login</a>
+  <a href="/signup">Sign Up</a>
+   <a href="/logout">Log Out</a>
+ 
+  {{/unless}} 
+  {{#if user}}
+  <h3>Welcome back  {{user.username}}</h3>
+ 
+  <br>
+  <br> 
+  {{/if}}
+
+ <br>
+  <h4>Recent Posts. Click on the image to show the details</h4>
+  <br>
+  <div>
+    {{#each posts}}
+    <div>
+      <a href="/post/{{_id}}">
+        <img src="{{picPath}}" alt="" width="150">
+      </a>
+      <p>Texto: {{content}}</p>
+      <p>User: {{creatorId.username}}</p>
+    </div>
+    {{/each}}
+  </div>
+
+  <a href="/post/newPost">Add Post</a>
+</body>
+
 </html>
