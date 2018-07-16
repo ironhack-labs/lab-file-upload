@@ -1,0 +1,44 @@
+<div>
+  <a href="/">Go Back</a>
+  <br>
+  <br>
+  <img src="{{post.picPath}}" width="450" >
+  <br>
+  <br>
+  <p>POST TEXT: {{post.content}}</p>
+
+  <h3>Comments</h3>
+  <div>
+    {{#each post.comments}}
+    <div>
+      {{#if imagePath}}
+      <img src="{{imagePath}}" alt="" width="200"> 
+      {{/if}}
+      <p>{{content}}</p>
+      <p>{{creatorId.username}}</p>
+    </div>
+    {{/each}}
+  </div>
+
+  <br> 
+
+
+  <h2>New comment</h2>
+  <form action="/comment/newComment" method="POST" enctype="multipart/form-data">
+    <label for="content">Comment Content</label>
+    <br>
+    <textarea name="content" id=""></textarea>
+
+    <br>
+    <br>
+
+    <label for="photo">Photo (Opcional)</label>
+    <input type="file" name="photo">
+
+    <br>
+    <br>
+    <input type="submit" value="Add comment">
+  </form>
+
+
+</div>

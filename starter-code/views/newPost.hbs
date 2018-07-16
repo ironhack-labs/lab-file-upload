@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 centered-form">
+      <form action="/post/newPost" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="content">Text: </label>
+          <textarea type="text" name="content" class="form-control" cols="25" rows="5"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="post-photo">Photo</label>
+          <input type="file" name="post-photo" class="form-control">
+        </div>
+
+        <button type="submit">Add post</button>
+      </form>
+    </div>
+  </div>
+</div>
