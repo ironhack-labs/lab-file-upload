@@ -15,7 +15,7 @@ router.post(
   "/login",
   ensureLoggedOut(),
   passport.authenticate("local-login", {
-    successRedirect: "/",
+    successRedirect: "/profile",
     failureRedirect: "/login",
     failureFlash: true
   })
@@ -25,12 +25,13 @@ router.get("/signup", ensureLoggedOut(), (req, res) => {
   res.render("authentication/signup", { message: req.flash("error") });
 });
 
+
 router.post(
     "/signup",
     [ensureLoggedOut(),
     upload.single("profilePic")],
     passport.authenticate("local-signup", {
-      successRedirect: "/",
+      successRedirect: "/login",
       failureRedirect: "/signup",
       failureFlash: true
     })

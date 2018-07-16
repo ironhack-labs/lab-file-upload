@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-sm-6 centered-form">
+      <h1>Profile</h1>
+      <dl>
+        <dt>Username</dt>
+        <dd>{{user.username}}</dd>
+        <dt>Email</dt>
+        <dd>{{user.email}}</dd>
+      </dl>
+    </div>
+    <div class="col-12 col-sm-6 centered-form">
+      {{#if user.profilePic}}
+      <img class="img-fluid" src="/users/{{user.profilePic}}" alt="{{user.username}}">
+      {{/if}}
+    </div>
+  </div>
+</div>
