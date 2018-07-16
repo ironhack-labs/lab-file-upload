@@ -1,0 +1,38 @@
+<div>
+    <h5>Posted by {{post.creatorId.username}} {{#if post.creatorId.profilePic}}
+        <img src="/uploads/{{post.creatorId.profilePic}}" alt="" width="30"> {{/if}}
+    </h5>
+    <h5>posted at: {{post.created_at}}</h5>
+    <div>
+        <img src="/posts/{{post.picName}}">
+    </div>
+    <p><font color="red" size='4.5'>Post Content: {{post.content}}</font></p>
+    <br>
+    {{#if post.comments}}
+        <p><font color="green" size='4.5'>Comments :</font></p>
+        {{#each post.comments}} 
+            {{> comment this}} 
+        {{/each}} 
+    {{/if}}
+    <br>
+    <p><font color="blue" size='4.5'>Add new comment!</font></p>
+    <form action="/posts/{{post._id}}" method="post" enctype="multipart/form-data">
+        <div>
+            <label for="content">Content</label>
+            <div>
+                <textarea name="content" required></textarea>
+            </div>
+        </div>
+        <div>
+            <label for="image">Picture (optional)</label>
+            <input type="file" name="image">
+        </div>
+        <br>
+        <div>
+            <button>Comment</button>
+        </div>
+    </form>
+    <br>
+    <br>
+    <a href='/'>Back to Home Page</a>
+</div>

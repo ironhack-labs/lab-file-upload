@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express            = require('express');
 const path               = require('path');
 const favicon            = require('serve-favicon');
@@ -7,6 +9,7 @@ const bodyParser         = require('body-parser');
 const passport           = require('passport');
 const LocalStrategy      = require('passport-local').Strategy;
 const User               = require('./models/user');
+const multer             = require('multer');
 const bcrypt             = require('bcrypt');
 const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
@@ -14,9 +17,18 @@ const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const hbs                = require('hbs')
 
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
+mongoose.Promise = Promise;
 
+mongoose
+  .connect('mongodb://localhost:27017/tumblr-lab-development', {useMongoClient: true})
+  .then(() => {
+    console.log('Connected to Mongo!')
+  }).catch(err => {
+    console.error('Error connecting to mongo', err)
+  });
 const app = express();
+
+hbs.registerPartials(path.join(__dirname, '/views/partials'));
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -55,40 +67,43 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
   });
 }));
 
-passport.use('local-signup', new LocalStrategy(
+passport.use('local-signup',new LocalStrategy(
   { passReqToCallback: true },
+  //upload.single('photo'),
   (req, username, password, next) => {
     // To avoid race conditions
     process.nextTick(() => {
-        User.findOne({
-            'username': username
-        }, (err, user) => {
-            if (err){ return next(err); }
+      User.findOne({username})
+      .then(user => {
+        if (user) {
+          throw new Error("Username already exists.");
+        }
 
-            if (user) {
-                return next(null, false);
-            } else {
-                // Destructure the body
-                const {
-                  username,
-                  email,
-                  password
-                } = req.body;
-                const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-                const newUser = new User({
-                  username,
-                  email,
-                  password: hashPass
-                });
-
-                newUser.save((err) => {
-                    if (err){ next(null, false, { message: newUser.errors }) }
-                    return next(null, newUser);
-                });
-            }
+        const { email } = req.body;
+        const hashPass = bcrypt.hashSync(
+          password,
+          bcrypt.genSaltSync(8),
+          null
+        );
+        const newUser = new User({
+          username,
+          email,
+          password: hashPass,
+          profilePic: req.file ? req.file.filename : ""
         });
+
+        return newUser.save();
+      })
+      .then(user => {
+        return next(null, user);
+      })
+      .catch(err => {
+        return next(err);
+      });
     });
-}));
+  }
+)
+);
 
 app.use(flash());
 app.use(passport.initialize());
@@ -98,17 +113,31 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "uploads")));
+//app.use(express.static(path.join(__dirname, "posts")));
+//app.use(express.static(path.join(__dirname, "comments")));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const postsRoutes = require("./routes/postRouter");
+//const commentsRoutes = require("./routes/commentsRouter");
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/posts', postsRoutes);
+//app.use('/comments', commentsRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');
   err.status = 404;
   next(err);
+});
+
+app.use((req, res, next) => {
+  res.locals.title = "IronTumblr";
+  res.locals.user = req.user;
+  res.locals.menuClass = "col";
+  next();
 });
 
 // error handler

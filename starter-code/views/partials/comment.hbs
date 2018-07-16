@@ -1,0 +1,13 @@
+<h5>Posted by {{authorId.username}} 
+        {{#if authorId.profilePic}}
+        <img src="/uploads/{{authorId.profilePic}}" alt="" width="30"> 
+        {{/if}}
+</h5>
+<h5>On {{date}}</h5>
+<p>{{content}}</p>
+<div>
+    {{#if imageName}}
+    <img src="/comments/{{imageName}}" alt="">
+    {{/if}}
+</div>
+<br>
