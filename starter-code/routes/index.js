@@ -1,9 +1,13 @@
 const express = require('express');
 const router  = express.Router();
+const User = require('../models/User');
 
-/* GET home page. */
-router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Express - Generated with IronGenerator' });
-});
+//multer
+const multer = require('multer');
+const uploads = multer({dest: './public/assets'});
+//cloudinary
+const uploadCloud = require('../helpers/cloudinary');
+
+
 
 module.exports = router;
