@@ -1,18 +1,21 @@
-const express            = require('express');
-const path               = require('path');
-const favicon            = require('serve-favicon');
-const logger             = require('morgan');
-const cookieParser       = require('cookie-parser');
-const bodyParser         = require('body-parser');
-const passport           = require('passport');
-const LocalStrategy      = require('passport-local').Strategy;
-const User               = require('./models/user');
-const bcrypt             = require('bcrypt');
-const session            = require('express-session');
-const MongoStore         = require('connect-mongo')(session);
-const mongoose           = require('mongoose');
-const flash              = require('connect-flash');
-const hbs                = require('hbs')
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const User = require('./models/user');
+const bcrypt = require('bcrypt');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+const mongoose = require('mongoose');
+const flash = require('connect-flash');
+const hbs = require('hbs');
+
+const multer = require('multer');
+const upload = multer({ dest: './public/uploads/' });
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
@@ -72,13 +75,18 @@ passport.use('local-signup', new LocalStrategy(
                 const {
                   username,
                   email,
-                  password
+                  password,
                 } = req.body;
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  avatar: {
+                    name: req.body.name,
+                    path: `/uploads/${req.file.filename}`,
+                    originalName: req.file.originalname
+                  } 
                 });
 
                 newUser.save((err) => {
@@ -101,8 +109,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const authPost = require('./routes/newPost');
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/', authPost);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -116,6 +126,7 @@ app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
+
 
   // render the error page
   res.status(err.status || 500);
