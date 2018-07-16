@@ -1,0 +1,14 @@
+<ul>  <a href="/">Home Page</a> </ul>
+Muy buenas criaturitas del señor!
+<section>
+  <h2>Upload your photo</h2>
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="pic">
+    <input type="submit" value="Save">
+  </form>
+</section>
+<section>
+  {{#each pictures}}
+    <img src="{{ this.path }}" alt="{{ this.originalName }}" />
+  {{/each}}
+</section>
