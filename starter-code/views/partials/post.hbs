@@ -1,3 +1,18 @@
-<h1>Your posts</h1>
-{{!-- <img src="{{picPath}}{{picName}}" alt=""> --}}
-{{creatorId.username}}
+<div>
+    <h5>Posted by {{creatorId.username}} 
+        {{#if creatorId.profilePic}}
+        <img src="/uploads/{{creatorId.profilePic}}" alt="" width="30"> 
+        {{/if}}
+    </h5>
+    <div>
+        <img src="/posts/{{picName}}" width="100px">
+    </div>
+    <h5>posted at: {{created_at}}</h5>
+    {{#if canRemove}}
+    <a href="/posts/delete/{{_id}}">Delete</a>
+    {{/if}}
+    &nbsp;&nbsp;
+    <a href="/posts/{{_id}}">Comment</a>
+    <br>
+    <br>
+</div>

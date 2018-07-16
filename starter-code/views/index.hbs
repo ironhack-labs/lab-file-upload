@@ -1,4 +1,8 @@
- <h1>Welcome to IronTumblr</h1>
+ <h1>Welcome to IronTumblr
+    {{#if user}}
+    {{user.username}}
+    {{/if}}
+ </h1>
  <div>
     {{#each posts}}
       {{> post this}}

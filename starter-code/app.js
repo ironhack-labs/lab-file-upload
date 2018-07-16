@@ -114,13 +114,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, "uploads")));
+//app.use(express.static(path.join(__dirname, "posts")));
+//app.use(express.static(path.join(__dirname, "comments")));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
 const postsRoutes = require("./routes/postRouter");
+//const commentsRoutes = require("./routes/commentsRouter");
 app.use('/', index);
 app.use('/', authRoutes);
-app.use('/', postsRoutes);
+app.use('/posts', postsRoutes);
+//app.use('/comments', commentsRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
