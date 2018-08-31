@@ -1,6 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const Post               = require('../models/post');
+const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -13,17 +14,17 @@ router.get('/', (req, res, next) => {
   })
 });
 
-router.get('/new', (req, res, next) => {
+router.get('/new', ensureLoggedIn('/login'), (req, res, next) => {
   res.render("post/new")
 });
 
 router.get('/show/:id', (req, res, next) => {
   Post.findById(req.params.id).then(post => {
-    res.render("post/show", {post})
+    res.render("post/show", {post, user: req.user})
   })
 });
 
-router.post('/create', (req, res, next) => {
+router.post('/create', ensureLoggedIn('/login'),(req, res, next) => {
   const {content, picName} = req.body;
 
   req.files.picture.mv(`public/images/postPics/${req.files.picture.name}`)
@@ -37,6 +38,27 @@ router.post('/create', (req, res, next) => {
   }).save().then(post => {
     res.redirect("/post")
   })
+});
+
+router.post('/show/:id/comment/new', ensureLoggedIn('/login'), (req, res, next) => {
+  
+   const {content, picName} = req.body;
+
+   console.log(content, picName)
+
+   console.log(req.params.id)
+   req.files.picture.mv(`public/images/commentPics/${req.files.picture.name}`)
+
+  Post.findByIdAndUpdate(req.params.id, {$push: {comments: {
+      content,
+      picName,
+      picPath: `/images/commentPics/${req.files.picture.name}`,
+      creatorId: req.user._id,
+      creatorName: req.user.username,
+     }}}, {new: true}).then(post => {
+       res.send(post)
+     })
+    
 });
 
 module.exports = router;
