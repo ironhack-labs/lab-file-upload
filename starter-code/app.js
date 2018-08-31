@@ -72,7 +72,7 @@ passport.use('local-signup', new LocalStrategy(
                 // Destructure the body
                 console.log(req.files.picture.name)
 
-                req.files.picture.mv(`public/images/${req.files.picture.name}`)
+                req.files.picture.mv(`public/images/profilePics/${req.files.picture.name}`)
                   
                 const {
                   username,
@@ -84,7 +84,7 @@ passport.use('local-signup', new LocalStrategy(
                   username,
                   email,
                   password: hashPass,
-                  picture: `/images/${req.files.picture.name}`
+                  picture: `/images/profilePics/${req.files.picture.name}`
                 });
 
                 newUser.save((err) => {
@@ -108,8 +108,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const postRoutes = require('./routes/post')
+
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/post', postRoutes)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

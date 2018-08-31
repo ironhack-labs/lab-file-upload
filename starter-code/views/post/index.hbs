@@ -1,0 +1,18 @@
+
+{{#if user}}
+<h1>Dashboard of {{user.username}}</h1>
+
+<p><a href="/post/new">Post something yourself!</a></p>
+
+{{/if}}
+
+<h1>See all the Posts, why not <a href="/signup">sign up?</a></h1>
+
+{{#each posts}}
+<div class="card">
+<h3><a href="/post/show/{{this._id}}">{{this.picName}}</a></h3>
+<h4><i>created by {{this.creatorName}}</i></h4>
+<img src="{{this.picPath}}" width="400px">
+<p>{{this.content}}</p>
+</div>
+{{/each}}
