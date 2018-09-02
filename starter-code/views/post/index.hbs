@@ -15,9 +15,10 @@
 {{#each posts}}
 <div class="card">
 <h3><a href="/post/show/{{this._id}}">{{this.picName}}</a></h3>
-<h4><i>created by <a href="/profile/{{this.creatorName}}"class="creator">{{this.creatorName}}</a></i></h4>
+<h4><i>created by <a href="profile/{{this.creatorId}}"class="creator">{{this.creatorName}}</a></i></h4>
 <img src="{{this.picPath}}" width="400px">
 <p>{{this.content}}</p>
 </div>
+<hr>
 {{/each}}
 </div>
