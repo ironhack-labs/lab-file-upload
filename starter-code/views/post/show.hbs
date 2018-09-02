@@ -1,10 +1,13 @@
-
+<div class="content">
 <div class="card">
 <h1>{{post.picName}}</h1>
 <h2><i>created by {{post.creatorName}}</i></h2>
 <img src="{{post.picPath}}" width="400px">
 <p>{{post.content}}</p>
 </div>
+</div>
+
+<div class="card">
 {{#if user}}
 <div class="col-sm-6 centered-form">
       <form action="/post/show/{{post._id}}/comment/new" method="post" encType="multipart/form-data">
@@ -23,17 +26,23 @@
         <button type="submit">Post!</button>
       </form>
     </div>
-
+</div>
 
 {{else}}
-<h3>You need to be signed in to comment!Sign in <a href="/login">here</a></h3>
+<h3 class="comments">You need to be signed in to comment!</h3>
 {{/if}}
-<h2>Comments</h2>
-{{#each post.comments}}
+<h2 class="white">Comments</h2>
 <div class="card">
-<h2>{{this.picName}}</h2>
-<h3><i>created by {{this.creatorName}}</i></h3>
-<img src="{{this.picPath}}" width="400px">
+{{#each post.comments}}
+<div class="content cont-comm">
 <p>{{this.content}}</p>
+{{#if this.picPath}}
+<img src="{{this.picPath}}" width="400px">
+{{/if}}
+{{#if this.picName}}
+<h4>{{this.picName}}</h4>
+{{/if}}
+<h5><i>created by {{this.creatorName}}</i></h3>
 </div>
 {{/each}}
+</div>

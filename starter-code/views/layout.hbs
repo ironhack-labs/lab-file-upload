@@ -7,6 +7,17 @@
     <link rel="stylesheet" href="/stylesheets/style.css">
   </head>
   <body>
+    <nav>
+      <ul>
+        <li><a href="/signup" class="btn dark-grey">Sign up</a></li>
+        {{#if user}}
+        <li><a href="/logout" class="btn light-grey">Log out</a></li>
+        {{else}}
+        <li><a href="/login" class="btn light-grey">Log in</a></li>
+        {{/if}}
+      </ul>
+    </nav>
+
     <div class="main-container">
       {{{body}}}
     </div>

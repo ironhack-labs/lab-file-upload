@@ -47,6 +47,8 @@ router.post('/show/:id/comment/new', ensureLoggedIn('/login'), (req, res, next) 
    console.log(content, picName)
 
    console.log(req.params.id)
+
+   if(req.files.picture) {
    req.files.picture.mv(`public/images/commentPics/${req.files.picture.name}`)
 
   Post.findByIdAndUpdate(req.params.id, {$push: {comments: {
@@ -56,8 +58,20 @@ router.post('/show/:id/comment/new', ensureLoggedIn('/login'), (req, res, next) 
       creatorId: req.user._id,
       creatorName: req.user.username,
      }}}, {new: true}).then(post => {
-       res.send(post)
+       res.redirect(`/post/show/${req.params.id}`)
      })
+    }
+
+    else {
+      Post.findByIdAndUpdate(req.params.id, {$push: {comments: {
+        content,
+        creatorId: req.user._id,
+        creatorName: req.user.username,
+       }}}, {new: true}).then(post => {
+         res.redirect(`/post/show/${req.params.id}`)
+       })
+      }
+    
     
 });
 

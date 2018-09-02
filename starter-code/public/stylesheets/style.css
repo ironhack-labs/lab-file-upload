@@ -1,8 +1,164 @@
+@import url('https://fonts.googleapis.com/css?family=Arvo:700');
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 0px;
+  margin: 0px;
+  font-size: 14px;
+  font-family: Helvetica, sans-serif;
+  background-color: #35485E;
 }
 
-a {
-  color: #00B7FF;
+.white-link {
+  color: white;
+  font-size: 16px;
 }
+
+.white-link:hover {
+  color: rgb(180, 179, 179);
+  text-decoration: none;
+}
+
+.content {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  width: auto;
+  margin-top: 20px;
+}
+
+.content p {
+  margin-top: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.white {
+  color: white;
+  font-family: Arvo;
+  text-shadow: 2px 1px grey;
+}
+
+.content h3 {
+  font-size: 3em;
+  margin: 0px;
+}
+
+.content h4 {
+  color: grey;
+}
+
+.content a {
+  color: black;
+}
+
+.content a:hover {
+  text-decoration: none;
+  color: grey;
+}
+
+.content img {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  align-self: center;
+}
+
+.main-container {
+  width: 70%;
+  display: flex;
+  margin: 40px auto;
+  flex-direction: column;
+}
+
+nav {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+nav li {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+ul {
+  display: flex;
+  direction: row;
+  width: 30%;
+  justify-content: space-evenly;
+  padding:  10px;
+  margin-bottom: 0px;
+}
+
+.btn {
+  padding: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+  border-radius: 3px;
+}
+
+.btn:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.dark-grey {
+  background-color: rgb(70, 69, 69);
+}
+
+.dark-grey:focus {
+  background-color: rgb(31, 30, 30);
+}
+
+.light-grey {
+  background-color: grey;
+}
+
+.light-grey:focus {
+  background-color: rgb(95, 94, 94);
+}
+
+.center {
+  width: 100vw;
+  height: 80vh;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.center h1 {
+  font-size: 4em;
+}
+
+.blue {
+  background-color: rgb(112, 151, 196);
+}
+
+.blue:focus {
+  background-color: rgb(78, 106, 138);
+}
+
+.comments {
+  color: white;
+}
+
+h5 {
+  color: grey;
+}
+
+.cont-comm {
+  background-color: rgb(214, 214, 214);
+  padding: 10px;
+}
+
+
