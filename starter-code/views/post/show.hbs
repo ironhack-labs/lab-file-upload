@@ -7,8 +7,9 @@
 </div>
 </div>
 
-<div class="card content cont-comm">
+
 {{#if user}}
+<div class="card content cont-comm">
 <div class="col-sm-6 centered-form">
       <form action="/post/show/{{post._id}}/comment/new" method="post" encType="multipart/form-data">
         <div class="form-group">
@@ -32,7 +33,7 @@
 <h3 class="comments">You need to be signed in to comment!</h3>
 {{/if}}
 <h2 class="white">Comments</h2>
-<div class="card">
+
 {{#each post.comments}}
 <div class="content cont-comm">
 <p>{{this.content}}</p>
@@ -42,9 +43,7 @@
 {{#if this.picName}}
 <h4>{{this.picName}}</h4>
 {{/if}}
-<h5><i>created by <a href="/profile/{{this.creatorId}}"class="creator">{{this.creatorName}}</a></i></h3>
+<h5><i>created by <a href="/profile/{{this.creatorId}}"class="creator">{{this.creatorName}}</a></i></h5>
 </div>
-<hr>
 {{/each}}
-</div>
 <h3><a href="/post" class="btn blue">See all the Posts!</a></h3>

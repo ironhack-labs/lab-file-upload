@@ -7,6 +7,7 @@ const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 router.get('/', (req, res, next) => {
   Post.find({}).then(posts => {
   
+  
   res.render('post/index', {
     title: 'Dashboard',
     user: req.user,
@@ -20,6 +21,9 @@ router.get('/new', ensureLoggedIn('/login'), (req, res, next) => {
 
 router.get('/show/:id', (req, res, next) => {
   Post.findById(req.params.id).then(post => {
+
+    console.log(post.comments.length)
+
     res.render("post/show", {post, user: req.user})
   })
 });
