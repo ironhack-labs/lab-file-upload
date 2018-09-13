@@ -20,8 +20,9 @@ a {
   justify-content: center;
   align-items: center;
   box-shadow: 0 0 15px black;
-  border-radius: 10px;
   padding: 20px;
+  background: rgba(160,154,157, 0.7);
+  border-radius: 20px;
 }
 
 .user-header {
@@ -33,4 +34,42 @@ a {
 
 .user-header span {
   color: red;
+}
+
+body {
+  background-image: url("../images/bg.jpg");
+  background-size: 100vw 100vh;
+  background-repeat: no-repeat;
+}
+
+.main-content {
+  padding: 30px;
+  background: rgba(160,154,157, 0.1);
+  border-radius: 20px;
+}
+
+.main-content h1 {
+  text-transform: uppercase;
+  text-shadow: 0 0 5px white;
+}
+
+.form-wrap {
+  padding: 30px;
+  background: rgba(160,154,157, 0.7);
+  border-radius: 20px;
+}
+
+.form-link {
+  font-size: 1.5rem;
+}
+
+.error {
+  background: red;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.controls a {
+  text-decoration: none;
 }

@@ -1,9 +1,11 @@
 <div class="container">
   <div class="row">
-    {{ message }}
       <div class="col-sm-3"></div>
-    <div class="col-sm-6">
+    <div class="col-sm-6 form-wrap">
         <h2 class="text-center p-2">Create your acount</h2>
+        {{#if message}}
+            <p class="error text-center">{{ message }}</p>
+        {{/if}}
       <form action="/signup" method="post" enctype="multipart/form-data">
         <div class="form-group">
           <label for="username">Username</label>
@@ -23,7 +25,7 @@
           </div>
         <button class="btn  btn-success" type="submit">Signup</button>
       </form>
-        <p class="text-center mt-3">Return to home page <a href="/">Click here</a></p>
+        <p class="text-center mt-3 form-link">Return to home page <a href="/">Click here</a></p>
     </div>
   </div>
 </div>
