@@ -6,3 +6,31 @@ body {
 a {
   color: #00B7FF;
 }
+
+.user-img {
+  text-align: center;
+  width: 20vw;
+  margin-top: 40px;
+  box-shadow: 0 5px 10px black;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 15px black;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.user-header {
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  color: white;
+  text-shadow:0 0 4px black;
+}
+
+.user-header span {
+  color: red;
+}
