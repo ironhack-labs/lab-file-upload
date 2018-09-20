@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    {{ message }}
+    <div class="col-sm-6 centered-form">
+      <form action="/postImage" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="imgtext">Image Text</label>
+          <input type="text" name="imgtext" class="form-control">
+        </div>
+        <div>
+          <label>Upload a Picture</label>
+          <input type="file" name="photo">
+        </div>
+        <button type="submit">Post Now!</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,10 +1,22 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-  </body>
-</html>
+<div class="intro">
+  <div class="text-center">
+    <img class="img-thumbnail profilePic" src="{{user.imgPath}}" alt="">
+  </div>
+</div>
+<h1>Multi User Tumblr Site</h1>
+
+{{#if user}}
+<a type="button" class="btn" href="/postImage">Post Image</a>
+{{/if}}
+
+{{#each posts}}
+<div class="postCard">
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{this.picPath}}" alt="Card image cap">
+    <div class="card-body">
+      <p class="card-text">{{this.content}}</p>
+    </div>
+  </div>
+</div>
+
+{{/each}}

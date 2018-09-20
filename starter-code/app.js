@@ -105,8 +105,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const postImage = require('./routes/postImage');
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/', postImage);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
