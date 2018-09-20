@@ -1,0 +1,12 @@
+<img src={{user.imgPath}} alt="user avatar" width="100px">
+<h1>Hola {{user.username}}!</h1>
+
+<form action="/profile/upload" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="profilePic">Change your profile picture</label>
+        <input type="file" name="profilePic" class="form-control">
+        <input type="submit" value="Save">
+    </div>
+</form>
+<p><a href="/post">Post something</a></p>
+<p><a href="/logout">Log out</a></p>
