@@ -12,5 +12,12 @@
     <a href="/signup" class="btn btn-light">Sign up</a>
     <a href="/login" class="btn btn-light">Log in</a>
     {{/if}}
+
+    <h3>Feed:</h3>
+    {{#each posts}}
+    <p>{{this.content}}</p>
+    <p>By: {{creatorId.username}}<img src="{{creatorId.profilePicture.path}}"></p>
+    <img src="{{this.picpath}}" alt="{{this.picname}}">
+    {{/each}}
   </body>
 </html>
