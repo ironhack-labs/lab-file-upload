@@ -15,9 +15,10 @@
 
     <h3>Feed:</h3>
     {{#each posts}}
+    <p>By: {{creatorId.username}}<img src="{{creatorId.profilePicture.path}}" height="50px" style="object-fit: contain"></p>
     <p>{{this.content}}</p>
-    <p>By: {{creatorId.username}}<img src="{{creatorId.profilePicture.path}}"></p>
     <img src="{{this.picpath}}" alt="{{this.picname}}">
+    <a href="/new-comment/{{this._id}}" class="btn btn-light">New comment</a>
     {{/each}}
   </body>
 </html>
