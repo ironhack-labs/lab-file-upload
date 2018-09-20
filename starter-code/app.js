@@ -74,11 +74,21 @@ passport.use('local-signup', new LocalStrategy(
                   email,
                   password
                 } = req.body;
+                console.log(req.file)
+                const {
+                  originalname,
+                  path
+                } = req.file;
+
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  photo: {
+                    originalname,
+                    path
+                  }
                 });
 
                 newUser.save((err) => {
