@@ -1,0 +1,4 @@
+mode-nodules
+.env
+.private.env
+public/uploads

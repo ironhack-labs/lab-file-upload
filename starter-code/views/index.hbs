@@ -6,5 +6,12 @@
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
+
+    {{#each posts}}
+    <img src="{{picPath}}" alt="{{picName}}">
+    <p>{{content}}</p>
+    <p>By: {{creatorId.username}}<img src="{{creatorId.pic}}" height="50px"></p>
+    <p><a href="/post/{{_id}}">See full post</a></p>
+    {{/each}}
   </body>
 </html>
