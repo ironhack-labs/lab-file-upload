@@ -1,0 +1,36 @@
+<h1>SHOW POST</h1>
+
+
+<div class="post">
+    <div class="postMain">
+        <img src="{{post.picPath}}" alt="Post Image">
+        <h3>Posted By: {{post.creatorId.username}}</h3>
+        <p>{{post.content}}</p>
+    </div>
+    <h3>COMMENTS:</h3>
+    <div class="new-comment">
+        <form action="/post/new/{{post._id}}?redirect=/post/{{post._id}}" method="post" enctype="multipart/form-data">
+            <label for="">Leave your comment:</label>
+            <input type="text" name="texto">
+            <label for="photo">Photo</label>
+            <input type="file" name="photo" class="form-control">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+
+    <div class="comments">
+        {{#each post}}
+        {{#each this.comments}}
+        <div class="comment">
+            <img class="comment-image" src="{{this.imagePath}}" style="height:50px;width:50px;" alt="Photo"/>
+            
+            <h4 class="comment-author">Author: {{this.authorId.username}}</h4>
+            <p class="comment-content">Content: {{this.content}}</p>
+        </div>
+        {{/each}}
+        {{/each}}
+    </div>
+    <a href="/post">BACK TO LIST</a>
+
+</div>
