@@ -57,7 +57,7 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
 
 passport.use('local-signup', new LocalStrategy(
   { passReqToCallback: true },
-  (req, username, password, next) => {
+  (req, username, p, next) => {
     // To avoid race conditions
     process.nextTick(() => {
         User.findOne({
@@ -74,7 +74,8 @@ passport.use('local-signup', new LocalStrategy(
                   email,
                   password,
                 } = req.body;
-                const {path, originalname} = req.file
+                const path = `/uploads/${req.file.filename}`;
+                const {originalname} = req.file
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,

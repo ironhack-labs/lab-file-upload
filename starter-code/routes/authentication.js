@@ -10,9 +10,10 @@ router.get('/login', ensureLoggedOut(), (req, res) => {
 });
 
 router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
-  successRedirect : '/',
+  successRedirect : '/profile',
   failureRedirect : '/login',
-  failureFlash : true
+  failureFlash : true,
+  passReqToCallback: true
 }));
 
 router.get('/signup', ensureLoggedOut(), (req, res) => {
@@ -20,16 +21,14 @@ router.get('/signup', ensureLoggedOut(), (req, res) => {
 });
 
 router.post('/signup', [ensureLoggedOut(), upload.single('photo')], passport.authenticate('local-signup', {
-  successRedirect : '/',
+  successRedirect : '/profile',
   failureRedirect : '/signup',
   failureFlash : true,
   passReqToCallback: true
 }));
 
 router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
-    res.render('authentication/profile', {
-        user : req.user
-    });
+    res.render('authentication/profile', {user : req.user});
 });
 
 router.get('/logout', ensureLoggedIn('/login'), (req, res) => {

@@ -6,7 +6,11 @@
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
-    <a href="/signup">Sign up</a>
-    <a href="/login">Log in</a>
+    {{#if user}}
+    <a href="/profile" class="btn btn-light">Profile</a>
+    {{else}}
+    <a href="/signup" class="btn btn-light">Sign up</a>
+    <a href="/login" class="btn btn-light">Log in</a>
+    {{/if}}
   </body>
 </html>
