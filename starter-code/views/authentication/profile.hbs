@@ -5,3 +5,7 @@
 <a href="/logout" class="btn btn-dark">Log out</a>
 
 <h3>Your posts:</h3>
+{{#each posts}}
+    <p>{{this.content}}</p>
+    <img src="{{this.picpath}}" alt="{{this.picname}}">
+{{/each}}
