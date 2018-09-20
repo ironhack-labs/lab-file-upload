@@ -74,11 +74,15 @@ passport.use('local-signup', new LocalStrategy(
                   email,
                   password
                 } = req.body;
+              
+                const path = `/upload/${req.file.filename}`;
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+                
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  path
                 });
 
                 newUser.save((err) => {
