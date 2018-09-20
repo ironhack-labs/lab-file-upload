@@ -12,7 +12,8 @@ const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
-const hbs                = require('hbs')
+const hbs                = require('hbs');
+
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
@@ -72,7 +73,7 @@ passport.use('local-signup', new LocalStrategy(
                 const {
                   username,
                   email,
-                  password
+                  password,
                 } = req.body;
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
@@ -90,6 +91,7 @@ passport.use('local-signup', new LocalStrategy(
     });
 }));
 
+
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
@@ -101,8 +103,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const postRoutes = require('./routes/post');
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/post', postRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

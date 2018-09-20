@@ -6,5 +6,15 @@
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
+    <a href="/signup">Sign Up</a>
+    <a href="/login">Log In</a>
+    <a href="/logout">Log Out</a>
+    <a href="/post/add">Add a post</a>
+    <div>
+      {{#each allPosts}}
+        <a href="/post/{{{this._id}}}"><img src="{{this.picPath}}" width="200"></a>
+        <p>Content: {{this.content}}</p>
+      {{/each}}
+    </div>
   </body>
 </html>
