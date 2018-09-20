@@ -49,19 +49,22 @@ router.post("/signup", upload.single("photo"), (req, res) => {
   });
 });
 
-router.get("/post", ensureLoggedOut(), (req, res) => {
+router.get("/post", ensureLoggedIn(), (req, res) => {
   User.findOne(req.params.id).then(data => {
-    res.render("/", { data });
+    res.render("new", { data });
   });
 });
 
-router.post("/post/:id", (req, res) => {
+router.post("/post", upload.single("photo"),(req, res) => {
   let post = new Post({
     content: req.body.status,
-    creatorId: req.params.id,
+    creatorId: req.body.id,
     path: `/uploads/${req.file.filename}`,
-    picName: req.file.name
+    picName: req.body.name
   });
+  post.save(e => {
+      res.redirect("/")
+  })
 });
 
 router.get("/profile", ensureLoggedIn("/login"), (req, res) => {
