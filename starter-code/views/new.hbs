@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 centered-form">
+      <form action="/post/:id" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label>Pictures Name</label>
+          <input type="text" name="name" class="form-control">
+          <input type="file" name="photo">
+        </div>
+        <div>
+          <textarea class="status" name="status" placeholder="Write your post here!" rows="4" cols="50"></textarea>
+        </div>
+        <a class="btn btn-primary btn-class" href="/post/{{this.id}}" role="button">New Post</a>
+      </form>
+    </div>
+  </div>
+</div>
