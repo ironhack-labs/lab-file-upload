@@ -1,0 +1,13 @@
+<div class="post">
+  <p>{{creatorId.username}}</p>
+  <p>{{content}}</p>
+  <img src="{{picPath}}" alt="{{picName}}" width="100" height="100">
+  <a href="/post/{{id}}/comment/new">New comment</a>
+  <ul class="comments">
+    {{#each comments as |comment|}}
+      <li>
+      {{>commentPartial comment}}
+      </li>
+    {{/each}}
+  </ul>
+</div>

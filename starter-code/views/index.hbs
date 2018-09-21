@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-  </body>
-</html>
+{{#if username}}
+  <a href="/post/new">New post</a>
+{{/if}}
+<ul>
+{{#each posts}}
+ <li>
+  {{>postPartial this}}
+ </li>
+{{/each}}
+</ul>
