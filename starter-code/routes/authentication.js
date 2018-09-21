@@ -3,7 +3,7 @@ const passport   = require('passport');
 const router     = express.Router();
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 const multer = require("multer");
-const upload = multer({ dest: './public/uploads/' });
+const upload = multer({ dest: './public/uploads/'});
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
     res.render('authentication/login', { message: req.flash('error')});
