@@ -1,0 +1,23 @@
+<h1>Welcome to profile page</h1>
+
+{{#each userPosts}}
+<h2>{{this.content}}</h2>
+<img src="{{this.picture.path}}" alt="{{this.picture.originalname}}"> 
+<a href="/show/{{this._id}}">Show</a>
+{{/each}}
+
+<form action="/new" method="post" enctype="multipart/form-data">
+  <div class="form-group"></div>
+  <label for="content">Post content</label>
+  <input type="text" name="content" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="creator">Creator</label>
+    <input type="text" name="creatorId" class="form-control" placeholder={{id}}>
+  </div>
+  <div class="form-group">
+    <label for="picture">Post picture</label>
+    <input type="file" name="picture" class="form-control">
+  </div>
+  <button type="submit">Save post</button>
+</form>
