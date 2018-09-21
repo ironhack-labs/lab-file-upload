@@ -4,7 +4,55 @@
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-  </body>
+  <div class="mainposts">
+    <a href='/signup'>SIGN UP</a>
+    -
+    <a href='/login'>LOG IN</a>
+    -
+    <a href='/logout'>LOG OUT</a>
+    -
+    <a href='/profile'>PROFILE</a>
+
+
+
+{{#each posts}}
+    <img src="{{this.picpath}}" alt="">
+    <p>{{this.content}}</p>
+    {{/each}}
+   
+   {{!-- {{#each posts}}
+    <div class="post">
+      <a href="/new-post/{{this._id}}"><img src="{{this.picPath}}" style="height:200px;width:200px;"alt="Post Image"></a>
+      <h4>By: {{this.creatorId.username}}</h4>
+    </div>
+    {{/each}} --}}
+
+  </div>
 </html>
+
+
+
+
+
+{{!-- {{#each posts}}
+    <img src="{{this.picpath}}" alt="">
+    <p>{{this.content}}</p>
+    {{/each}} --}}
+
+  {{!-- -
+    <a href='/post'>LIST</a> --}}
+ {{!-- <a href="/post/new">NEW POST</a> --}}
+
+
+  {{!-- <body>
+    <h1>Welcome to IronTumblr</h1>
+    <a href="/login">login</a>
+    <a href="/signup">sign up</a>
+    <a href="/logout">logout</a>
+    <a href="/profile">Profile</a>
+    {{#each posts}}
+    <img src="{{this.picpath}}" alt="">
+    <p>{{this.content}}</p>
+    {{/each}}
+  </body> --}}
+  
