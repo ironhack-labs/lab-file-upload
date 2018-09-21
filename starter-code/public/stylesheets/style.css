@@ -4,5 +4,40 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+.feed {
+  display: flex;
+  width: 100vw;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+
+.post {
+  padding: 30px;
+}
+
+.post a {
+  display: block;
+}
+
+h1{
+  text-align: center;
+}
+
+.post p {
+}
+nav {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+li {
+  text-decoration: none;
+  display: inline-block;
+  padding: 20px;
+  font-size: 20px;
 }

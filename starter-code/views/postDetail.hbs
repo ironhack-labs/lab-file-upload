@@ -1,0 +1,20 @@
+<div class="post">
+      <img src={{post.imgPath}} alt={{post.imgName}} width="400px">
+      <p>{{post.content}}</p>
+      <div>
+            <form action="/comment/{{post._id}}" method="post">
+                  <div class="form-group">
+                        <label for="comment">Post a Comment</label>
+                        <input type="text" name="comment" class="form-control">
+                  </div>
+            </form>
+      </div>
+      <div>
+            <h3>Comments on this post:</h3>
+            {{#each comm}}
+            <p>{{content}}</p>
+            <p><b>by {{authorId}}</b></p>
+            {{/each}}
+      </div>
+</div>
+<a href="/">Back</a>
