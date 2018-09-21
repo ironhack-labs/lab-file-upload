@@ -1,0 +1,42 @@
+.header {
+	border-bottom: 2px solid $medium-black;
+}
+.navigation {
+	margin-top: 1.5rem;
+	ul {
+		display: flex;
+		list-style-type: none;
+		padding-left: 0;
+	}
+	li {
+		&:not(:last-child){
+			&:after{
+				content: "|";
+				font-weight: 600;
+			}
+		}
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	a {
+		padding: 10px 20px 10px 0;
+		font-size: 1.05rem;
+
+	}
+}
+
+.form-wrap {
+	margin-top: 3rem;
+	.form-title {
+		margin-bottom: 2rem;
+	}
+	.btn {
+		margin-top: 1.5rem;
+	
+	}
+}
+
+.btn-file  {
+	   color: #999;
+	   vertical-align: middle;
+}
