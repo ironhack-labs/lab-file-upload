@@ -1,31 +1,47 @@
 const express    = require('express');
 const passport   = require('passport');
+const multer     = require('multer');
 const router     = express.Router();
+const User       = require('../models/user');
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+const bcrypt = require('bcrypt');
+const bcryptSalt = 10;
+const upload = multer({ dest: './public/uploads/' });
+
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
     res.render('authentication/login', { message: req.flash('error')});
 });
 
-router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
-  successRedirect : '/',
-  failureRedirect : '/login',
-  failureFlash : true
-}));
-
-router.get('/signup', ensureLoggedOut(), (req, res) => {
-    res.render('authentication/signup', { message: req.flash('error')});
+router.post('/login', ensureLoggedOut(), (req, res) =>  {
+    res.render('authentication/login');
 });
 
-router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
-  successRedirect : '/',
-  failureRedirect : '/signup',
-  failureFlash : true
-}));
+router.get('/signup', ensureLoggedOut(), (req, res) => {
+    //res.render('authentication/signup', { message: req.flash('error')});
+    User.find((photo => {
+        res.render('authentication/signup', {photo});
+    }))
+    });
+
+router.post('/signup', upload.single('photo'), (req, res) => {
+  let user = new User({
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
+      picName: req.body.name,
+      path: `/uploads/${req.file.filename}`,
+      picOriginalName: req.file.photo
+  });
+  user.save(e => {
+      res.redirect('/');
+  });
+});
 
 router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
     res.render('authentication/profile', {
-        user : req.user
+        user : req.body.username
+
     });
 });
 
@@ -33,5 +49,8 @@ router.get('/logout', ensureLoggedIn('/login'), (req, res) => {
     req.logout();
     res.redirect('/');
 });
+
+
+
 
 module.exports = router;
