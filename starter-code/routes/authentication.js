@@ -101,10 +101,11 @@ router.get("/:id", ensureLoggedIn("/login"), (req, res) => {
   let post = Post.findOne({ _id: postId })
     .then(p => {
       post = p;
-      Comment.find({ imgId: postId });
+      return Comment.find({ imgId: postId });
     })
     .then(comm => {
-      res.render("postDetail", { post, comm });
+      console.log(comm);
+      res.render("postDetail", {post, comm });
     });
 });
 
