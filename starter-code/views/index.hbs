@@ -1,10 +1,34 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-  </body>
-</html>
+
+
+  <h1>Welcome to IronTumblr</h1>
+  <a href="/login">Log In</a>
+  <a href="/signup">Sign Up</a>
+  <a href="/profile">Access Profile</a>
+  <a href="/logout">Log out</a>
+  <br>
+  <br>
+  <a href="/new">New Post</a>
+  {{#each e}}
+  <div class="text-center img-box">
+    <img src="{{this.photo.path}}" class="rounded img-fluid">
+    <p>{{this.content}}</p>
+    <div class="col-sm-6 centered-form">
+      <form action="/" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+           <label for="content">Author</label>
+          <input type="text" name="Author" class="form-control">
+          <label for="content">Comment</label>
+          <input type="textarea" name="content" class="form-control">
+        </div>
+        <input type="file" name="photo">
+        <button type="submit">Submit comment</button>
+        <div>
+          <section>
+          </section>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+  </div>
+  {{/each}}
