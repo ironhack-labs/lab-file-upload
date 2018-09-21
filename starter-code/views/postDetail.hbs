@@ -9,5 +9,12 @@
                   </div>
             </form>
       </div>
+      <div>
+            <h3>Comments on this post:</h3>
+            {{#each comm}}
+            <p>{{content}}</p>
+            <p><b>by {{authorId}}</b></p>
+            {{/each}}
+      </div>
 </div>
 <a href="/">Back</a>

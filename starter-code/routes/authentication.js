@@ -98,16 +98,17 @@ router.get("/profile", ensureLoggedIn("/login"), (req, res) => {
 });
 router.get("/:id", ensureLoggedIn("/login"), (req, res) => {
   let postId = req.params.id;
-  Post.findOne({_id: postId})
-  /* .then(p=>{
-    let post = post;
-    Comment.find({imgId: postId})
-  }) */
-  .then(post => {res.render("postDetail", { post });
-  });
+  let post = Post.findOne({ _id: postId })
+    .then(p => {
+      post = p;
+      Comment.find({ imgId: postId });
+    })
+    .then(comm => {
+      res.render("postDetail", { post, comm });
+    });
 });
 
-/* router.post("/comment/:id", ensureLoggedIn("/login"), function(req,res) {
+router.post("/comment/:id", ensureLoggedIn("/login"), function(req, res) {
   let currUser = req.user;
   let postId = req.params.id;
 
@@ -116,14 +117,12 @@ router.get("/:id", ensureLoggedIn("/login"), (req, res) => {
     authorId: currUser._id,
     imgId: postId
   });
-  comm.save()
-  .then(comm =>
-    res.redirect(`/${postId}`)
-    .catch(err => {
+  comm.save().then(comm =>
+    res.redirect(`/${postId}`).catch(err => {
       console.log(err);
     })
   );
-}); */
+});
 
 router.get("/logout", ensureLoggedIn("/login"), (req, res) => {
   req.logout();
