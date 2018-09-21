@@ -23,11 +23,7 @@ router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', 
   failureFlash : true
 }));
 
-router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
-    res.render('authentication/profile', {
-        user : req.user
-    });
-});
+
 
 router.get('/logout', ensureLoggedIn('/login'), (req, res) => {
     req.logout();
