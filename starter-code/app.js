@@ -7,12 +7,16 @@ const bodyParser         = require('body-parser');
 const passport           = require('passport');
 const LocalStrategy      = require('passport-local').Strategy;
 const User               = require('./models/user');
+const Post               = require('./models/post');
 const bcrypt             = require('bcrypt');
 const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
-const hbs                = require('hbs')
+const hbs                = require('hbs');
+const multer  = require('multer');
+const upload = multer({ dest: './public/uploads/' });
+
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
@@ -27,6 +31,18 @@ app.use(session({
   saveUninitialized: true,
   store: new MongoStore( { mongooseConnection: mongoose.connection })
 }))
+
+/* app.use(
+  session({
+    secret: "DonPepe",
+    resave: true,
+    saveUninitialized: true,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60 // 1 day
+    })
+  })
+); */
 
 passport.serializeUser((user, cb) => {
   cb(null, user.id);
@@ -64,21 +80,21 @@ passport.use('local-signup', new LocalStrategy(
             'username': username
         }, (err, user) => {
             if (err){ return next(err); }
-
             if (user) {
                 return next(null, false);
             } else {
-                // Destructure the body
                 const {
                   username,
                   email,
                   password
                 } = req.body;
+
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  photo: `/uploads/${req.file.filename}`
                 });
 
                 newUser.save((err) => {
@@ -101,8 +117,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const postRoutes = require('./routes/post');
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/post', postRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

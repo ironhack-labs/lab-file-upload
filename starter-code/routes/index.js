@@ -1,9 +1,18 @@
-const express = require('express');
-const router  = express.Router();
+const express = require("express");
+const router = express.Router();
+const multer = require("multer");
+const { ensureLoggedIn, ensureLoggedOut } = require("connect-ensure-login");
+const upload = multer({ dest: "./public/uploads/" });
+const Commen = require("../models/commen");
+const Post = require("../models/post");
 
-/* GET home page. */
+//INDEX
 router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Express - Generated with IronGenerator' });
-});
+    console.log("ENTRA GET");
+    Post.find().populate('creatorId').then(posts => {
+        console.log(posts);
+        res.render('index', {posts});
+    }).catch(e => console.log(e))
+})
 
 module.exports = router;
