@@ -2,26 +2,31 @@ const express    = require('express');
 const passport   = require('passport');
 const router     = express.Router();
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+const User = require('../models/User')
+const multer = require ('multer')
+const uploads = multer({dest:'public/uploads'})
 
-router.get('/login', ensureLoggedOut(), (req, res) => {
-    res.render('authentication/login', { message: req.flash('error')});
-});
 
-router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
-  successRedirect : '/',
-  failureRedirect : '/login',
-  failureFlash : true
-}));
+router.get('/login',(req, res, next)=>{
+    res.render('authentication/login')
+  })
+  
+  router.post('/login',passport.authenticate('local'),(req, res, next)=>{
+    res.redirect('authentication/profile')
+  })
 
-router.get('/signup', ensureLoggedOut(), (req, res) => {
-    res.render('authentication/signup', { message: req.flash('error')});
-});
+router.get('/signup',(req, res, next)=>{
+    res.render('authentication/signup')
+  })
 
-router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
-  successRedirect : '/',
-  failureRedirect : '/signup',
-  failureFlash : true
-}));
+  router.post('/signup',uploads.single('image'),(req, res, next)=>{
+    if(req.file)req.body['photoURL'] = `uploads/${req.file.filename}`
+    User.register(req.body,req.body.password)
+      .then(user=>{
+        res.redirect('authentication/login')
+      }).catch(e=>console.log(e))
+  })
+
 
 router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
     res.render('authentication/profile', {
@@ -35,3 +40,5 @@ router.get('/logout', ensureLoggedIn('/login'), (req, res) => {
 });
 
 module.exports = router;
+
+
