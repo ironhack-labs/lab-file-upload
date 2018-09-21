@@ -10,8 +10,13 @@ const PostSchema = Schema({
   },
   comments: [
     {
-    authorId: String, 
-    content: String}
+      authorId: String,
+      content: String,
+      Photo: {
+        path: String,
+        originalname: String
+      }
+    }
   ]
 });
 
