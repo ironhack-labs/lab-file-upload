@@ -13,7 +13,7 @@ const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const hbs                = require('hbs')
-
+const multer             = require('multer');
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
 const app = express();
