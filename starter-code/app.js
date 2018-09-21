@@ -40,17 +40,23 @@ passport.deserializeUser((id, cb) => {
 });
 
 passport.use('local-login', new LocalStrategy((username, password, next) => {
+    console.log('1');
+    
   User.findOne({ username }, (err, user) => {
+    console.log('2');
+    
     if (err) {
+      console.log('3');
       return next(err);
     }
     if (!user) {
+      console.log('4');
       return next(null, false, { message: "Incorrect username" });
     }
     if (!bcrypt.compareSync(password, user.password)) {
+      console.log('5', password, user.password);
       return next(null, false, { message: "Incorrect password" });
     }
-
     return next(null, user);
   });
 }));
@@ -74,6 +80,7 @@ passport.use('local-signup', new LocalStrategy(
                   email,
                   password
                 } = req.body;
+
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
