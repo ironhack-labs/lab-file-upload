@@ -74,11 +74,20 @@ passport.use('local-signup', new LocalStrategy(
                   email,
                   password
                 } = req.body;
+                const {
+                  originalname,
+                  path 
+                } = req.file;
+
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  photo: {
+                    originalname,
+                    path
+                  }
                 });
 
                 newUser.save((err) => {
@@ -89,7 +98,6 @@ passport.use('local-signup', new LocalStrategy(
         });
     });
 }));
-
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
@@ -97,7 +105,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
