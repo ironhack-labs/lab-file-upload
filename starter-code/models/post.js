@@ -9,11 +9,11 @@ const PostSchema = Schema({
     originalname:String
   },
   comments:{
-    content: String,
-    creatorId: String,
+    content: {trype :String ,default:""},
+    creatorId: {trype :String ,default:""},
     photo:{
-      path: String,
-      originalname:String
+      path: {trype :String ,default:""},
+      originalname:{trype :String ,default:""}
     }}
 });
 
