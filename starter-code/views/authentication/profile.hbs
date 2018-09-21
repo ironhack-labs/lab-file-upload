@@ -1,0 +1,9 @@
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <input type="text" name="name">
+      <input type="file" name="photo">
+      <input type="submit" value="Save">
+    </form>
+      <div>
+        <h4>{{this.name}}</h4>
+        <img src="{{this.path}}">
+      </div>
