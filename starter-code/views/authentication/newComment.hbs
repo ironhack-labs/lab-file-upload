@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    {{ message }}
+    <div class="col-sm-6 centered-form">
+      <form action="/newComment/{{commentId}}" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="content">Content</label>
+          <input type="textarea" name="content" class="form-control">
+        </div>
+        <h2>Upload your photo</h2>
+        <input type="file" name="photo">
+        <button type="submit">Submit</button>
+        <div>
+          <section>
+          </section>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

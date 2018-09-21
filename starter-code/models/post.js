@@ -7,7 +7,14 @@ const PostSchema = Schema({
   photo:{
     path: String,
     originalname:String
-  }
+  },
+  comments:{
+    content: String,
+    creatorId: String,
+    photo:{
+      path: String,
+      originalname:String
+    }}
 });
 
 const Post = mongoose.model('Post', PostSchema);

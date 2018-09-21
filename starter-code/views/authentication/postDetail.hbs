@@ -1,0 +1,9 @@
+
+{{#each comment.comments}}
+<div class="text-center img-box">
+    <h3>{{this.content}}</h3>
+    <h4>{{this.creatorId}}</h4>
+    <img src="{{this.photo.path}}" class="rounded img-fluid">
+  </div>
+{{/each}}
+<a href="/newComment/{{comment.id}}">New Comment</a>

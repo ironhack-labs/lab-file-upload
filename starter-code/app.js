@@ -74,10 +74,9 @@ passport.use('local-signup', new LocalStrategy(
                   email,
                   password
                 } = req.body;
-                console.log(req.file)
                 const {
                   originalname,
-                  path
+                  path 
                 } = req.file;
 
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
@@ -106,7 +105,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
