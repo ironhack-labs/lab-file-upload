@@ -8,22 +8,26 @@
 
 <body>
   <h1>Welcome to IronTumblr</h1>
-  <div class="mainposts">
+  <button class="btn btn-danger">
     <a href='/signup'>SIGN UP</a>
-    -
+  </button>
+  <button class="btn btn-danger">
     <a href="/post/new">NEW POST</a>
-    -
+  </button>
+  <button class="btn btn-danger">
     <a href='/login'>LOG IN</a>
-    -
+  </button>
+  <button class="btn btn-danger">
     <a href='/logout'>LOG OUT</a>
-    -
-    <a href='/post'>LIST</a>
-    -
+  </button>
+  <button class="btn btn-danger">
     <a href='/profile'>PROFILE</a>
+  </button>
+  <div class="mainposts">
 
     {{#each posts}}
     <div class="post">
-      <a href="/post/{{this._id}}"><img src="{{this.picPath}}" style="height:200px;width:200px;"alt="Post Image"></a>
+      <a href="/post/{{this._id}}"><img src="{{this.picPath}}" alt="Post Image"></a>
       <h4>By: {{this.creatorId.username}}</h4>
     </div>
     {{/each}}

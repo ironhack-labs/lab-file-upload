@@ -36,17 +36,11 @@ router.post('/new', [ensureLoggedIn('/login'), upload.single('photo')], (req, re
 
 //SHOW
 router.get('/:postId', (req, res, next) => {
-    console.log(Post)
-    Post.findById(req.params.postId)
-
-        .populate({ 
-            path: 'creatorId',
-            populate: {
-              path: 'comments.authorId',
-              model: 'Commen'
-            } 
-         })
-
+    Post.findById(req.params.postId).populate('creatorId').populate('comments.authorId').then(post => {
+        Commen.find().populate('authorId')
+        console.log(post)
+        return post;
+    })
     .then(post => {
         res.render('post/show', {post})
     }).catch(e => console.log(e))
@@ -55,15 +49,23 @@ router.get('/:postId', (req, res, next) => {
 
 //CREATE COMMENT
 router.post('/new/:postId',[ensureLoggedIn('/login'), upload.single('photo')], (req, res, next) => {
+    let imagePath;
+    let imageName;
+    if (req.file){
+        imagePath = `/uploads/${req.file.filename}`;
+        imageName = req.file.filename;
+    } /* else {
+        imagePath = '';
+        imageName = '';
+    } */
     let content = req.body.texto;
     let authorId = req.user._id;
-    let imagePath = `/uploads/${req.file.filename}`;
-    let imageName = req.file.filename;
+    
     let comment = {content, authorId, imagePath, imageName};
-    //comment.populate('authorId');
     Post.findByIdAndUpdate(req.params.postId, {$push: { comments: comment }}
     , { 'new': true}).populate('creatorId').then( (post) => {
         console.log("Comment Created");
+        Commen.find().populate('authorId');
         let stringId = encodeURIComponent(post._id);
         res.redirect('/post/'+stringId);
       })

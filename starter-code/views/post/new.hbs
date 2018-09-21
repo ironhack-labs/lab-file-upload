@@ -1,10 +1,25 @@
-<form action="/post/new" method="post" enctype="multipart/form-data">
-    
-    <label for="">Content:</label>
-    <input type="textarea" name="content">
+<div class="row">
+    {{ message }}
+    <div class="col-sm-6 centered-form">
 
-    <label for="photo">Photo</label>
-    <input type="file" name="photo" class="form-control">
+        <form action="/post/new" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="">Content:</label>
+                <textarea class="form-control rounded-0" name="content" id="exampleFormControlTextarea1" rows="10"></textarea>
+                
 
-    <button type="submit">Create POST</button>
-</form>
+            </div>
+            <div class="form-group">
+                <label for="photo">Photo</label>
+                <input type="file" name="photo" class="form-control">
+
+            </div>
+
+            <button class="btn btn-primary" type="submit">Create POST</button>
+        </form>
+    </div>
+</div>
+<button class="btn btn-danger">
+<a href="/post">BACK TO LIST</a>
+
+</button>

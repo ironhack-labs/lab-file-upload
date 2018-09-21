@@ -1,10 +1,11 @@
 <h1>MY PROFILE</h1>
 
 <div class="profile">
-    <ul>
-        <li><img src="{{user.photo}}" style="height:100px;width:100px;" alt=""></li>
-        <li><span>{{user.username}}</span></li>
-        <li><p>{{user.email}}</p></li>
-    </ul>
+        <img src="{{user.photo}}" alt="">
+        <h3>Username: {{user.username}}</h3>
+        <h4>Email: {{user.email}}</h4>
 </div>
+<button class="btn btn-danger">
 <a href="/post">BACK TO LIST</a>
+
+</button>
