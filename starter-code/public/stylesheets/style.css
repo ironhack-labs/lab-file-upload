@@ -9,7 +9,8 @@ a {
 
 .feed {
   display: flex;
-  flex-wrap: nowrap;
+  width: 100vw;
+  flex-wrap: wrap;
   align-content: center;
   justify-content: center;
 }
@@ -20,6 +21,10 @@ a {
 
 .post a {
   display: block;
+}
+
+h1{
+  text-align: center;
 }
 
 .post p {

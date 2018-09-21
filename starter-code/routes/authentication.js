@@ -6,7 +6,7 @@ const multer = require("multer");
 const Post = require("../models/Post");
 const ProfilePic = require("../models/ProfilePic");
 const User = require("../models/user");
-const Comment = require("../models/Comment")
+const Comment = require("../models/Comment");
 const upload = multer({ dest: "./public/uploads/" });
 
 router.get("/login", ensureLoggedOut(), (req, res) => {
@@ -53,10 +53,13 @@ router.post(
     pic
       .save()
       .then(pic => {
-        User.findOneAndUpdate({ _id: req.user.id }, { imgPath: pic.imgPath }, {new:true})
-        .then(user => {
+        User.findOneAndUpdate(
+          { _id: req.user.id },
+          { imgPath: pic.imgPath },
+          { new: true }
+        ).then(user => {
           res.redirect("/profile");
-        })
+        });
       })
       .catch(err => {
         console.log(err);
@@ -68,27 +71,25 @@ router.get("/post", ensureLoggedIn("/login"), (req, res) => {
   res.render("authentication/post");
 });
 
-router.post(
-  "/post",
-  [upload.single("pic"), ensureLoggedIn("/login")],
-  function(req, res) {
-    let currUser = req.user;
-    let picFile = req.file.filename;
+router.post("/post", [upload.single("pic"), ensureLoggedIn("/login")], function(
+  req,
+  res
+) {
+  let currUser = req.user;
+  let picFile = req.file.filename;
 
-    const pic = new Post({
-      authorId: currUser._id,
-      content: req.body.content || "",
-      imgPath: `/uploads/${picFile}`,
-      imgName: `${picFile}`
-    });
-    pic
-      .save()
-      .then(pic => res.redirect("/")
-      .catch(err => {
-        console.log(err);
-      }))
-  }
-);
+  const pic = new Post({
+    authorId: currUser._id,
+    content: req.body.content || "",
+    imgPath: `/uploads/${picFile}`,
+    imgName: `${picFile}`
+  });
+  pic.save().then(pic =>
+    res.redirect("/").catch(err => {
+      console.log(err);
+    })
+  );
+});
 
 router.get("/profile", ensureLoggedIn("/login"), (req, res) => {
   res.render("authentication/profile", {
@@ -96,9 +97,33 @@ router.get("/profile", ensureLoggedIn("/login"), (req, res) => {
   });
 });
 router.get("/:id", ensureLoggedIn("/login"), (req, res) => {
-  let post = req.params.id;
-  res.render("postDetail", {post});
+  let postId = req.params.id;
+  Post.findOne({_id: postId})
+  /* .then(p=>{
+    let post = post;
+    Comment.find({imgId: postId})
+  }) */
+  .then(post => {res.render("postDetail", { post });
+  });
 });
+
+/* router.post("/comment/:id", ensureLoggedIn("/login"), function(req,res) {
+  let currUser = req.user;
+  let postId = req.params.id;
+
+  const comm = new Comment({
+    content: req.body.comment,
+    authorId: currUser._id,
+    imgId: postId
+  });
+  comm.save()
+  .then(comm =>
+    res.redirect(`/${postId}`)
+    .catch(err => {
+      console.log(err);
+    })
+  );
+}); */
 
 router.get("/logout", ensureLoggedIn("/login"), (req, res) => {
   req.logout();
