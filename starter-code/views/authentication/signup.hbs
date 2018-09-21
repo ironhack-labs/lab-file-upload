@@ -17,6 +17,15 @@
         </div>
         <button type="submit">Signup</button>
       </form>
+      <section>
+        <h4>Upload your photo</h4>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+          <label>Picname: </label>
+          <input type="text" name="name">
+          <input type="file" name="photo">
+          <input type="submit" value="Save">
+        </form>
+      </section>
     </div>
   </div>
 </div>
