@@ -6,5 +6,19 @@
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
+    {{#if user}}
+    <a href="/profile" class="btn btn-light">Profile</a>
+    {{else}}
+    <a href="/signup" class="btn btn-light">Sign up</a>
+    <a href="/login" class="btn btn-light">Log in</a>
+    {{/if}}
+
+    <h3>Feed:</h3>
+    {{#each posts}}
+    <p>By: {{creatorId.username}}<img src="{{creatorId.profilePicture.path}}" height="50px" style="object-fit: contain"></p>
+    <p>{{this.content}}</p>
+    <img src="{{this.picpath}}" alt="{{this.picname}}">
+    <a href="/new-comment/{{this._id}}" class="btn btn-light">New comment</a>
+    {{/each}}
   </body>
 </html>

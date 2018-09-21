@@ -1,0 +1,15 @@
+<h1>Post:</h1>
+<p>{{post.content}}</p>
+<img src="{{post.picpath}}" alt="{{post.picname}}">
+<h1>New Comment</h1>
+<form action="/new-comment" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="comment">Comment</label>
+        <input type="textarea" name="comment" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="photo">Picture</label>
+        <input type="file" name="photo" class="form-control-file">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit comment</button>
+</form>

@@ -1,0 +1,11 @@
+<h1>Your profile: {{user.username}}</h1>
+<img src="{{user.profilePicture.path}}" alt="{{user.profilePicture.originalname}}">
+<a href="/new-post" class="btn btn-dark">Create new post</a>
+<a href="/" class="btn btn-dark">Feed</a>
+<a href="/logout" class="btn btn-dark">Log out</a>
+
+<h3>Your posts:</h3>
+{{#each posts}}
+    <p>{{this.content}}</p>
+    <img src="{{this.picpath}}" alt="{{this.picname}}">
+{{/each}}
