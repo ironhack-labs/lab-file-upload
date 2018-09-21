@@ -1,8 +1,32 @@
+
+
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+nav {
+  padding: 15px;
+  background-color: #f2f2f2;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+.profilePic {
+  margin-top: -15px;
+  height: 150px;
+}
+
+.postImage {
+  margin: 20px auto;
+  width: 90%;
+}
+
+.card {
+  margin: 10px;
 }
