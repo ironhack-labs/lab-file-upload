@@ -7,6 +7,24 @@
     <link rel="stylesheet" href="/stylesheets/style.css">
   </head>
   <body>
+      <h1>Welcome to IronTumblr</h1>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li>
+          {{#if username}}
+          <a href="/profile">Profile</a>
+          <li><a href="/logout">Logout</a></li>
+          {{else}}
+          <a href="/login">Login</a>
+          {{/if}}
+          </li>
+        </ul>
+        {{#if username}}
+        <ul><li><img src="{{image}}" alt="Profile image" width="50" height="50">
+          {{username}}</li></ul>
+        {{/if}}
+      </nav>
     <div class="main-container">
       {{{body}}}
     </div>
