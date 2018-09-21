@@ -14,14 +14,23 @@
 <nav>
   <ul class="nav justify-content-end">
     <li class="nav-item">
-      <a class="nav-link" href="/login">Login</a>
+      <a class="nav-link" href="/">Home</a>
     </li>
+    {{#if user}}
     <li class="nav-item">
       <a class="nav-link" href="/logout">Logout</a>
     </li>
+    {{else}}
+    <li class="nav-item">
+      <a class="nav-link" href="/login">Login</a>
+    </li>
+    {{/if}}
+    {{#if user}}
+    {{else}}
     <li class="nav-item">
       <a class="nav-link" href="/signup">Signup</a>
     </li>
+    {{/if}}
     <li class="nav-item">
       <a class="nav-link" href="/profile">My Profile</a>
     </li>

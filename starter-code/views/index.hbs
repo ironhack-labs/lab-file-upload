@@ -1,22 +1,29 @@
 <div class="intro">
   <div class="text-center">
+    {{#if user}}
     <img class="img-thumbnail profilePic" src="{{user.imgPath}}" alt="">
+    {{else}}
+    <img class="img-thumbnail profilePic" src="http://res.cloudinary.com/dkba50mlz/image/upload/v1537479637/tumblrPractice/Screen%20Shot%202018-09-20%20at%2023.39.45.png.png" alt="">
+    {{/if}}
   </div>
 </div>
 <h1>Multi User Tumblr Site</h1>
 
 {{#if user}}
 <a type="button" class="btn" href="/postImage">Post Image</a>
+{{else}}
 {{/if}}
 
+</br>
+
+<div class="postImage d-flex flex-wrap justify-content-around">
 {{#each posts}}
-<div class="postCard">
   <div class="card" style="width: 18rem;">
     <img class="card-img-top" src="{{this.picPath}}" alt="Card image cap">
     <div class="card-body">
+      <p class="card-text"><strong>By: </strong>{{this.creatorID}}</p>
       <p class="card-text">{{this.content}}</p>
     </div>
   </div>
-</div>
-
 {{/each}}
+</div>

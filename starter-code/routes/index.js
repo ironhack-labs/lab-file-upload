@@ -9,7 +9,6 @@ router.get('/', (req, res, next) => {
 
   ImagePost.find()
   .then(posts => {
-    console.log(posts)
     res.render('index', {posts, user: req.user})
   })
 });

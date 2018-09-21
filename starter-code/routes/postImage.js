@@ -13,7 +13,6 @@ router.get('/postImage', ensureLoggedIn('/login'), (req, res) => {
 router.post('/postImage', uploadCloud.single('photo'), (req, res, next) => {
   const content = req.body.imgtext;
   const creatorID = req.user._id;
-  console.log(req.user._id)
   const picPath = req.file.url;
   const picName = req.file.originalname;
   const newPost = new ImagePost({content, creatorID, picPath, picName})
