@@ -17,9 +17,21 @@ a, a:hover {
 form {
   margin-bottom: 3rem; }
 
+input.form-control, textarea.form-control {
+  border: 1px solid #00B7FF; }
+
+hr {
+  border-top: 1px solid #999999; }
+
 .main-container {
   width: 90%;
   margin: 50px auto; }
+
+.btn-primary {
+  background-color: #00B7FF; }
+
+.input-lg {
+  font-size: 1rem; }
 
 .header {
   margin-bottom: 2rem; }
@@ -112,7 +124,7 @@ form {
     position: relative; }
   .post-card .post-card-pic {
     max-width: 330px;
-    max-height: 385px;
+    max-height: 330px;
     overflow: hidden;
     margin: 0 auto; }
     .post-card .post-card-pic img {

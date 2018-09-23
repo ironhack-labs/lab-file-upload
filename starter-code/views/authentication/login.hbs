@@ -1,20 +1,20 @@
 <div class="container-fluid">
 	<div class="row">
+		<h3>Log In</h3>
+		<hr>
 		<div class="col-sm-6">
-			<h3>Log In</h3>
 			<form action="/login" method="post">
 				<div class="form-group">
 					<label for="username">Username</label>
-					<input type="text" name="username" class="form-control">
+					<input type="text" name="username" class="form-control input-lg">
 				</div>
-
 				<div class="form-group">
 					<label for="password">Password</label>
-					<input type="password" name="password" class="form-control">
+					<input type="password" name="password" class="form-control input-lg">
 				</div>
-				<div><p>Don't you have any account yet? <a href="/signup">Sign Up</a></p></div>
-				<button type="submit">Login</button>
+				<button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
 			</form>
+			<div><p>Don't you have any account yet? <a href="/signup">Sign Up</a></p></div>
 		</div>
 	</div>
 </div>

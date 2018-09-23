@@ -3,6 +3,14 @@
 	margin: 50px auto;
 }
 
+.btn-primary {
+	background-color: $light-blue;
+}
+
+.input-lg {
+	font-size: 1rem;
+}
+
 .header {
 	margin-bottom: 2rem;
 	p {
@@ -129,7 +137,7 @@
 	}
 	.post-card-pic {
 		max-width: 330px;
-		max-height: 385px;
+		max-height: 330px;
 		overflow: hidden;
 		margin: 0 auto;
 		img {

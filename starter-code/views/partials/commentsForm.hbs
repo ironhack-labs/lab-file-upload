@@ -1,18 +1,18 @@
 <div class="container-fluid">
 	<div class="row">
+		<h3>New Comment</h3>
+		<hr>
 		<div class="col-sm-6">
-			<h3>New Comment</h3>
-			<hr>
 			<form action="/comments/create/{{_id}}" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="image">Comment Picture</label>
-					<input type="file" name="image" id="image" class="form-control">
+					<input type="file" name="image" id="image" class="form-control input-lg">
 				</div>
 				<div class="form-group">
 					<label for="content">Content</label>
 					<textarea name="content" id="content" cols="30" rows="10" class="form-control"></textarea>
 				</div>
-				<button type="submit">Create Comment</button>
+				<button type="submit" class="btn btn-primary btn-lg btn-block">Create Comment</button>
 			</form>
 		</div>
 	</div>
