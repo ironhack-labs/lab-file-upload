@@ -18,14 +18,14 @@
 
 <div class="row">
 	<div class="posts-wrapper">
-		<div class="col-xs-12 col-md-5">
-			{{#each posts}}
-				{{> post this}}
-			{{else}}
-				<div class="alert alert-info">
-					<p>There are no posts yet! :(</p>
-				</div>
-			{{/each}}
-		</div>
+		{{#each posts}}
+			{{> post this}}
+		{{else}}
+			<div class="col-xs-12">
+			<div class="alert alert-info">
+				<p>There are no posts yet! :(</p>
+			</div>
+			</div>
+		{{/each}}
 	</div>
 </div>
