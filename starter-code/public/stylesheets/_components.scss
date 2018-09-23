@@ -1,0 +1,60 @@
+.main-container {
+	width: 90%;
+	margin: 50px auto;
+}
+
+.greeting {
+	
+	p {
+		font-size: 1.25rem;
+	}
+	.greeting-title {
+		margin-bottom: 1.5rem;
+		display: inline-block;
+		
+		&:after {
+			content: "";
+			height: 3px;
+			margin-top: 5px;
+			background-color: #000;
+			width: 100%;
+			display: block;
+		}
+	}
+	.greeting-name {
+		text-transform: capitalize;
+		font-weight: 600;
+	}
+}
+
+.navigation {
+	margin-top: 1.5rem;
+	margin-bottom: 2.5rem;
+	ul {
+		padding-left: 0;
+		list-style-type: none;
+		display: flex;
+		justify-content: flex-start;
+	}
+	li{
+		border: 2px solid $light-blue;
+		&:first-child {
+			border-left: 4px solid $light-blue;
+		}
+		&:last-child {
+			border-right: 4px solid $light-blue;
+		}
+		
+	}
+	a {
+		padding: 0.5rem 2rem;
+		display: block;
+		text-decoration: none;
+		transition: all 0.5s;
+		&:hover {
+			background-color: $light-blue;
+			color: #fff;
+		}
+	}
+
+}

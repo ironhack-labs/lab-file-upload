@@ -1,8 +1,59 @@
+html {
+  font-size: 16px; }
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+h1 {
+  font-size: 3rem;
+  color: #00B7FF; }
 
 a {
-  color: #00B7FF;
-}
+  color: #00B7FF; }
+
+.main-container {
+  width: 90%;
+  margin: 50px auto; }
+
+.greeting p {
+  font-size: 1.25rem; }
+
+.greeting .greeting-title {
+  margin-bottom: 1.5rem;
+  display: inline-block; }
+  .greeting .greeting-title:after {
+    content: "";
+    height: 3px;
+    margin-top: 5px;
+    background-color: #000;
+    width: 100%;
+    display: block; }
+
+.greeting .greeting-name {
+  text-transform: capitalize;
+  font-weight: 600; }
+
+.navigation {
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem; }
+  .navigation ul {
+    padding-left: 0;
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-start; }
+  .navigation li {
+    border: 2px solid #00B7FF; }
+    .navigation li:first-child {
+      border-left: 4px solid #00B7FF; }
+    .navigation li:last-child {
+      border-right: 4px solid #00B7FF; }
+  .navigation a {
+    padding: 0.5rem 2rem;
+    display: block;
+    text-decoration: none;
+    transition: all 0.5s; }
+    .navigation a:hover {
+      background-color: #00B7FF;
+      color: #fff; }
+
+/*# sourceMappingURL=style.css.map */
