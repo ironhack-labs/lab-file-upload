@@ -1,6 +1,6 @@
 const express    = require('express');
 const router     = express.Router();
-const { ensureLoggedIn } = require('connect-ensure-login');
+const ensureLogin    = require('connect-ensure-login');
 const multer = require("multer");
 const Post = require('../models/Post');
 
@@ -10,10 +10,11 @@ const upload = multer({ dest: `./public/${postPicPath}` });
 
 
 //GET -> /posts
-router.get('/', ensureLoggedIn(), (req, res, next) => {
+router.get('/', ensureLogin.ensureLoggedIn(), (req, res, next) => {
 	Post.find({ creatorId: req.user._id })
 	  	.populate('creatorId')
 	  	.then(posts => {
+			  
 			res.render('post/index', { posts });
 	  	})
 	  	.catch(err => {
@@ -23,11 +24,11 @@ router.get('/', ensureLoggedIn(), (req, res, next) => {
 });
 
 //GET -> /posts/create
-router.get('/create', ensureLoggedIn(), (req, res, next) => {
+router.get('/create', ensureLogin.ensureLoggedIn(), (req, res, next) => {
 	res.render('post/create');
 });
 
-router.post('/create', ensureLoggedIn(), upload.single("post-pic"), (req, res, next) => {
+router.post('/create', ensureLogin.ensureLoggedIn(), upload.single("post-pic"), (req, res, next) => {
 	const { content } = req.body;
 	let picPath;
 	let picName;

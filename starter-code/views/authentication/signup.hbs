@@ -20,11 +20,13 @@
 					<label for="profile-pic">Profile Picture</label>
 					<input type="file" name="profile-pic" id="profile-pic" class="form-control">
 				</div>
-				
-				<div><p>Do you have any account? <a href="/login">Log In</a></p></div>
+				<button type="submit">Create Account</button>
 
-				<button type="submit">Signup</button>
+				<div><p>Do you already have an account? <a href="/login">Log In</a></p></div>
 			</form>
+			{{#if message}}
+				<div class="alert alert-danger">{{ message }}</div>
+			{{/if}}
 		</div>
 	</div>
 </div>

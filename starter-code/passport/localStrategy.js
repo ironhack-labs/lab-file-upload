@@ -1,31 +1,17 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const bcrypt = require("bcrypt");
 const User = require("../models/User");
-
-passport.use("local-login", new LocalStrategy((username, password, next) => {
-    User.findOne({ username })
-	.then( (user)=> {
-		if (!user) { return next(null, false, { message: "Incorrect username" })};
-		if (!bcrypt.compareSync(password, user.password)) {
-			return next(null, false, { message: "Incorrect password" });
-		};
-		return next(null, user);
-	})
-	.catch(e => {
-        console.log(e)
-        next(null, false, {
-            message: e.message
-        })
-  	})
-}));
+const bcrypt = require("bcrypt");
 
 passport.use("local-signup", new LocalStrategy({ passReqToCallback: true },
     (req, username, password, next) => {
+      // To avoid race conditions
       process.nextTick(() => {
         User.findOne({username})
         .then(user => {
-          if (user) { throw new Error("Username already exists.")}
+          if (user) {
+            throw new Error("Username already exists.");
+          }
 
           const { email } = req.body;
           const hashPass = bcrypt.hashSync(
@@ -50,5 +36,21 @@ passport.use("local-signup", new LocalStrategy({ passReqToCallback: true },
         });
       });
     }
-  )
+));
+
+passport.use("local-login", new LocalStrategy((username, password, next) => {
+    User.findOne({ username }, (err, user) => {
+      if (err) {
+        return next(err);
+      }
+      if (!user) {
+        return next(null, false, { message: "Incorrect password or username" });
+      }
+      if (!bcrypt.compareSync(password, user.password)) {
+        return next(null, false, { message: "Incorrect password or username" });
+      }
+
+      return next(null, user);
+    });
+  })
 );
