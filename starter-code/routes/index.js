@@ -1,9 +1,25 @@
 const express = require('express');
+const Post = require('../models/Post');
 const router  = express.Router();
 
-/* GET home page. */
+/* GET home page. ALL THE POSTS*/
 router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Express - Generated with IronGenerator' });
+	  Post.find()
+	  	.populate("creatorId")
+  		.then((posts) => {
+			
+			posts.forEach(post => {
+				if (post.creatorId.username === req.user.username){
+					post.canDelete = true;
+				}
+			});
+			
+	  		res.render('index', { posts:posts, title:'IronTumblr' });
+  		})
+  		.catch((error) => {
+	  		console.log(error)
+  		})
 });
+
 
 module.exports = router;

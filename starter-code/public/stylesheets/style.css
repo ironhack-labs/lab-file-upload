@@ -1,8 +1,191 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+html {
+  font-size: 16px; }
 
-a {
-  color: #00B7FF;
-}
+body {
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+h1 {
+  font-size: 3rem;
+  color: #00B7FF; }
+  h1 a:hover {
+    color: #0092cc;
+    text-decoration: none; }
+
+a, a:hover {
+  color: #00B7FF; }
+
+form {
+  margin-bottom: 3rem; }
+
+input.form-control, textarea.form-control {
+  border: 1px solid #00B7FF; }
+
+hr {
+  border-top: 1px solid #999999; }
+
+.main-container {
+  width: 90%;
+  margin: 50px auto; }
+
+.btn-primary {
+  background-color: #00B7FF; }
+
+form .btn-primary {
+  margin-top: 1.5rem; }
+
+.input-lg {
+  font-size: 1rem; }
+
+.header {
+  margin-bottom: 2rem; }
+  .header p {
+    font-size: 1.25rem; }
+  .header .header-greeting {
+    display: flex;
+    justify-content: flex-start;
+    align-content: center; }
+  .header .header-title {
+    margin-bottom: 1.5rem;
+    display: inline-block; }
+    .header .header-title span {
+      text-transform: capitalize; }
+    .header .header-title:after {
+      content: "";
+      height: 3px;
+      margin-top: 5px;
+      background-color: #000;
+      width: 100%;
+      display: block; }
+  .header .profile-details {
+    align-self: center;
+    font-size: 1rem; }
+    .header .profile-details ul {
+      list-style-type: none; }
+      .header .profile-details ul li {
+        padding-bottom: 0.5rem; }
+      .header .profile-details ul strong {
+        padding-right: 10px; }
+        .header .profile-details ul strong:after {
+          content: ":"; }
+    .header .profile-details .profile-username {
+      text-transform: capitalize; }
+    .header .profile-details .profile-email strong {
+      text-transform: capitalize; }
+
+.profile-pic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 5px solid #00B7FF;
+  overflow: hidden; }
+  .profile-pic img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover; }
+
+.profile-name {
+  align-self: center;
+  margin-left: 20px; }
+  .profile-name span {
+    text-transform: capitalize;
+    font-weight: 600; }
+
+.navigation {
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem; }
+  .navigation ul {
+    padding-left: 0;
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-start; }
+  .navigation li {
+    border: 2px solid #00B7FF; }
+    .navigation li:first-child {
+      border-left: 4px solid #00B7FF; }
+    .navigation li:last-child {
+      border-right: 4px solid #00B7FF; }
+  .navigation a {
+    padding: 0.5rem 2rem;
+    display: block;
+    text-decoration: none;
+    transition: all 0.5s; }
+    .navigation a:hover {
+      background-color: #00B7FF;
+      color: #fff; }
+
+.post-card {
+  margin-bottom: 1.5rem; }
+  .post-card figure {
+    margin: 0 auto; }
+  .post-card figcaption {
+    max-width: 330px;
+    background-color: #f4f4f4;
+    box-sizing: border-box;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    margin: 0 auto;
+    position: relative; }
+  .post-card .post-card-pic {
+    max-width: 330px;
+    max-height: 330px;
+    overflow: hidden;
+    margin: 0 auto; }
+    .post-card .post-card-pic img {
+      max-width: 100%;
+      height: auto;
+      display: block; }
+  .post-card .post-card-text {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    color: #404040; }
+  .post-card .post-actions {
+    position: absolute;
+    bottom: 1rem;
+    right: 1.5rem; }
+    .post-card .post-actions > div {
+      display: inline-block; }
+      .post-card .post-actions > div a {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        display: inline-block; }
+    .post-card .post-actions .delete:before {
+      content: "|"; }
+    .post-card .post-actions .delete a {
+      color: #e60000; }
+
+.comment-card {
+  background-color: #f4f4f4;
+  margin-bottom: 1rem;
+  min-height: 6rem;
+  padding: 1rem; }
+  .comment-card .profile-pic {
+    width: 60px;
+    height: 60px;
+    border: 4px solid #404040; }
+  .comment-card figure {
+    margin-bottom: 1.5rem; }
+  .comment-card .comment-content {
+    background-color: #f9f9f9;
+    padding: 1rem;
+    display: flex; }
+  .comment-card .comment-image {
+    width: 100px;
+    height: 100px;
+    overflow: hidden; }
+    .comment-card .comment-image img {
+      width: 100%;
+      height: auto; }
+  .comment-card .comment-text {
+    padding-left: 1rem; }
+
+@media screen and (min-width: 640px) {
+  figure {
+    display: flex; }
+  .post-card .post-card-pic {
+    margin: 0 0; }
+  .post-card figcaption {
+    max-width: 100%;
+    width: calc(100% - 330px);
+    margin: 0 0 0 1rem; } }
+
+/*# sourceMappingURL=style.css.map */

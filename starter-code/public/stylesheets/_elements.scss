@@ -1,0 +1,34 @@
+html {
+	font-size: $font-base;
+}
+
+body {
+	font-family: $main-font;
+}
+
+h1 {
+	font-size: 3rem;
+	color: $light-blue;
+	a{
+		&:hover{
+			color: darken($light-blue, 10%);
+			text-decoration: none;
+		}
+	}
+}
+
+a, a:hover {
+	color: $light-blue;
+}
+
+form {
+	margin-bottom: 3rem;
+}
+
+input.form-control, textarea.form-control {
+	border: 1px solid $light-blue;
+}
+
+hr {
+	border-top: 1px solid #999999;
+}

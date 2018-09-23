@@ -1,0 +1,24 @@
+<div class="col-xs-12">
+	<div class="post-card">
+		<figure>
+			<div class="post-card-pic">
+				<img src="{{picPath}}" alt="{{picName}}">		
+			</div>
+			<figcaption>
+				<h4>Author: {{creatorId.username}}</h4>
+				<h4>{{username}}</h4>
+				<p class="post-card-text">{{content}}</p>
+				<div class="post-actions">
+					<div class="view">
+						<a href="/posts/{{_id}}">View post</a>
+					</div>
+					{{#if canDelete}}
+						<div class="delete">
+							<a href="/posts/delete/{{_id}}">Delete post</a>
+						</div>
+					 {{/if}}
+				</div>
+			</figcaption>
+		</figure>	
+	</div>
+</div>

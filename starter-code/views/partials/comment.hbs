@@ -1,0 +1,25 @@
+<div class="comment-card">
+
+	<figure>
+		{{#if imageName}}
+		<div class="profile-pic">
+			<img src="/uploads/users/{{authorId.profilePic}}" alt="">
+		</div>
+		{{/if}}
+		<figcaption class="profile-name">
+			{{authorId.username}}
+		</figcaption>
+	</figure>
+
+	<div class="comment-content">
+		{{#if authorId.profilePic}}
+			<div class="comment-image">
+				<img src="{{imagePath}}" alt="{{imageName}}">
+			</div>
+		{{/if}}
+		<div class="comment-text">
+			<p>{{content}}</p>
+		</div>	
+	</div>
+
+</div>

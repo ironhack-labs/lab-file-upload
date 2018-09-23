@@ -1,0 +1,233 @@
+.main-container {
+	width: 90%;
+	margin: 50px auto;
+}
+
+.btn-primary {
+	background-color: $light-blue;
+}
+
+form {
+	.btn-primary {
+		margin-top: 1.5rem;
+	}
+}
+
+.input-lg {
+	font-size: 1rem;
+}
+
+.header {
+	margin-bottom: 2rem;
+	p {
+		font-size: 1.25rem;
+	}
+
+	.header-greeting {
+		display: flex;
+		justify-content: flex-start;
+		align-content: center;
+	}
+
+	.header-title {
+		margin-bottom: 1.5rem;
+		display: inline-block;
+		span {
+			text-transform: capitalize;
+		}
+		&:after {
+			content: "";
+			height: 3px;
+			margin-top: 5px;
+			background-color: #000;
+			width: 100%;
+			display: block;
+		}
+	}
+
+	.profile-details {
+		align-self: center;
+		font-size: 1rem;
+		ul {
+			list-style-type: none;
+			li {
+				padding-bottom: 0.5rem;
+			}
+			strong{
+				padding-right: 10px;
+				&:after {
+					content: ":";
+				}
+			}
+		}
+		.profile-username {
+			text-transform: capitalize;
+		}
+		.profile-email {
+			strong {
+				text-transform: capitalize;
+			}
+		}
+	}
+}
+
+// SHARED FOR POSTS AND COMMENTS
+.profile-pic {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	border: 5px solid $light-blue;
+	overflow: hidden;
+	img {
+		max-width: 100%;
+		height: auto;
+		object-fit: cover;	
+	}
+}
+
+.profile-name {
+	align-self: center;
+	margin-left: 20px;
+
+	span {
+		text-transform: capitalize;
+		font-weight: 600;
+	}
+}
+
+.navigation {
+	margin-top: 1.5rem;
+	margin-bottom: 2.5rem;
+	ul {
+		padding-left: 0;
+		list-style-type: none;
+		display: flex;
+		justify-content: flex-start;
+	}
+	li{
+		border: 2px solid $light-blue;
+		&:first-child {
+			border-left: 4px solid $light-blue;
+		}
+		&:last-child {
+			border-right: 4px solid $light-blue;
+		}
+		
+	}
+	a {
+		padding: 0.5rem 2rem;
+		display: block;
+		text-decoration: none;
+		transition: all 0.5s;
+		&:hover {
+			background-color: $light-blue;
+			color: #fff;
+		}
+	}
+}
+
+.post-card {
+	margin-bottom: 1.5rem;
+	
+	figure {
+		margin: 0 auto;
+	}
+	figcaption {
+		max-width: 330px;
+		background-color: $light-gray;
+		box-sizing: border-box;
+		padding: 1rem 1.5rem;
+		font-size: 1rem;
+		margin: 0 auto;
+		position: relative;
+	}
+	.post-card-pic {
+		max-width: 330px;
+		max-height: 330px;
+		overflow: hidden;
+		margin: 0 auto;
+		img {
+			max-width: 100%;
+			height: auto;
+			display: block;
+		}
+	}
+	.post-card-text {
+		padding-top: 1rem;
+		padding-bottom: 1rem;
+		color: $medium-dark;
+	}
+	.post-actions {
+		position: absolute;
+		bottom: 1rem;
+		right: 1.5rem;
+		
+		> div {
+			display: inline-block;
+			a {
+				padding-left: 0.5rem;
+				padding-right: 0.5rem;
+				display: inline-block;
+			}
+		}
+		.delete {
+			&:before {
+				content: "|";
+			}
+			a {
+				color: darken(red, 5%);
+			}
+		}
+
+	}
+}
+
+.comment-card {
+	background-color: $light-gray;
+	margin-bottom: 1rem;
+	min-height: 6rem;
+	padding: 1rem;
+	.profile-pic {
+		width: 60px;
+		height: 60px;
+		border: 4px solid $medium-dark;
+	}
+	figure {
+		margin-bottom: 1.5rem;
+	}
+	.comment-content {
+		background-color: lighten($light-gray, 2%);
+		padding: 1rem;
+		display: flex;
+	}
+	.comment-image {
+		width: 100px;
+		height: 100px;
+		overflow: hidden;
+		img {
+			width: 100%;
+			height: auto;
+		}
+	}
+	.comment-text {
+		padding-left: 1rem;
+	}
+}
+
+@media screen and (min-width: 640px) {
+	figure {
+		display: flex;
+	}
+	.post-card {
+		.post-card-pic {
+			margin: 0 0;
+		}
+		figcaption {
+			max-width: 100%;
+			width: calc(100% - 330px);
+			margin: 0 0 0 1rem;
+		}
+	}
+
+
+}
