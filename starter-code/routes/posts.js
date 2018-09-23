@@ -4,7 +4,10 @@ const { ensureLoggedIn } = require('connect-ensure-login');
 const multer = require("multer");
 const Post = require('../models/Post');
 
-const upload = multer({ dest: './public/uploads/posts/' });
+
+const postPicPath = 'uploads/posts/';
+const upload = multer({ dest: `./public/${postPicPath}` });
+
 
 //GET -> /posts
 router.get('/', ensureLoggedIn(), (req, res, next) => {
@@ -30,7 +33,7 @@ router.post('/create', ensureLoggedIn(), upload.single("post-pic"), (req, res, n
 	let picName;
 
 	if(req.file){
-		picPath = req.file.filename;
+		picPath = `/${postPicPath}/${req.file.filename}`;
 		picName = req.file.originalname;
 	}
 

@@ -76,4 +76,39 @@ a {
       background-color: #00B7FF;
       color: #fff; }
 
+.post-card figure {
+  margin: 0 auto; }
+
+.post-card figcaption {
+  max-width: 330px;
+  background-color: #f4f4f4;
+  box-sizing: border-box;
+  padding: 1rem 1.5rem;
+  font-size: 1rem; }
+
+.post-card .post-card-pic {
+  max-width: 330px;
+  max-height: 385px;
+  overflow: hidden;
+  margin: 0 auto; }
+  .post-card .post-card-pic img {
+    max-width: 100%;
+    height: auto;
+    display: block; }
+
+.post-card .post-card-text {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  color: #404040; }
+
+@media screen and (min-width: 480px) {
+  figure {
+    display: flex; }
+  .post-card .post-card-pic {
+    margin: 0 0; }
+  .post-card figcaption {
+    max-width: 100%;
+    width: calc(100% - 330px);
+    margin-left: 1rem; } }
+
 /*# sourceMappingURL=style.css.map */

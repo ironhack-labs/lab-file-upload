@@ -1,12 +1,21 @@
+<div class="row">
+	<div class="col-xs-12">
+		<header class="header">
+			<h2 class="header-title">Your Posts</h2>
+		</header>
+	</div>
+</div>
 
-<header class="header">
-	<h2 class="header-title">Your Posts</h2>
-</header>
-
-<div class="posts-wrapper">
-	{{#each posts}}
-      {{> post this}}
-	{{else}}
-		<p>There are no posts yet! :(</p>
-    {{/each}}
+<div class="row">
+	<div class="posts-wrapper">
+		{{#each posts}}
+			{{> post this}}
+		{{else}}
+		<div class="col-xs-12">
+			<div class="alert alert-info">
+				<p>There are no posts yet! :(</p>
+			</div>
+		</div>
+	{{/each}}
+</div>
 </div>

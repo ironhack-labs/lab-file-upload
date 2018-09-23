@@ -1,31 +1,31 @@
 <div class="row">
-	<header class="header">
-		<h2 class="header-title">Welcome to {{title}}</h2>
-		<div class="header-greeting">
-		{{#if user}}
-			<div class="profile-pic">
-				<img src="/uploads/users/{{ user.profilePic }}" alt="">
+	<div class="col-xs-12">
+		<header class="header">
+			<h2 class="header-title">Welcome to {{title}}</h2>
+			<div class="header-greeting">
+			{{#if user}}
+				<div class="profile-pic">
+					<img src="/uploads/users/{{ user.profilePic }}" alt="">
+				</div>
+				<div class="profile-name">
+					<p> Hello, <span>{{ user.username }}</span>! </p>
+				</div>
+			{{/if}}
 			</div>
-			<div class="profile-name">
-				<p> Hello, <span>{{ user.username }}</span>! </p>
-			</div>
-		{{/if}}
-		</div>
-	</header>
+		</header>
+	</div>
 </div>
 
 <div class="row">
 	<div class="posts-wrapper">
 		<div class="col-xs-12 col-md-5">
-			<div class="row">
-				{{#each posts}}
-					{{> post this}}
-				{{else}}
-					<div class="alert alert-info">
-						<p>There are no posts yet! :(</p>
-					</div>
-				{{/each}}
-			</div>
+			{{#each posts}}
+				{{> post this}}
+			{{else}}
+				<div class="alert alert-info">
+					<p>There are no posts yet! :(</p>
+				</div>
+			{{/each}}
 		</div>
 	</div>
 </div>

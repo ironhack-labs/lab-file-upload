@@ -4,8 +4,8 @@ const router     = express.Router();
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 const multer = require("multer");
 
-const profilePicPath = '/uploads/users/';
-const upload = multer({ dest: `./public${profilePicPath}` });
+const profilePicPath = 'uploads/users/';
+const upload = multer({ dest: `./public/${profilePicPath}` });
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
     res.render('authentication/login', { 

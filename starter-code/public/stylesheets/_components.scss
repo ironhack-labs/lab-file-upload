@@ -82,3 +82,53 @@
 	}
 }
 
+.post-card {
+	//background-color: $light-gray;
+	
+	figure {
+		margin: 0 auto;
+	}
+	figcaption {
+		max-width: 330px;
+		background-color: $light-gray;
+		box-sizing: border-box;
+		padding: 1rem 1.5rem;
+		font-size: 1rem;
+		
+	}
+	.post-card-pic {
+		max-width: 330px;
+		max-height: 385px;
+		overflow: hidden;
+		margin: 0 auto;
+		img {
+			max-width: 100%;
+			height: auto;
+			display: block;
+		}
+	}
+	.post-card-text {
+		padding-top: 1rem;
+		padding-bottom: 1rem;
+		color: $medium-dark;
+	}
+}
+
+@media screen and (min-width: 480px) {
+	figure {
+		display: flex;
+	}
+	.post-card {
+		.post-card-pic {
+			margin: 0 0;
+		}
+		figcaption {
+			max-width: 100%;
+			width: calc(100% - 330px);
+			margin-left: 1rem;
+			
+		}
+	}
+
+
+}
