@@ -121,6 +121,7 @@
 		padding: 1rem 1.5rem;
 		font-size: 1rem;
 		margin: 0 auto;
+		position: relative;
 	}
 	.post-card-pic {
 		max-width: 330px;
@@ -137,6 +138,29 @@
 		padding-top: 1rem;
 		padding-bottom: 1rem;
 		color: $medium-dark;
+	}
+	.post-actions {
+		position: absolute;
+		bottom: 1rem;
+		right: 1.5rem;
+		
+		> div {
+			display: inline-block;
+			a {
+				padding-left: 0.5rem;
+				padding-right: 0.5rem;
+				display: inline-block;
+			}
+		}
+		.delete {
+			&:before {
+				content: "|";
+			}
+			a {
+				color: darken(red, 5%);
+			}
+		}
+
 	}
 }
 

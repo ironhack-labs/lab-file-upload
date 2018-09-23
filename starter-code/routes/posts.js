@@ -14,8 +14,14 @@ router.get('/', ensureLogin.ensureLoggedIn(), (req, res, next) => {
 	Post.find({ creatorId: req.user._id })
 	  	.populate('creatorId')
 	  	.then(posts => {
-			//console.log('CREATORID', req.user._id );
+			posts.forEach(post => {
+			  	post.canDelete = true;
+			});
+			
+			//console.log('CREATORID', req.user._id);
 			res.render('post/index', { posts, username:req.user.username, creatorId: req.user._id});
+
+			
 	  	})
 	  	.catch(err => {
 			console.log(err)

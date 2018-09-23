@@ -11,7 +11,7 @@ h1 {
     color: #0092cc;
     text-decoration: none; }
 
-a {
+a, a:hover {
   color: #00B7FF; }
 
 .main-container {
@@ -103,7 +103,8 @@ a {
     box-sizing: border-box;
     padding: 1rem 1.5rem;
     font-size: 1rem;
-    margin: 0 auto; }
+    margin: 0 auto;
+    position: relative; }
   .post-card .post-card-pic {
     max-width: 330px;
     max-height: 385px;
@@ -117,6 +118,20 @@ a {
     padding-top: 1rem;
     padding-bottom: 1rem;
     color: #404040; }
+  .post-card .post-actions {
+    position: absolute;
+    bottom: 1rem;
+    right: 1.5rem; }
+    .post-card .post-actions > div {
+      display: inline-block; }
+      .post-card .post-actions > div a {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        display: inline-block; }
+    .post-card .post-actions .delete:before {
+      content: "|"; }
+    .post-card .post-actions .delete a {
+      color: #e60000; }
 
 @media screen and (min-width: 640px) {
   figure {
