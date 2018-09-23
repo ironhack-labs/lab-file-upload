@@ -14,6 +14,9 @@ h1 {
 a, a:hover {
   color: #00B7FF; }
 
+form {
+  margin-bottom: 3rem; }
+
 .main-container {
   width: 90%;
   margin: 50px auto; }
@@ -38,22 +41,6 @@ a, a:hover {
       background-color: #000;
       width: 100%;
       display: block; }
-  .header .profile-pic {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 5px solid #00B7FF;
-    overflow: hidden; }
-    .header .profile-pic img {
-      max-width: 100%;
-      height: auto;
-      object-fit: cover; }
-  .header .profile-name {
-    align-self: center;
-    margin-left: 20px; }
-    .header .profile-name span {
-      text-transform: capitalize;
-      font-weight: 600; }
   .header .profile-details {
     align-self: center;
     font-size: 1rem; }
@@ -69,6 +56,24 @@ a, a:hover {
       text-transform: capitalize; }
     .header .profile-details .profile-email strong {
       text-transform: capitalize; }
+
+.profile-pic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 5px solid #00B7FF;
+  overflow: hidden; }
+  .profile-pic img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover; }
+
+.profile-name {
+  align-self: center;
+  margin-left: 20px; }
+  .profile-name span {
+    text-transform: capitalize;
+    font-weight: 600; }
 
 .navigation {
   margin-top: 1.5rem;
@@ -132,6 +137,31 @@ a, a:hover {
       content: "|"; }
     .post-card .post-actions .delete a {
       color: #e60000; }
+
+.comment-card {
+  background-color: #f4f4f4;
+  margin-bottom: 1rem;
+  min-height: 6rem;
+  padding: 1rem; }
+  .comment-card .profile-pic {
+    width: 60px;
+    height: 60px;
+    border: 4px solid #404040; }
+  .comment-card figure {
+    margin-bottom: 1.5rem; }
+  .comment-card .comment-content {
+    background-color: #f9f9f9;
+    padding: 1rem;
+    display: flex; }
+  .comment-card .comment-image {
+    width: 100px;
+    height: 100px;
+    overflow: hidden; }
+    .comment-card .comment-image img {
+      width: 100%;
+      height: auto; }
+  .comment-card .comment-text {
+    padding-left: 1rem; }
 
 @media screen and (min-width: 640px) {
   figure {

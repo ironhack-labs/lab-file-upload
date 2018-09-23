@@ -6,7 +6,6 @@ const CommentSchema = Schema({
 	authorId: { type: Schema.Types.ObjectId, ref: "User", required: true },
 	imagePath: String,
 	imageName: String,
-	date: { type: Date, default: Date.now }
 });
 
 const PostSchema = Schema({
@@ -19,7 +18,8 @@ const PostSchema = Schema({
 	timestamps: {
 		createdAt: 'created_at',
 		updatedAt: 'updated_at'
-	}
+	},
+	usePushEach: true
 });
 
 const Post = mongoose.model('Post', PostSchema);

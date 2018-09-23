@@ -1,0 +1,39 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="post-card">
+			<figure>
+				<div class="post-card-pic">
+					<img src="{{post.picPath}}" alt="{{post.picName}}">
+				</div>
+				<figcaption>
+					<h4>Author: {{post.creatorId.username}}</h4>
+					<p class="post-card-text">{{post.content}}</p>
+				</figcaption>
+			</figure>
+		</div>
+	</div>
+</div>
+
+{{#if user}}
+	{{#if errorMessage}}
+		<div class="alert alert-danger" role="alert">
+			{{ errorMessage }}
+		</div>
+	{{/if}}
+	{{> commentsForm post}}
+{{/if}}
+
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12">
+			<h3>Comments</h3>
+			<hr>
+			{{#if post.comments}}
+				{{#each post.comments}}
+					{{> comment this}}
+				{{/each}}
+			{{/if}}
+		</div>
+	</div>
+</div>

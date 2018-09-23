@@ -70,6 +70,12 @@ router.get("/delete/:id", ensureLogin.ensureLoggedIn(), (req, res) => {
 	Post.findByIdAndRemove(req.params.id, () => res.redirect("/posts"));
 });
 
-
+router.get("/:id", (req, res, next) => {
+	Post.findById(req.params.id)
+	  	.populate("creatorId")
+	  	.populate("comments.authorId")
+	  	.then(post => { res.render("post/show", { post, errorMessage: req.flash("errorMessage") }) })
+	  	.catch(err => { next(err);});
+});
 
 module.exports = router;
