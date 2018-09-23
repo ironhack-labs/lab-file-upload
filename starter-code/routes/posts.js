@@ -1,6 +1,6 @@
-const express    = require('express');
-const router     = express.Router();
-const ensureLogin    = require('connect-ensure-login');
+const express = require('express');
+const router = express.Router();
+const ensureLogin = require('connect-ensure-login');
 const multer = require("multer");
 const Post = require('../models/Post');
 
@@ -13,8 +13,9 @@ const upload = multer({ dest: `./public/${postPicPath}` });
 router.get('/', ensureLogin.ensureLoggedIn(), (req, res, next) => {
 	Post.find({ creatorId: req.user._id })
 	  	.populate('creatorId')
-	  	.then(posts => {  
-			res.render('post/index', { posts:posts, username:req.user.username });
+	  	.then(posts => {
+			//console.log('CREATORID', req.user._id );
+			res.render('post/index', { posts, username:req.user.username, creatorId: req.user._id});
 	  	})
 	  	.catch(err => {
 			console.log(err)
@@ -58,6 +59,11 @@ router.post('/create', ensureLogin.ensureLoggedIn(), upload.single("post-pic"), 
 			});
 	  	});
 });
+
+router.get("/delete/:id", ensureLogin.ensureLoggedIn(), (req, res) => {
+	Post.findByIdAndRemove(req.params.id, () => res.redirect("/posts"));
+});
+
 
 
 module.exports = router;

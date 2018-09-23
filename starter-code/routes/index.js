@@ -4,7 +4,8 @@ const router  = express.Router();
 
 /* GET home page. ALL THE POSTS*/
 router.get('/', (req, res, next) => {
-  	Post.find()
+	  Post.find()
+	  	.populate("creatorId")
   		.then((posts) => {
 	  		res.render('index', { posts:posts, title:'IronTumblr' });
   		})
@@ -12,7 +13,6 @@ router.get('/', (req, res, next) => {
 	  		console.log(error)
   		})
 });
-
 
 
 module.exports = router;
