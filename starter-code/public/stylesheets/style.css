@@ -29,6 +29,8 @@ a {
   .header .header-title {
     margin-bottom: 1.5rem;
     display: inline-block; }
+    .header .header-title span {
+      text-transform: capitalize; }
     .header .header-title:after {
       content: "";
       height: 3px;
@@ -52,6 +54,21 @@ a {
     .header .profile-name span {
       text-transform: capitalize;
       font-weight: 600; }
+  .header .profile-details {
+    align-self: center;
+    font-size: 1rem; }
+    .header .profile-details ul {
+      list-style-type: none; }
+      .header .profile-details ul li {
+        padding-bottom: 0.5rem; }
+      .header .profile-details ul strong {
+        padding-right: 10px; }
+        .header .profile-details ul strong:after {
+          content: ":"; }
+    .header .profile-details .profile-username {
+      text-transform: capitalize; }
+    .header .profile-details .profile-email strong {
+      text-transform: capitalize; }
 
 .navigation {
   margin-top: 1.5rem;

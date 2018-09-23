@@ -5,7 +5,7 @@
 			<div class="header-greeting">
 			{{#if user}}
 				<div class="profile-pic">
-					<img src="/uploads/users/{{ user.profilePic }}" alt="">
+					<img src="/uploads/users/{{ user.profilePic }}" alt="{{user.username}}">
 				</div>
 				<div class="profile-name">
 					<p> Hello, <span>{{ user.username }}</span>! </p>

@@ -13,9 +13,8 @@ const upload = multer({ dest: `./public/${postPicPath}` });
 router.get('/', ensureLogin.ensureLoggedIn(), (req, res, next) => {
 	Post.find({ creatorId: req.user._id })
 	  	.populate('creatorId')
-	  	.then(posts => {
-			  
-			res.render('post/index', { posts });
+	  	.then(posts => {  
+			res.render('post/index', { posts:posts, username:req.user.username });
 	  	})
 	  	.catch(err => {
 			console.log(err)

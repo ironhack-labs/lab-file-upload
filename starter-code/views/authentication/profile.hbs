@@ -1,0 +1,20 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-6">
+		<header class="header">
+			<h2 class="header-title">Profile</h2>
+			<div class="header-greeting">
+				{{#if user}}
+					<div class="profile-pic">
+						<img src="/uploads/users/{{ user.profilePic }}" alt="{{user.username}}">
+					</div>
+					<div class="profile-details">
+						<ul>
+							<li class="profile-username"><strong>Username</strong><span>{{user.username}}</span></li>
+							<li class="profile-email"><strong>Email</strong><span>{{user.email}}</span></li>
+						</ul>
+					</div>
+				{{/if}}	
+			</div>
+		</header>
+	</div>
+</div>

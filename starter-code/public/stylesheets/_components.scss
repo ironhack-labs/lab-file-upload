@@ -18,7 +18,9 @@
 	.header-title {
 		margin-bottom: 1.5rem;
 		display: inline-block;
-		
+		span {
+			text-transform: capitalize;
+		}
 		&:after {
 			content: "";
 			height: 3px;
@@ -43,11 +45,35 @@
 	.profile-name {
 		align-self: center;
 		margin-left: 20px;
+
 		span {
 			text-transform: capitalize;
 			font-weight: 600;
 		}
-		
+	}
+	.profile-details {
+		align-self: center;
+		font-size: 1rem;
+		ul {
+			list-style-type: none;
+			li {
+				padding-bottom: 0.5rem;
+			}
+			strong{
+				padding-right: 10px;
+				&:after {
+					content: ":";
+				}
+			}
+		}
+		.profile-username {
+			text-transform: capitalize;
+		}
+		.profile-email {
+			strong {
+				text-transform: capitalize;
+			}
+		}
 	}
 }
 
