@@ -6,6 +6,7 @@ const router  = express.Router();
 router.get('/', (req, res, next) => {
   	Post.find()
   		.then((posts) => {
+			console.log('USER', req.user);
 	  		res.render('index', { posts:posts, title:'IronTumblr' });
   		})
   		.catch((error) => {

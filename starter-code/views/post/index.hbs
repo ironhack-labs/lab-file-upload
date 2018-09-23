@@ -5,11 +5,8 @@
 
 <div class="posts-wrapper">
 	{{#each posts}}
-		<div class="post-item">
-			<img src="{{this.picName}}" alt="">
-			<p>{{this.content}}</p>
-		</div>
+      {{> post this}}
 	{{else}}
 		<p>There are no posts yet! :(</p>
-	{{/each}}
+    {{/each}}
 </div>
