@@ -9,6 +9,12 @@ body {
 h1 {
 	font-size: 3rem;
 	color: $light-blue;
+	a{
+		&:hover{
+			color: darken($light-blue, 10%);
+			text-decoration: none;
+		}
+	}
 }
 
 a {

@@ -7,6 +7,9 @@ body {
 h1 {
   font-size: 3rem;
   color: #00B7FF; }
+  h1 a:hover {
+    color: #0092cc;
+    text-decoration: none; }
 
 a {
   color: #00B7FF; }
@@ -15,13 +18,13 @@ a {
   width: 90%;
   margin: 50px auto; }
 
-.greeting p {
+.header p {
   font-size: 1.25rem; }
 
-.greeting .greeting-title {
+.header .header-title {
   margin-bottom: 1.5rem;
   display: inline-block; }
-  .greeting .greeting-title:after {
+  .header .header-title:after {
     content: "";
     height: 3px;
     margin-top: 5px;
@@ -29,7 +32,7 @@ a {
     width: 100%;
     display: block; }
 
-.greeting .greeting-name {
+.header .greeting-name {
   text-transform: capitalize;
   font-weight: 600; }
 
