@@ -30,6 +30,9 @@ hr {
 .btn-primary {
   background-color: #00B7FF; }
 
+form .btn-primary {
+  margin-top: 1.5rem; }
+
 .input-lg {
   font-size: 1rem; }
 
