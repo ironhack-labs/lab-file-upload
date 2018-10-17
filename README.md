@@ -17,9 +17,8 @@ $ git push origin master
 ```
 Navigate to your repo and create a Pull Request -from your master branch to the original repository master branch.
 
-In the Pull request name, add your name and last names separated by a dash "-".
+In the Pull request name section, add your school, name and last names separated by a dash "-".
 
-Include a link to your deployed heroku app in the pull request.
 
 ## Deliverables
 
@@ -78,8 +77,10 @@ The model should have the following attributes:
 
 You should create routes to create new comments. Comments should be displayed on the Post *show* page.
 
-### Iteration 4 | Deploy!
+### Iteration 4(Bonus) | Display
 
-The last step in IronTumblr should be to deploy to Heroku. Don't forget to deploy your database on mongolab.
+The last step in IronTumblr should be to deploy display a users profile with a link to each post that they have made. As well as
 
-Your site should be live and functioning with a working URL.
+displaying the post witht he comments that belong to that post.
+
+Happy Coding!
