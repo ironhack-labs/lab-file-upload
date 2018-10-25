@@ -1,0 +1,13 @@
+<div class="post-card">
+  <div class="post-img-wrapper">
+    <img src="{{picPath}}" alt="{{creatorId.username}} post">
+  </div>
+  <div class="post-user">
+    <img src="{{creatorId.profile_pic}}" alt=""><span>{{{creatorId.username}}}</span>
+    <h4>{{picName}}</h4>
+  </div>
+  <p class="description">{{content}}</p>
+  <p class="comments">Comments</p>
+  {{newComment}}
+  {{> newComment}}
+</div>

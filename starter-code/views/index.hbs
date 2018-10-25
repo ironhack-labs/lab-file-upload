@@ -6,5 +6,8 @@
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
+    {{#each posts as |post|}}
+      {{> postCards}}  
+    {{/each}}
   </body>
 </html>

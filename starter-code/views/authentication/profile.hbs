@@ -1,0 +1,19 @@
+<section class="profile-info">
+  <h1>Welcome, {{user.username}}</h1>
+  {{!-- <p><a href="/logout">Logout</a></p> --}}
+  <div class="profile_pic-wrapper">
+    <img src="{{user.profile_pic}}" alt="{{user.username}} profile pic">
+  </div>
+</section>
+
+<section class="new">
+  <h2>Create new post</h2>
+  {{> newPost}}
+</section>
+
+<section class="posts">
+  <h3>My Posts</h3>
+  {{#each posts as |post|}}
+    {{> postCards}}  
+  {{/each}}
+</section>

@@ -2,18 +2,22 @@
   <div class="row">
     {{ message }}
     <div class="col-sm-6 centered-form">
-      <form action="/signup" method="post">
+      <form action="/signup" method="post" enctype="multipart/form-data">
         <div class="form-group">
           <label for="username">Username</label>
-          <input type="text" name="username" class="form-control">
+          <input type="text" name="username" class="form-control" placeholder="Username">
         </div>
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="text" name="email" class="form-control">
+          <input type="text" name="email" class="form-control" placeholder="email@mail-service.com">
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" name="password" class="form-control">
+          <input type="password" name="password" class="form-control" placeholder="Password">
+        </div>
+        <div class="form-group">
+          <label for="pic">Profile pic</label>
+          <input type="file" name="profile_pic">
         </div>
         <button type="submit">Signup</button>
       </form>

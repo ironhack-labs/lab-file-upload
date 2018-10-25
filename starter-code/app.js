@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express            = require('express');
 const path               = require('path');
 const favicon            = require('serve-favicon');
@@ -14,15 +16,17 @@ const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const hbs                = require('hbs')
 
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
+mongoose.connect(process.env.Db, {useMongoClient: true});
 
 const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+hbs.registerPartials(`${__dirname}/views/partials`);
+
 app.use(session({
-  secret: 'tumblrlabdev',
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
   store: new MongoStore( { mongooseConnection: mongoose.connection })
@@ -60,33 +64,38 @@ passport.use('local-signup', new LocalStrategy(
   (req, username, password, next) => {
     // To avoid race conditions
     process.nextTick(() => {
-        User.findOne({
-            'username': username
-        }, (err, user) => {
-            if (err){ return next(err); }
+      User.findOne({
+        'username': username
+      }, (err, user) => {
+        if (err){ return next(err); }
 
-            if (user) {
-                return next(null, false);
-            } else {
-                // Destructure the body
-                const {
-                  username,
-                  email,
-                  password
-                } = req.body;
-                const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-                const newUser = new User({
-                  username,
-                  email,
-                  password: hashPass
-                });
+        if (user) {
+          return next(null, false);
+        } else {
+          // Destructure the body
+          const {
+            username,
+            email,
+            password,
+          } = req.body;
 
-                newUser.save((err) => {
-                    if (err){ next(null, false, { message: newUser.errors }) }
-                    return next(null, newUser);
-                });
-            }
-        });
+          let profile_pic;
+          if (req.file !== undefined) profile_pic = req.body[`profile_pic`] = req.file.url;
+
+          const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+          const newUser = new User({
+            username,
+            email,
+            password: hashPass,
+            profile_pic
+          });
+
+          newUser.save((err) => {
+            if (err){ next(null, false, { message: newUser.errors }) }
+            return next(null, newUser);
+          });
+        }
+      });
     });
 }));
 
@@ -101,8 +110,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+
+const postRoutes    = require(`./routes/post`),
+      commentRoutes = require(`./routes/comment`);
+
 app.use('/', index);
 app.use('/', authRoutes);
+
+app .use(`/`, postRoutes)
+    .use(`/`, commentRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

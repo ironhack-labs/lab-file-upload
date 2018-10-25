@@ -1,0 +1,9 @@
+<form action="/comment" method="post" enctype="multipart/form-data">
+<input type="hidden" name="post" value="{{_id}}">
+  <textarea name="content" placeholder="What do you think about this?"></textarea>
+  <label for="imagePath">
+    <input type="text" name="imageName" placeholder="Image name">
+    <input type="file" name="imagePath">
+  </label>
+  <button type="submit">Reply</button>
+</form>
