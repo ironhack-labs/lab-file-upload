@@ -1,31 +1,6 @@
-![Ironhack Logo](https://i.imgur.com/1QgrNNw.png)
-# Express File Uploads | IronTumblr
+![logo_ironhack_blue 7](https://user-images.githubusercontent.com/23629340/40541063-a07a0a8a-601a-11e8-91b5-2f13e4e6b441.png)
 
-## Requirements
-
-- [Fork this repo](https://guides.github.com/activities/forking/)
-- Clone this repo into your `~/code/labs`
-
-## Submission
-
-Upon completion, run the following commands
-
-```
-$ git add .
-$ git commit -m "done"
-$ git push origin master
-```
-Navigate to your repo and create a Pull Request -from your master branch to the original repository master branch.
-
-In the Pull request name section, add your school, name and last names separated by a dash "-".
-
-
-## Deliverables
-
-Complete all of the non-bonus iterations. No styling is required, but is suggested as bonus.
-
-
-## Instructions
+# IronTumblr
 
 ## Introduction
 
@@ -38,6 +13,31 @@ Complete all of the non-bonus iterations. No styling is required, but is suggest
 > A social media site to which a user makes short, frequent posts.
 
 This is easier shown than described, so check out [this tumblr](http://bestdogmemes.tumblr.com/) filled with funny dog memes.
+
+## Requirements
+
+- Fork this repo
+- Then clone this repo.
+
+
+## Submission
+
+- Upon completion, run the following commands
+```
+$ git add .
+$ git commit -m "done"
+$ git push origin master
+```
+- Create Pull Request so your TAs can check up your work.
+
+
+## Deliverables
+
+Complete all of the non-bonus iterations. No styling is required, but is suggested as bonus.
+
+
+## Instructions
+
 
 ### Iteration 1 | User Profile Pictures
 
@@ -81,6 +81,6 @@ You should create routes to create new comments. Comments should be displayed on
 
 The last step in IronTumblr should be to deploy display a users profile with a link to each post that they have made. As well as
 
-displaying the post witht he comments that belong to that post.
+displaying the post with the comments that belong to that post.
 
-Happy Coding!
+Happy Coding! :heart:
