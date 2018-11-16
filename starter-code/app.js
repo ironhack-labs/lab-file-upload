@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express            = require('express');
 const path               = require('path');
 const favicon            = require('serve-favicon');
@@ -66,19 +68,34 @@ passport.use('local-signup', new LocalStrategy(
             if (err){ return next(err); }
 
             if (user) {
-                return next(null, false);
+                return next(null, false, { message: "User already exists"});
+
             } else {
-                // Destructure the body
-                const {
-                  username,
-                  email,
-                  password
-                } = req.body;
+
+              // Destructure the body
+              const {
+                username,
+                email,
+                password,
+              } = req.body;
+
+                let imgPath = '';
+                let imgName = '';
+
+                try {
+                  imgPath = req.file.url;
+                  imgName = req.file.originalname;
+                } catch(e) {
+                  return next(null, false, { message: "You need to upload a photo"});
+                }
+
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  imgPath,
+                  imgName
                 });
 
                 newUser.save((err) => {
