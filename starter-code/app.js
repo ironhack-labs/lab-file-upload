@@ -1,3 +1,5 @@
+require('dotenv');
+
 const express            = require('express');
 const path               = require('path');
 const favicon            = require('serve-favicon');
@@ -7,12 +9,14 @@ const bodyParser         = require('body-parser');
 const passport           = require('passport');
 const LocalStrategy      = require('passport-local').Strategy;
 const User               = require('./models/user');
-const bcrypt             = require('bcrypt');
+const uploadCloud = require('./config/cloudinary.js');
+const bcrypt             = require('bcryptjs');
 const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
-const hbs                = require('hbs')
+const hbs                = require('hbs');
+
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
@@ -74,11 +78,15 @@ passport.use('local-signup', new LocalStrategy(
                   email,
                   password
                 } = req.body;
+                const imgPath = req.file.url;
+                const imgName = req.file.originalname;
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  imgName,
+                  imgPath
                 });
 
                 newUser.save((err) => {
