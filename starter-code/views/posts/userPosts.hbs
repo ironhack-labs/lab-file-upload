@@ -1,0 +1,16 @@
+<section>
+    <a href="/new">New Post</a>
+</section>
+
+<section id="posts">
+    {{#each posts}}
+    <div>
+      <img src="{{this.picPath}}" alt="">
+      <span>{{this.picName}}</span>
+      <h1></h1>
+      <p>{{this.content}}</p>
+      <a href="/{{this._id}}/edit">Edit</a>
+      <a href="/{{this._id}}/delete">Delete</a>
+    </div>
+    {{/each}}
+  </section>

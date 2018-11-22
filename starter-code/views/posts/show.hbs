@@ -1,0 +1,21 @@
+<section id="posts">
+    {{#each post}}
+    <div>
+      <img src="{{this.picPath}}" alt="">
+      <span>{{this.picName}}</span>
+      <h1></h1>
+      <p>{{this.content}}</p>
+    </div>
+    {{/each}}
+  </section>
+
+
+    {{#if user}}
+  <section id="comments">
+      <form action="/newComment" method="post" enctype="multipart/form-data">
+        <input type="text" name="content">
+        <input type="file" name="photo" id="">
+        <button type="submit">Comment</button>
+      </form>
+  </section>
+  {{/if}}
