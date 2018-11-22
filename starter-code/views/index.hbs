@@ -1,31 +1,38 @@
-<!DOCTYPE html>
-<html>
+<section id="navBar">
+  <div>
+    <h1>IronTumblr</h1>
+  </div>
+  <div>
+    {{#if user}}
+    <a href="/userPosts">My posts</a>
+    {{/if}}
+  </div>
+  <div>
+    {{#if user}}
+    <a href="/logout">Logout</a>
+    {{else}}
+    <a href="/signup">Sign Up</a>
+    <a href="/login">Login</a>
+    {{/if}}
+  </div>
 
-<head>
-  <title>Tumblr</title>
-  <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
+</section>
 
-<body>
-  <h1>Welcome to IronTumblr</h1>
-  
-  {{#if user}}
-  <a href="/logout">Logout</a>
-  <a href="/userPosts">My posts</a>
-  {{else}}
-   <a href="/login">Login</a>
-  {{/if}}
+<section id="mainPage">
+
+  <div class="page-button" style="">
+    <h2>Posts</h2>
+    {{#if user}}
+    <a href="/new">New Post</a>
+    {{/if}}
+  </div>
+  </div>
 
   <section id="posts">
     {{#each posts}}
-    <div>
-      <img src="{{this.picPath}}" alt="">
-      <a href="/show/{{this._id}}">{{this.picName}}</a>
-      <h1></h1>
-      <p>{{this.content}}</p>
-    </div>
+    <a href="/show/{{this._id}}"><img src="{{this.picPath}}" alt=""></a>
+    <h1></h1>
+    <p>{{this.content}}</p>
     {{/each}}
   </section>
-</body>
-
-</html>
+</section>

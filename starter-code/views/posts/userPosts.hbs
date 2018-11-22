@@ -1,16 +1,23 @@
-<section>
-    <a href="/new">New Post</a>
+<section id="navBar">
+  <div>
+    <h1>IronTumblr</h1>
+  </div>
+  <div>
+    {{#if user}}
+    <a href="/userPosts">My posts</a>
+    {{/if}}
+  </div>
+  <div>
+    <a href="/">Back</a>
+  </div>
 </section>
 
-<section id="posts">
+<section id="mainPage">
+  <section id="posts">
     {{#each posts}}
-    <div>
-      <img src="{{this.picPath}}" alt="">
-      <span>{{this.picName}}</span>
-      <h1></h1>
-      <p>{{this.content}}</p>
-      <a href="/{{this._id}}/edit">Edit</a>
-      <a href="/{{this._id}}/delete">Delete</a>
-    </div>
+    <a href="/show/{{this._id}}"><img src="{{this.picPath}}" alt=""></a>
+    <h1></h1>
+    <p>{{this.content}}</p>
     {{/each}}
   </section>
+</section>

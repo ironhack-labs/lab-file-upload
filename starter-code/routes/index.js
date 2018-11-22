@@ -3,26 +3,17 @@ require('dotenv');
 const express = require("express");
 const router = express.Router();
 const Post = require("../models/post");
+const Comment = require("../models/comment");
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
 const uploadCloud = require('../config/cloudinary.js');
-
-// /* GET home page. */
-// router.get("/", isLoggIn, (req, res, next) => {
-
-//   Post.find().then(posts => {
-//     console.log(req.user);
-//     res.render("index", { posts, user:req.user });
-//   })
-//   .catch(err => {console.log(err)});
-// });
 
 
 router.get('/', (req, res) => {
   
   Post.find()
   .then(posts => {
-      console.log(posts);
+
       if(req.user) {
         res.render('index', {posts, user: req.user})
       } else {
@@ -32,7 +23,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/userPosts', ensureLoggedIn('/'), (req, res) => {
-  console.log(req.user._id);
+
   Post.find({creatorId: {$in : [req.user._id]}})
     .then(posts => {
       res.render('posts/userPosts', {posts})
@@ -45,7 +36,9 @@ router.get('/new', ensureLoggedIn('/'), (req, res) => {
 
 router.get('/show/:id', (req, res) => {
   Post.find({_id: req.params.id})
+    .populate('comments')
     .then(post => {
+
       if(req.user) {
         res.render('posts/show', {post, user: req.user})
       } else {
@@ -57,8 +50,7 @@ router.get('/show/:id', (req, res) => {
 
 router.post('/new', uploadCloud.single('photo'), (req, res) => {
   
-  console.log('hola');
-  console.log(req.body)
+
 
   const picName = req.body.picName;
 
@@ -72,6 +64,30 @@ router.post('/new', uploadCloud.single('photo'), (req, res) => {
   newPost.save()
   .then(() => {
     res.render('posts/userPosts')
+  })
+})
+
+
+router.post('/newComment/:id', uploadCloud.single('photo'), (req, res) => {
+  
+
+
+  const newComment = new Comment({
+    content: req.body.content,
+    creatorId: req.user._id,
+    imagePath: req.file.url,
+    imageName: req.file.originalname
+  })
+
+
+
+  newComment.save()
+  .then((comment) => {
+    Post.update({_id: req.params.id}, {$push: {comments: comment._id}})
+    .then(()=> {
+      res.redirect(`/show/${req.params.id}`)
+    })
+    
   })
 })
 

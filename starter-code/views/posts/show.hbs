@@ -1,21 +1,51 @@
-<section id="posts">
-    {{#each post}}
-    <div>
-      <img src="{{this.picPath}}" alt="">
-      <span>{{this.picName}}</span>
-      <h1></h1>
-      <p>{{this.content}}</p>
-    </div>
-    {{/each}}
-  </section>
-
-
+<section id="navBar">
+  <div>
+    <h1>IronTumblr</h1>
+  </div>
+  <div>
     {{#if user}}
-  <section id="comments">
-      <form action="/newComment" method="post" enctype="multipart/form-data">
-        <input type="text" name="content">
-        <input type="file" name="photo" id="">
-        <button type="submit">Comment</button>
-      </form>
+    <a href="/userPosts">My posts</a>
+    {{/if}}
+  </div>
+  <div>
+    <a href="/">Back</a>
+  </div>
+</section>
+
+<section id="post-selected">
+  <div style="width: 100%">
+    <section id="post">
+      {{#each post}}
+      <div>
+        <img src="{{this.picPath}}" alt="">
+      </div>
+      <div class="post-content">
+        <p>{{this.content}}</p>
+      </div>
+  </div>
+  {{/each}}
+</section>
+</div>
+
+
+{{#each post.0.comments}}
+<section id="comments">
+  <img src="{{this.imagePath}}" alt="">
+  <p>{{this.content}}</p>
+</section>
+{{/each}}
+
+<div>
+  {{#if user}}
+  <section id="commentForm">
+    <form action="/newComment/{{post.0._id}}" method="post" enctype="multipart/form-data">
+      <input type="text" name="content">
+      <input type="file" name="photo" id="">
+      <button type="submit">Comment</button>
+    </form>
   </section>
   {{/if}}
+</div>
+
+
+</section>
