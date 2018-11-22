@@ -19,7 +19,7 @@ router.get('/signup', ensureLoggedOut(), (req, res) => {
     res.render('authentication/signup', { message: req.flash('error')});
 });
 
-router.post('/signup', ensureLoggedOut(), uploadCloud.single('photo'),passport.authenticate('local-signup', {
+router.post('/signup', [ensureLoggedOut(), uploadCloud.single('photo')],passport.authenticate('local-signup', {
   successRedirect : '/',
   failureRedirect : '/signup',
   failureFlash : true
