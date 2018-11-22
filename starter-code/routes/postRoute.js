@@ -38,8 +38,9 @@ postRouter.post('/new', [ensureLoggedIn(), uploadCloud.single('img')], (req, res
 
 postRouter.get('/:id',(req, res) => {
   console.log(req.params.id);
-  Post.findById(req.params.id).
-  then((post)=>{
+  Post.findById(req.params.id)
+  .populate("creatorId", "username")
+  .then((post)=>{
     console.log(post );
     res.render('post/show', {post});
   })
