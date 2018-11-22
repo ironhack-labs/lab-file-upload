@@ -2,7 +2,7 @@
   <div class="row">
     {{ message }}
     <div class="col-sm-6 centered-form">
-      <form action="/signup" method="post">
+      <form action="/signup" method="post" enctype="multipart/form-data">
         <div class="form-group">
           <label for="username">Username</label>
           <input type="text" name="username" class="form-control">
@@ -20,7 +20,7 @@
           <input type="file"  name="img" class="form-control">
         </div>
 
-        <button type="submit">Signup</button>
+        <button type="submit" value="Save">Signup</button>
       </form>
     </div>
   </div>
