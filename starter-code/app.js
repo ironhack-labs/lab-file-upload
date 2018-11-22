@@ -72,15 +72,20 @@ passport.use('local-signup', new LocalStrategy(
                 const {
                   username,
                   email,
-                  password
+                  password, 
                 } = req.body;
+                
+                //las variables tienen que ser iguales a las declaradas en el modelo
+                const picturePath = req.file.url;
+                const profilePicture = req.file.originalname;
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  picturePath,
+                  profilePicture
                 });
-
                 newUser.save((err) => {
                     if (err){ next(null, false, { message: newUser.errors }) }
                     return next(null, newUser);
