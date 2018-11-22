@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
-const PostSchema = Schema({
- content: String,
- creatorId: String,
+const PostSchema = new Schema({
+  content: String,
+  creatorId: {type:Schema.Types.ObjectId, ref:"User"},
   picName: String,
   picPath: String
 });

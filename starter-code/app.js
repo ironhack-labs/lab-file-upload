@@ -17,8 +17,14 @@ const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const hbs                = require('hbs');
 
-
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
+mongoose.Promise = Promise;
+mongoose.connect('mongodb://localhost:27017/tumblr-lab-development', {
+  useMongoClient: true,
+})
+.then(() => {
+  console.log("connect to 'mongodb://localhost:27017/tumblr-lab-development'");
+  
+});
 
 const app = express();
 

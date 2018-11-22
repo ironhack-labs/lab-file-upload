@@ -12,6 +12,8 @@
       {{#each posts}}
           <p>{{this.content}}</p>
           <img src="{{this.picPath}}" alt="">
+          <p>{{this.comment.content}}</p>
+          <a href="/createComment/{{this.id}}">Add comment</a>
       {{/each}}
     </div>
   </body>
