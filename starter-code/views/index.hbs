@@ -5,6 +5,21 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>Welcome to IronTumblr</h1>
+
+    <h1>Welcome</h1>
+    <div class="img-wrapper">
+      {{#each images}}
+      <div class="img-item">
+        <p>{{this.username}}</p>
+        <p>{{this.email}}</p>
+        <img src="{{this.imgPath}}" alt="">
+        <h4>{{this.title}}</h4>
+        <p>{{this.description}}</p>
+      </div>
+      {{else}}
+      <p>There are no img yet! :(</p>
+      {{/each}}
+    </div>
+
   </body>
 </html>
