@@ -8,5 +8,11 @@
     <h1>Welcome to IronTumblr</h1>
     <a href="/signup">Signup</a>
     <a href="/login">Login</a>
+    <div>
+      {{#each posts}}
+          <p>{{this.content}}</p>
+          <img src="{{this.picPath}}" alt="">
+      {{/each}}
+    </div>
   </body>
 </html>

@@ -1,10 +1,15 @@
-const express = require('express');
-const uploadCloud = require('../config/cloudinary.js');
+const express             = require('express');
+//const uploadCloud         = require('../config/cloudinary.js');
+const Post                = require('../models/post');
 const router  = express.Router();
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Express - Generated with IronGenerator' });
+  Post.find()
+  .then(posts => {
+    res.render('index',  {posts});
+  })
+  .catch(err=> {});
 });
 
 module.exports = router;

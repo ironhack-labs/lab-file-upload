@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 centered-form">
+      <h1>Add Post</h1>
+      <form action="/createPost" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="content">Content</label>
+          <textarea name="content" rows="10" cols="30"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Picture</label>
+          <input type="file" name="photo">
+        </div>
+  
+        <button type="submit">Save</button>
+      </form>
+      <a href="/logout">Logout</a>
+    </div>
+  </div>
+</div>
