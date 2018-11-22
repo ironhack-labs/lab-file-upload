@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 centered-form">
+      <form action="/new" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <textarea name="content" rows="4" cols="40" placeholder="Write something!" class="form-control"></textarea>
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="creatorId">User</label>
+          <input type="text" name="creatorId" class="form-control">
+        </div>
+        <br>
+        <div>
+          <label for="photo">Profile picture</label>
+          <input type="file" name="photo">
+        </div>
+        <br>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
