@@ -6,7 +6,7 @@ const cookieParser       = require('cookie-parser');
 const bodyParser         = require('body-parser');
 const passport           = require('passport');
 const LocalStrategy      = require('passport-local').Strategy;
-const User               = require('./models/user');
+const User               = require('./models/User');
 const bcrypt             = require('bcrypt');
 const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
@@ -74,15 +74,16 @@ passport.use('local-signup', new LocalStrategy(
                   email,
                   password
                 } = req.body;
-
-                const image = req.file.url
+                const image = req.file.url;
+                const imageName = req.file.originalname;
 
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
                   password: hashPass,
-                  image
+                  image,
+                  imageName
                 });
 
                 newUser.save((err) => {

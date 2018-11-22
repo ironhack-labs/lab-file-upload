@@ -1,13 +1,16 @@
-<h2>Upload your profile picture</h2>
+<h2>Add a POST</h2>
+
 <form action="/movie/add" method="post" enctype="multipart/form-data">
-  <label>Title</label>
-  <input type="text" name="title">
+  <label>Content: </label>
+  <input type="text" name="content">
 
-  <label>Description</label>
-  <input type="text" name="description">
-
-  <label>Poster</label>
+  <label>Image: </label>
   <input type="file" name="photo">
 
   <input type="submit" value="SAVE">
 </form>
+
+{{#each newUser}}
+<p>{{this.content}}</p>
+<img src="{{this.picPath}}" alt="">
+{{/each}}
