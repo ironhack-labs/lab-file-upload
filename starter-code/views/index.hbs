@@ -1,13 +1,43 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-    <p><a href="/signup">Signup</a> </p>
-    <p><a href="/login">Login</a> </p>
-     <p><a href="/logout">logout</a> </p>
-  </body>
+
+<head>
+  <title>{{title}}</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <h1>Welcome to IronTumblr</h1>
+  <p><a href="/signup">Signup</a> </p>
+  <p><a href="/login">Login</a> </p>
+  <p><a href="/logout">logout</a> </p>
+
+  {{#each post}}
+  <section class="container-post">
+    <div>
+      <img width="200" id="profileImg" src="{{this.url}}" alt="">
+      <h4>{{this.description}}</h4>
+      <hr>
+    </div>
+    {{#if ../user}}
+    <div class="newComment">
+      <h2>Nuevo Comment:</h2>
+
+      <form action="/profile/comment" method="post"<div class="form-group">
+        <label>Content</label><br>
+        <input type="text" name="comment"><br><br>
+        <input type="hidden" name="postId" value="{{this._id}}"/>
+        <button type="submit">New Post</button>
+      </form>
+    </div>
+    {{/if}}
+    <div class="comments">
+      {{#each this.comments}}
+      <p>{{this.content}}</p>
+       {{/each}}
+    </div>
+  </section>
+  {{/each}}
+</body>
+
 </html>

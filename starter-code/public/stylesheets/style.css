@@ -1,8 +1,22 @@
 body {
+  
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+.container-post{
+  display: flex;
+  flex-flow: row;
+  flex-direction: row;
+
+}
+.newComment{
+  margin-left: 80px;
+}
+.comments{
+
+  margin-left: 80px;
 }
