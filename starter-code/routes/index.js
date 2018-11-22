@@ -27,16 +27,24 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
       console.log(creatorID)
 
       User.findByIdAndUpdate({ _id: req.user._id }, {
-        $push: { posts:{post:post}}
+        $push: { posts: { post: post._id } }
       })
-      .then((user)=>
-      
-      res.redirect('/'));
-      
+        .then((user) =>
+
+          res.redirect('/'));
+
     })
     .catch(error => {
       console.log(error);
     })
 });
+
+router.get("/show", (req, res) => {
+  Post.find()
+    .then((posts) => {
+      res.render("authentication/show", { posts })
+        .catch((error) => error)
+    })
+})
 
 module.exports = router;
