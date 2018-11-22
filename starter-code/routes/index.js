@@ -47,4 +47,22 @@ router.get("/show", (req, res) => {
     })
 })
 
+router.post("/show/:id", (req, res) => {
+  const { content } = req.body;
+  const authorId = req.user._id;
+  const newCommentary = { content, authorId }
+  newCommentary
+  Post.findByIdAndUpdate(
+    { _id: req.params.id },
+    {
+      $push: {
+        comments: newCommentary
+      }
+    })
+    .then((comments) => {
+      res.render("authentication/show", { posts })
+    })
+    .catch((error) => error)
+})
+
 module.exports = router;
