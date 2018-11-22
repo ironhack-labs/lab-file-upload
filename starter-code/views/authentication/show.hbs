@@ -1,0 +1,15 @@
+<a href="/">Go Back</a>
+<a href="/new">Create</a>
+<h2>Show Posts</h2>
+{{#each posts}}
+<h4>{{this.content}}</h4>
+<img src="{{this.picPath}}" alt="{{this.picName}}"> <br><br>
+
+<p>{{this.comments}}</p>
+<br><br>
+{{#each comments}}
+<form action="/show/{{this._id}}" method="POST">
+    <input type="text" name="content" placeholder="Place your comment here">
+</form>
+{{/each}}
+{{/each}}
