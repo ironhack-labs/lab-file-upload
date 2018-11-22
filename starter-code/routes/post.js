@@ -36,7 +36,16 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
         })
 });
 
-// router.get('/show', (req, res) => {
-//     res.render('/post/show', { message: req.flash('error')});
-// });
+router.get('/show', (req, res, next) => {
+   console.log("ENTRA EN SHOW CERDOS")
+    Post.find()
+        .then(posts => {
+            res.render('post/show',{posts});
+        })
+        .catch(error => {
+            console.log(error);
+        })
+});
+
+
 module.exports = router;

@@ -1,0 +1,12 @@
+<h1>POST MONGAS</h1>
+<div class="movies-wrapper">
+  {{#each posts}}
+    <div class="movie-item">
+      <img src="{{this.picPath}}" alt="" width="150px" height="100px">
+      <h4>{{this.picName}}</h4>
+      <p>{{this.content}}</p>
+    </div>
+  {{else}}
+    <p>There are no posts yet! :(</p>
+  {{/each}}
+</div>
