@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IronTumblr</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+  <body>
+    <div class="main-container">
+
+    {{#user}}
+    <div>
+      <p>{{username}}</p>
+      <img src={{imgPath}} alt={{imgName}} width="300px">
+      <p>{{content}}</p>
+      <a href="/comment/add">Add new comment</a>
+    </div>
+
+    {{/user}}
+
+  
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </body>
+</html>
