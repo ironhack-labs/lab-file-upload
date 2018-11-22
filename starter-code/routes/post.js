@@ -40,6 +40,7 @@ router.get('/show', (req, res, next) => {
    console.log("ENTRA EN SHOW CERDOS")
     Post.find()
         .then(posts => {
+            
             res.render('post/show',{posts});
         })
         .catch(error => {

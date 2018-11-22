@@ -1,12 +1,23 @@
 <h1>POST MONGAS</h1>
 <div class="movies-wrapper">
-  {{#each posts}}
+    {{#each posts}}
     <div class="movie-item">
-      <img src="{{this.picPath}}" alt="" width="150px" height="100px">
-      <h4>{{this.picName}}</h4>
-      <p>{{this.content}}</p>
+        <img src="{{this.picPath}}" alt="" width="150px" height="100px">
+        <h4>{{this.picName}}</h4>
+        <p>{{this.content}}</p>
     </div>
-  {{else}}
+    <form action="/comment" method="post" enctype="multipart/form-data">
+        <label>Commemnts</label>
+        <textarea name="content" id="" cols="30" rows="10"></textarea>
+        <input  type="text" name="idPost" value="{{this._id}}">
+        <label>Photo</label>
+        <input type="file" name="photo">
+        <button type="submit">Send</button>
+    </form>
+    {{else}}
     <p>There are no posts yet! :(</p>
-  {{/each}}
+
+
+    {{/each}}
+
 </div>
