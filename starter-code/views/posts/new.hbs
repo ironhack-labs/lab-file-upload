@@ -1,0 +1,6 @@
+<form action="/posts/new" method="POST" enctype="multipart/form-data">
+  <label for="content">Content: </label><textarea name="content" id="post-content" cols="30" rows="10"></textarea>
+  <input name="creatorId" type="hidden" value={{user.id}}>
+  <label for="img">Image: </label><input type="file" name="photo">
+  <button type="submit">Submit</button>
+</form>

@@ -1,0 +1,9 @@
+<div class="posts">
+  {{#each posts}}
+  <div class="post">
+    <img src="{{this.picPath}}" alt="{{this.picName}}">
+    <p>{{this.content}}</p>
+    <p class="post-author">@{{this.creatorId.username}}</p>
+  </div>
+  {{/each}}
+</div>

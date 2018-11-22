@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <title>{{title}}</title>
-  <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
-
-<body>
-  <h1>Welcome to IronTumblr</h1>
-</body>
-
-</html>
+  {{#if user}}
+  <img id="profilePic" src="{{user.imgPath}}" alt="My profile picture">
+  {{/if}}
+  <h1>Welcome {{user.username}} to IronTumblr</h1>

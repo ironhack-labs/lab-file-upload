@@ -16,8 +16,6 @@ const hbs = require('hbs');
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
-const index = require('./routes/index');
-const authRoutes = require('./routes/authentication');
 const path = require('path');
 
 const app = express();
@@ -122,11 +120,19 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  next();
+});
 
-console.log(process.env.API_KEY);
+const index = require('./routes/index');
+const authRoutes = require('./routes/authentication');
+const post = require('./routes/post');
 
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/posts', post);
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
