@@ -3,6 +3,7 @@ const uploadCloud = require('../config/cloudinary.js')
 const passport = require('passport');
 const router = express.Router();
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+const Post = require('../models/post');
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
     res.render('authentication/login', { message: req.flash('error') });
@@ -23,6 +24,29 @@ router.post('/signup', [ensureLoggedOut(), uploadCloud.single('photo')], passpor
     failureRedirect: '/signup',
     failureFlash: true
 }));
+
+router.get('/formPost', ensureLoggedIn(), (req, res) => {
+    res.render('authentication/formPost', { message: req.flash('error') });
+})
+
+router.post('/formPost', [ensureLoggedIn(), uploadCloud.single('picPhoto')], (req, res) => {
+    const picPath = req.file.url;
+    const picName = req.file.originalname;
+    const { content } = req.body
+    const newPost = new Post({
+        content,
+        picName,
+        picPath
+    });
+
+    newPost.save((err) => {
+        if (err) { next(null, false, { message: newPost.errors }) }
+        return res.redirect('/createPost')
+    })
+
+    // res.render('/createPost', { message: req.flash('error') });
+
+})
 
 router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
     res.render('authentication/profile', {

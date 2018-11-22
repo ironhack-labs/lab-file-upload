@@ -1,0 +1,13 @@
+<h1>New Post</h1>
+
+<div class="img-wrapper">
+    {{#each post}}
+    <div class="img-item">
+        <img src="{{this.picPath}}" alt="">
+        <h4>{{this.picName}}</h4>
+        <p>{{this.content}}</p>
+    </div>
+    {{else}}
+    <p>There are no img yet! :(</p>
+    {{/each}}
+</div>
