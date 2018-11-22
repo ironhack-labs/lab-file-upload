@@ -5,7 +5,10 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>Welcome to IronTumblr</h1>
+    <h1>Welcome {{this.username}}</h1>
+    <img src="{{this.path}}" width="200" height="200">
+    <a href="/new">Create Post</a>
     <a href="/logout">logout</a>
+    <a href="/my-posts">My Posts</a>
   </body>
 </html>

@@ -15,7 +15,7 @@ const flash              = require('connect-flash');
 const hbs                = require('hbs')
 
 
-const Photo = require('./models/photo');
+const Photo = require('./models/post');
 
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
@@ -67,17 +67,6 @@ passport.use('local-signup', new LocalStrategy(
 
 
     process.nextTick(() => {
-
-
-      // const photo = new Photo({
-      //   name: req.file.photo,
-      //   path: `/uploads/${req.file.filename}`,
-      //   originalname: req.file.originalname
-      // })
-         
-      // photo.save((err) => {
-      //   res.redirect('/');
-      // });
 
         User.findOne({
             'username': username

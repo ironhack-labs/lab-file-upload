@@ -1,0 +1,22 @@
+<h1>Your Posts</h1>
+{{#each posts}}
+<img src="{{this.picPath}}" width="200" height="200">
+<p>{{this.content}}</p>
+
+{{#each this.comments}}
+    <h1></h1>
+    <h3>{{this.content}}</h3>
+    <img src="{{this.imagePath}}">
+{{/each}}
+<form action="/new-comment" method="POST"  enctype="multipart/form-data">
+    <label for="comment">Comment:</label>    
+    <input type="text" name="comment">
+    <label for="photo">Upload image</label>
+    <input type="file" name="photo" class="form-control">
+    <input type="hidden" name="postId" value={{this._id}}>
+    <input type="submit" value="comment">
+    <a href="/comments/{{this._id}}">comments</a>
+</form>
+
+<a href="/">Back</a>
+{{/each}}
