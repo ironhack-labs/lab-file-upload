@@ -5,3 +5,10 @@
 <h6>{{post.picName}}</h6>
 <img src={{post.picPath}}>
 <p>Created by: {{post.creatorId.username}}</p>
+
+<p><a href="/post/{{post.id}}/newComment">Add a comment</a></p>
+
+
+{{#each comments}}
+{{> commentPartial this}}
+{{/each}}
