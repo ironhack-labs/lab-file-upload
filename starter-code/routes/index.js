@@ -50,8 +50,6 @@ router.get('/show/:id', (req, res) => {
 
 router.post('/new', uploadCloud.single('photo'), (req, res) => {
   
-
-
   const picName = req.body.picName;
 
   const newPost = new Post({

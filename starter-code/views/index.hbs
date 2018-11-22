@@ -30,9 +30,11 @@
 
   <section id="posts">
     {{#each posts}}
-    <a href="/show/{{this._id}}"><img src="{{this.picPath}}" alt=""></a>
-    <h1></h1>
-    <p>{{this.content}}</p>
+    <div class="post-data">
+      <a href="/show/{{this._id}}"><img src="{{this.picPath}}" alt=""></a>
+      <h1></h1>
+      <p>{{this.content}}</p>
+    </div>
     {{/each}}
   </section>
 </section>
