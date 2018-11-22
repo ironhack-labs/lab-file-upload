@@ -1,8 +1,34 @@
 <h1>Post in the sky</h1>
 
 {{#each post}}
-<img src="{{this.picPath}}">
-<h3>{{this.picName}}</h3>
-<h5>{{this.creatorId}}</h5>
-<p>{{this.content}}</p>
+<div class="post">
+  <img src="{{this.picPath}}">
+  <h3>{{this.picName}}</h3>
+  <h5>{{this.creatorId}}</h5>
+  <p>{{this.content}}</p>
+</div>
+
+
+<div class="col-sm-6 centered-form">
+  <form action="/createcomments/{{this._id}}" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="content">Comment</label>
+      <textarea rows="5" cols="50" name="content" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="image">Profile Image</label>
+      <input type="file" name="photo" class="form-control">
+    </div>
+    <button type="submit">Publicate comment</button>
+  </form>
+</div>
+<div>
+  {{#each this.comments}}
+  <img src="{{this.imagePath}}">
+  <h5>{{this.imageName}}</h5>
+  <h3>{{this.authorId}}</h3>
+  <p>{{this.content}}</p>
+  {{/each}}
+</div>
+
 {{/each}}

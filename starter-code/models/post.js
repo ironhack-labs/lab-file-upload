@@ -5,7 +5,8 @@ const PostSchema = Schema({
   content: String,
   creatorId: String,
   picPath: String,
-  picName: String
+  picName: String,
+  comments: Array,
 });
 
 const Post = mongoose.model('Post', PostSchema);
