@@ -100,3 +100,67 @@ input {
   font-size: 1.45rem;
   color: #616161;
 }
+
+.post a {
+  margin-bottom: 1rem;
+}
+
+.comments {
+  transition: all 0.5s;
+}
+
+.comment {
+  width: 90%;
+  margin: auto;
+  border-bottom: 1px solid rgba(100,100,100,0.3);
+  padding: 2rem;
+}
+
+.comment:first-child {
+  border-top: 1px solid rgba(100,100,100,0.3);
+}
+
+.comment:last-child {
+  border: none;
+}
+
+.comment img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.add-comment {
+  background: #B0BEC5;
+  border: none;
+  border-radius: 5px;
+  padding: 1rem 1.5rem;
+  margin: 1rem;
+  font-weight: 600;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+  transition: ease-out 0.25s;
+}
+
+.add-comment:hover {
+  background: #eceff1;
+  box-shadow: 0 1px 10px rgba(0,0,0,0.2);
+
+}
+
+.comment .comment-profile {
+  border-radius: 100%;
+  width: 3rem;
+  vertical-align: middle;
+  margin: 0 1rem 0 0;
+  box-shadow: 0 0 5px black;
+}
+
+p.comment-author {
+  font-weight: 500;
+  margin-bottom: 2rem;
+  color: rgb(70, 70, 70);
+  font-size: 1.5rem;
+}
+
+p.comment-content {
+  font-weight: 500;
+}

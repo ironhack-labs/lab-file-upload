@@ -4,6 +4,41 @@
     <img src="{{this.picPath}}" alt="{{this.picName}}">
     <p>{{this.content}}</p>
     <p class="post-author">@{{this.creatorId.username}}</p>
+    <button data-post="{{this.id}}" class="add-comment" data-toggle="modal" data-target="#myModal">
+      Add a comment
+    </button>
+    <a class="toggleComments">Show comments</a>
+    <div class="comments" style="height:0px">
+      {{#each this.comments}}
+      <div class="comment">
+        <p class="comment-author"><img class="comment-profile" src="{{this.authorId.imgPath}}" alt="My profile picture">{{this.authorId.username}}: </p>
+        <p class="comment-content">{{this.content}}</p>
+        <img src="{{this.imagePath}}" alt="{{this.imageName}}">
+      </div>
+      {{/each}}
+    </div>
   </div>
   {{/each}}
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form action="/posts/newComment" method="post" enctype="multipart/form-data">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Comment</h4>
+        </div>
+        <div class="modal-body">
+          <textarea name="commentText" cols="30" rows="5"></textarea>
+          <input type="file" name="photo">
+          <input type="hidden" name="postId">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Post Comment</button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
