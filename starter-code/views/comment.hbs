@@ -1,1 +1,14 @@
-<h1>connected</h1>
+<h1>Add a new comment</h1>
+
+<form action="/comment/add" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="commentContent">Comment content: </label>
+        <input type="text" name="content" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="imgpath">Photo: </label>
+        <input type="file" name="imgPath" class="form-control">
+    </div>
+     <button type="submit">Post Comment</button>
+
+</form>
