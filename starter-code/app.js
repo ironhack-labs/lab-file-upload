@@ -74,7 +74,6 @@ passport.use('local-signup', new LocalStrategy(
                   email,
                   password, 
                 } = req.body;
-                
                 //las variables tienen que ser iguales a las declaradas en el modelo
                 const picturePath = req.file.url;
                 const profilePicture = req.file.originalname;

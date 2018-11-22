@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const TumblrSchema = Schema({
+const PostSchema = Schema({
     content: String,
     creatorID: Object,
     picPath: String,
     picName: String,
 });
 
-const Tumblr = mongoose.model('User', TumblrSchema);
+const Post = mongoose.model('Post', PostSchema);
 
-module.exports = User;
+module.exports = Post;
