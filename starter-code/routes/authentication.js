@@ -9,7 +9,7 @@ router.get('/login', ensureLoggedOut(), (req, res) => {
 });
 
 router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
-  successRedirect : '/',
+  successRedirect : '/profile',
   failureRedirect : '/login',
   failureFlash : true
 }));
@@ -24,10 +24,22 @@ router.post('/signup', [ensureLoggedOut(), uploadCloud.single('imgName')], passp
   failureFlash : true
 }))
 
+
+// router.get('/celebrities/:id', (req, res, next) => {
+
+//     Celebrity.findById(req.params.id)
+//       .then(celebrity => {
+//         res.render('celebrities/show', { celebrity });
+//       })
+//       .catch(err => {
+//         console.error(err);
+//       })
+//   });
+
+
+
 router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
-    res.render('authentication/profile', {
-        user : req.user
-    });
+    res.render('authentication/profile', {user : req.user});
 });
 
 router.get('/logout', ensureLoggedIn('/login'), (req, res) => {
