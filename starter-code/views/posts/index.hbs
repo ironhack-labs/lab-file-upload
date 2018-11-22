@@ -1,0 +1,17 @@
+<h2>Welcome to the posts page</h2>
+<div>
+<img src={{this.pictureURL}} alt="profile-photo">
+    <p>{{this.username}}</p>
+</div>
+
+<form  action="/create-post" method="post"  enctype="multipart/form-data">
+    <label for="photo">File</label>
+    <input type="file" name="photo">
+    <label for="content">Content</label>
+    <input type="text" name="content">
+
+    <button type="submit">Create Post</button>
+</form>
+
+
+<a href="/show-posts">Show Posts</a>
