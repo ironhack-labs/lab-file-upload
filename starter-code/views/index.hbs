@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{{title}}</title>
+    <title>IronTumblr</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
+
+    {{#each posts}}
+    {{> postPartial this}}
+    {{/each}}
   </body>
 </html>
