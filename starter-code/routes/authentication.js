@@ -1,45 +1,63 @@
-const express    = require('express');
-const passport   = require('passport');
-const router     = express.Router();
+const express = require('express');
+const passport = require('passport');
+const router = express.Router();
 const uploadCloud = require('../config/cloudinary.js');
+const Post = require('../models/post');
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
-    res.render('authentication/login', { message: req.flash('error')});
+    res.render('authentication/login', { message: req.flash('error') });
 });
 
 router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
-  successRedirect : '/profile',
-  failureRedirect : '/login',
-  failureFlash : true
+    successRedirect: '/profile',
+    failureRedirect: '/login',
+    failureFlash: true
 }));
 
 router.get('/signup', ensureLoggedOut(), (req, res) => {
-    res.render('authentication/signup', { message: req.flash('error')});
+    res.render('authentication/signup', { message: req.flash('error') });
 });
 
 router.post('/signup', [ensureLoggedOut(), uploadCloud.single('imgName')], passport.authenticate('local-signup', {
-  successRedirect : '/',
-  failureRedirect : '/signup',
-  failureFlash : true
+    successRedirect: '/',
+    failureRedirect: '/signup',
+    failureFlash: true
 }))
 
-
-// router.get('/celebrities/:id', (req, res, next) => {
-
-//     Celebrity.findById(req.params.id)
-//       .then(celebrity => {
-//         res.render('celebrities/show', { celebrity });
-//       })
-//       .catch(err => {
-//         console.error(err);
-//       })
-//   });
-
-
+router.post('/profile', [ensureLoggedIn(), uploadCloud.single('imgName')], (req, res, next) => {
+    const idUser = req.user.id;
+    const description = req.body.imgDesc;
+    const originalname = req.file.originalname;
+    const url = req.file.url;
+    
+    const newPost = new Post({
+        idUser,
+        description,
+        originalname,
+        url
+    })
+    newPost.save()
+        .then(post => {
+            res.redirect('/profile');
+        })
+        .catch(err => console.log(err));
+});
 
 router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
-    res.render('authentication/profile', {user : req.user});
+
+
+  Post.find({idUser:req.user._id})
+  .then(post => {
+    res.render('authentication/profile', {post , user: req.user });
+  })
+  .catch(error => {
+    console.error(err);
+    next(err);
+  })
+
+
+    
 });
 
 router.get('/logout', ensureLoggedIn('/login'), (req, res) => {

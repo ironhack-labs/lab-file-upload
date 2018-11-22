@@ -1,5 +1,23 @@
-<h1>HOLA</h1>
-<h2>{{user.username}}</h2>
-<p>{{user.email}}</p> 
-<img src="{{user.url}}" alt="">
+<h1>USUARIO: {{user.username}}</h1>
+<h2>EMAIL: {{user.email}}</h2>
+{{!-- <p>{{user.id}}</p> --}}
+<img width="200" id="profileImg" src="{{user.url}}" alt=""><br><br><br>
+
+<h2>Nuevo Post:</h2>
+
+<form action="/profile" method="post" enctype="multipart/form-data" <div class="form-group">
+  <label>Image Description</label><br>
+  <input type="text" name="imgDesc"><br><br>
+  <label>Image</label><br>
+  <input type="file" name="imgName"><br><br>
+  <button type="submit">New Post</button>
+</form>
+
 <p><a href="/logout">Logout</a></p>
+
+<h2>Mis Posts:</h2>
+
+{{#each post}}
+<img width="200" id="profileImg" src="{{this.url}}" alt="">
+<h4>{{this.description}}</h4><hr>
+{{/each}}
