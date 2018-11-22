@@ -2,21 +2,38 @@
   <div class="row">
     {{ message }}
     <div class="col-sm-6 centered-form">
-      <form action="/signup" method="post">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" name="username" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="text" name="email" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" name="password" class="form-control">
-        </div>
-        <button type="submit">Signup</button>
-      </form>
+      <form action="/signup" method="post" enctype="multipart/form-data" <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" name="username" class="form-control">
     </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" name="email" class="form-control">
+    </div><br>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" name="password" class="form-control">
+    </div><br>
+    <div class="form-group">
+      <label>Imgage Profile</label>
+      <input type="file" name="imgName">
+    </div><br>
+
+    <button type="submit">Signup</button>
+    </form>
+    {{!-- <h2>Upload a new image profile</h2>
+    <form action="/movie/add" method="post" enctype="multipart/form-data">
+      <label>Title</label>
+      <input type="text" name="title">
+
+      <label>Description</label>
+      <input type="text" name="description">
+
+      <label>Poster</label>
+      <input type="file" name="photo">
+
+      <input type="submit" value="SAVE"> --}}
+    </form>
   </div>
+</div>
 </div>
