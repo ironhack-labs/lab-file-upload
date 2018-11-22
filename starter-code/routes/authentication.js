@@ -25,28 +25,6 @@ router.post('/signup', uploadCloud.single('photo'), ensureLoggedOut(), passport.
   failureRedirect : '/signup',
   failureFlash : true
 }));
-// , (req,res) => {
-//     const { username, email, password } = req.body;
-//               const imgPath = req.file.url;
-//               const imgName = req.file.originalname;
-
-//               const hashPass = bcrypt.hashSync(
-//                 password,
-//                 bcrypt.genSaltSync(8),
-//                 null
-//               );
-//               const newUser = new User({
-//                 username,
-//                 email,
-//                 password: hashPass,
-//                 imgName,
-//                 imgPath
-//               });
-
-//               newUser.save()
-//               .then(()=>{console.log("Usuario guardado"); res.redirect("/login")})
-//               .catch(err => console.log(err));
-// });
 
 router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
     res.render('authentication/profile', {

@@ -7,15 +7,20 @@
 </head>
 
 <body>
-  <h1>Welcome to IronTumblr</h1>
-  <sec>
+  <h1>Welcome to Iron</h1>
+  <section>
     <a href="/login">Log in</a>
     <a href="/logout">Log out</a>
-  </sec>
-  <sec>
+  </section>
+  <section>
     <a href="/new">New Post</a>
-  </sec>
-
+  </section>
+  <div>
+    {{#each posts}}
+    <p>{{this.content}}</p>
+    <img src="{{this.picPath}}" alt="">
+    {{/each}}
+  </div>
 </body>
 
 </html>

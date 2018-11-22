@@ -10,7 +10,9 @@ mongoose.connect("mondodb://localhost/tumblr-lab-development");
 /* GET home page */
 
 router.get("/", (req, res, next) => {
-  res.render("index");
+  Post.find({})
+    .then(posts => res.render("index", { posts }))
+    .catch(err => console.log(err));
 });
 
 router.get("/new", ensureLoggedIn(), (req, res, next) => {
@@ -18,7 +20,7 @@ router.get("/new", ensureLoggedIn(), (req, res, next) => {
 });
 
 router.post("/new", uploadCloud.single("photo"), (req, res) => {
-  const { content, creatorId} = req.body;
+  const { content, creatorId } = req.body;
   const picPath = req.file.url;
   const picName = req.file.originalname;
   const newPost = new Post({
@@ -38,11 +40,11 @@ router.post("/new", uploadCloud.single("photo"), (req, res) => {
     });
 });
 
-// router.get('/dashBoard', (req, res) => {
-//   Post.find({})
-//     .then(post => res.render('dashBoard',  { post }))
-//     .catch(err => next(err));
-// });
+router.get("/index", (req, res) => {
+  Post.find({})
+    .then(post => res.render("index", { post }))
+    .catch(err => next(err));
+});
 
 // router.get('/show/:id', (req, res, next) => {
 //   Post.findById(req.params.id)
