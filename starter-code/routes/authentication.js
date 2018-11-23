@@ -34,6 +34,7 @@ router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
         user: req.user
     });
 });
+
 router.post('/profile', [ensureLoggedIn(), uploadCloud.single('photo')], (req, res) => {
     const content = req.body;
     const picPath = req.file.url;
