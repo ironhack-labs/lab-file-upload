@@ -12,7 +12,8 @@ const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
-const hbs                = require('hbs')
+const hbs                = require('hbs');
+
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
@@ -50,7 +51,6 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
     if (!bcrypt.compareSync(password, user.password)) {
       return next(null, false, { message: "Incorrect password" });
     }
-
     return next(null, user);
   });
 }));
@@ -74,11 +74,14 @@ passport.use('local-signup', new LocalStrategy(
                   email,
                   password
                 } = req.body;
+                const image = req.file.secure_url
+                console.log(req.file);
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  image
                 });
 
                 newUser.save((err) => {
