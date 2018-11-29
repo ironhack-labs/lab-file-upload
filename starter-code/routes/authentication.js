@@ -1,17 +1,20 @@
 const express    = require('express');
 const passport   = require('passport');
 const router     = express.Router();
+const User       = require('../models/user')
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
     res.render('authentication/login', { message: req.flash('error')});
 });
 
-router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
-  successRedirect : '/',
-  failureRedirect : '/login',
-  failureFlash : true
-}));
+router.post("/signup", (req, res, next) => {
+    User.register(req.body, req.body.password)
+        .then(user => {
+            res.json(user);
+        })
+        .catch(e => next(e));
+});
 
 router.get('/signup', ensureLoggedOut(), (req, res) => {
     res.render('authentication/signup', { message: req.flash('error')});
