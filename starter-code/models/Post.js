@@ -9,6 +9,10 @@ const postSchema = Schema({
   },
   picPath: String,
   picName:String,
+  comments:[{
+    type:Schema.Types.ObjectId,
+    ref:'Comment'
+  }]
 });
 
-module.exports = mongoose.model('User', UserSchema);;
+module.exports = mongoose.model('Post', postSchema);;
