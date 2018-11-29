@@ -29,3 +29,10 @@ bower_components
 
 # Debug log from npm
 npm-debug.log
+
+# MACOS Files
+.DS_Store
+
+# Dotenv environment variables files
+.env
+.private.env
