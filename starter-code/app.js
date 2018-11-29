@@ -6,8 +6,7 @@ const favicon            = require('serve-favicon');
 const logger             = require('morgan');
 const cookieParser       = require('cookie-parser');
 const bodyParser         = require('body-parser');
-const passport           = require('passport');
-const LocalStrategy      = require('passport-local').Strategy;
+const passport           = require("./helpers/passport");
 const User               = require('./models/user');
 // const bcrypt             = require('bcrypt');
 const session            = require('express-session');
@@ -30,7 +29,7 @@ app.use(session({
   store: new MongoStore( { mongooseConnection: mongoose.connection })
 }))
 
-passport.serializeUser((user, cb) => {
+/*passport.serializeUser((user, cb) => {
   cb(null, user.id);
 });
 
@@ -90,7 +89,7 @@ passport.use('local-signup', new LocalStrategy(
             }
         });
     });
-}));
+}));*/
 
 app.use(flash());
 app.use(passport.initialize());
