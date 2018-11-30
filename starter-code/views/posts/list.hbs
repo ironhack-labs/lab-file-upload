@@ -1,17 +1,8 @@
-{{!-- content: String,
-  creatorId:{
-    type:Schema.Types.ObjectId,
-    ref:'User'
-  },
-  picPath: String,
-  picName:String, --}}
-
 <h1>Posts</h1>
-{{#each users}}
+{{#each posts}}
 <article>
   <p>{{this.content}}</p>
-  <h4>{{this.picName}}</h4>
-  <img src="{{this.picPath}}" alt="pic">
-  <h5>Author: </h5>
+  <img width="400" src="{{this.picPath}}" alt="pic">
+  <h5>By {{this.creatorId.username}} </h5>
 </article>
 {{/each}}
