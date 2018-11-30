@@ -1,7 +1,6 @@
 
 <h2>Signup</h2>
 <div class="">
-  {{ message }}
   <div class="">
     <form action="/signup" method="post" id="form-container">
       <div class="">
@@ -18,6 +17,9 @@
           this.removeAttribute('readonly');
           this.blur(); this.focus();}"/>
       </div>
+      {{#if message }}
+        <div class="error-message">{{message}}</div>
+      {{/if}}
       <button class="signupBut" type="submit">Signup</button>
     </form>
   </div>

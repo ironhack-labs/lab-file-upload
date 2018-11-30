@@ -16,7 +16,8 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const mongoose = require('mongoose');
 const flash = require('connect-flash');
-const hbs = require('hbs')
+const hbs = require('hbs');
+const debug = require('debug');
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
@@ -121,6 +122,11 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
+
+app.use((req,res,next)=>{
+  res.locals.user = req.user;
+  next();
+});
 
 // default value for title local
 app.locals.title = 'Tumblr UploadFiles';
