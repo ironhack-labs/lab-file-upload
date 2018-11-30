@@ -1,0 +1,20 @@
+<h3>hola</h3>
+{{#each posts}}
+ <div class="container">
+     <div class="card" style="width: 18rem;">
+         <img class="card-img-top" src="{{this.picPath}}" alt="Card image cap">
+         <div class="card-body">
+             <p class="card-text">{{this.content}}</p>
+         </div>
+         <div class="card-body">
+             {{#if comment}}
+             {{#each comment}}
+             <li>{{comment.content}}</li>
+             {{/each}}
+             {{else}}
+             <p>No hay comentarios</p>
+             {{/if}}
+         </div>
+     </div>
+ </div>
+ {{/each}} 

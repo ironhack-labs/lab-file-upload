@@ -1,7 +1,10 @@
-const express    = require('express');
-const passport   = require('passport');
-const router     = express.Router();
-const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+const express = require('express');
+  const passport = require('passport');
+  const router = express.Router();
+  const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+  const multer = require('multer');
+  const upload = multer({ dest: './public/uploads/' });
+  const post = require('../models/post');;
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
     res.render('authentication/login', { message: req.flash('error')});
@@ -19,7 +22,7 @@ router.get('/signup', ensureLoggedOut(), (req, res) => {
 
 router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
   successRedirect : '/',
-  failureRedirect : '/signup',
+  //failureRedirect : '/signup',
   failureFlash : true
 }));
 

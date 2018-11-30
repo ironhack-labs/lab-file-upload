@@ -1,9 +1,16 @@
 const express = require('express');
 const router  = express.Router();
+const post = require('../models/post')
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Express - Generated with IronGenerator' });
+  const user = req.user;
+  post.find()
+  .populate('creatorId')
+  .then(posts => {
+    res.render('index', { title: 'Tumblrr', user, posts })
+  })
+  .catch(e => console.log(e))
 });
 
 module.exports = router;
