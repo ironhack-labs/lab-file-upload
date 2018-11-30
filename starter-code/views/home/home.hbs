@@ -1,0 +1,22 @@
+<h4>Boostrap</h4>
+
+
+{{#each posts}}
+<div class="container">
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{this.picPath}}" alt="Card image cap">
+        <div class="card-body">
+            <p class="card-text">{{this.content}}</p>
+        </div>
+        <div class="card-body">
+            {{#if comments}}
+            {{#each comments}}
+            <li>{{comment.content}}</li>
+            {{/each}}
+            {{else}}
+            <p>No hay comentarios</p>
+            {{/if}}
+        </div>
+    </div>
+</div>
+{{/each}}

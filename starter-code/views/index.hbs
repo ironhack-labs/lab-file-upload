@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-  </body>
-</html>
+ <html>
+   <head>
+     <title>{{title}}</title>
+     <link rel='stylesheet' href='/stylesheets/style.css' />
+   </head>
+   <body>
+     <h1>IronTumblr</h1>
+     {{#if user}}
+     <a href="/profile">Profile</a>
+     {{else}}
+     <a href="/signup">Sign up</a>
+     <a href="/login">Log in</a>
+     {{/if}}
+
+     <h3>Feed:</h3>
+     {{#each posts}}
+     <p>By: {{creatorId.username}}<img src="{{creatorId.profilePicture.path}}" height="50px" style="object-fit: contain"></p>
+     <p>{{this.content}}</p>
+     <img src="{{this.picpath}}" alt="{{this.picname}}">
+     <a href="/new-comment/{{this._id}}">New comment</a>
+     {{/each}}
+   </body>
+ </html>
