@@ -43,6 +43,11 @@ ul {
   margin-bottom: 1em;
 }
 
+.container .profileImg {
+  width: 50%;
+  margin-bottom: 1em;
+}
+
 .container form {
   width: 25em;
   position: relative;
