@@ -3,12 +3,10 @@ const passport = require('passport');
 const router = express.Router();
 const {ensureLoggedIn, ensureLoggedOut} = require('connect-ensure-login');
 const upload = require('../multer');
-let fotoProfile = "";
+const User = (require('../models/user'));
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
-    res.render('authentication/login', {
-        message: req.flash('error')
-    });
+    res.render('authentication/login', {message: req.flash('error')});
 });
 
 router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
@@ -18,9 +16,7 @@ router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
 }));
 
 router.get('/signup', ensureLoggedOut(), (req, res) => {
-    res.render('authentication/signup', {
-        message: req.flash('error')
-    });
+    res.render('authentication/signup', {message: req.flash('error')});
 });
 
 router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
@@ -30,15 +26,14 @@ router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', 
 }));
 
 router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
-    res.render('profile', {fotoProfile});
+    res.render('profile');
 });
 
 
 router.post('/upload', upload.single('photo'), (req,res) => {
-    console.log(req.body);
-    console.log(req.file);
-    fotoProfile = req.file.url;
-    res.redirect('/profile');
+    User.findByIdAndUpdate(req.user._id, {$set: {"profilePhoto": req.file.url}}).then(() => {
+        res.redirect('/profile');
+    });
 });
 
 router.get('/logout', ensureLoggedIn('/login'), (req, res) => {
