@@ -1,0 +1,11 @@
+<h1>Posts</h1>
+<br>
+{{#each posts}}
+<h2>{{this.content}} | </h2><br>
+<img src="{{this.picPath}}" alt="imagen" width="200px">
+<br>
+<a href="/comment/{{this._id}}">Crear comentario</a>
+<a href="/detail/{{this._id}}">Ver comentarios</a>
+{{/each}}
+<hr>
+<a href="/new">Agrega un post</a> 
