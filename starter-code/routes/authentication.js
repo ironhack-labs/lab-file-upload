@@ -24,10 +24,11 @@ router.get('/signup', ensureLoggedOut(), (req, res) => {
 router.post("/login", passport.authenticate("local"), (req, res, next) => {
     const email = req.user.email;
     req.app.locals.user = req.user;
-    res.send("Tu eres un usuario real con email: " + email);
+    res.redirect('/profile');
 });
 
 router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
+    console.log(req.user)
     res.render('authentication/profile', {
         user : req.user
     });

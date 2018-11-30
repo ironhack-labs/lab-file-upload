@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const Post = require('../../models/Post')
-const User = require('../models/User')
+// const User = require('../models/User')
 const multer = require('multer')
 const uploader = multer({dest: './public/pics'})
 
@@ -17,6 +17,7 @@ function checkIfLogged(req, res, next){
 router.get('/', (req, res, next) => {
   Post.find().populate('creatorId')
   .then(posts=>{
+    console.log(posts)
     res.render('posts/list',{posts})
   })
   .catch(err=>{
@@ -30,7 +31,7 @@ router.post('/new', checkIfLogged, uploader.single('image'), (req, res, next) =>
   if(req.file){
     const p = {
       content:req.body.content,
-      creatorId:"5c0081ff76e399a7120694db",
+      creatorId:"5c008c1c7bb453ad33fd143c",
       picPath: '/pics/' + req.file.filename,
       picName:req.file.originalname
     }
