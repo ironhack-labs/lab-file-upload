@@ -1,8 +1,16 @@
 <h1>Posts</h1>
+<a href="/posts/new">Post something</a>
+<a href="/">Home</a>
+<a href="/profile">Profile</a>
+<section class="posts-section">
 {{#each posts}}
-<article>
+<div class="post">
   <p>{{this.content}}</p>
-  <img width="400" src="{{this.picPath}}" alt="pic">
-  <h5>By {{this.creatorId.username}} </h5>
-</article>
+  <a href="/posts/detail/{{this._id}}"><img width="300" src="{{this.picPath}}" alt="pic"></a>
+  <p>
+    <span>By {{this.creatorId.username}} </span>
+    <a href="/posts/detail/{{this._id}}">Comment</a>
+  </p>
+</div>
 {{/each}}
+</section>

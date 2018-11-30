@@ -6,3 +6,16 @@ body {
 a {
   color: #00B7FF;
 }
+
+.posts-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: space-around;
+  flex-wrap: wrap;
+}
+
+.post {
+  width: 400px;
+  height: 400px;
+}

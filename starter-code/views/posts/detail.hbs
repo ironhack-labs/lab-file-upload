@@ -1,0 +1,18 @@
+<div class="post">
+  <a href="/posts">Back to posts</a>
+  <p>{{content}}</p>
+  <img width="300" src="{{post.picPath}}" alt="pic">
+  <p>
+    <span>By {{post.creatorId.username}} </span>
+    {{#each comments}}
+    <div>
+      {{!-- <img width="50" height="50" src="{{this.imagePath}}" alt="{{this.imageName}}"> --}}
+      <p>{{this.authorId.username}} says: {{this.content}}</p>
+    </div>
+    {{/each}}
+    <form action="/comments/new/{{post._id}}" method="POST">
+      <input type="text" name="content" id="content" placeholder="Comment...">
+      <input type="submit" value="Publish">
+    </form>
+  </p>
+</div>

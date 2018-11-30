@@ -1,23 +1,35 @@
 const express = require('express');
 const router  = express.Router();
 const Post = require('../../models/Post')
+const Comment = require('../../models/Comment')
 // const User = require('../models/User')
 const multer = require('multer')
 const uploader = multer({dest: './public/pics'})
+const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
-function checkIfLogged(req, res, next){
-  // if(req.isAuthenticated()){
-  //   return next()
-  // }
-  // return res.redirect("/auth/login")
-  return next()
-}
+router.get('/detail/:id', ensureLoggedIn('/login'), (req, res, next) => {
+  Post.findById(req.params.id).populate('creatorId')
+  .then(post=>{
+    const comments = []
+    post.comments.forEach(element => {
+      Comment.findById(element).populate('authorId')
+      .then(c=>{
+        comments.push(c)
+      })
+      .catch(err=>{
+        console.log(err)
+      })
+    });
+    res.render('posts/detail',{post, comments})
+  })
+  .catch(err=>{
+    console.log(err)
+  })
+});
 
-/* GET home page. */
 router.get('/', (req, res, next) => {
   Post.find().populate('creatorId')
   .then(posts=>{
-    console.log(posts)
     res.render('posts/list',{posts})
   })
   .catch(err=>{
@@ -25,13 +37,13 @@ router.get('/', (req, res, next) => {
   })
 });
 
-router.post('/new', checkIfLogged, uploader.single('image'), (req, res, next) => {
+router.post('/new', ensureLoggedIn('/login'), uploader.single('image'), (req, res, next) => {
   // console.log(req.file)
   // console.log(req.user)
   if(req.file){
     const p = {
       content:req.body.content,
-      creatorId:"5c008c1c7bb453ad33fd143c",
+      creatorId:req.user._id,
       picPath: '/pics/' + req.file.filename,
       picName:req.file.originalname
     }
@@ -46,7 +58,7 @@ router.post('/new', checkIfLogged, uploader.single('image'), (req, res, next) =>
   } 
 })
 
-router.get('/new', checkIfLogged, (req, res, next) => {
+router.get('/new', ensureLoggedIn('/login'), (req, res, next) => {
   res.render('posts/new')
 });
 
