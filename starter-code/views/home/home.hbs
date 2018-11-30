@@ -1,0 +1,40 @@
+<h4>Boostrap</h4>
+{{!-- <div class="container">
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbr4AHHVtZy6hoSClpGYfCRxPFZ_JQBJdC-hFUrh0DXCyf6Gux"
+            alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{username}}</h5>
+            <p class="card-text">{{postcontent}}</p>
+        </div>
+        <div class="card-body">
+            {{#if comments}}
+            {{#each comments}}
+            <li>{{comment.content}}</li>
+            {{/each}}
+            {{else}}
+            <p>No hay comentarios</p>
+            {{/if}}
+        </div>
+    </div>
+</div> --}}
+
+{{#each posts}}
+<div class="container">
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{this.picPath}}" alt="Card image cap">
+        <div class="card-body">
+            <p class="card-text">{{this.content}}</p>
+        </div>
+        <div class="card-body">
+            {{#if comments}}
+            {{#each comments}}
+            <li>{{comment.content}}</li>
+            {{/each}}
+            {{else}}
+            <p>No hay comentarios</p>
+            {{/if}}
+        </div>
+    </div>
+</div>
+{{/each}}
