@@ -29,11 +29,14 @@ router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
     res.render('profile');
 });
 
-
 router.post('/upload', upload.single('photo'), (req,res) => {
-    User.findByIdAndUpdate(req.user._id, {$set: {"profilePhoto": req.file.url}}).then(() => {
-        res.redirect('/profile');
-    });
+    if (req.file !== undefined) {
+        User.findByIdAndUpdate(req.user._id, {$set: {"profilePhoto": req.file.url}}).then(() => {
+            res.redirect('/profile');
+        });
+    } else {
+        res.redirect('/profile', {message: 'Empty photo field!'});
+    }
 });
 
 router.get('/logout', ensureLoggedIn('/login'), (req, res) => {
@@ -41,4 +44,4 @@ router.get('/logout', ensureLoggedIn('/login'), (req, res) => {
     res.redirect('/');
 });
 
-module.exports = router;
+module.exports = router;//

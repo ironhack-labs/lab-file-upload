@@ -13,7 +13,7 @@ const storage = cloudinaryStorage({
   folder: 'profile-pictures',
   allowedFormats: ['jpg', 'png'],
   filename: function (req, file, cb) {
-    cb(undefined, 'my-file-name');
+    cb(undefined, 'profilePhoto');
   }
 });
 
