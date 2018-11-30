@@ -37,6 +37,7 @@ ul {
 }
 
 .container h2 {
+  text-align: center;
   text-decoration: underline;
   font-weight: bold;
   margin-bottom: 1em;
@@ -104,12 +105,59 @@ ul {
   transition: .3s ease background;
 }
 
-.container form button.signupBut {
+.container form#photoForm {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 40em;
+}
+
+.container form .photoBox {
+  text-align: left;
+  margin-right: 1em;
+  display: inline-block;
+  width: 20em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  box-sizing: border-box;
+  font-size: 14px;
+  padding: .5em 1em;
+  margin-bottom: 1em;
+  border: 2px solid #eee;
+  -webkit-border-radius: 2em;
+  -moz-border-radius: 2em;
+  border-radius: 2em;
+  color: grey;
+  cursor: pointer;
+}
+
+.container form input.photoInput {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.container form input.photoInput input {
+  cursor: pointer;
+}
+
+.container form button.saveBut {
+  display: inline-block;
+  margin-top: 0;
+  width: 8em;
+}
+
+.container form button.signupBut, .container form button.saveBut {
   background: #43a3e6;
   border: 2px solid #43a3e6;
 }
 
-.container form button.signupBut:hover {
+.container form button.signupBut:hover, .container form button.saveBut:hover {
   background: #fff;
   color: #43a3e6;
 }
