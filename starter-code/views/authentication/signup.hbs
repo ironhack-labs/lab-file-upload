@@ -6,15 +6,17 @@
     <form action="/signup" method="post" id="form-container">
       <div class="">
         <label for="username">Username</label>
-        <input type="text" name="username" class="form-control">
+        <input type="text" name="username" class="" placeholder="JonSnow">
       </div>
       <div class="">
         <label for="email">Email</label>
-        <input type="text" name="email" class="form-control">
+        <input type="text" name="email" class="" placeholder="jsnow@gmail.com">
       </div>
       <div class="">
         <label for="password">Password</label>
-        <input type="password" name="password" class="form-control">
+        <input type="password" name="password" class="" placeholder="password" readonly onfocus="if (this.hasAttribute('readonly')) {
+          this.removeAttribute('readonly');
+          this.blur(); this.focus();}"/>
       </div>
       <button class="signupBut" type="submit">Signup</button>
     </form>
