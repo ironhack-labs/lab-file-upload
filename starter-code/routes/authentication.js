@@ -35,7 +35,7 @@ router.post('/upload', upload.single('photo'), (req,res) => {
             res.redirect('/profile');
         });
     } else {
-        res.redirect('/profile', {message: 'Empty photo field!'});
+        res.render('profile', {message: 'Empty photo field!'});
     }
 });
 

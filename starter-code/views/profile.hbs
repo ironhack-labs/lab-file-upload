@@ -7,10 +7,10 @@
   <form id="photoForm" action="/upload" method="post" enctype="multipart/form-data">
     <div class="photoBox"><input type="file" name="photo" class="photoInput" onchange="fileSelect(event)"><span class="fileName">Click here to select profile image</span></div>
     <button type="submit" class="saveBut">Save</button>
-    {{#if message }}
-      <div class="error-message">{{message}}</div>
-    {{/if}}
   </form>
+  {{#if message }}
+    <div class="error-message w50">{{message}}</div>
+  {{/if}}
 <h1>{{user.username}}</h1>
 <p class="userDescription">No te digo trigo por no llamarte Rodrigor te va a hasé pupitaa fistro caballo blanco caballo negroorl.
   Fistro ese pedazo de sexuarl me cago en tus muelas no puedor quietooor.

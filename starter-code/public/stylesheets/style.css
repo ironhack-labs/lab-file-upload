@@ -191,6 +191,10 @@ ul {
   width: 100%;
 }
 
+.error-message.w50 {
+  width: 50%;
+}
+
 .blue {
   color: #43a3e6;
 }
