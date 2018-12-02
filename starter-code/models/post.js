@@ -3,7 +3,7 @@ const Schema   = mongoose.Schema;
 
 const postSchema = Schema({
   content: String,
-  creatorId: String,
+  creatorId: Object,
   picPath: String,
   picName: String
 }, {

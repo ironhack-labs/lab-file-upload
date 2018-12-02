@@ -12,7 +12,7 @@ router.get('/new',(req,res)=>{
 router.post('/uploadPost', uploadPostPicture.single('postPic'), (req,res) => {
   const picPath= req.file.url
   const content = req.body.content;
-  const creatorId = req.user._id;
+  const creatorId = req.user;
   const picName = req.file.originalname;
   
   Post.create({picPath,content,creatorId,picName}).
