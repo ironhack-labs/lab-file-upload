@@ -1,8 +1,32 @@
 body {
-  padding: 50px;
+  margin: 0;
+  padding: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+  text-decoration: none;
 }
+
+.navbar{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #2B3A42;
+}
+
+.navbar a{
+  padding: 0 10px;
+  color: #F0F0DF;
+}
+
+.main-container{
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 10px 20px;
+}
+
+

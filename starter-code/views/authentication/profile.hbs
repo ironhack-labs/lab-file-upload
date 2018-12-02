@@ -1,0 +1,15 @@
+<h2>Perfil de Usuario</h2>
+
+{{#if user.imgPath}}
+<img width="200" height="200" src={{user.imgPath}} alt="">
+{{else}}
+<p>No tienes imagen de perfil, puedes subir una</p>
+<form action="/upload" method="post" enctype="multipart/form-data">
+  <input type="text" name="name">
+  <input type="file" name="photo">
+  <input type="submit" value="Save">
+</form>
+
+{{/if}}
+<p>Nombre: {{user.username}}</p>
+<p>Email: {{user.email}}</p>

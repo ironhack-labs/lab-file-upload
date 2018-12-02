@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-  </body>
-</html>
+<div class="container">
+<h1>Post Feed</h1>
+
+{{#each posts}}
+<div class="container postContainer">
+<img with="500" height="300" src={{this.picPath}} alt="">
+<p>{{this.content}}</p>
+</div>
+{{/each}}
+
+</div>
+
