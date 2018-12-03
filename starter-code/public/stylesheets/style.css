@@ -29,4 +29,14 @@ a {
   padding: 10px 20px;
 }
 
+.postContainer{
+  background-color:rgba(43, 58, 66, 0.5);
+  padding: 10px 20px;
+  margin: 5px 0px;
+}
+
+.postImg{
+  width: 100%;
+  padding: 30px 30px;
+}
 
