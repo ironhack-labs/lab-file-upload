@@ -28,15 +28,36 @@ a {
   flex-flow: column nowrap;
   padding: 10px 20px;
 }
+.title{
+  padding: 10px 10px;
+}
 
 .postContainer{
-  background-color:rgba(43, 58, 66, 0.5);
-  padding: 10px 20px;
-  margin: 5px 0px;
+  padding: 5px 20px;
 }
 
-.postImg{
+
+.caption{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 15px 40px;
+  border-radius: 25px;
   width: 100%;
-  padding: 30px 30px;
 }
 
+.info{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px 40px;
+}
+
+.info p{
+  display: flex;
+}
+
+i{
+  padding: 0px 5px;
+}

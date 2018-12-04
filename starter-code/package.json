@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www"
+    "dev": "nodemon ./bin/www hbs"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -23,6 +23,7 @@
     "morgan": "^1.9.1",
     "multer": "^1.4.1",
     "multer-storage-cloudinary": "^2.2.1",
+    "nodemon": "^1.18.7",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "serve-favicon": "^2.5.0"

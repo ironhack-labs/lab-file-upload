@@ -1,0 +1,43 @@
+<div class="card mb-3 container">
+  <img class="card-img-top" src={{post.picPath}} alt="Card image cap">
+  <div class="card-body">
+    <p class="card-text">{{post.content}}</p>
+    <p class="card-text"><small class="text-muted"><i class="fas fa-user"></i>{{post.creatorId.username}}</small></p>
+    <p class="card-text"><small class="text-muted"><i class="far fa-calendar-alt"></i>{{post.createdAt}}</small></p>
+  </div>
+</div>
+
+{{#if post.comments}}
+<div class="container commentsContainer">
+  {{#each post.comments}}
+  {{> commentCard this}}
+  {{/each}}
+</div>
+{{else}}
+<div class="container">
+  <p>There are no comments, be the first one!!</p>
+</div>
+
+{{/if}}
+
+
+<div class="container border border-primary p-4">
+  <form action="/uploadComment" method="post" enctype="multipart/form-data">
+    <h5>Leave a comment</h5>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Comment</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="comment"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlFile1">Upload Picture</label>
+      <input type="file" class="form-control-file" id="exampleFormControlFile1" name="commentPic">
+    </div>
+
+    <input type="hidden" id="custId" name="postId" value="{{post.id}}">
+    <button type="submit" class="btn btn-primary mb-2">Post Comment</button>
+  </form>
+
+</div>
+
+
+<a href="/">Back to All Posts</a>

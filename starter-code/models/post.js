@@ -5,7 +5,8 @@ const postSchema = Schema({
   content: String,
   creatorId: Object,
   picPath: String,
-  picName: String
+  picName: String,
+  comments : {type:Array, default:[]}
 }, {
   timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" }
 });

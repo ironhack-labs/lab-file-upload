@@ -26,10 +26,22 @@ var storagePostPictures = cloudinaryStorage({
   }
 });
 
-const uploadProfilePicture = multer({ storage: storageProfilePictures })
-const uploadPostPicture = multer({storage: storagePostPictures})
+var storageCommentPictures = cloudinaryStorage({
+  cloudinary,
+  folder: 'comment-pictures',
+  allowedFormats: ['jpg', 'png'],
+  filename: function (req, file, cb) {
+    cb(null, req.file);
+  }
+});
+
+const uploadProfilePicture = multer({ storage: storageProfilePictures });
+const uploadPostPicture = multer({storage: storagePostPictures});
+const uploadCommentPicture = multer({storage: storageCommentPictures})
+
 
 module.exports = {
   uploadProfilePicture,
-  uploadPostPicture
+  uploadPostPicture,
+  uploadCommentPicture
 }

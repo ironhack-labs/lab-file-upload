@@ -1,0 +1,12 @@
+<div class="card mb-3">
+  <img class="card-img-top" src={{this.picPath}} alt="Card image cap">
+  
+    <a href="/show/{{this.id}}" class="card-link pt-4 pl-3">Show Post</a>
+ 
+  <div class="card-body">
+    {{!-- <h5 class="card-title">Card title</h5>
+    <p class="card-text">{{this.content}}</p> --}}
+    <p class="card-text"><small class="text-muted"><i class="fas fa-user"></i>{{this.creatorId.username}}</small></p>
+    <p class="card-text"><small class="text-muted"><i class="far fa-calendar-alt"></i>{{this.createdAt}}</small></p>
+  </div>
+</div>

@@ -1,16 +1,15 @@
 <div class="container">
-<h1>Post Feed</h1>
-{{#unless posts}}
-<p>There are no post</p>
-{{/unless}}
+  <h1 class="title">Post Feed</h1>
+  {{#unless posts}}
+  <p>There are no post</p>
+  {{/unless}}
 
-{{#each posts}}
-<div class="container postContainer">
-<img class="postImg" src={{this.picPath}} alt="">
-<p>{{this.content}}</p>
-<p>Post creado por {{this.creatorId.username}}</p>
+
+  <div class="container postContainer">
+    {{#each posts}}
+    {{> postCard this}}
+    {{/each}}
+  </div>
+
+
 </div>
-{{/each}}
-
-</div>
-
