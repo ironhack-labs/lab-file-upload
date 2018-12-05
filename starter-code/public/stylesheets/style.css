@@ -1,13 +1,221 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+// body {
+//   padding: 50px;
+//   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+// }
+
+// a {
+//   color: #00B7FF;
+// }
+
+@import url('"https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"');
+/* nav-rgba(231, 229, 229, 0.904)
+nav-botones-rgb(214, 213, 213) */
+
+html {
+  font-family: "Open Sans", sans-serif;
+  background: rgb(230, 227, 227);
+}
+/* navbar */
+/* header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding-bottom: 45px;
+} */
+
+header nav {
+  width: 100%;
+  background: rgba(231, 229, 229, 0.904);
 }
 
-a {
-  color: #00B7FF;
+header nav ul {
+  list-style: none;
 }
 
-img {
-  width: 80px;
-  height: 80px;
+header nav ul li {
+  height: 45px;
+  align-self: center;
+  float: right;
+}
+
+header nav ul li a {
+  color: gray;
+  padding: 20px;
+  display: block;
+  text-decoration: none;
+  font-weight: bold;
+  /* font-size: 1.5vw; */
+}
+
+.uk-icon {
+  margin-right: 15px;
+}
+
+.uk-navbar-left {
+  margin-left: 20px;
+}
+
+header nav ul li a:hover {
+  background: rgb(214, 213, 213);
+  text-decoration: none;
+  color: white;
+}
+
+.cover {
+  background-image: url("../images/fondo.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  width: 100%;
+  height: 700px;
+}
+
+article h1 {
+  padding-top: 140px;
+  display: flex;
+  justify-content: center;
+}
+
+article h2 {
+  padding-top: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+section form {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+section form select {
+  margin: 10px;
+  height: 40px;
+  font-size: 18px;
+}
+
+#doctor {
+  width: 120px;
+}
+
+#especialistas {
+  width: 250px;
+}
+
+section form button {
+  border: 1px solid gray;
+  border-radius: 5px;
+  height: 40px;
+  width: 120px;
+  margin: 10px;
+  font-size: 18px;
+  text-align: center;
+}
+
+/* login & singn up */
+
+.loginBox {
+  width: 300px;
+  height: 450px;
+  border: 1px gray;
+  border-radius: 10px;
+  background-color: rgb(239, 244, 247);
+}
+
+.formLog {
+  padding-top: 150px;
+}
+
+.login {
+  background-color: rgb(102, 102, 243);
+  color: white;
+  font-weight: bold;
+  width: 220px;
+}
+
+.facebook {
+  background-color: rgb(223, 223, 241);
+  border: 1px solid rgb(223, 223, 241);
+  color: gray;
+  font-weight: bold;
+  width: 220px;
+}
+
+.signBox {
+  width: 325px;
+  height: 500px;
+  border: 1px gray;
+  border-radius: 10px;
+  background-color: rgb(239, 244, 247);
+}
+
+/* directorio- menu */
+.recorrido {
+  margin-top: 30px;
+  margin-left: 150px;
+}
+
+.recorrido a {
+  color: black;
+}
+
+/* filtros */
+
+.secFiltros {
+  width: 100%;
+}
+
+.filtros {
+  width: 80%;
+  max-width: 1200px;
+  /* height: 40px; */
+  margin: 20px auto;
+  /* margin: 2vw 10vw; */
+  border-top: 2px solid rgb(239, 244, 247);
+  background: rgb(152, 206, 236);
+}
+
+.filtros form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  list-style: none;
+}
+
+.filtros div h3 a input select {
+  align-self: center;
+  float: left;
+}
+
+.filtros div h3 {
+  align-self: center;
+  float: left;
+}
+
+.filtros div h3 {
+  align-self: center;
+  float: left;
+}
+
+.directorio {
+  margin: 2vw 10vw;
+}
+
+/* localizacion */
+
+.localizacion {
+  margin: 2vw 10vw;
+}
+
+/* .uk-card-body {
+  height: 10px;
+} */
+.locFilBusc {
+  height: 0px;
+}
+
+.mapa {
+  margin: 2vw 10vw;
 }

@@ -8,7 +8,7 @@ const express = require('express');
    Post.find()
    .populate('creatorId')
    .then(posts => {
-     res.render('index', { title: 'Tumblrr', user, posts })
+     res.render('index', { title: 'Docs', user, posts })
    })
    .catch(e => console.log(e))
  });

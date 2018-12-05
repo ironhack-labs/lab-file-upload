@@ -1,19 +1,51 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-6 centered-form">
-      <form action="/login" method="post">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" name="username" class="form-control">
-        </div>
-
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" name="password" class="form-control">
-        </div>
-
-        <button type="submit">Login</button>
-      </form>
+<div class="uk-position-large uk-position-center loginBox uk-box-shadow-large">
+  <img class="uk-border-circle uk-position-small uk-position-top-center" src="/images/login.png" width="90" height="90"
+    alt="Border circle" />
+  <form action="/login" method="POST" id="form-container" class="uk-position-large uk-position-center  formLog">
+    <div class="uk-margin">
+      <div class="uk-inline">
+        <span class="uk-form-icon" uk-icon="icon: user"></span>
+        <label for="username"></label>
+        <input id="username" type="text" name="username" placeholder="Usuario" class="uk-input" />
+      </div>
     </div>
-  </div>
+
+    <div class="uk-margin">
+      <div class="uk-inline">
+        <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+        <label for="password"></label>
+        <input id="password" type="password" name="password" placeholder="Contraseña" class="uk-input" />
+      </div>
+    </div>
+
+    {{#if message }}
+      <div class="error-message">{{ message }}</div>
+    {{/if}}
+
+    <div class="uk-margin ">
+      <div class="uk-inline">
+        <button class="uk-button uk-button-default facebook">
+          <span class="uk-form-icon" uk-icon="icon: facebook"></span>
+          Facebook
+        </button>
+      </div>
+
+      <div class="uk-margin">
+        <div class="uk-inline">
+          <button class="uk-button uk-button-default login">LOGIN</button>
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <div class="uk-inline">
+          <p class="account-message">
+            ¿Aún no tienes una cuenta?
+            <a href="/signup">Registrate</a>
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+  </form>
 </div>

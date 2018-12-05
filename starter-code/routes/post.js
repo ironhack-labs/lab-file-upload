@@ -11,13 +11,13 @@ const express = require('express');
 
  router.post('/new-post', [ensureLoggedIn('/login'), upload.single('photo')], (req,res) => {
      const {content} = req.body;
-     const picpath = `uploads/${req.file.filename}`;
-     const picname = req.file.originalname;
+     //const picpath = `uploads/${req.file.filename}`;
+     //const picname = req.file.originalname;
      const newPost = new Post({
          content,
          creatorId: req.user._id,
-         picpath,
-         picname
+         //picpath,
+         //picname
      });
      newPost.save()
      .then(() => res.redirect('/profile'));

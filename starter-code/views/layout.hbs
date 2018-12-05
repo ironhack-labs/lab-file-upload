@@ -1,16 +1,72 @@
 <!DOCTYPE html>
- <html>
-   <head>
-     <meta charset="utf-8">
-     <title>IronTumblr</title>
-     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-     <link rel="stylesheet" href="/stylesheets/style.css">
-   </head>
-   <body>
-     <div class="main-container">
-       {{{body}}}
-     </div>
-     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-   </body>
- </html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <!-- UIkit CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.25/css/uikit.min.css" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+</head>
+
+<body>
+
+  {{!-- <nav>
+    <a href="/">Home</a>
+    <a href="/auth/login">Login</a>
+    <a href="/auth/signup">Signup</a>
+    <a href="/auth/logout">Logout</a>
+  </nav> --}}
+
+  <header>
+    <nav class="uk-navbar">
+      <div class="uk-navbar-left">
+        <a href="/"><img src="#" alt="" />LOGO</a>
+      </div>
+      <div class="uk-navbar-right">
+        
+        <ul>
+          {{#if user}}
+          <li>
+            <a href="/profile"><span uk-icon="icon:user"></span>Perfil</a>
+          </li>
+          <li>
+            <a href="/logout"><span uk-icon="icon:sign-out"></span>Finalizar sesión</a>
+          {{else}}
+          <li>
+            <a href="/signup"><span uk-icon="icon:user"></span>Registrarse</a>
+          </li>
+          <li>
+            <a href="/login"><span uk-icon="icon:sign-in"></span>Iniciar sesión</a>
+          </li>
+          {{/if}}
+        </ul>
+      </div>
+    </nav>
+  </header>
+{{!-- 
+<section>
+{{#if user}}
+     <a href="/profile">Profile</a>
+     <a href="/logout">LogOut</a>
+     {{else}}
+     <a href="/signup">Sign up</a>
+     <a href="/login">Log in</a>
+     {{/if}}
+
+</section> --}}
+
+
+  {{{body}}}
+
+
+  <!-- UIkit JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.25/js/uikit.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.25/js/uikit-icons.min.js"></script>
+  <script src="/javascripts/script.js"></script>
+</body>
+
+</html>

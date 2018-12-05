@@ -14,7 +14,8 @@ const express = require('express');
  const flash = require('connect-flash');
  const hbs = require('hbs')
 
- mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
+ //DB
+ mongoose.connect('mongodb://localhost:27017/doctors');
 
  const app = express();
  
@@ -22,12 +23,14 @@ const express = require('express');
  app.set('view engine', 'hbs');
  
  app.use(session({
-   secret: 'tumblrlabdev',
+   secret: 'doctors',
    resave: false,
    saveUninitialized: true,
    store: new MongoStore( { mongooseConnection: mongoose.connection })
  }))
  
+
+ //passport
  passport.serializeUser((user, cb) => {
    cb(null, user.id);
  });
@@ -74,14 +77,14 @@ const express = require('express');
                    email,
                    password,
                  } = req.body;
-                 const path = `/uploads/${req.file.filename}`;
-                 const {originalname} = req.file
+                 //const path = `/uploads/${req.file.filename}`;
+                 //const {originalname} = req.file
                  const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                  const newUser = new User({
                    username,
                    email,
                    password: hashPass,
-                   profilePicture:{path, originalname}
+                   //profilePicture:{path, originalname}
                  });
 
                  newUser.save((err) => {
@@ -102,14 +105,15 @@ const express = require('express');
  app.use(cookieParser());
  app.use(express.static(path.join(__dirname, 'public')));
 
+
+
+
  const index = require('./routes/index');
  const authRoutes = require('./routes/authentication');
  const post = require('./routes/post');
- const comment = require('./routes/comment');
  app.use('/', index);
  app.use('/', authRoutes);
  app.use('/', post);
- app.use('/', comment);
 
  // catch 404 and forward to error handler
  app.use((req, res, next) => {

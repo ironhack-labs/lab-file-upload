@@ -1,26 +1,62 @@
-<div class="container">
-   <div class="row">
-     {{ message }}
-     <div class="col-sm-6 centered-form">
-       <form action="/signup" method="post" enctype="multipart/form-data">
-         <div class="form-group">
-           <label for="username">Username</label>
-           <input type="text" name="username" class="form-control">
-         </div>
-         <div class="form-group">
-           <label for="email">Email</label>
-           <input type="text" name="email" class="form-control">
-         </div>
-         <div class="form-group">
-           <label for="password">Password</label>
-           <input type="password" name="password" class="form-control">
-         </div>
-         <div class="form-group">
-           <label for="photo">Profile picture</label>
-           <input type="file" name="photo" id="photo" class="form-control-file">
-         </div>
-         <button type="submit" class="btn btn-primary">Signup</button>
-       </form>
-     </div>
-   </div>
- </div>
+<div class="uk-position-large uk-position-center  uk-box-shadow-large signBox">
+  <form action="/signup" method="POST" id="form-container" class="uk-position-large uk-position-center ">
+    <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+      
+      <label><input class="uk-radio" type="radio" name="role" value="Paciente" checked/>
+        Paciente</label>
+      <label><input class="uk-radio" type="radio" name="role" value="Profesional" />
+        Profesional</label>
+    </div>
+    <div class="uk-margin">
+      <div class="uk-inline">
+        <span class="uk-form-icon" uk-icon="icon: user"></span>
+        <label for="username"></label>
+        <input id="username" type="text" name="username" placeholder="Usuario" class="uk-input" />
+      </div>
+    </div>
+    <div class="uk-margin">
+      <div class="uk-inline">
+        <span class="uk-form-icon" uk-icon="icon: mail"></span>
+        <label for="email"></label>
+        <input id="email" type="email" name="email" placeholder="Email" class="uk-input" />
+      </div>
+    </div>
+
+    <div class="uk-margin">
+      <div class="uk-inline">
+        <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+        <label for="password"></label>
+        <input id="password" type="password" name="password" placeholder="Contraseña" class="uk-input" />
+      </div>
+    </div>
+
+    {{#if message }}
+      <div class="error-message">{{ message }}</div>
+    {{/if}}
+
+    <div class="uk-margin">
+      <div class="uk-inline">
+        <button class="uk-button uk-button-default facebook">
+          <span class="uk-form-icon" uk-icon="icon: facebook"></span>
+          Facebook
+        </button>
+      </div>
+
+      <div class="uk-margin">
+        <div class="uk-inline">
+          <button class="uk-button uk-button-default login">SIGN UP</button>
+        </div>
+      </div>
+      <div class="uk-margin">
+        <div class="uk-inline">
+          <p class="account-message">
+            ¿Ya tienes una cuenta?
+            <br>
+            <a href="/login">Inicia sesión</a>
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
