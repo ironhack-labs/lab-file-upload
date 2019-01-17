@@ -7,26 +7,18 @@
 </head>
 
 <body>
-
-  {{#each users}}
-  <ul>
-    <li>{{this.username}}</li>
-  </ul>
-  {{/each}}
-
-  {{!-- später alle Posts anzeigen --}}
-
   {{#each posts}}
   <div class="test">
-    <br>
     <div>{{this.creatorId}}</div>
     <div>{{this.content}}</div>
     <div><img src="{{this.picPath}}" height="150px"></div>
-    <div><a href="/showPost/{{this._id}}">Show Post</a></div>
+    <div>{{this.comments.content}}</div>
     <br>
-  </div>
-  {{/each}}
+    <button><a href="/{{this._id}}/newComment">Post a new comment</a></button>
 
+  </div>
+
+  {{/each}}
 
 </body>
 
