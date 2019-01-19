@@ -13,7 +13,7 @@ router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
   failureFlash : true
 }));
 
-router.get('/signup', ensureLoggedOut(), (req, res) => {
+router.get('/signup', [ensureLoggedOut(),uploadCloud.single('photo')], (req, res) => {
     res.render('authentication/signup', { message: req.flash('error')});
 });
 
