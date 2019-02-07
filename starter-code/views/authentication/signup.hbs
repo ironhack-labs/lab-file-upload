@@ -2,10 +2,15 @@
   <div class="row">
     {{ message }}
     <div class="col-sm-6 centered-form">
-      <form action="/signup" method="post">
+      <form action="/signup" method="post" enctype="multipart/form-data">
         <div class="form-group">
+          <label for="photo">Profile Picture</label>
+          <input type="file" name="photo" class="form-control">
+          {{!-- OJO EL CAMPO name="photo" debe corresponderse con el campo clodinary.single("photo") --}}
+        </div>
+         <div class="form-group">
           <label for="username">Username</label>
-          <input type="text" name="username" class="form-control">
+          <input type="username" name="username" class="form-control">
         </div>
         <div class="form-group">
           <label for="email">Email</label>
