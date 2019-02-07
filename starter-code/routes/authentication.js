@@ -27,12 +27,11 @@ router.get("/signup", ensureLoggedOut(), (req, res) => {
 });
 
 router.post("/signup", cloudinary.single("photo"), (req, res, next) => {
-  console.log(req.file);
   const myUser = new User({
     username: req.body.username,
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, salt),
-    photoPath: req.file.url
+    photoPath: req.file.secure_url
   });
   myUser
     .save()
