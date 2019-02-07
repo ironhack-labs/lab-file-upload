@@ -1,5 +1,6 @@
 body {
-  padding: 50px;
+  margin: 0;
+  padding: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -7,6 +8,19 @@ a {
   color: #00B7FF;
 }
 
+section, nav{
+  padding: 10px;
+}
+
+nav {
+  background-color: #00B7FF;
+}
+nav a {
+  padding-right: 10px;
+  color: white;
+  text-decoration: none;
+}
+/* 
 .form-group {
   margin: 30px auto;
   width: 380px;
@@ -49,4 +63,4 @@ a {
   background: #fff;
   color: #00B7FF;
   transition: .3s ease background;
-}
+}  */
