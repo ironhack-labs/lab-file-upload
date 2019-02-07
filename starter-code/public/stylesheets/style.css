@@ -24,8 +24,75 @@ nav a {
 .container {
   margin: 50px auto;
 }
+.add-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 70px;
+}
+.add {
+  display: flex;
+  flex-flow: column;
+  width: 400px;
+  text-align: center;
+}
 
+.add label {
+  padding: 20px;
+}
 
+.add textarea {
+  height: 200px;
+}
+
+.add button{
+  margin-top: 40px;
+  color: white;
+  background-color: #00B7FF;
+}
+
+.add button:hover {
+  
+  background-color: grey;
+}
+
+.posts-container { 
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  flex-flow: column;
+} 
+
+.comment-container{
+  display: flex;
+  justify-content: center;
+  margin-top: 70px;
+  
+}
+.comment {
+  display: flex;
+  flex-flow: column;
+  width: 400px;
+  text-align: center;
+  
+}
+.comment label {
+  padding: 20px;
+}
+
+.comment textarea {
+  height: 100px;
+}
+
+.comment button{
+  margin-top: 40px;
+  color: white;
+  background-color: #00B7FF;
+}
+
+.comment button:hover {
+  
+  background-color: grey;
+}
 /*
 .container label {
   color: #666;
