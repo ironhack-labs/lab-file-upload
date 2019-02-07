@@ -1,0 +1,16 @@
+<div>
+  <img src="{{post.picPath}}" alt="{{post.picName}}">
+  <span><Strong>{{post.picName}}</Strong> </span>
+  <span>{{post.content}}</span>
+  {{#each post.comments}}
+  <div>
+    <img src="{{this.imagePath}}" alt="{{this.imageName}}">
+    <span>{{this.content}}</span>
+  </div>
+  {{/each}}}}
+  <form action="/new-comment/{{post._id}}" method="post" enctype="multipart/form-data">
+    <textarea rows="6" cols="60" name="text"></textarea>
+    <input type="file" name="photo">
+    <input type="submit" value="Post">
+  </form>
+</div>
