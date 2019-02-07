@@ -3,5 +3,20 @@
     <h3>{{this.picName}}</h3> <!--this es posts-->
     <img src="{{this.picPath}}"> <!--url de la foto-->
     <p>{{this.content}}</p>
+    <div class="comments-container">
+        {{#each this.comments}} <!--this es posts-->
+        <img src="{{this.imagePath}}">
+        <p>{{this.content}}</p>
+        {{/each}}
+    </div>
+    <form method="POST" action="/posts/add-comment/{{this._id}}" enctype="multipart/form-data"> 
+        <label for="content">Comment:</label> <!--El for sirve para que también puedas clicar como si fuese el input-->
+        <textarea name="content" placeholder="message"></textarea>
+    
+        <label for="photo">Upload Image</label>
+        <input type="file" name="photo">
+
+        <button>Send Comment</button>
+    </form>
     {{/each}}
 </div>
