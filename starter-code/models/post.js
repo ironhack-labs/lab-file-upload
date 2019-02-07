@@ -1,0 +1,13 @@
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+
+const postSchema = Schema({
+  content: String,
+  creatorId: { Type: Schema.Types.ObjectId, ref: "User" },
+  picPath: String,
+  picName: String
+})
+
+const Post = mongoose.model("Post", postSchema);
+
+module.exports = Post;
