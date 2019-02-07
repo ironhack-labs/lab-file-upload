@@ -8,5 +8,5 @@ const commentSchema = Schema({
   imageName: String
 })
 
-const PhotoComment = mongoose.model("Comment", commentSchema);
+const PhotoComment = mongoose.model("PhotoComment", commentSchema);
 module.exports = PhotoComment;
