@@ -11,10 +11,10 @@ cloudinary.config({
 
 var storage = cloudinaryStorage({
   cloudinary: cloudinary,
-  folder: 'folder-name', // The name of the folder in cloudinary
+  folder: 'folder-name', 
   allowedFormats: ['jpg', 'png'],
   filename: function (req, file, cb) {
-    cb(null, file.originalname); // The file on cloudinary would have the same name as the original file name
+    cb(null, file.originalname); 
   }
 });
 
