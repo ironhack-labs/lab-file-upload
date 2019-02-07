@@ -6,3 +6,16 @@ body {
 a {
   color: #00B7FF;
 }
+
+img {
+  height: 200px;
+}
+
+h3 {
+  font-size: 1.25em;
+}
+
+p {
+  margin-left: 50px;
+  margin-top:5px;
+}
