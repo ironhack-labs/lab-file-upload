@@ -3,13 +3,9 @@ const Schema   = mongoose.Schema;
 
 const UserSchema = Schema({
   username: String,
-  email:    String,
+  email: String,
   password: String,
-  picPath: {
-    type: String,
-    default: "/uploads/default.jpg",
-    required: false
-  }
+  picPath: String
 });
 
 const User = mongoose.model('User', UserSchema);

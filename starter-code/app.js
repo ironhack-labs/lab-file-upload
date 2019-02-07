@@ -59,6 +59,7 @@ passport.use('local-signup', new LocalStrategy(
   { passReqToCallback: true },
   (req, username, password, next) => {
     // To avoid race conditions
+    console.log("Trying to signup", username, password)
     process.nextTick(() => {
         User.findOne({
             'username': username

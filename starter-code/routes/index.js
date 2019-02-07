@@ -20,7 +20,7 @@ router.get('/new', function(req, res, next) {
 
 router.get('/show/:id', function(req, res, next) {
   Post.findOne({_id: req.params.id})
-  .then(post => res.render('show', { post }))
+  .then(post => res.render('post-show', { post }))
   .catch(next)
 });
 
