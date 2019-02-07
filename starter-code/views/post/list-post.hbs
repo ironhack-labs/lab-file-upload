@@ -2,6 +2,19 @@
   {{#each posts}}
   <h3>{{this.picName}}</h3>
   <p>{{this.content}}</p>
+  <div class='comments-container'>
+    {{#each this.comments}}
+    <img src='{{this.imagePath}}'>
+    <p>{{this.content}}</p>
+    {{/each}}
+  </div>
   <img src='{{this.picPath}}'>
+  <form method='POST' action='/posts/add-comment/{{this._id}}' enctype="multipart/form-data">
+    <label for="content">Comment:</label>
+    <textarea name='content' placeholder="Comment"></textarea>
+    <label for="photo">Upload image</label>
+    <input type="file" name='photo'>
+    <button>Send Comment</button>
+  </form>
   {{/each}}
 </div> 
