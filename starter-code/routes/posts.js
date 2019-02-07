@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const postModel = require("../models/post");
 const cloudinary = require("../options/cloudinary");
+const { ensureLoggedIn, ensureLoggedOut } = require("connect-ensure-login");
 
 router.get("/", (req, res, next) => {
   postModel
@@ -10,7 +11,7 @@ router.get("/", (req, res, next) => {
     .catch(err => console.log("An error ocurred finding post", err));
 });
 
-router.get("/add", (req, res, next) => {
+router.get("/add", ensureLoggedIn("/login"), (req, res, next) => {
   res.render("posts/add-post");
 });
 
