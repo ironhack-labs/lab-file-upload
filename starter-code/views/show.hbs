@@ -1,0 +1,9 @@
+<section>
+  {{#each post}}
+    <h3>{{ this.name }}</h3>
+    <p>{{ this.content }}</p>
+    <img width="200px" src="{{ this.path }}" alt="{{ this.originalName }}" />
+    <p>Comment: {{ this.comment }}</p>
+    <a href="/addcomment/{{this._id}}">Add comment</a>
+  {{/each}}
+</section>
