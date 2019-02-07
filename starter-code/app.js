@@ -113,6 +113,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
 const postRoutes = require('./routes/posts');
+//  ./routes/posts este posts es nuestro archivo posts.js
 
 app.use('/', index);
 app.use('/', authRoutes);

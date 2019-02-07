@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 // poner ref: "User" es muy recomendable para saber de que esquema estamos cogiendo el ObjectId
 const postSchema = mongoose.Schema({
