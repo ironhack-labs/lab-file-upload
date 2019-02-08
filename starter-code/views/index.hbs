@@ -7,4 +7,10 @@
   <body>
     <h1>Welcome to IronTumblr</h1>
   </body>
+  <section>
+  {{#each pictures}}
+    <h3>{{ this.name }}</h3>
+    <img src="{{ this.path }}" alt="{{ this.originalName }}" />
+  {{/each}}
+</section>
 </html>
