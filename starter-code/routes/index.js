@@ -1,5 +1,8 @@
 const express = require('express');
-const router  = express.Router();
+
+const router = express.Router();
+
+// const Picture = require('../models/User');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
