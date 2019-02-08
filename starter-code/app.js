@@ -64,8 +64,8 @@ passport.use('local-signup', new LocalStrategy(
             'username': username
         }, (err, user) => {
             if (err){ return next(err); }
-
             if (user) {
+              console.log(user)
                 return next(null, false);
             } else {
                 // Destructure the body
@@ -78,7 +78,8 @@ passport.use('local-signup', new LocalStrategy(
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  imgPath: req.file.url
                 });
 
                 newUser.save((err) => {
@@ -101,8 +102,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const postRoutes = require('./routes/post');
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/post', postRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
