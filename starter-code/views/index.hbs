@@ -6,5 +6,37 @@
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
+
+    {{#each data}}
+
+
+{{this.content}}
+
+<h1>Putos comentarios de loosers</h1>
+{{#each this.commentaries}}
+
+<p>Comentario: {{this.content}}</p>
+
+{{/each}}
+
+
+
+<form action="/comment" method="POST" enctype="multipart/form-data">
+<h2>Comentarios:</h2>
+<p>
+  Content:
+<input type="text" name="content">
+</p>
+<p>
+  Author ID:
+<input type="text" name="authorid">
+</p>
+<p>
+<input type="file" name="photo">
+<input type="hidden" name="postId" value="{{this._id}}">
+<input type="submit" value="Send commentary">
+</p>
+</form>
+    {{/each}}
   </body>
 </html>

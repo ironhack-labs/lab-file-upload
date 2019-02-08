@@ -99,10 +99,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.disable('etag');
+
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const crud = require('./routes/crud')
+const comments = require('./routes/comment')
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/',crud)
+app.use('/',comments)
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -121,5 +128,7 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.listen(2001,()=>{})
 
 module.exports = app;
