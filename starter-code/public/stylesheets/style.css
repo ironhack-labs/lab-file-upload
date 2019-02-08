@@ -1,8 +1,25 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	padding: 50px;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	background: papayawhip;
 }
 
 a {
-  color: #00B7FF;
+	color: #121213;
+}
+
+.title-index {
+	color: #121213;
+	padding: 10px;
+}
+
+.initial {
+	width: 100%;
+	text-align: center;
+	padding: 40px 40px;
+}
+
+.container {
+	margin: 50px auto;
+	width: 100%;
 }
