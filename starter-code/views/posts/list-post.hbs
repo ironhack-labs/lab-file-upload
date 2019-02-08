@@ -1,0 +1,17 @@
+<div class="posts-container">
+    {{#each posts}}
+
+        <h3>{{this.picName}}<h13>
+        <img src="{{this.picPath}}"/>
+        <p>{{this.content}}</p>
+
+        <form method="POST" action="/posts/add-comment" enctype="multipart/form-data">
+            <label for="content">Comment:</label>
+            <textarea name ="content" placeholder="Comment"></textarea>
+            <label for="photo">Upload Image:</label>
+            <input type="file" name ="photo" >
+            <button>Create Comment</button>
+        </form>
+    {{/each}}
+    
+</div>
