@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const postSchema = Schema({
     content: String,
-    creatorId: {type: Schema.Types.ObjectId, ref:"User" },
+    creatorId: {type: Schema.Types.ObjectId, ref:"user" },
+    comments: [{type: Schema.Types.ObjectId, ref:"comment" }],
     picPath: String,
     picName: String
 })
