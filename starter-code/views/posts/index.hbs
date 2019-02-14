@@ -1,0 +1,12 @@
+<h1>Posts</h1>
+<a href="/posts/new"><button>New Post</button></a>
+<section>
+{{#each posts as |post|}}
+  <div class="card">
+    <a href="/posts/{{post._id}}">
+      <img src="{{post.picPath}}" width="200px" alt="Post Image">
+      <p>{{post.picName}}</p>
+    </a>
+  </div>
+{{/each}}
+</section>

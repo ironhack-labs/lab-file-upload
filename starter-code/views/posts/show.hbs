@@ -1,0 +1,26 @@
+<h2>Post</h2>
+<img src="{{picPath}}" width="450px" alt="Post Image">
+<h3>{{picName}}</h3>
+<p>{{content}}</p>
+<hr>
+<h4>Comments</h4>
+{{#each comments as |comment|}}
+  <p>
+    {{#if comment.imagePath}}
+      <img src="{{comment.imagePath}}" width="50px"alt="Comment Image">
+    {{/if}}
+    <b>{{comment.author}} - </b>{{comment.comment}}
+    </p>
+{{/each}}
+<hr>
+<form action="/posts/{{_id}}" method="POST" enctype="multipart/form-data">
+  <p>
+    Escribe un comentario
+    <textarea name="comment" cols="30" rows="5"></textarea>
+  </p>
+  <p>
+    Agrega una foto (opcional)
+    <input name="commentPic" type="file" >
+  </p>
+  <input type="submit">
+</form>
