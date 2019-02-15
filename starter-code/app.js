@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express            = require('express');
 const path               = require('path');
 const favicon            = require('serve-favicon');
@@ -14,7 +16,7 @@ const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const hbs                = require('hbs')
 
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
+mongoose.connect(process.env.DB);
 
 const app = express();
 
@@ -101,6 +103,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const posts = require('./routes/posts')
+app.use('/', posts)
 app.use('/', index);
 app.use('/', authRoutes);
 

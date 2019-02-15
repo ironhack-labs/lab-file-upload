@@ -5,6 +5,23 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>Welcome to IronTumblr</h1>
+  <nav>
+    <h2>Welcome to IronTumblr</h2>
+
+    <p><a href="/new" class="make-post">Make a new post</a></p>
+  </nav>
+  <section class="posts-container">
+
+    <div class="card">    
+{{#each posts}}
+
+    <h2>{{this.picName}}</h2>
+<img src="{{this.picPath}}" alt="{{this.content}}">
+<p>{{this.content}}</p>
+
+{{/each}}
+</div>
+  </section>
+    
   </body>
 </html>
