@@ -1,0 +1,19 @@
+<h2>Editar tu post</h2>
+<form action="/posts/profile/{{_id}}" method="post">
+
+  <p>
+    Cambia tu caption
+    <input value="{{caption}}" name="caption" type="text">
+  </p>
+  <p>
+    Cambia la foto
+    <input value="{{picture}}" type="text" name="picture">
+  </p>
+  <input type="submit">
+
+</form>
+<a href="/posts/profile">
+  <button>
+    Cancelar
+  </button>
+</a>

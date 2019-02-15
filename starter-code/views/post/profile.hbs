@@ -1,0 +1,10 @@
+<h2>Tus posts</h2>
+<section>
+  {{#each posts as |post|}}
+  <a href="/posts/detail/{{post._id}}">
+    <img width="50" src="{{post.picture}}" alt="simon">
+    <p>{{post.caption}}</p>
+  </a>
+  <a href="/posts/profile/{{post._id}}">editar</a>
+  {{/each}}
+</section>

@@ -1,0 +1,16 @@
+{{#if message}}
+<h2 style="background:green;color:white;height:40px" >{{message}}</h2>
+{{/if}}
+
+<h2>Agrega tu foto.</h2>
+<form action="/posts/new" method="post">
+  <p>
+    Caption de tu foto:
+    <input name="caption" type="text">
+  </p>
+  <p>
+    Pon el link de tu foto
+    <input name="picture" type="text">
+  </p>
+  <input type="submit" value="Publica">
+</form>

@@ -1,0 +1,20 @@
+<img width="400" src="{{picture}}" alt="">
+<p>{{caption}}</p>
+<div>
+  {{#each comments}}
+  <p>
+    {{this.username}} -- {{this.body}}
+  </p>
+  {{/each}}
+</div>
+<form action="/posts/detail/{{_id}}" method="post">
+  <p>
+    Escribe tu nombre
+    <input name="username" type="text">
+  </p>
+  <p>
+    Coment
+    <textarea name="body" id="" cols="30" rows="10"></textarea>
+  </p>
+  <input type="submit">
+</form>
