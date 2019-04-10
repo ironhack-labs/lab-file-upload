@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express            = require('express');
 const path               = require('path');
 const favicon            = require('serve-favicon');
@@ -14,7 +16,10 @@ const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const hbs                = require('hbs')
 
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
+mongoose.connect('mongodb://localhost:27017/tumblr-lab-development', {
+  useCreateIndex: true,
+  useNewUrlParser: true
+});
 
 const app = express();
 
@@ -69,6 +74,7 @@ passport.use('local-signup', new LocalStrategy(
                 return next(null, false);
             } else {
                 // Destructure the body
+                let {url:image} = req.file
                 const {
                   username,
                   email,
@@ -78,7 +84,8 @@ passport.use('local-signup', new LocalStrategy(
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  image
                 });
 
                 newUser.save((err) => {

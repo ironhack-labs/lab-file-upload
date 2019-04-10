@@ -1,8 +1,16 @@
-<div class="container">
+<nav class="blue-grey">
+  <div class="nav-wrapper">
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="/">GO HOME</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="img-bg">
+<div class="square">
   <div class="row">
     {{ message }}
     <div class="col-sm-6 centered-form">
-      <form action="/signup" method="post">
+      <form action="/signup" method="POST" enctype="multipart/form-data">
         <div class="form-group">
           <label for="username">Username</label>
           <input type="text" name="username" class="form-control">
@@ -15,8 +23,16 @@
           <label for="password">Password</label>
           <input type="password" name="password" class="form-control">
         </div>
-        <button type="submit">Signup</button>
+        <div>
+          <label for="">
+            Profile photo:
+            <input type="file" name="image">
+          </label>
+        </div><br>
+        <button class="btn blue-grey" type="submit">Sign up</button>
+        <a href="/login">You have an account?</a>
       </form>
     </div>
   </div>
+</div>
 </div>
