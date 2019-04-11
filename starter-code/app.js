@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const favicon = require("serve-favicon");
@@ -92,9 +92,9 @@ passport.use(
               const newUser = new User({
                 username,
                 email,
-                image:{
-                  name:req.file.originalname,
-                  path:req.file.url
+                image: {
+                  name: req.file.originalname,
+                  path: req.file.url
                 },
                 password: hashPass
               });
@@ -126,6 +126,9 @@ const index = require("./routes/index");
 const authRoutes = require("./routes/authentication");
 app.use("/", index);
 app.use("/", authRoutes);
+
+const post = require("./routes/post");
+app.use("/posts", post);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
