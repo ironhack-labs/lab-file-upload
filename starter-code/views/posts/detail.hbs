@@ -1,0 +1,30 @@
+<h1 data-id="{{_id}}">{{title}}</h1>
+<img src="{{picPath}}" alt="{{picName}}" width="400" height="400">
+<p>{{content}}</p>
+<div>
+  {{!-- dado que los comments son un arreglo, se recorren con un each --}}
+  {{#each comments as |comment|}}
+  <div>
+    <hr>
+    <p>{{comment.content}}</p>
+    <img src="{{comment.imagePath}}" alt="{{comment.imageNAme}}" width="50" height="50">
+  </div>
+  {{/each}}
+</div>
+<form action="/posts/detail/{{_id}}" method="post" enctype="multipart/form-data">
+  <div>
+    <label for="">Comentario:
+      <textarea name="content" id="" cols="30" rows="3"></textarea>
+    </label>
+  </div>
+  <div>
+    <label for="">Agregar imagen
+      <input type="file" name="commentImage" id="inputFile">
+    </label>
+  </div>
+  <div>
+    <label for="">
+      <button type="submit">Comentar</button>
+    </label>
+  </div>
+</form>

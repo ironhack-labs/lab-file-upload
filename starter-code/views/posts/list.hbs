@@ -1,0 +1,6 @@
+<h1>Current posts</h1>
+{{#each posts as |post|}}
+<div>
+  <a href="/posts/detail/{{post._id}}"><h2>{{post.title}}</h2></a>
+</div>
+{{/each}}
