@@ -30,6 +30,7 @@ app.use(
     store: new MongoStore({ mongooseConnection: mongoose.connection })
   })
 );
+hbs.registerPartials(__dirname + "/views/partials");
 
 passport.serializeUser((user, cb) => {
   cb(null, user.id);

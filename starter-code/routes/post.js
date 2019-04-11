@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
 router.post(
   "/new",
   ensureLoggedIn("/login"),
-  upload.single("postFile"),
+  upload.single("postFile"),  
   (req, res) => {
     // sacamos los datos de titulo y contenido del post
     let { title, content } = req.body;
@@ -43,7 +43,7 @@ router.post(
 
 // aqui va el post para ir dando de alta comentarios
 router.post(
-  "/detail/:id",
+  "/show/:id",
   ensureLoggedIn("/login"),
   upload.single("commentImage"),
   (req, res) => {
@@ -65,17 +65,17 @@ router.post(
       // ya que el documento principal tiene el comment insertado
       // hacemos un findByIdAndUpdate
       Post.findByIdAndUpdate(id, post).then(() => {
-        res.redirect(`/posts/detail/${id}`);
+        res.redirect(`/posts/show/${id}`);
       });
     });
   }
 );
 
-router.get("/detail/:id", (req, res) => {
+router.get("/show/:id", (req, res) => {
   const { id } = req.params;
   Post.findById(id)
     .then(post => {
-      res.render("posts/detail", post);
+      res.render("posts/show", post);
     })
     .catch(err => {
       console.log(err);

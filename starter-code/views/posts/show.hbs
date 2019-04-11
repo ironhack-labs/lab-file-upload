@@ -3,15 +3,24 @@
 <p>{{content}}</p>
 <div>
   {{!-- dado que los comments son un arreglo, se recorren con un each --}}
+  {{#if comments}}
   {{#each comments as |comment|}}
-  <div>
-    <hr>
+  <div class="container commentsContainer">
+    {{> commentCard comment}}
+    {{!-- <hr>
     <p>{{comment.content}}</p>
-    <img src="{{comment.imagePath}}" alt="{{comment.imageNAme}}" width="50" height="50">
+    <img src="{{comment.imagePath}}" alt="{{comment.imageNAme}}" width="50" height="50"> --}}
   </div>
   {{/each}}
+  {{else}}
+  
+  <div class="container">  
+    <p>There are no comments, be the first one!!</p>
+  </div>
+
+  {{/if}}
 </div>
-<form action="/posts/detail/{{_id}}" method="post" enctype="multipart/form-data">
+<form action="/posts/show/{{_id}}" method="post" enctype="multipart/form-data">
   <div>
     <label for="">Comentario:
       <textarea name="content" id="" cols="30" rows="3"></textarea>

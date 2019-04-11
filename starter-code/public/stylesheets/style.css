@@ -6,3 +6,68 @@ body {
 a {
   color: #00B7FF;
 }
+
+body {
+  padding: 50px;
+  margin: 0;
+  padding: 0;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+  text-decoration: none;
+}
+
+.navbar{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #2B3A42;
+}
+
+.navbar a{
+  padding: 0 10px;
+  color: #F0F0DF;
+}
+
+.main-container{
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 10px 20px;
+}
+.title{
+  padding: 10px 10px;
+}
+
+.postContainer{
+  padding: 5px 20px;
+}
+
+
+.caption{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 15px 40px;
+  border-radius: 25px;
+  width: 100%;
+}
+
+.info{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px 40px;
+}
+
+.info p{
+  display: flex;
+}
+
+i{
+  padding: 0px 5px;
+}
