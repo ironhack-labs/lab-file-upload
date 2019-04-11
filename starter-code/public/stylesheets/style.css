@@ -14,11 +14,12 @@ a {
   width: 100vw;
   display: flex;
   justify-content: center;
+  flex-direction: row;
 }
  .square {
    background-color: rgba(255, 255, 255, 0.9);
-   width: 25vw;
-   height: 40vh;
+   width: 30vw;
+   height: 45vh;
    border-radius: 50px;
    padding: 30px;
    display: flex;
@@ -27,12 +28,12 @@ a {
    margin-top: 5vh;
  }
 
- .card {
-   width: 100vw;
+ #img-card {
+   width: 20vw;
    height: 20vh;
  }
 
- #profile-photo {
-   width: 15vw;
-   height: 20vh;
- }
+ #img-cardpost {
+  width: 40vw;
+  height: 20vh;
+}

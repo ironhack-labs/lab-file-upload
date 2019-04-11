@@ -6,8 +6,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="/stylesheets/style.css">
   </head>
+  <nav class="blue-grey">
+  <div class="nav-wrapper">
+    <a class="brand-logo center" href="/">IronTumblr</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      {{#if user}}
+        <li><a href="/private">MY PROFILE</a></li>
+        <li><a href="/new">NEW POST</a></li>
+        <li><a href="/logout">LOGOUT</a></li>
+      {{else}}
+        <li><a href="/login">LOGIN</a></li>
+        <li><a href="/signup">SIGN UP</a></li>
+      {{/if}}
+    </ul>
+  </div>
+</nav>
   <body>
-    <div class="main-container">
+    <div>
       {{{body}}}
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

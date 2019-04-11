@@ -1,0 +1,26 @@
+<div class="img-bg">
+  <div class="col s12 m7">
+    <div class="card horizontal">
+      <div class="card-image">
+        {{#if user.image}}
+          <img id="profile-photo" src="{{user.image}}">
+        {{else}}
+          <p>Subir profile photo</p>
+          <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="photo">
+            <input type="submit" value="Save">
+          </form>
+        {{/if}}
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <h5>Bienvenido a tu perfil</h5>
+          <h4>{{user.username}}</h4>
+        </div>
+        <div class="card-action">
+          <p>{{user.email}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

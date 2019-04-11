@@ -1,0 +1,39 @@
+<div class="img-bg">
+  <div class="row">
+    <div id="img-cardpost" class="col s12 m7">
+      <div class="card">
+        <div  class="card-image">
+          <img src="{{post.picPath}}">
+        </div>
+        <div class="card-content">
+          <p>{{post.content}}</p>
+          <p>posted by: {{post.creatorId.username}}</p>
+          {{#if post.comments}}
+            <div>
+              {{#each post.comments}}
+              {{> commentCard this}}
+              {{/each}}
+            </div>
+          {{/if}}
+          <div>
+            <form action="/uploadComment" method="post" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="">Comment</label>
+                <textarea class="form-control" name="comment"></textarea>
+              </div>
+              <div class="form-group">
+                <label for=""></label>
+                <input type="file" name="commentPic">
+              </div>
+              <input type="hidden" name="postId" value="{{post.id}}"><br>
+              <button type="submit" class="btn blue-grey">Post Comment</button>
+            </form>
+          </div>
+        </div>
+        <div class="card-action">
+          <a href="/">Go back</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

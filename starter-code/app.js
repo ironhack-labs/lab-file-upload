@@ -23,6 +23,8 @@ mongoose.connect('mongodb://localhost:27017/tumblr-lab-development', {
 
 const app = express();
 
+hbs.registerPartials(__dirname + "/views/partials");
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
@@ -74,7 +76,6 @@ passport.use('local-signup', new LocalStrategy(
                 return next(null, false);
             } else {
                 // Destructure the body
-                let {url:image} = req.file
                 const {
                   username,
                   email,
@@ -85,7 +86,6 @@ passport.use('local-signup', new LocalStrategy(
                   username,
                   email,
                   password: hashPass,
-                  image
                 });
 
                 newUser.save((err) => {
@@ -106,10 +106,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-const index = require('./routes/index');
-const authRoutes = require('./routes/authentication');
-app.use('/', index);
-app.use('/', authRoutes);
+const index = require("./routes/index");
+const authRoutes = require("./routes/authentication");
+const postRoutes = require("./routes/post");
+app.use("/", index);
+app.use("/", authRoutes);
+app.use("/", postRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

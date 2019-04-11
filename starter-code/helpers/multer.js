@@ -1,6 +1,6 @@
-const cloudinary = require("cloudinary");
+const cloudinary = require('cloudinary');
 const cloudinaryStorage = require('multer-storage-cloudinary');
-const multer = require ('multer');
+const multer = require('multer');
 
 cloudinary.config({
   cloud_name: process.env.CLOUDNAME,
@@ -8,13 +8,40 @@ cloudinary.config({
   api_secret: process.env.CLOUDSECRET
 });
 
-var storage = cloudinaryStorage({
-  cloudinary: cloudinary,
-  folder: 'lab-pair',
-  allowedFormats: ['jpg', 'png', 'jpeg'],
+var storageProfilePictures = cloudinaryStorage({
+  cloudinary,
+  folder: 'profile-pictures',
+  allowedFormats: ['jpg', 'png'],
   filename: function (req, file, cb) {
-    cb(null, file.originalname);
+    cb(null, req.file);
   }
 });
 
-module.exports = multer({ storage });
+var storagePostPictures = cloudinaryStorage({
+  cloudinary,
+  folder: 'post-pictures',
+  allowedFormats: ['jpg', 'png'],
+  filename: function (req, file, cb) {
+    cb(null, req.file);
+  }
+});
+
+var storageCommentPictures = cloudinaryStorage({
+  cloudinary,
+  folder: 'comment-pictures',
+  allowedFormats: ['jpg', 'png'],
+  filename: function (req, file, cb) {
+    cb(null, req.file);
+  }
+});
+
+const uploadProfilePicture = multer({ storage: storageProfilePictures });
+const uploadPostPicture = multer({storage: storagePostPictures});
+const uploadCommentPicture = multer({storage: storageCommentPictures})
+
+
+module.exports = {
+  uploadProfilePicture,
+  uploadPostPicture,
+  uploadCommentPicture
+}
