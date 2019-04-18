@@ -5,6 +5,18 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>Welcome to IronTumblr</h1>
+    <h1>Welcome to IronTumblr {{myInfo.username}}</h1>
+    <a href="/signup">Go to Signup</a>
+    <a href="/logout">Go to logout</a>
+
+    <img src="{{myInfo.picture}}" alt="">
   </body>
 </html>
+
+
+{{!-- <section>
+  {{#each pictures}}
+  <h3>{{ this.name }}</h3>
+  <img src="{{ this.path }}" alt="{{ this.originalName }}" />
+  {{/each}}
+</section> --}}
