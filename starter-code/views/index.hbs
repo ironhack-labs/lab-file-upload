@@ -8,19 +8,28 @@
 
 <body>
   <h1>Welcome to IronTumblr</h1>
-  <a href="/newPost">Create a new Post</a>
-
-  {{#each posts}}
-  <p>{{content}}</p>
-  <p>{{picName}}</p>
-  <img src="{{picPath}}" alt="">
-
-  {{#each comments}}
-  <p>{{this}}</p>
-  {{/each}}
 
   <div class="row">
-    <div class="col-sm-10 centered-form">
+
+    {{#each posts}}
+
+    <div class="col-sm-8">
+          <hr>
+      <p>Post created by: <a href="/profile/{{creatorId}}">User profile</a></p>
+      <p>Content: {{content}}</p>
+      <img src="{{picPath}}" alt="{{picName}}">
+      <p><b>Comments: </b> Me falta aquí popular el campo del comentario, luego me lo miráis porfa. <br>
+      Lo que muestro es la id del comentario</p>
+      {{#each comments}}
+      <p>{{this}}</p>
+      {{/each}}
+
+    </div>
+
+
+    <div class="col-sm-4 centered-form">
+      <br><br>
+      <p><b>Create new comment: </b></p>
       <form action="/newComment/{{_id}}" method="post" enctype="multipart/form-data">
         <div class="form-group">
           <label for="content">Content</label>
@@ -37,9 +46,9 @@
         <button type="submit">Send comment</button>
       </form>
     </div>
-  </div>
 
-  {{/each}}
+    {{/each}}
+  </div>
 </body>
 
 </html>

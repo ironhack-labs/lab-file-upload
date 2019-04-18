@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    {{ message }}
+    {{#if user}}
+    <div class="col-sm-6 centered-form">
+      <h4>User name: {{user.username}}</h4>
+      <h4>Email: {{user.email}}</h4>
+      <img src="{{user.imagePath}}" style="width: 200px" alt="">
+    </div>
+    {{/if}}
+  </div>
+</div>
