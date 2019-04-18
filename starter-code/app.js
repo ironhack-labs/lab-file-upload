@@ -12,7 +12,9 @@ const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
-const hbs                = require('hbs')
+const hbs                = require('hbs');
+
+
 require('dotenv').config();
 
 const dbName = `${process.env.DATABASE}`;
@@ -77,11 +79,17 @@ passport.use('local-signup', new LocalStrategy(
                   email,
                   password
                 } = req.body;
-                const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+
+                const bcryptSalt = 10;
+                const salt = bcrypt.genSaltSync(bcryptSalt);
+                const hashPass = bcrypt.hashSync(req.body.password, salt);
+                const picturePath = req.file.url;
+
                 const newUser = new User({
-                  username,
-                  email,
-                  password: hashPass
+                  username: username,
+                  email: email,
+                  password: hashPass,
+                  picture: picturePath
                 });
 
                 newUser.save((err) => {
