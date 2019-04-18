@@ -5,6 +5,38 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>Welcome to IronTumblr</h1>
+  {{#if name}}
+  <div id="log">
+    <p>Welcome back {{name}}</p>
+    <a href="/private-page">Private Area</a>
+    <a href="/logout">Logout</a>
+    <div>
+       <form action="/post" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="content">Description</label>
+          <input type="text" name="content" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Add a Picture</label>
+          <input type="file" name="photo">
+        </div>
+        <button type="submit">Post</button>
+      </form>
+    </div>
+  </div>
+  {{#each posts}}
+    <div>
+      <p>{{this.picName}}</p>
+      <img src="{{this.picPath}}" alt="">
+      <a href="/post/{{this._id}}">Show</a>
+    </div>
+  {{/each}}
+  {{else}}
+  <div id="unlog">
+    <p>Welcome to {{title}}</p>
+    <a href="/signup">Sign Up</a>
+    <a href="/login">Login</a>
+  </div>
+  {{/if}}
   </body>
 </html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <img src="{{post.picPath}}" alt="">
+    <p>{{post.picName}}</p>
+    <div>
+      {{#each post.comments}}
+        <p>{{this.content}}</p>
+        <img src="{{this.imagePath}}" alt="">
+        <p>{{this.imageName}}</p>
+      {{/each}}
+    </div>
+    <div>
+      <form action="/add-comment" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="postId" value="{{post._id}}">
+        <input type="text" name="content" id="content">
+        <input type="file" name="photo">
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

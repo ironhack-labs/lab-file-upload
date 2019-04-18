@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express            = require('express');
 const path               = require('path');
 const favicon            = require('serve-favicon');
@@ -75,10 +76,12 @@ passport.use('local-signup', new LocalStrategy(
                   password
                 } = req.body;
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+                let photoUrl = req.file.url;
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  photo: photoUrl
                 });
 
                 newUser.save((err) => {
@@ -103,6 +106,7 @@ const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
 app.use('/', index);
 app.use('/', authRoutes);
+app.locals.title = "IronTumblr"
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
