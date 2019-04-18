@@ -1,0 +1,12 @@
+{{#each posts}}
+<h2><a class="boton marginTop" href="/posts/{{_id}}">{{content}}</a></h2>
+
+<form action="/posts/{{_id}}/delete" method="post">
+   <input class="boton" type="submit" value="Delete">
+
+</form>
+<h2><a class="boton" href="/posts/{{_id}}/edit">Edita post</a></h2>
+{{/each}}
+
+
+<h2><a class="boton marginBot" href="/posts/new">Crear nuevo post</a></h2>

@@ -1,10 +1,30 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-  </body>
+
+<head>
+  <title>{{title}}</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <p><a href="/">Home</a>|<a href="/signup">signup</a>|<a href="/login">login</a>|<a href="/logout">logout</a>|</p>
+
+
+  <h1>Welcome to IronTumblr {{myInfo.username}}</h1>
+
+  <a href="/logout">logout</a>
+
+
+
+  <img src="{{myInfo.path}}" alt="">
+</body>
+
 </html>
+
+
+{{!-- <section>
+  {{#each pictures}}
+    <h3>{{ this.name }}</h3>
+    <img src="{{ this.path }}" alt="{{ this.originalName }}" />
+  {{/each}}
+</section> --}}

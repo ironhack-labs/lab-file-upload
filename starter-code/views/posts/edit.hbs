@@ -1,0 +1,17 @@
+<h2>Edita el personaje</h2>
+
+<form action="/posts/{{_id}}" method="post">
+  <label for="content-input">Content:</label>
+  <input id="content" type="text" name="content" value={{content}}>
+
+  <label for="creatorId-input">creatorId:</label>
+  <input id="creatorId-input" type="text" name="creatorId" value={{creatorId}}>
+
+  <label for="picPath-input">picPath:</label>
+  <input id="picPath-input" type="text" name="picPath" value={{picPath}}>
+
+  <label for="picName-input">picName:</label>
+  <input id="picName-input" type="text" name="picName" value={{picName}}>
+
+  <input type="submit" value="Save Post">
+</form>

@@ -1,8 +1,10 @@
+        <p><a href="/">Home</a>|<a href="/signup">signup</a>|<a href="/login">login</a>|<a href="/logout">logout</a>|</p>
+
 <div class="container">
   <div class="row">
     {{ message }}
     <div class="col-sm-6 centered-form">
-      <form action="/signup" method="post">
+      <form action="/signup" method="post"  enctype="multipart/form-data" >
         <div class="form-group">
           <label for="username">Username</label>
           <input type="text" name="username" class="form-control">
@@ -14,7 +16,10 @@
         <div class="form-group">
           <label for="password">Password</label>
           <input type="password" name="password" class="form-control">
+          <label for="path">Foto</label>
+          <input type="file" name="path" class="form-control">
         </div>
+
         <button type="submit">Signup</button>
       </form>
     </div>
