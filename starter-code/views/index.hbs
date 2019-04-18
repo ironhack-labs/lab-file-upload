@@ -1,10 +1,44 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-  </body>
+
+<head>
+  <title>{{title}}</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <ul class="links">
+    {{#if user}}
+    <li><a href="/logout">Log out</a></li>
+    {{else}}
+    <li><a href="/login">Log in</a></li>
+    <li><a href="/signup">Sign up</a></li>
+    {{/if}}
+  </ul>
+  <h1>Welcome to IronTumblr {{#if user}}{{user.username}}{{/if}}</h1>
+
+  {{#if user }}
+  <div id="posts">
+    <a href="/add-post">Add post</a>
+    {{#each posts}}
+    <div class="post-card">
+      <img class="post-image" src="{{this.picPath}}" alt="{{this.content}}">
+      <p>{{this.content}}</p>
+      <div class="post-comments">
+        {{#each this.comments}}
+          <div class="comment-card">{{this.content}}</div>
+        {{/each}}
+      </div>
+      <form action="/add-comment" method="POST">
+        <input type="hidden" name="postId" value={{this._id}}>
+        <textarea name="content" id="" cols="30" rows="10"></textarea>
+        <input type="file" name="photo">
+        <button>Add comment</button>
+      </form>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+</body>
+
 </html>
