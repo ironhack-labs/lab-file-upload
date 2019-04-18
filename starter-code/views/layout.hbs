@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IronTumblr</title>
+    {{!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> --}}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+  <body>
+
+  <nav class="nav justify-content nav-pills nav-fill p-3 align-items-center">
+    <a class="p-3 m-3 nav-link" href="/"><img src="https://www.ironhack.com/assets/shared/logo.svg" alt=""></a>
+    {{#unless user}}
+    <a class="p-3 m-3 nav-link active" href="/login">Login</a>
+    <a class="p-3 m-3 nav-link active" href="/signup">Signup</a>
+    {{/unless}}
+    {{#if user}}
+    <a class="p-3 m-3 nav-link active" href="/logout">Logout</a>
+    <a class="p-3 m-3 nav-link active" href="/profile">perfil</a>
+    {{/if}}
+  </nav>
+
+    <div class="main-container">
+      {{{body}}}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </body>
+</html>

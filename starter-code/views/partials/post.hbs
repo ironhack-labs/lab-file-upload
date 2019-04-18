@@ -1,0 +1,18 @@
+  
+    <h3>{{ this.name }}</h3>
+    <img src="{{ this.path }}" alt="{{ this.originalName }}" />
+    <p>dsaddsasdaa</p>
+
+  <h2>Comment photo</h2>
+  <form action="/coment" method="post" enctype="multipart/form-data" id="{{ this._id }}">
+    <input type="hidden" value="{{ this._id }}" name="id">
+    <input type="text" name="name">
+    <input type="file" name="photo">
+    <input type="submit" value="Save">
+  </form>
+ <div>
+     {{#each this.comments}}
+     <p>hola</p>
+    {{>coment this}}
+    {{/each}}
+ </div>

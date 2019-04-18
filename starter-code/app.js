@@ -13,10 +13,17 @@ const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const hbs                = require('hbs')
+const multer  = require('multer');
+const Picture = require('./models/picture');
+
+const upload = multer({ dest: './public/uploads/' });
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
 const app = express();
+
+
+hbs.registerPartials(__dirname + '/views/partials');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -72,14 +79,30 @@ passport.use('local-signup', new LocalStrategy(
                 const {
                   username,
                   email,
-                  password
+                  password,
                 } = req.body;
+                var direcion = req.file.path
+                var firstphoto = direcion.substring(7,direcion.length)
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  photo: firstphoto
                 });
+                const pic = new Picture({
+                  name: req.body.name,
+                  path: `/uploads/${req.file.filename}`,
+                  originalName: req.file.originalname,
+                  creatorId: newUser._id
+                });
+                pic.save()
+
+  // const pic = new Picture({
+  //   name: req.body.name,
+  //   path: `/uploads/${req.file.filename}`,
+  //   originalName: req.file.originalname
+  // });
 
                 newUser.save((err) => {
                     if (err){ next(null, false, { message: newUser.errors }) }

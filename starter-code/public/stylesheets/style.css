@@ -6,3 +6,12 @@ body {
 a {
   color: #00B7FF;
 }
+
+
+.nav-pills .nav-link.active {
+  background-color: #00B7FF; }
+
+.btn-success {
+  background-color: #00B7FF;
+  border: 1px solid #00B7FF; 
+}
