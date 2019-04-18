@@ -7,7 +7,6 @@ const postSchema = Schema({
   creatorId: Schema.Types.ObjectId,
   picPath: String,
   picName: String,
-  comments: [Comment]
 });
 
 const Post = mongoose.model('Post', postSchema);
