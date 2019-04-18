@@ -1,6 +1,7 @@
 const passport = require('passport');
 const LocalStrategy      = require('passport-local').Strategy;
 const User = require('../models/User');
+const bcrypt = require('bcrypt');
 
 passport.serializeUser((user, cb) => {
   cb(null, user.id);
@@ -47,7 +48,6 @@ passport.use('local-signup', new LocalStrategy(
                   username,
                   email,
                   password,
-                  image
                 } = req.body;
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 
@@ -56,7 +56,7 @@ passport.use('local-signup', new LocalStrategy(
                   username,
                   email,
                   password: hashPass,
-                  image
+                  picPath: req.file.path
                 });
 
                 newUser.save((err) => {
