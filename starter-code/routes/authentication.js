@@ -25,7 +25,7 @@ router.post('/signup', ensureLoggedOut(), upload.single('image'), passport.authe
   failureFlash : true
 }));
 
-router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
+router.get('/profile/:id', ensureLoggedIn('/login'), (req, res) => {
     res.render('user/profile', {
         user : req.user
     });

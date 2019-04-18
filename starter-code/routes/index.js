@@ -9,7 +9,7 @@ const upload = multer({ dest: './public/uploads/'});
 router.get('/', (req, res, next) => {
   Post.find()
     .then(posts => {
-      res.render('index',{posts});
+      res.render('index',{posts, user: req.user});
     });
 });
 
@@ -27,6 +27,14 @@ router.post('/post/new', ensureLoggedIn(), upload.single('image'), (req, res, ne
   })
   .then(() => res.redirect('/'))
   .catch(err => console.error(err));
+});
+
+router.get('/post/:id', (req, res, next) => {
+  Post.findById(req.params.id)
+    .then(post => {
+      res.render('post/show', {post});
+    })
+    .catch(err => console.error(err));
 });
 
 module.exports = router;
