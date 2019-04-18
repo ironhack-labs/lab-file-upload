@@ -12,7 +12,7 @@ const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
-const hbs                = require('hbs')
+const hbs                = require('hbs');
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
@@ -59,6 +59,8 @@ passport.use('local-signup', new LocalStrategy(
   { passReqToCallback: true },
   (req, username, password, next) => {
     // To avoid race conditions
+    let image;
+    req.file === undefined?image ='/uploads/avatar.png': image = `/uploads/${req.file.filename}`;
     process.nextTick(() => {
         User.findOne({
             'username': username
@@ -78,7 +80,8 @@ passport.use('local-signup', new LocalStrategy(
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  imagePath: image
                 });
 
                 newUser.save((err) => {

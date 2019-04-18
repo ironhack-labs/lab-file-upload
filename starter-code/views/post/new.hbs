@@ -1,27 +1,8 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <title>{{title}}</title>
-  <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
-
-<body>
-  <h1>Welcome to IronTumblr</h1>
-  <a href="/newPost">Create a new Post</a>
-
-  {{#each posts}}
-  <p>{{content}}</p>
-  <p>{{picName}}</p>
-  <img src="{{picPath}}" alt="">
-
-  {{#each comments}}
-  <p>{{this}}</p>
-  {{/each}}
-
+<div class="container">
   <div class="row">
-    <div class="col-sm-10 centered-form">
-      <form action="/newComment/{{_id}}" method="post" enctype="multipart/form-data">
+    {{ message }}
+    <div class="col-sm-6 centered-form">
+      <form action="/newPost" method="post" enctype="multipart/form-data">
         <div class="form-group">
           <label for="content">Content</label>
           <input type="text" name="content" class="form-control" required>
@@ -34,12 +15,8 @@
           <label for="photo">Picture</label>
           <input type="file" name="photo" class="form-control" required>
         </div>
-        <button type="submit">Send comment</button>
+        <button type="submit">Create post</button>
       </form>
     </div>
   </div>
-
-  {{/each}}
-</body>
-
-</html>
+</div>
