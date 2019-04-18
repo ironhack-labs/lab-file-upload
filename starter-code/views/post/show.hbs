@@ -1,3 +1,10 @@
 <h1>{{post.picName}}</h1>
 <img src="{{post.picPath}}" alt="{{post.picName}}">
 <p>{{post.content}}</p>
+{{#if user}}
+<form action="/post/{{post._id}}/newComment" method="POST" enctype="multipart/form-data">
+  <input type="file" name="image">
+  <textarea name="content" placeholder="Write a comment..." cols="30" rows="10"></textarea>
+  <input type="submit" value="Send comment">
+</form>
+{{/if}}

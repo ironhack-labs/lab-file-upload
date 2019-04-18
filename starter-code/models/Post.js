@@ -7,6 +7,10 @@ const postSchema = Schema({
   creatorId: Schema.Types.ObjectId,
   picPath: String,
   picName: String,
+  comments: {
+    type: Array,
+    default: [],
+  }
 });
 
 const Post = mongoose.model('Post', postSchema);
