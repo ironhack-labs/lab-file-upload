@@ -74,11 +74,13 @@ passport.use('local-signup', new LocalStrategy(
                   email,
                   password
                 } = req.body;
+                var photoData = req.file;
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  photo: "uploads/" + photoData.filename
                 });
 
                 newUser.save((err) => {
@@ -121,5 +123,7 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 module.exports = app;
