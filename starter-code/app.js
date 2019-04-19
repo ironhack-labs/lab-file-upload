@@ -58,7 +58,6 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
 passport.use('local-signup', new LocalStrategy(
   { passReqToCallback: true },
   (req, username, password, next) => {
-    // To avoid race conditions
     process.nextTick(() => {
         User.findOne({
             'username': username
@@ -68,7 +67,6 @@ passport.use('local-signup', new LocalStrategy(
             if (user) {
                 return next(null, false);
             } else {
-                // Destructure the body
                 const {
                   username,
                   email,
@@ -76,7 +74,6 @@ passport.use('local-signup', new LocalStrategy(
                 } = req.body;
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const photoData = req.file
-                console.log("upload/" + photoData.filename)
 
                 const newUser = new User({
                   username,
@@ -105,23 +102,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const posts = require('./routes/posts');
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/', posts);
 
-// catch 404 and forward to error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
-// error handler
 app.use((err, req, res, next) => {
-  // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
   res.status(err.status || 500);
   res.render('error');
 });
