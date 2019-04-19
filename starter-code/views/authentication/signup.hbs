@@ -2,7 +2,7 @@
   <div class="row">
     {{ message }}
     <div class="col-sm-6 centered-form">
-      <form action="/signup" method="post">
+      <form action="/signup" method="post" enctype="multipart/form-data">
         <div class="form-group">
           <label for="username">Username</label>
           <input type="text" name="username" class="form-control">
@@ -14,9 +14,15 @@
         <div class="form-group">
           <label for="password">Password</label>
           <input type="password" name="password" class="form-control">
+           <label for="path">Photo</label>
+          <input type="file" name="path">
+
         </div>
         <button type="submit">Signup</button>
+
       </form>
+      <p><a href="/logout">logout</a> | <a href="/login">login</a> | <a href="/signup">signup</a></p>
+
     </div>
   </div>
 </div>
