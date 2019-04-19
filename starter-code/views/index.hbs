@@ -5,10 +5,10 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-  {{#if name}}
+  {{#if user}}
   <div id="log">
-    <p>Welcome back {{name}}</p>
-    <a href="/private-page">Private Area</a>
+    <p>Welcome back {{user.username}}</p>
+    <a href="/private/{{user._id}}">Private Area</a>
     <a href="/logout">Logout</a>
     <div>
        <form action="/post" method="post" enctype="multipart/form-data">
@@ -30,6 +30,13 @@
       <img src="{{this.picPath}}" alt="">
       <a href="/post/{{this._id}}">Show</a>
     </div>
+    <div>
+      {{#each this.comments}}
+        <p>{{this.content}}</p>
+        <img src="{{this.imagePath}}" alt="">
+        <p>{{this.imageName}}</p>
+      {{/each}}
+    </div>
   {{/each}}
   {{else}}
   <div id="unlog">
@@ -37,6 +44,20 @@
     <a href="/signup">Sign Up</a>
     <a href="/login">Login</a>
   </div>
+  {{#each posts}}
+    <div>
+      <p>{{this.picName}}</p>
+      <img src="{{this.picPath}}" alt="">
+      <a href="/post/{{this._id}}">Show</a>
+    </div>
+    <div>
+      {{#each this.comments}}
+        <p>{{this.content}}</p>
+        <img src="{{this.imagePath}}" alt="">
+        <p>{{this.imageName}}</p>
+      {{/each}}
+    </div>
+  {{/each}}
   {{/if}}
   </body>
 </html>

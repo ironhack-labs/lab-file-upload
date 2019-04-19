@@ -5,6 +5,7 @@ const router     = express.Router();
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 const uploadCloud = require('../config/cloudinary');
 const Post = require('../models/post');
+const User = require('../models/user');
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
     res.render('authentication/login', { message: req.flash('error')});
@@ -62,6 +63,13 @@ router.post("/add-comment", ensureLoggedIn('/login'), uploadCloud.single('photo'
         }
     )
     .then(() => res.redirect("/"))
+})
+
+router.get("/private/:id", ensureLoggedIn('/login'), (req, res) =>{
+    
+    User.findById(req.params.id)
+    if(req.user){res.render("private", {user: req.user})}
+    else {res.redirect("/login")}
 })
 
 router.get('/logout', ensureLoggedIn('/login'), (req, res) => {
