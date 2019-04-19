@@ -14,9 +14,21 @@ const Comment   = require('../models/comment');
 /* GET home page. */
 router.get('/', (req, res, next) => {
   Post.find()
-  .populate('user')
+  .populate('creatorId')
   .then((posts) => {
     res.render('index', {posts});
+  })
+});
+
+router.get('/profilePage/:userId', ensureLoggedIn('/login'), (req, res, next) =>  {
+  let userId = req.params.userId;
+  User.findById(userId)
+  .then((user) => {
+    console.log(user)
+    res.render('profile', user);
+  })
+  .catch((err) => {
+    next(err);
   })
 });
 
@@ -38,7 +50,7 @@ router.post('/newPost', upload.single('picPath'), (req,res,next) => {
 });
 
 
-router.post('/comment/:postId', upload.single('picPath'), (req,res,next) => {
+router.post('/comment/:postId', upload.single('picPath'), ensureLoggedIn('/login'), (req,res,next) => {
   let content = req.body.content;
   let picName = req.body.picName;
   

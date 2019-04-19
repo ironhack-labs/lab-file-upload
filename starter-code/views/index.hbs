@@ -8,7 +8,7 @@
     <h1>Welcome to IronTumblr</h1>
     {{#each posts }}
         <h3>{{this.content}}</h3>
-        <h4>Create by: {{this.creatorId.username}}</h4>
+        <h4>Create by: <a href="/profilePage/{{this.creatorId._id}}">{{this.creatorId.username}}</a></h4>
         <img src="{{this.picPath}}" alt="image_1">
         <h4>{{this.picName}}</h4>
 
