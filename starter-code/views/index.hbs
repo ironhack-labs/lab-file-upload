@@ -14,20 +14,27 @@
     {{#each posts}}
 
     <div class="col-sm-8">
-          <hr>
-      <p>Post created by: <a href="/profile/{{creatorId}}">User profile</a></p>
+      <hr>
+      <pLo que muestro es la id del comentari>Post created by: <a
+          href="/profile/{{creatorId}}">{{creatorId.username}}</a></pLo>
       <p>Content: {{content}}</p>
       <img src="{{picPath}}" alt="{{picName}}">
-      <p><b>Comments: </b> Me falta aquí popular el campo del comentario, luego me lo miráis porfa. <br>
-      Lo que muestro es la id del comentario</p>
-      {{#each comments}}
-      <p>{{this}}</p>
-      {{/each}}
+      <div id="comments{{_id}}">
+        <p><b>Comments: </b> Me falta aquí popular el usuario del comentario, luego me lo miráis porfa. <br>
+        </p>
+        {{#each comments}}
+        <p>Author: {{authorId.username}}</p>
+        <p>Content: {{content}}</p>
+        <img src="{{picPath}}" alt="picName">
+        <hr>
+        {{/each}}
+      </div>
+      <br>
 
     </div>
 
 
-    <div class="col-sm-4 centered-form">
+    <div class="col-sm-3 centered-form" id="commentform{{_id}}">
       <br><br>
       <p><b>Create new comment: </b></p>
       <form action="/newComment/{{_id}}" method="post" enctype="multipart/form-data">
@@ -43,12 +50,13 @@
           <label for="photo">Picture</label>
           <input type="file" name="photo" class="form-control" required>
         </div>
-        <button type="submit">Send comment</button>
+        <button id="button{{_id}}" type="submit">Send comment</button>
       </form>
     </div>
 
     {{/each}}
   </div>
+
 </body>
 
 </html>

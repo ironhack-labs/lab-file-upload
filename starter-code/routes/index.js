@@ -14,8 +14,9 @@ const { ensureLoggedIn, ensureLoggedOut } = require("connect-ensure-login");
 /* GET home page. */
 router.get("/", (req, res, next) => {
   Post.find()
-    .populate("user")
-    .populate("comment")
+    .populate("creatorId")
+    .populate("comments")
+    .populate("authorId")
     .then(posts => res.render("index", { posts }));
 });
 
@@ -33,7 +34,7 @@ router.get("/profile/:id", (req, res) => {
   });
 });
 
-router.post("/newPost", upload.single("photo"), (req, res) => {
+router.post("/newPost", ensureLoggedIn('/login'), upload.single("photo"), (req, res) => {
   let content = req.body.content;
   let picName = req.body.photoname;
   let post = new Post({
