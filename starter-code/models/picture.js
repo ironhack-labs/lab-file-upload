@@ -6,7 +6,7 @@ const pictureSchema = new Schema({
   path: String,
   originalName: String,
   creatorId: String,
-  comments: Array
+  comments: {type:Array,default: []}
 
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }

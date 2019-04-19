@@ -1,3 +1,5 @@
- <p>coment</p>
- <img src=`${src}` alt="">
- <p>${text dasdas}</p>
+<h3>Soy un comentario {{ this.name }} {{this._id}}</h3>
+    <img src="{{ this.path }}" alt="{{ this.originalName }}" />
+    <form action="/coment/{{this._id}}/delete" method="post">
+    <button>Delete coment {{this._id}}</button>
+  </form> 

@@ -1,7 +1,12 @@
   
     <h3>{{ this.name }}</h3>
     <img src="{{ this.path }}" alt="{{ this.originalName }}" />
-    <p>dsaddsasdaa</p>
+
+    <form action="/post/{{this._id}}/delete" method="post">
+    <button>Delete post {{this._id}}</button>
+  </form> 
+
+    
 
   <h2>Comment photo</h2>
   <form action="/coment" method="post" enctype="multipart/form-data" id="{{ this._id }}">
@@ -12,7 +17,6 @@
   </form>
  <div>
      {{#each this.comments}}
-     <p>hola</p>
     {{>coment this}}
     {{/each}}
  </div>
