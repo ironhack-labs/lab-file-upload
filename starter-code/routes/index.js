@@ -84,6 +84,32 @@ router.post(
   }
 );
 
+
+
+router.post('/coment/:id/edit',
+ensureLoggedIn("/login") , (req, res, next) => {
+  Coment.findOneAndUpdate({_id: req.params.id} , req.body)
+    .then(result => {
+      console.log('peliacu actualizada:', result);
+      res.redirect('/');
+    })
+    .catch(err => {
+      res.render('./error', err)
+    })
+})
+
+router.post('/photo/:id/edit',
+ensureLoggedIn("/login") , (req, res, next) => {
+  Picture.findOneAndUpdate({_id: req.params.id} , req.body)
+    .then(result => {
+      console.log('peliacu actualizada:', result);
+      res.redirect('/');
+    })
+    .catch(err => {
+      res.render('./error', err)
+    })
+})
+
 router.post(
   "/coment/:id/delete",
   ensureLoggedIn("/login"),
