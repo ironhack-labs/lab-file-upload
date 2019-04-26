@@ -7,7 +7,7 @@ const bodyParser         = require('body-parser');
 const passport           = require('passport');
 const LocalStrategy      = require('passport-local').Strategy;
 const User               = require('./models/user');
-const bcrypt             = require('bcrypt');
+// const bcrypt             = require('bcrypt');
 const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
@@ -47,9 +47,9 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
     if (!user) {
       return next(null, false, { message: "Incorrect username" });
     }
-    if (!bcrypt.compareSync(password, user.password)) {
-      return next(null, false, { message: "Incorrect password" });
-    }
+    // if (!bcrypt.compareSync(password, user.password)) {
+    //   return next(null, false, { message: "Incorrect password" });
+    // }
 
     return next(null, user);
   });
@@ -74,7 +74,7 @@ passport.use('local-signup', new LocalStrategy(
                   email,
                   password
                 } = req.body;
-                const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+                // const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
