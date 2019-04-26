@@ -1,0 +1,6 @@
+<h1>All post:</h1>
+{{#each posts as |post|}}
+  <p>{{post.content}}</p>
+  <a href="/posts/{{post._id}}"><img src="{{post.picPath}}" alt="{{post.content}}" width="200"></a>
+  <hr>
+{{/each}}

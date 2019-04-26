@@ -1,0 +1,23 @@
+<div>
+  <h2>{{content}}</h2>
+  <figure>
+    <img src="{{picPath}}" alt="" width="500">
+  </figure>
+  <small>By: {{creatorId.email}}</small>
+</div>
+<br>
+<div>
+  <form action="/posts/{{_id}}/comment" method="POST" enctype="multipart/form-data">
+    <label for="content">Comment: </label>
+    <input type="text" name="content" />
+    <input type="file" name="imageName" />
+    <input type="submit" name="Send!">
+  </form>
+</div>
+<div>
+  {{#each comments as |comment|}}
+  <p>{{comment.content}}</p>
+  <img src="{{comment.imagePath}}" alt="" width="100">
+  <small>By: {{comment.authorId.email}}</small>
+  {{/each}}
+</div>
