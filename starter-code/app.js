@@ -39,7 +39,7 @@ passport.deserializeUser((id, cb) => {
   });
 });
 
-passport.use('local-login', new LocalStrategy((username, password, next) => {
+passport.use('local-login', new LocalStrategy((username, password, next) => { //porqué se hace aquí y no en un achivo para configurar passport???
   User.findOne({ username }, (err, user) => {
     if (err) {
       return next(err);
