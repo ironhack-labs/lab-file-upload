@@ -1,0 +1,29 @@
+<body style="background-image: url('https://www.kcbsolutions.com/wp-content/uploads/2017/05/black-tumblr-wallpaper-desktop-background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;">
+  <div style="justify-content: center;">
+    <h2>Coment a post</h2>
+
+    <form action="/allcomments" method="GET" enctype="multipart/form-data">
+      <p>
+        <label>User ID:</label>
+        <input type="text" name="authorId" placeholder="Your ID">
+      </p>
+      <p>
+        <label>Comment:</label>
+        <input type="text" name="content" placeholder="Write a comment...">
+      </p>
+      <p>
+        <label>Description of the image:</label>
+        <input type="text" name='imageName'>
+        <br><br>
+        <label>Upload image:</label>
+        <input type="file" name="imagePath"/>
+      </p>
+      <p>
+        <input type="submit" value="comment">
+      </p>
+</form>
+  </div>
+</body>

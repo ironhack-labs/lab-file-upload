@@ -1,0 +1,26 @@
+<body style="background-image: url('https://www.kcbsolutions.com/wp-content/uploads/2017/05/black-tumblr-wallpaper-desktop-background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;">
+<h2>Create a post</h2>
+
+<form action="/post" method="POST" enctype="multipart/form-data">
+  <p>
+    <label>User ID:</label>
+    <input type="text" name="creatorId" placeholder="Your ID">
+  </p>
+  <p>
+    <label>Post content:</label>
+    <input type="text" name="content" placeholder="Write a post...">
+  </p>
+  <p>
+    <label>Description of the image:</label>
+    <input type="text" name='picName'>
+    <label>Upload image:</label>
+    <input type="file" name="picPath"/>
+  </p>
+  <p>
+    <input type="submit" value="Post">
+  </p>
+</form>
+</body>

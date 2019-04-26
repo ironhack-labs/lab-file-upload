@@ -1,8 +1,36 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url('https://www.kcbsolutions.com/wp-content/uploads/2017/05/black-tumblr-wallpaper-desktop-background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+}
+
+#body {
+  background-image: url('https://www.kcbsolutions.com/wp-content/uploads/2017/05/black-tumblr-wallpaper-desktop-background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
 }
 
 a {
-  color: #00B7FF;
+  text-decoration-style: none;
+  color: white;
+  margin-left: 160px;
+}
+
+.post__img {
+  margin-left: 30%;
+  margin-top: 40px;
+}
+.index__span__user{
+  margin-left: 35%;
+}
+
+.index__p {
+  margin-left: 45%;
+}
+
+.index__comment {
+  margin-left: 44%;
 }
