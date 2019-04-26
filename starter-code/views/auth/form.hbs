@@ -1,0 +1,28 @@
+<h1>{{form.title}}</h1>
+
+{{#if message}}
+<p>{{message}}</p>
+{{/if}}
+
+<form action="{{form.action}}" method="POST" {{#if newAccount}} enctype="multipart/form-data" {{/if}}>
+
+  <p>
+    <label>Username:</label>
+    <input type="text" name="username" />
+  </p>
+
+  <p>
+    <label>Password:</label>
+    <input type="password" name="password" />
+  </p>
+
+  {{#if newAccount}}
+  <p>
+    <label>Photo:</label>
+    <input type="file" name="photo" />
+  </p>
+  {{/if}}
+
+  <button>{{button.title}}</button>
+
+</form>

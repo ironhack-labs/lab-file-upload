@@ -1,0 +1,16 @@
+<figure>
+  <a href="/posts/{{post._id}}">
+    <img src="{{post.picPath}}" alt="{{post.picName}}">
+  </a>
+  <figcaption>
+    <a href="/posts/{{post._id}}">{{post.picName}}</a>
+  </figcaption>
+</figure>
+<p>
+  {{post.content}}
+</p>
+<p>
+  <a href="/posts/{{post._id}}/edit">Edit post</a>
+  |
+  <a href="/posts/{{post._id}}/delete">Delete post</a>
+</p>

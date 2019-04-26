@@ -1,0 +1,23 @@
+<h1>{{form.title}}</h1>
+
+<form action="{{form.action}}" method="POST" {{#if newPost}} enctype="multipart/form-data" {{/if}}>
+  <p>
+    <label>Post content:</label>
+    <input type="text" name="content" value="{{data.post.content}}" />
+  </p>
+
+  {{#if newPost}}
+  <p>
+    <label>Image File:</label>
+    <input type="file" name="picPath" />
+  </p>
+  {{/if}}
+
+  <p>
+    <label>Image caption:</label>
+    <input type="text" name="picName" value="{{data.post.picName}}" />
+  </p>
+
+  <button>{{button.title}}</button>
+
+</form>

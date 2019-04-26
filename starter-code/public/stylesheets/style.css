@@ -1,8 +1,18 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif; }
 
 a {
-  color: #00B7FF;
-}
+  color: #00b7ff; }
+
+nav {
+  margin: 20px;
+  padding: 0; }
+
+.container {
+  margin: 0 auto;
+  max-width: 960px; }
+
+img {
+  max-width: 200px; }
+
+/*# sourceMappingURL=style.css.map */

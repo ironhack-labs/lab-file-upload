@@ -1,0 +1,16 @@
+<p>
+  <a href="/posts/new">Add a new post</a>
+</p>
+
+<article>
+  {{#each posts as | post |}}
+  <figure>
+    <a href="/posts/{{post._id}}">
+      <img src="{{post.picPath}}" alt="{{post.picName}}">
+    </a>
+    <figcaption>
+      <a href="/posts/{{post._id}}">{{post.picName}}</a>
+    </figcaption>
+  </figure>
+  {{/each}}
+</article>
