@@ -2,6 +2,8 @@ const express    = require('express');
 const passport   = require('passport');
 const router     = express.Router();
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+const upload = require('../multer');
+const User = (require('../models/user'));
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
     res.render('authentication/login', { message: req.flash('error')});
@@ -27,6 +29,15 @@ router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
     res.render('authentication/profile', {
         user : req.user
     });
+});
+router.post('/upload', upload.single('photo'), (req,res) => {
+    if (req.file !== undefined) {
+        User.findByIdAndUpdate(req.user._id, {$set: {"profilePhoto": req.file.url}}).then(() => {
+            res.redirect('/profile');
+        });
+    } else {
+        res.render('profile', {message: 'Empty photo field!'});
+    }
 });
 
 router.get('/logout', ensureLoggedIn('/login'), (req, res) => {
