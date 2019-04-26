@@ -1,0 +1,11 @@
+<h1>perfil</h1>
+<p>{{user}}</p>
+
+    <img src="{{ user.photo }}" alt="{{ user.username }}" />
+
+  <h2>Upload your photo</h2>
+  <form action="/profile" method="post" enctype="multipart/form-data">
+    <input type="text" name="name">
+    <input type="file" name="photo">
+    <input type="submit" value="Save">
+  </form>
