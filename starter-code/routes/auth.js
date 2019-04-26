@@ -16,30 +16,36 @@ router.get("/login", (req, res, next) => {
   res.render("auth/sign", config)
 });
 
+
 router.get('/', (req, res, next)=> {
+  let algo =  {}
   Post.find()
   .then(posts => {
-    res.render('index', { posts })
+    algo = posts
   })
   .catch(err => console.log(err))
-  // Comment.find()
-  // .then(comments => {
-  //   res.render('index', { comments })
-  // })
-  // .catch(err => {
-  //   res.send(err)
-  // })
+  .then(() => {
+    Comment.find()
+    .then(comments => {
+      let todo = { comments, algo }
+      res.render('index', todo)
+    })
+    .catch(err => {
+      res.send(err)
+    })
+  })
+  .catch(err => console.log(err))
 })
 
-router.get('/allcomments', (req, res, next)=> {
-  Comment.find()
-  .then(comments => {
-    res.render('comments/allcomments', { comments })
-  })
-  .catch(err => {
-    res.send(err)
-  })
-})
+// router.get('/allcomments', (req, res, next)=> {
+//   Comment.find()
+//   .then(comments => {
+//     res.render('comments/allcomments', { comments })
+//   })
+//   .catch(err => {
+//     res.send(err)
+//   })
+// })
 
 
 router.get('/post', (req, res, next) => {

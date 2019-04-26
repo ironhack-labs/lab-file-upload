@@ -9,9 +9,8 @@
     <a href="/signup">SIGNUP</a>
     <a href="/login">LOGIN</a>
     <a href="/post">POST</a>
-    <a href="/allcomments">SEE COMENTS</a>
     <hr>
-    {{#each posts as |post|}}
+    {{#each algo as |post|}}
       <img class="post__img" src="{{post.picPath}}" width="400"/>
       <br>
       <p class="index__p">{{post.picName}}</p>
@@ -22,12 +21,12 @@
       <a class="index__comment" href="/comment">Comment</a>
       </form>
     {{/each}}
-    {{!-- <h2>Comments</h2>
+    <h2>Comments</h2>
     {{#each comments as |comment|}}
       <img src="{{comment.imagePath}}" width="200"/>
       <p>{{comment.imageName}}</p>
       <p>{{comment.authorId}}</p>
       <p>{{comment.content}}</p>
-    {{/each}} --}}
+    {{/each}}
   </body>
 </html>
