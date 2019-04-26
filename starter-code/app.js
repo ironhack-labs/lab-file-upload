@@ -1,3 +1,4 @@
+
 const express            = require('express');
 const path               = require('path');
 const favicon            = require('serve-favicon');
@@ -14,7 +15,7 @@ const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const hbs                = require('hbs')
 
-mongoose.connect(process.env.DB);
+mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
 const app = express();
 
@@ -122,4 +123,5 @@ app.use((err, req, res, next) => {
   res.render('error');
 });
 
+app.listen(3001, () => console.log('Runnint in http://localhost:3001'))
 module.exports = app;

@@ -4,19 +4,26 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
+    "connect-ensure-login": "^0.1.1",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^2.0.3",
     "cookie-parser": "^1.4.4",
     "express": "^4.16.4",
     "express-session": "^1.16.1",
     "hbs": "^4.0.4",
+    "mongoose": "^5.5.4",
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^5.0.1",
+    "serve-favicon": "^2.5.0"
   },
   "devDependencies": {},
   "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
