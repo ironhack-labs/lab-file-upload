@@ -1,0 +1,12 @@
+<h1>Listado de Posts</h1>
+
+{{#each allPost}}
+<p>Contenido: {{this.content}}</p>
+<figure>
+  <img src="{{this.picPath}}" alt="post-image">
+</figure>
+
+{{/each}}
+
+<a href="/post/add">Añadir un Post nuevo</a><br><br>
+<a href="/">Volver</a>

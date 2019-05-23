@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    {{ message }}
+    <div class="col-sm-6 centered-form">
+      <form action="/post/add" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="content">Contenido:</label>
+          <input type="text" name="content" class="form-control"><br><br>
+        </div>
+        <div class="form-group">
+          <label>Imagen</label>
+          <input type="file" name="photo" class="form-control"><br><br>
+
+        </div>
+        <button type="submit">Añadir post</button>
+      </form>
+    </div>
+  </div>
+</div>
+<a href="/">Volver</a><br><br>
+<a href="/post/list">Ir a la lista</a>

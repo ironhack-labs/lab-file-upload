@@ -115,6 +115,10 @@ const authRoutes = require('./routes/authentication');
 app.use('/', index);
 app.use('/', authRoutes);
 
+
+const postRoutes = require('./routes/posts')
+app.use('/post', postRoutes)
+
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');
