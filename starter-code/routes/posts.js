@@ -9,7 +9,7 @@ const User = require('../models/user')
 
 router.get('/list', (req, res) => {
   Post.find()
-    .then(allPost => res.render("posts/post-list", { allPost }))
+    .then(allPost => res.render("posts/post-list", { allPost, User: req.user }))
     .catch(err => console.log('error:', err))
 
 })
