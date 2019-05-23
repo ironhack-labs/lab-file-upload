@@ -18,6 +18,10 @@ mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
 const app = express();
 
+
+
+
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
@@ -55,7 +59,13 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
   });
 }));
 
-passport.use('local-signup', new LocalStrategy(
+
+
+  
+
+
+
+passport.use('local-signup',  new LocalStrategy(
   { passReqToCallback: true },
   (req, username, password, next) => {
     // To avoid race conditions
@@ -69,16 +79,17 @@ passport.use('local-signup', new LocalStrategy(
                 return next(null, false);
             } else {
                 // Destructure the body
-                const {
-                  username,
-                  email,
-                  password
-                } = req.body;
+                const { username, email, password } = req.body;
+                console.log(req.file)
+                const imgPath = req.file.url
+                const imgName = req.file.originalname
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  imgPath,
+                  imgName
                 });
 
                 newUser.save((err) => {
