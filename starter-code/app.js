@@ -66,6 +66,7 @@ passport.use('local-signup', new LocalStrategy(
             if (err){ return next(err); }
 
             if (user) {
+              console.log('usuario existente')
                 return next(null, false);
             } else {
                 // Destructure the body
@@ -74,11 +75,20 @@ passport.use('local-signup', new LocalStrategy(
                   email,
                   password
                 } = req.body;
+
+                console.log(req.file)
+                const {
+                  url,
+                  originalname,
+                } = req.file;
+                
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  imgName : originalname,
+                  imgPath : url,
                 });
 
                 newUser.save((err) => {

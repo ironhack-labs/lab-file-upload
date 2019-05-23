@@ -1,9 +1,14 @@
 const express = require('express');
 const router  = express.Router();
+const Post = require('../models/post')
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Express - Generated with IronGenerator' });
+  Post.find()
+    .then (posts => res.render('index', { posts, user: req.user}))
+    .catch(error => console.log(error))
 });
+
+
 
 module.exports = router;
