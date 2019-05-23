@@ -2,7 +2,10 @@
   <div class="row">
     {{ message }}
     <div class="col-sm-6 centered-form">
-      <form action="/signup" method="post">
+      <form action="/authentication/signup" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <input type="file" name="profile-photo" class="form-control">
+        </div>
         <div class="form-group">
           <label for="username">Username</label>
           <input type="text" name="username" class="form-control">
