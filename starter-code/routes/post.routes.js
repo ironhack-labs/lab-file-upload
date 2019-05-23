@@ -8,14 +8,12 @@ const {
   ensureLoggedOut
 } = require('connect-ensure-login')
 
+const isLogged = req => req.user ? true : false
 
-
-router.get('/', ensureLoggedIn(), (req, res) => {
-
+router.get('/', (req, res) => {
   Post.find()
     .then(posts => res.render('posts/index', {
       posts,
-
     }))
     .catch(err => console.log(err))
 })
@@ -24,12 +22,15 @@ router.get('/new', ensureLoggedIn(), (req, res) => {
   res.render('posts/new')
 })
 
-router.post('/new', [ensureLoggedIn('/login'), uploadCloud.single('pic')], (req, res) => {
+router.post('/new', [ensureLoggedIn('/login', {
+  msg: 'no estas logueado'
+}), uploadCloud.single('pic')], (req, res) => {
 
   const {
     content,
     picName
   } = req.body
+
   const picPath = req.file.url
   const creatorId = req.user._id
 
@@ -52,5 +53,44 @@ router.post('/new', [ensureLoggedIn('/login'), uploadCloud.single('pic')], (req,
     .catch(err => console.log(err))
 
 })
+
+router.get('/:id', (req, res) => {
+  Post.findById(req.params.id)
+    .then(post => res.render('posts/show', {
+      post,
+      isLogged: isLogged(req)
+    }))
+    .catch(err => console.log(err))
+})
+
+/* Comments routes */
+
+router.post('/:id/comments', uploadCloud.single('pic'), (req, res) => {
+
+  const {
+    content,
+    imageName
+  } = req.body
+
+  const imagePath = req.file.url
+
+  const update = {
+    $push: {
+      comments: {
+        content,
+        imageName,
+        imagePath,
+        authorId: req.user._id
+      }
+    }
+  }
+
+  Post.findByIdAndUpdate(req.params.id, update)
+    .then(post => {
+
+    })
+    .catch(err => console.log(err))
+})
+
 
 module.exports = router;

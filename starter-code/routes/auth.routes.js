@@ -29,7 +29,7 @@ router.get('/signup', ensureLoggedOut(), (req, res) => {
 })
 
 router.post('/signup', [ensureLoggedOut(), uploadCloud.single('profilePic')], passport.authenticate('local-signup', {
-    successRedirect: '/',
+    successRedirect: '/posts',
     failureRedirect: '/signup',
     failureFlash: true
 }))
@@ -43,6 +43,7 @@ router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
 })
 
 router.get('/logout', ensureLoggedIn('/login'), (req, res) => {
+
     req.logout()
     res.redirect('/')
 })

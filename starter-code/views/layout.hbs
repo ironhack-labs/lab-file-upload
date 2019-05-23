@@ -8,6 +8,13 @@
   </head>
   <body>
     <div class="container">
+     {{#if logged}}
+      <a href="/logout">Logout</a>
+      <p style="text-align: right;">Hola, {{user.username}}</p>
+      {{else}}
+      <a href="/login">Login</a>
+      {{/if}}
+
       {{{body}}}
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

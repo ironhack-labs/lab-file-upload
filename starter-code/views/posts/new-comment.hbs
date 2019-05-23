@@ -1,14 +1,10 @@
-{{#with post}}
-<img src="{{picPath}}" alt="{{picName}}">
-{{/with}}
 
-{{#if isLogged}}
 <div class="container">
   <div class="row">
     {{ message }}
     <div class="col-sm-6 centered-form">
       <h1>Comment now</h1>
-      <form action="/posts/{{post._id}}/comment" method="post" enctype="multipart/form-data">
+      <form action="/posts/comment" method="post" enctype="multipart/form-data">
         <div class="form-group">
           <label for="content">Content:</label>
           <input type="text" name="content" class="form-control">
@@ -24,7 +20,3 @@
     </div>
   </div>
 </div>
-
-<a href="/posts/new">New post</a>
-
-{{/if}}

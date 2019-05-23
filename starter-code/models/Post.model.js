@@ -10,7 +10,17 @@ const postSchema = Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
     autopopulate: true
-  }
+  },
+  comments: [{
+    content: String,
+    authorId: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      autopopulate: true
+    },
+    imagePath: String,
+    imageName: String
+  }]
 }, {
   timestamps: true
 });

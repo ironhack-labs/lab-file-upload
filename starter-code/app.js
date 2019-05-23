@@ -65,7 +65,7 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
 
     return next(null, user);
   });
-  z
+
 }));
 
 passport.use('local-signup', new LocalStrategy({
@@ -122,6 +122,21 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
+app.use((req, res, next) => {
+  app.locals.logged = false
+  console.log('Logged before if', app.locals.logged)
+  if (req.user) {
+    app.locals.user = req.user
+    app.locals.logged = true
+  }
+
+  console.log('User', app.locals.user)
+  console.log('Logged af i', app.locals.logged)
+  next()
+})
+
 const index = require('./routes/index.routes');
 app.use('/', index);
 
@@ -138,10 +153,12 @@ app.use((req, res, next) => {
   next(err);
 });
 
+
 // error handler
 app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
+
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
