@@ -1,0 +1,22 @@
+const cloudinary = require('cloudinary');
+const cloudinaryStorage = require('multer-storage-cloudinary');
+const multer = require('multer');
+
+cloudinary.config({
+  cloud_name: "evilloh",
+  api_key: 852513764449577,
+  api_secret: "hJjAOmoiNHtqFhYJCwEncEZdTRY"
+})
+
+var storage = cloudinaryStorage({
+  cloudinary: cloudinary,
+  folder: 'webmad0419', // The name of the folder in cloudinary
+  allowedFormats: ['jpg', 'png'],
+  filename: function (req, file, cb) {
+    cb(null, file.originalname); // The file on cloudinary would have the same name as the original file name
+  }
+})
+
+const uploadCloud = multer({ storage: storage });
+
+module.exports = uploadCloud;
