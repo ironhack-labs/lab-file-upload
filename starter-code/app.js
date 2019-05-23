@@ -110,10 +110,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-const index = require('./routes/index');
-const authRoutes = require('./routes/authentication');
-app.use('/', index);
-app.use('/', authRoutes);
+const index = require('./routes/index')
+const authRoutes = require('./routes/authentication')
+const posts = require ('./routes/posts')
+app.use('/', index)
+app.use('/', authRoutes)
+app.use('/posts', posts)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -133,4 +135,4 @@ app.use((err, req, res, next) => {
   res.render('error');
 });
 
-module.exports = app;
+module.exports = app

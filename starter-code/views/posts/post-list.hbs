@@ -1,0 +1,15 @@
+<h1>Super posts</h1>
+<a href="/">Volver a inicio</a>
+<br><br>
+
+{{#if user}}
+    <a href="/posts/add">Añadir post</a>
+
+{{/if}}
+<br><br><br>
+
+{{#each posts}}
+    <p>{{this.content}}</p>
+    <img src="{{this.imgPath}}" alt="Post-image">
+{{/each}}
+<br><br><br>
