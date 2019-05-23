@@ -1,0 +1,9 @@
+<h1>Todos los posts</h1>
+<div class="row">
+  {{#each posts}}
+    <div class="col-md-4 align-items-center">
+      <figure><img src="{{picPath}}" alt="{{picName}}"></figure>
+      <figcaption> By {{creatorId.username}}</figcaption>
+    </div>
+  {{/each}}
+</div>
