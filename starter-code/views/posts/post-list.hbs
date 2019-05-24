@@ -8,8 +8,21 @@
 {{/if}}
 <br><br><br>
 
+{{#if user}}
 {{#each posts}}
     <p>{{this.content}}</p>
     <img src="{{this.imgPath}}" alt="Post-image">
+    <a href="/posts/comment?post_id={{this._id}}">Comentar</a>
+    
 {{/each}}
+{{else}}
+
+    {{#each posts}}
+    <p>{{this.content}}</p>
+    <img src="{{this.imgPath}}" alt="Post-image">
+    
+{{/each}}
+{{/if}}
+    
+
 <br><br><br>

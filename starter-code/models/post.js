@@ -1,13 +1,13 @@
 const mongoose = require('mongoose')
 const Schema   = mongoose.Schema
-const User = require('./user')
 
 
 const PostSchema = Schema({
     content: String,
-    creatorId: Schema.Types.ObjectId,
+    creatorId: {type: Schema.Types.ObjectId, ref: 'User'},
     imgName: String,
     imgPath: String,
+    comment: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
 })
 
 const Post = mongoose.model('Post', PostSchema)
