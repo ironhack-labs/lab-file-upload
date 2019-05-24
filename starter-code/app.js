@@ -13,6 +13,9 @@ const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const hbs                = require('hbs')
+const multer  = require('multer');
+const upload = multer({ dest: './public/uploads/' });
+const uploadCloud = require('./config/cloudinary');
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
@@ -60,10 +63,10 @@ passport.use('local-signup', new LocalStrategy(
   (req, username, password, next) => {
     // To avoid race conditions
     process.nextTick(() => {
-        User.findOne({
-            'username': username
-        }, (err, user) => {
-            if (err){ return next(err); }
+        User.findOne({username}, (err, user) => {
+            if (err){ 
+              return next(err); 
+            }
 
             if (user) {
                 return next(null, false);
@@ -74,12 +77,18 @@ passport.use('local-signup', new LocalStrategy(
                   email,
                   password
                 } = req.body;
+
+                const imgPath = req.file.path;
+                const imgName = req.file.originalname;
+
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
-                });
+                  password: hashPass,
+                  imgPath,
+                  imgName
+                });               
 
                 newUser.save((err) => {
                     if (err){ next(null, false, { message: newUser.errors }) }
@@ -101,8 +110,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const postRoutes = require('./routes/post');
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/', postRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

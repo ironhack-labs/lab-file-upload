@@ -1,10 +1,48 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
     <h1>Welcome to IronTumblr</h1>
-  </body>
-</html>
+    <a href="/signup">Sign up</a>
+    <a href="/login">Login</a>
+    <a href="/logout">Logout</a>
+    <br>
+    <hr>
+    <h2>Añadir nuevo post</h2>
+    <form action="/add" method="post" enctype="multipart/form-data">
+    <label>Post</label>
+    <input type="text" name="post"><br><br>
+    <label for="photo">Photo</label>
+    <input name="photo" type="file" value="Save"><br>
+    <input type="submit" value="Enviar">
+    </form>
+    <hr>
+    <div class="posts-container">
+    <h2>Aqui los posts</h2>
+    {{#each posts}}
+    <div class="post-item">
+        <img src="{{this.picPath}}" alt="">
+        <h3>{{this.content}}</h3>
+    </div>
+    <div class="comment-form">
+      <h2>Añadir nuevo commentario</h2>
+      <form action="/new-comment" method="post" enctype="multipart/form-data">
+      <label>Comment</label>
+      <input type="text" name="post"><br><br>
+      <label for="photo">Photo</label>
+      <input name="photo" type="file" value="Save"><br>
+      <input type="submit" value="Enviar">
+      </form>
+    </div>
+      <h1>Comentarios</h1>
+      {{#each ../comments}}
+      <div class="comment-item">
+          <img src="{{this.picPath}}" alt="">
+          <h3>{{this.content}}</h3>
+      </div>
+      {{else}}
+      <p>No existen comments</p>
+      <hr>
+      {{/each}}
+    <hr>
+    {{else}}
+    <p>No existen posts</p>
+    {{/each}}
+</div>
+
