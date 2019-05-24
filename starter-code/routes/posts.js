@@ -12,7 +12,8 @@ const Comment = require('../models/comment')
 
 router.get('/list', (req, res)=>{
     Post.find()
-        .then((posts, comment) => res.render('posts/post-list', { posts, comment, user : req.user }))
+    .populate("comment")
+        .then((posts) => res.render('posts/post-list', { posts, user : req.user }))
         .catch(err => console.log('Error!:', err))
 })
 
@@ -40,18 +41,23 @@ router.post('/add', cloudinaryConfig.single('photo'), (req, res)=>{
 
 router.get('/comment', ensureLoggedIn(), (req, res)=> {
     Post.findById(req.query.post_id)
-    .then(x=>res.render('posts/post-comment')
+    .then(x=>res.render('posts/post-comment', {id:req.query.post_id})
     .catch(error => console.log(error))
 )})
 
-router.post('/comment', cloudinaryConfig.single('photo'), (req, res) => {
+router.post('/comment/:id', cloudinaryConfig.single('photo'), (req, res) => {
   const { content } = req.body
   const imgPath = req.file.url
   const imgName = req.file.originalname
+    console.log(req.params.id)
 
-  const newComment = new Comment({ content, imgPath, imgName })
+  const newComment = new Comment({ content, imgPath, imgName, authorId:req.user._id })
   newComment.save()
-    .then(x => res.redirect('/posts/list'))
+    .then(comment => {
+        Post.findByIdAndUpdate(req.params.id, {$push:{comment:comment._id}})
+        .then(post => {
+            res.redirect('/posts/list')})
+        })
     .catch(error => console.log(error))
 })
 

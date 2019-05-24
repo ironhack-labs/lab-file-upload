@@ -13,7 +13,10 @@
     <p>{{this.content}}</p>
     <img src="{{this.imgPath}}" alt="Post-image">
     <a href="/posts/comment?post_id={{this._id}}">Comentar</a>
-    
+    {{#each this.comment}}
+    <h3>COMENTARIO: {{content}}</h3>
+    <img src="{{imgPath}}" alt="Comentario">
+    {{/each}}
 {{/each}}
 {{else}}
 
