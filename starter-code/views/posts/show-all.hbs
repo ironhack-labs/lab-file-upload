@@ -1,0 +1,14 @@
+<h1>All posts</h1>
+
+
+<div>
+  {{#each posts}}
+  <div>
+    <img src="{{this.imgPath}}" alt="">
+    <h4>{{this.title}}</h4>
+    <p><strong>Descripción:</strong> {{this.description}}</p>
+  </div>
+  {{else}}
+  <p>No posts to show. Do you want to <a href="/posts/new">create a new post</a>?</p>
+  {{/each}}
+</div>

@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 centered-form">
+      <form action="/posts/new" method="post">
+        <div class="post-photo">
+          <img src="{{this.picPath}}" alt="">
+
+        </div>
+        <div class="post-text">
+          <label for="content">Post content:</label>
+
+          <textarea id="post" name="post" rows="10" cols="60" placeholder="Write your post here">
+
+          </textarea>
+        </div>
+
+
+        <button type="submit">Publish</button>
+      </form>
+    </div>
+  </div>
+</div>

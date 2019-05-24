@@ -8,6 +8,6 @@ const PostSchema = Schema({
   picName: String //The picture 's name
 });
 
-const User = mongoose.model('User', UserSchema);
+const Post = mongoose.model('Post', PostSchema);
 
-module.exports = User;
+module.exports = Post;
