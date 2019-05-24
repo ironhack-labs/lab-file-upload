@@ -6,5 +6,47 @@
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
+
+
+    <div class="container">
+  <div class="row">
+    {{ message }}
+    <div class="col-sm-6 centered-form">
+      <form action="/add" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+
+          <label for="content">content</label>
+          <input type="text" name="content" class="form-control">
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="photo">photo</label>
+          <input type="file" name="photo">
+
+        </div>
+        <button type="submit">Post</button>
+      </form>
+    </div>
+
+<div class="movies-wrapper">
+    
+    
+    {{#each post}}
+    <div class="movie-item">
+        <img src="{{this.picUrl}}" alt="">
+        <p>{{this.content}}</p>
+       
+    </div>
+    {{else}}
+    <p>No existen películas que mostrar. ¿Quieres <a href="/movies/add">crear una película ahora</a>?</p>
+    {{/each}}
+</div>
+  </div>
+</div>
+
+
+    <a href="/logout">logout</a>
   </body>
 </html>
