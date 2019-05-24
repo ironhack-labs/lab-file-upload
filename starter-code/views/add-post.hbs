@@ -1,0 +1,15 @@
+<h1>Añadir un nuevo meme</h1>
+
+
+<form action="/add" method="post" enctype="multipart/form-data">
+  <label for="content"> Contenido: </label>
+  <input type="text" name="content"><br>
+
+  {{!-- <label for="creatorId"> Usuario Id: </label>
+  <input type="text" name="creatorId"><br> --}}
+
+  <label for="photo"> Meme: </label>
+  <input type="file" name="photo"><br>
+
+  <input type="submit" value="Enviar">
+</form>

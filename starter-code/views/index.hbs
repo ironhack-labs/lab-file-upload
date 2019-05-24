@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-  </body>
-</html>
+<h1>Welcome to IronTumblr</h1>
+
+<div>
+
+  {{#if isRegister}}
+  <a href="/add">Añadir post</a>
+  {{/if}}
+
+  {{#each pictures}}
+  <div id="content-meme">
+    <img src="{{imgPath}}" alt="meme-pic">
+    <a href="/show/{{_id}}">Mostrar</a>
+  </div><br>
+  {{else}}
+  <p>No existen memes que mostrar. ¿Quieres <a href="/add">crear una meme ahora</a>?</p>
+  {{/each}}
+
+</div>

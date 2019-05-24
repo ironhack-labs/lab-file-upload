@@ -6,3 +6,31 @@ body {
 a {
   color: #00B7FF;
 }
+
+#content-meme img {
+  width: 500px;
+}
+
+#content-meme a {
+  display: block;
+}
+
+#content-meme-shown img {
+  width: 800px;
+}
+
+ #user-nav { 
+ } 
+
+#user-nav p {
+  display: inline;
+}
+
+#user-nav img {
+  width: 20px;
+  height: 20px;
+}
+
+#user-profiel img {
+  width: 600px;
+}
