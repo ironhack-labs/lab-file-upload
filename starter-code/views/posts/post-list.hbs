@@ -1,10 +1,16 @@
 <h1>Listado de Posts</h1>
 
 {{#each allPost}}
-<p>Contenido: {{this.content}}</p>
-<figure>
-  <img src="{{this.picPath}}" alt="post-image">
-</figure>
+<ul>
+  <li>
+    <figure>
+      <a href="/post/detail/{{this._id}}">
+        <p>Contenido: {{this.content}}</p>
+      </a>
+      <img src="{{this.picPath}}" alt="post-image">
+    </figure>
+  </li>
+</ul>
 
 {{/each}}
 {{#if User}}

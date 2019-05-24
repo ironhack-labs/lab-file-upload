@@ -7,7 +7,8 @@ const PostSchema = Schema({
   content: String,
   creatorId: Schema.Types.ObjectId,
   picPath: String,
-  picName: String
+  picName: String,
+  comment: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
 
 });
 
