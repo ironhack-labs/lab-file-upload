@@ -1,9 +1,24 @@
-{{#with post}}
-<img src="{{picPath}}" alt="{{picName}}">
-{{/with}}
+<div class="container"></div>
+<div class="row">
+  <div class="col-md-6">
+    {{#with post}}
+    <img src="{{picPath}}" alt="{{picName}}">
+  </div>
+   <div class="col-md-6">
+     <h2>Post comments:</h2>
+    {{#each comments}}
+    <div class="col-md-6">
+    <img class="img-comment" src="{{imagePath}}" alt="{{content}}">
+
+    </div>
+    {{/each}}
+  </div>
+</div>
+
+ {{/with}}
 
 {{#if isLogged}}
-<div class="container">
+
   <div class="row">
     {{ message }}
     <div class="col-sm-6 centered-form">

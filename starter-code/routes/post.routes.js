@@ -65,7 +65,7 @@ router.get('/:id', (req, res) => {
 
 /* Comments routes */
 
-router.post('/:id/comments', uploadCloud.single('pic'), (req, res) => {
+router.post('/:id/comment', uploadCloud.single('pic'), (req, res) => {
 
   const {
     content,
@@ -87,7 +87,8 @@ router.post('/:id/comments', uploadCloud.single('pic'), (req, res) => {
 
   Post.findByIdAndUpdate(req.params.id, update)
     .then(post => {
-
+      console.log('Find by id and update:', post)
+      res.redirect(`/posts/${req.params.id}`)
     })
     .catch(err => console.log(err))
 })

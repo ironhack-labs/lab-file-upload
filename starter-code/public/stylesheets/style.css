@@ -11,3 +11,8 @@ a {
 img {
   width: 50%;
 }
+
+.img-comment {
+  width: 100%;
+  margin-top: 10px;
+}
