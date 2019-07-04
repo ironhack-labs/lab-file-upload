@@ -1,4 +1,11 @@
-<h1>NAME: {{postDetail.title}}</h1>
-<img src="{{ postDetail.picture.picPath }}" alt="{{ user.picture.originalNamePict }}"
-  style="border: 1px solid #ddd;  border-radius: 4px;  padding: 5px;  width: 150px;" />
-<p>{{postDetail.content}}</p>
+<h1>{{postDetail.title}}</h1>
+<section class="postdetail">
+  <div>
+    <img src="{{ postDetail.picture.picPath }}" alt="{{ user.picture.originalNamePict }}"
+      style="border: 1px solid #ddd;  border-radius: 4px;  padding: 5px;  width: 150px; margin-right:20px;" />
+  </div>
+  <div>
+    <p>{{postDetail.content}}</p>
+  </div>
+
+</section>

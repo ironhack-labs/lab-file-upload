@@ -5,4 +5,59 @@ body {
 a {
   color: #00B7FF; }
 
+.top-menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #e7e7e7;
+  background-color: #f3f3f3; }
+
+.top-menu li {
+  float: left; }
+
+.top-menu li a {
+  display: block;
+  color: #666;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none; }
+
+.top-menu li a:hover:not(.active) {
+  background-color: #ddd; }
+
+#home a {
+  color: white;
+  background-color: #4CAF50; }
+
+ul {
+  list-style-type: none; }
+
+.details li a {
+  font-size: 18px; }
+
+.listContainer {
+  display: flex;
+  flex-wrap: wrap; }
+
+.IndexContainer {
+  display: flex;
+  flex-wrap: wrap; }
+
+.postdetail {
+  display: flex; }
+
+.addnewpost,
+.SeeOwnPost {
+  background-color: Crimson;
+  border-radius: 5px;
+  color: white;
+  padding: .5em;
+  text-decoration: none; }
+
+.actionsbuttons {
+  display: flex;
+  align-items: center;
+  align-content: space-between; }
+
 /*# sourceMappingURL=style.css.map */

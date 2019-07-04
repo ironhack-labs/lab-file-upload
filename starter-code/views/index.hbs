@@ -1,2 +1,14 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h1>LISTADO DE POSTS</h1>
+
+<ul>
+  <div class="IndexContainer">
+    {{#each posts}}
+    <div class="details">
+      <li><a href="/postBlog/detail/{{this.id}}">{{this.title}}</a></li>
+      <li><img src="{{this.picture.picPath}}" alt="{{this.picture.originalNamePict}}" style=" border: 1px solid #ddd;
+          border-radius: 4px; padding: 5px; width: 150px; height:100px;margin:10px;"></li>
+    </div>
+    {{/each}}
+  </div>
+
+</ul>

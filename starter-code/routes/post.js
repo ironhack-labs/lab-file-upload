@@ -5,7 +5,7 @@ const router = express.Router();
 const PostBlog = require('../models/Post')
 
 
-router.get('/list', (req, res, next) => {
+router.get('/list', ensureAuthenticated, (req, res, next) => {
     PostBlog.
     find()
         .then(posts => {
@@ -15,12 +15,19 @@ router.get('/list', (req, res, next) => {
         });
 });
 
+function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    } else {
+        res.redirect('/auth/login')
+    }
+}
+
 router.get('/newpost', (req, res, next) => {
     res.render("post/newpost")
 });
 
 router.post('/newpost', upload.single('photo'), (req, res, next) => {
-    console.log("XxXxXXXXXXXX" + req.body.title)
     PostBlog
         .create({
             title: req.body.title,

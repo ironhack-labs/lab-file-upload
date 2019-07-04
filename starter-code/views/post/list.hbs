@@ -1,27 +1,32 @@
 <h1>LISTADO DE POSTS</h1>
-
+<a class="addnewpost" href="/postBlog/newpost">Add new post</a>
+<br><br>
 <ul>
-
-  {{#each posts}}
   <div class="listContainer">
-    <div class="details">
-      <li><a href="/postBlog/detail/{{this.id}}">{{this.title}}</a></li>
+    {{#each posts}}
+    <div>
+      <div class="details">
+        <li><a href="/postBlog/detail/{{this.id}}">{{this.title}}</a></li>
+        <li><img src="{{this.picture.picPath}}" alt="{{this.picture.originalNamePict}}" style=" border: 1px solid #ddd;
+          border-radius: 4px; padding: 5px; width: 150px; height:100px;margin:10px;"></li>
+      </div>
+
+      <div class="actionsbuttons">
+        <div>
+          <form action="/postBlog/{{this.id}}/delete" method="POST">
+            <input class="links" type="submit" value="DELETE" style="color: #00B7FF; font-size:14px;">
+          </form>
+        </div>
+        <div>
+          <button class="links">
+            <a href="/postBlog/edit/{{this.id}}">EDIT</a>
+          </button>
+        </div>
+      </div>
     </div>
 
-    <div class="actionsbuttons">
-      <form action="/postBlog/{{this.id}}/delete" method="POST">
-        <input class="links" type="submit" value="Delete">
-      </form>
-      <button class="links">
-        <a href="/postBlog/edit/{{this.id}}">EDIT</a>
-      </button>
-    </div>
+    {{/each}}
   </div>
-
-  {{/each}}
 
 </ul>
 <br><br>
-<a href="/postBlog/newpost">Add new post</a>
-<br><br>
-<a class="links" href="/">HOME</a>
