@@ -1,9 +1,10 @@
 const express = require('express');
 const router  = express.Router();
+const User = require('../models/user.js')
 
-/* GET home page. */
+/* GET home page */
 router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Express - Generated with IronGenerator' });
+  res.render('index');
 });
 
 module.exports = router;
