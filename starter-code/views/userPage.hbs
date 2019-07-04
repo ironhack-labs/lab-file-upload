@@ -1,0 +1,40 @@
+{{user.username}}
+
+<img src="{{user.picture.imgPath}}" alt="Tapires relacionándose" srcset="">
+
+
+<br><br><br>
+
+   <form action="/userPage" method="POST" id="form-container">
+   <label for="author">Author: </label>
+  <input id="author" type="text" name="author" placeholder="{{user.username}}">
+
+  <label for="postTitle">Post Title</label>
+  <input id="postTitle" type="text" name="postTitle" placeholder="Juego de Tronos">
+
+  <br><br>
+
+  <label for="postText">Text</label>
+  <input id="postText" type="textarea" style="height: 20vh" style="width: 50vw" name="postText" placeholder="Last season was horse shit">
+ 
+
+  
+  {{#if message }}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+
+  <br><br>
+
+  <label>Photo</label>
+  <input type="file" name="photo">
+
+  <label>Name</label>
+  <input type="text" name="name">
+
+  <label>Description</label>
+  <input type="text" name="description">
+
+
+  <button>Upload post</button>
+
+  </form>

@@ -1,6 +1,6 @@
 <h2>Signup</h2>
 
-<form action="/auth/signup" method="POST" id="form-container">
+<form action="/auth/signup" method="POST" enctype="multipart/form-data" id="form-container">
   <label for="username">Username</label>
   <input id="username" type="text" name="username" placeholder="JonSnow">
 
@@ -12,6 +12,15 @@
   {{#if message }}
     <div class="error-message">{{ message }}</div>
   {{/if}}
+<br><br>
+  <label>Photo</label>
+  <input type="file" name="photo">
+
+  <label>Name</label>
+  <input type="text" name="name">
+
+  <label>Description</label>
+  <input type="text" name="description">
 
   <br><br>
 
@@ -23,11 +32,3 @@
   </p>
 </form>
 
-<section>
-  <h2>Upload your photo</h2>
-  <form action="/auth/signup" method="post" enctype="multipart/form-data">
-    <input type="text" name="name">
-    <input type="file" name="photo">
-    <input type="submit" value="Save">
-  </form>
-</section>
