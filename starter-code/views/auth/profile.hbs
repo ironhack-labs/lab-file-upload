@@ -1,0 +1,25 @@
+<aside><h3>Hello {{user.username}}</h3></aside>
+<div><img src={{user.imgName}} alt=""  /></div>
+
+<form action="/auth/post" method="POST" id="form-container" enctype="multipart/form-data">
+  
+  <br><br>
+
+  <label for="imgname">Something to say?</label>
+  <br><br>
+  <textarea name="content" id="" cols="30" rows="10">your comment here</textarea>
+  <br><br>
+
+  <label for="imgname">Photo</label>
+  <input type="file" name="photo">
+
+  
+  
+
+  <br><br>
+
+  <button>create post</button>
+
+ 
+  
+</form>

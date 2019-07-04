@@ -1,2 +1,9 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h1>These are a bunch of posts from weird people</h1>
+<div>
+  {{#each posts}}
+  <img src={{this.photo}} alt=""  />
+  <h3>{{this.author}}</h3>
+  <h3>{{this.content}}</h3>
+  {{/each}}
+
+</div>

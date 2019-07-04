@@ -1,0 +1,21 @@
+<form action="/auth/post" method="POST" id="form-container" enctype="multipart/form-data">
+  
+  <label for="imgname">Photo</label>
+  <input type="file" name="photo">
+
+  <br><br>
+
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password" placeholder="Your password">
+  <br>
+  {{#if message }}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+
+  <br><br>
+
+  <button>Create account</button>
+
+ 
+  
+</form>
