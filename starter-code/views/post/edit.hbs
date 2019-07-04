@@ -1,0 +1,22 @@
+<h1>EDIT POST</h1>
+
+{{!-- <form action="/postBlog/edit-post" method="POST" id="form-container" enctype="multipart/form-data"></form> --}}
+<form action="/postBlog/edit-post" method="POST" id="form-container">
+  <label for="title">Title:</label>
+  <input type="text" name="title" placeholder="title" value="{{onepost.title}}">
+  <br>
+  <br>
+  <img src="{{onepost.picture.picPath}}" alt="{{onepost.picture.originalNamePict }}"
+    style="border: 1px solid #ddd;  border-radius: 4px;  padding: 5px;  width: 150px;" />
+  <br>
+  <textarea name="content" rows="20" cols="80" placeholder="Text belonging to the post">{{onepost.content}}</textarea>
+
+  <br><br>
+
+  {{!-- <input type="text" name="name">
+  <input type="file" name="photo"> --}}
+
+  <br><br>
+  <input type="text" name="_id" placeholder="id" value="{{onepost._id}}">
+  <input type="submit" value="Edit Post">
+</form>

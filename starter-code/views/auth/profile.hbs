@@ -1,0 +1,8 @@
+<h1>Welcome to your profile {{user.username}}</h1>
+
+<section>
+  <h3>{{ user.picture.namePict}}</h3>
+  <img src="{{ user.picture.pathPict }}" alt="{{ user.picture.originalNamePict }}"
+    style="border: 1px solid #ddd;  border-radius: 4px;  padding: 5px;  width: 150px;" />
+</section>
+<a href="/postBlog/list">See list post</a>
