@@ -1,0 +1,27 @@
+<h1>Profile</h1>
+
+<h3>{{user.username}}</h3>
+
+<img id="profilepic" src="{{user.image}}" alt="" srcset="">
+
+
+
+<form action="/auth/newpost" method="POST" id="form-container">
+
+  <br><br>
+
+  <label for="Post text">Password</label>
+  <input id="postText" type="text" name="postText" placeholder="Your post text">
+  <br><br>
+
+  <label>Post image:</label>
+  <input type="file" name="image">
+  {{#if message }}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+
+  <br><br>
+
+  <button>Create new post</button>
+
+</form>
