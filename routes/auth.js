@@ -3,6 +3,7 @@ const passport = require("passport");
 const router = express.Router();
 const uploadCloud = require("../config/cloudinary.js");
 const User = require("../models/User");
+const Post = require("../models/Post");
 // require('dotenv');
 
 // Bcrypt to encrypt passwords
@@ -28,11 +29,9 @@ router.get("/signup", (req, res, next) => {
 });
 
 router.post("/signup", uploadCloud.single("avatar"), (req, res, next) => {
-  
   const username = req.body.username;
   const password = req.body.password;
   const avatar = req.file.url;
-  // console.log(`******************* ${req.file}`)
 
   if (username === "" || password === "") {
     res.render("auth/signup", { message: "Indicate username and password" });
@@ -58,7 +57,6 @@ router.post("/signup", uploadCloud.single("avatar"), (req, res, next) => {
       .save()
       .then(() => {
         res.redirect("/auth/login");
-
       })
       .catch(err => {
         res.render("auth/signup", { message: "Something went wrong" });
@@ -69,6 +67,37 @@ router.post("/signup", uploadCloud.single("avatar"), (req, res, next) => {
 router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
+});
+
+router.get("/profile", (req, res, next) => {
+  res.render("auth/profile", { user: req.user });
+});
+
+router.post("/newPost", uploadCloud.single("picture"),(req, res, next) => {
+  const author = req.user.username;
+  const content = req.body.content;
+  if(req.file == undefined) {
+    req.file = ""
+  }
+  const picture = req.file.url;
+
+  
+
+  const newPost = new Post({
+    author,
+    content,
+    picture
+  });
+
+  newPost
+      .save()
+      .then(() => {
+        
+        res.redirect("/auth/login");
+      })
+      .catch(err => {
+        res.render("/auth/login", { message: "Something went wrong" });
+      });
 });
 
 module.exports = router;

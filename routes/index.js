@@ -1,13 +1,15 @@
 const express = require('express');
 const router  = express.Router();
+const Post = require("../models/Post");
 
 /* GET home page */
 router.get('/', (req, res, next) => {
-  res.render('index');
-});
-
-router.get('/auth/profile', (req, res, next) => {
-  res.render('auth/profile', {user:req.user})
+  Post.
+  find()
+  .then(postWall => {
+    res.render('index', {Posts: postWall});
+  })
+  
 });
 
 

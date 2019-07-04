@@ -1,9 +1,12 @@
 <h1>Welcome to PostBook</h1>
 
-{{#each Post}}
-
-
-
+<div class="container">
+{{#each Posts}}
+<div class="post">
+<div><b>{{this.author}}</b></div>
+<div>{{this.content}}</div>
+<div class="imgPost"><img src="{{this.picture}}" alt="picture"></div>
+</div>
 {{/each}}
-
+</div>
 

@@ -3,10 +3,9 @@ const Schema = mongoose.Schema;
 
 const postSchema = new Schema(
   {
+    author: String,
     content: String,
-    creatorId: String,
-    picPath: String,
-    picName: String
+    picture: {type: String , default:""}
   },
   {
     timestamps: {
@@ -16,5 +15,5 @@ const postSchema = new Schema(
   }
 );
 
-const Post = mongoose.model("User", postSchema);
+const Post = mongoose.model("Post", postSchema);
 module.exports = Post;

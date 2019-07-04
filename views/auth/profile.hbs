@@ -1,5 +1,29 @@
+
+
 <div>
   <h1>Profile</h1>
 </div>
-<div><h3>Hello {{user.username}}</h3></div>
-<div><img src="{{user.avatar}}" alt="avatar"></div>
+<div>
+  <h3>Hello {{user.username}}</h3>
+</div>
+<div class="avatar"><img src="{{user.avatar}}" alt="avatar"></div>
+
+<div>
+  <div>
+    <h3>NEW POST</h3>
+  </div>
+
+  <form action="/auth/newPost" method="POST" 
+  enctype="multipart/form-data"
+  >
+
+    <div><textarea rows="5" cols="50" name="content" id="content"></textarea></div>
+
+
+    <div><label>Picture:</label>
+      <input type="file" name="picture" id="picture">
+    </div>
+
+    <div><button type="submit">Create new Post</button></div>
+  </form>
+</div>

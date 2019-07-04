@@ -4,7 +4,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  background-color: rgba(177, 173, 173, 0.742); }
 
 a {
   color: #0d5b7a;
@@ -13,5 +14,34 @@ a {
 
 div {
   margin: 20px; }
+
+.avatar img {
+  border: 2px solid #040e11;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px; }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid #8410cd;
+  border-radius: 15px; }
+
+.post {
+  border: 5px solid blue;
+  border-radius: 15px;
+  text-align: center; }
+
+.imgPost img {
+  border: 1px solid #00c3ff;
+  border-radius: 15px;
+  max-width: 200px;
+  max-height: 200px; }
+
+form {
+  text-align: center; }
 
 /*# sourceMappingURL=style.css.map */

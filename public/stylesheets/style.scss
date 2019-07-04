@@ -5,6 +5,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: rgba(177, 173, 173, 0.742);
 }
 
 a {
@@ -15,4 +16,38 @@ a {
 
 div {
   margin: 20px;
+}
+
+.avatar img {
+  border: 2px solid rgb(4, 14, 17);
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid rgb(132, 16, 205);
+  border-radius: 15px;
+}
+
+.post {
+  border: 5px solid blue;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.imgPost img {
+  border: 1px solid rgb(0, 195, 255);
+  border-radius: 15px;
+  max-width: 200px;
+  max-height: 200px;
+}
+
+form {
+  text-align: center;
 }
