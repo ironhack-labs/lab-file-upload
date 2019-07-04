@@ -3,7 +3,7 @@ const passport = require('passport');
 const router = express.Router();
 const User = require("../models/User");
 const uploadCloud = require('../config/cloudinary.js');
-const Post = require("../models/Post");
+
 
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
@@ -23,38 +23,6 @@ router.post("/login", passport.authenticate("local", {
   failureFlash: true,
   passReqToCallback: true
 }));
-
-router.post("/userPage", uploadCloud.single('photo'), passport.authenticate("local", {
-  successRedirect: "/",
-  failureRedirect: "/auth/login",
-  failureFlash: true,
-  passReqToCallback: true
-}), (req, res) => {
-
-  const { name, description } = req.body;
-  const imgPath = req.file.url;
-  const imgName = req.file.originalname;
-  const content = req.body.postText
-  const author = req.body.author
-  const comments = ""
-
-
-  const newPost = new Post({
-    content,
-    author,
-    comments,
-    picture: { name, description, imgPath, imgName },
-  });
-
-  newPost.save()
-    .then(() => {
-      res.redirect("/");
-    })
-    .catch(err => {
-      res.render("auth/login", { message: "Something went wrong" })
-      console.log(err);
-    })
-});
 
 
 router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {

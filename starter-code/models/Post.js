@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
-
+debugger
 const postSchema = new Schema({
   postTitle: String,
   content: String,
