@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-  </body>
+
+<head>
+  <title>{{title}}</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <h1>Welcome to IronTumblr</h1>
+  {{#each Posts}}
+  <div>
+    <img src="{{this.picPath}}" alt="" width="200">
+    <h2>{{this.creatorId}}</h2>
+    <p>{{this.content}}</p>
+  </div>
+  {{else}}
+  <p>There are no posts here!</p>
+  {{/each}}
+</body>
+
 </html>
