@@ -1,2 +1,12 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h1> Something to say??</h1>
+<dir>
+  <ul class="post">
+  {{#each allPosts}}
+  <li>{{this.content}}</li>
+  <li>{{this.author}}</li>
+  <li> <img class="img2" src="{{this.phot}}" alt="photo"> </li>
+  {{/each}}
+</ul>
+</dir>
+
+

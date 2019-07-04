@@ -2,7 +2,8 @@ const express = require("express");
 const passport = require('passport');
 const router = express.Router();
 const User = require("../models/User");
-const Picture = require('../models/picture');
+const uploadCloud = require('../config/cloudinary.js');
+const Post = require("../models/post");
 
 
 
@@ -16,33 +17,25 @@ router.get("/login", (req, res, next) => {
 });
 
 
-// router.post('/upload', upload.single('photo'), (req, res) => {
-
-//   const pic = new Picture({
-//     name: req.body.name,
-//     path: `/uploads/${req.file.filename}`,
-//     originalName: req.file.originalname
-//   });
-
-//   pic.save((err) => {
-//       res.redirect('/');
-//   });
-// });
-
 router.post("/login", passport.authenticate("local", {
-  successRedirect: "/",
+  successRedirect: "/auth/profile",
   failureRedirect: "/auth/login",
   failureFlash: true,
   passReqToCallback: true
 }));
 
+router.get("/profile",(req,res,next)=>{
+  res.render("auth/profile", {user:req.user});
+})
+
 router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
-router.post("/signup", (req, res, next) => {
+router.post("/signup",uploadCloud.single('photo'), (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
+  const imgname = req.file.url; 
   if (username === "" || password === "") {
     res.render("auth/signup", { message: "Indicate username and password" });
     return;
@@ -59,18 +52,34 @@ router.post("/signup", (req, res, next) => {
 
     const newUser = new User({
       username,
-      password: hashPass
+      password: hashPass,
+      imgname,
     });
 
     newUser.save()
     .then(() => {
-      res.redirect("/");
+      res.redirect("/auth/login");
     })
     .catch(err => {
       res.render("auth/signup", { message: "Something went wrong" });
     })
   });
 });
+
+router.post("/post",uploadCloud.single('photo'),(req,res)=>{
+  console.log
+  Post
+  .create({ content:req.body.content, author: req.body.userId, phot:req.file.url})
+  // .populate({
+  //   path: 'comments',
+  //   populate: {
+  //     path: 'author',
+  //     model: 'User'
+  //   }
+  .then(()=>{
+    res.redirect("/")
+  }).catch ((err) => console.log(err))
+})
 
 router.get("/logout", (req, res) => {
   req.logout();
