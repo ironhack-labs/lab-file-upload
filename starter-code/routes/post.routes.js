@@ -23,7 +23,7 @@ router.post("/create", ensureLoggedIn("/login"), upload.single("photo"), async (
 router.get('/:id', async (req, res) => {
 	const { id } = req.params
 	const post = await Post.findById(id)
-	res.render('posts/single', {post, test})
+	res.render('posts/single', post)
 })
 
 router.post('/comments/:id', ensureLoggedIn("/login"), upload.single("photo"), async (req, res) => {
