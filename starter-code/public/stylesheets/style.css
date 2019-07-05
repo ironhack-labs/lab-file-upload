@@ -4,37 +4,127 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
 }
 
-h1{
-  text-align: center
+h1 {
+  text-align: center;
 }
 
-nav ul li{
+nav ul li {
   display: inline-block;
 }
 
-.post-list{
+textarea {
   width: 100%;
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.post-item{
-  width: 400px;
-  height: 400px;
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px black solid;
   border-radius: 20px;
-  margin: 30px 0;
+  padding: 10px;
 }
 
-.post-item > img{
+.custom-login-signup {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 50vh;
+  align-items: center;
+}
+
+.post-list {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.post-item,
+.post-item-detail {
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #e8ecec;
+  border-radius: 20px;
+  margin: 30px 0px;
+  justify-content: center;
+}
+
+.post-item {
+  height: 400px;
+  transition: 1s;
+  width: 30%;
+  display: inherit;
+}
+
+.post-item:hover {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.35) 0 30px 60px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0 30px 60px;
+  -webkit-transform: scale(1.05, 1.05);
+  transform: scale(1.05, 1.05);
+}
+
+.post-item > img,
+.post-item-detail > img,
+.profile img {
   height: 200px;
   width: 300px;
   margin: 10px 0;
+  object-fit: contain;
+}
+
+.post-item-detail {
+  height: auto;
+  width: 100%;
+  display: flex;
+}
+
+.input-photo {
+  position: relative;
+  outline: none;
+  color: rgb(100, 150, 150);
+  background: whitesmoke;
+  padding: 0.5em 1.29em;
+  margin: 20px 0;
+  cursor: pointer;
+}
+
+.input-photo::before {
+  content: "Choose file";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.5em 0.7em;
+  color: white;
+  background: rgb(100, 200, 200);
+  box-shadow: 0 0.2em 0 rgb(100, 180, 180);
+}
+
+.label-content {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.input-comment, .custom-login-signup button {
+  border-radius: 30px;
+  padding: 5px 20px;
+  letter-spacing: 2.5px;
+  min-height: 50px;
+  max-width: 221px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  margin-bottom: 2rem;
+  transition: 1s;
+}
+
+.input-comment:hover, .custom-login-signup button:hover {
+  color: #fff;
+  background-color: #000;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

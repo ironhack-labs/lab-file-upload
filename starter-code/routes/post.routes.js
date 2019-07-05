@@ -21,10 +21,49 @@ router.post("/create", ensureLoggedIn("/login"), upload.single("photo"), async (
 });
 
 router.get('/:id', async (req, res) => {
-    const {id} = req.params
-    const post = await Post.findById(id)
+	const { id } = req.params
+	const post = await Post.findById(id)
+	res.render('posts/single', post)
+})
 
-    res.render('posts/single', post)
+router.post('/comments/:id', ensureLoggedIn("/login"), upload.single("photo"), async (req, res) => {
+	const { id } = req.params
+	const { content } = req.body
+	if (req.file) {
+	const { filename, originalname } = req.file
+		try {
+			await Post.findByIdAndUpdate(id,
+				{
+					$push: {
+						comments: {
+							"content": content,
+							"authorId": req.user._id,
+							"imagePath": `/uploads/${filename}`,
+							"imageName": originalname
+						}
+					}
+				})
+		}
+		catch (error) {
+			console.log(error)
+		}
+	} else {
+		try {
+			await Post.findByIdAndUpdate(id,
+				{
+					$push: {
+						comments: {
+							"content": content,
+							"authorId": req.user._id,
+						}
+					}
+				})
+		}
+		catch (error) {
+			console.log(error)
+		}
+	}
+	res.redirect(`/post/${id}`)
 })
 
 module.exports = router;

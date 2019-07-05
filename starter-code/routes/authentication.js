@@ -33,7 +33,6 @@ router.get('/profile', ensureLoggedIn('/login'), async (req, res) => {
 });
 
 router.post('/profile', ensureLoggedIn('/login'), upload.single('photo'), async (req, res) => {
-    console.log(req.file)
     const {id} = req.user
     await User.findOneAndUpdate(id, {
         profilePicture: `/uploads/${req.file.filename}`,
