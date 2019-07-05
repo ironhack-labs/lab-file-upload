@@ -1,0 +1,16 @@
+<h2>Hello {{user.username}}</h2>
+
+<img src="{{user.photoProfile}}" alt="">
+
+
+
+<form action="/post" method="POST">
+  
+  <input type="submit">
+ {{!-- <input id="creatorId" type="text" name="creatorId" placeholder="CreatorId"> --}}
+  <input id="pitPath" type="pitPath" name="pitPath" placeholder="Your pitPath">
+   <input id="picName" type="picName" name="picName" placeholder="Your picName">
+</form>
+<br>
+<textarea rows="40" cols="50" name="content" form="usrform">
+Enter text here...</textarea>

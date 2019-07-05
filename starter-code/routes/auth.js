@@ -1,7 +1,13 @@
 const express = require("express");
 const passport = require('passport');
+const multer  = require('multer');
 const router = express.Router();
 const User = require("../models/User");
+const Post = require("../models/Post");
+
+// const upload = multer({ dest: './public/uploads/' }); para hacerlo en local
+const uploadCloud = require('../config/cloudinary.js');
+
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -13,23 +19,37 @@ router.get("/login", (req, res, next) => {
 });
 
 router.post("/login", passport.authenticate("local", {
-  successRedirect: "/",
+  successRedirect: "/auth/profile",
   failureRedirect: "/auth/login",
   failureFlash: true,
   passReqToCallback: true
 }));
 
+router.get("/profile",(req, res, next) => { //ensurelogin necesito hacerlo
+  res.render("auth/profile", {user:req.user });
+});
+
+
 router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
-router.post("/signup", (req, res, next) => {
+router.post("/post", (req, res, next) => {
+  Post
+  .create({content:req.body.content, picPath:req.body.picPath, picName: req.body.picName})
+  res.render("auth/signup");
+});
+
+
+router.post("/signup", uploadCloud.single('photoProfile'), (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
+  const photoProfile = req.file.url;
   if (username === "" || password === "") {
     res.render("auth/signup", { message: "Indicate username and password" });
     return;
   }
+  
 
   User.findOne({ username }, "username", (err, user) => {
     if (user !== null) {
@@ -42,12 +62,14 @@ router.post("/signup", (req, res, next) => {
 
     const newUser = new User({
       username,
-      password: hashPass
+      password: hashPass,
+      photoProfile,
+      // photoProfile: `uploads/${req.file.filename}` para hacerlo en local
     });
 
     newUser.save()
     .then(() => {
-      res.redirect("/");
+      res.redirect("/auth/login");
     })
     .catch(err => {
       res.render("auth/signup", { message: "Something went wrong" });
