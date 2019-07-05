@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
 const Schema   = mongoose.Schema;
 
+
 const postSchema = new Schema({
   content: String,
   creatorID: String,
-  // picPath: String,
+  picPath: String,
   // picName: String
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }

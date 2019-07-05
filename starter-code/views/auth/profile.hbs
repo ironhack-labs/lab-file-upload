@@ -6,12 +6,12 @@
 
 
 
-<form action="/auth/newpost" method="POST" id="form-container">
+<form action="/auth/newpost" method="POST" id="form-container" enctype="multipart/form-data">
 
   <br><br>
 
-  <label for="Post text">Password</label>
-  <input id="postText" type="text" name="postText" placeholder="Your post text">
+  <label for="Post text">Write a post:</label>
+  <textarea id="postText" type="text" name="postText" placeholder="Your post text"></textarea>
   <br><br>
 
   <label>Post image:</label>

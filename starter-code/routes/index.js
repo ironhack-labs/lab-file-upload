@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const Post = require("../models/Post");
+const uploadCloud = require("../config/cloudify.js")
+
 
 /* GET home page */
 router.get("/", (req, res, next) => {
@@ -13,16 +15,17 @@ router.get("/auth/profile", (req, res, next) => {
   res.render("auth/profile", { user: req.user });
 });
 
-router.post("/auth/newpost", (req, res, next) => {
+router.post("/auth/newpost", uploadCloud.single("image"), (req, res, next) => {
   const author = req.user.username;
   const content = req.body.postText;
+  const path = req.file.url
   console.log(author)
   console.log(content)
   // const image = req.file.url
   const newPost = new Post({
     content: content,
-    creatorID: author
-    // image
+    creatorID: author,
+    picPath: path
   });
 
   newPost

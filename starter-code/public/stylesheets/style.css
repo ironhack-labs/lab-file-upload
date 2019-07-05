@@ -1,6 +1,13 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  margin: 0;
+  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px; }
 
 a {
   color: #00B7FF; }
