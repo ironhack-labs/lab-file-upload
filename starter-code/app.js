@@ -13,6 +13,10 @@ const session    = require("express-session");
 const MongoStore = require('connect-mongo')(session);
 const flash      = require("connect-flash");
     
+const multer  = require('multer');
+const upload = multer({ dest: './public/uploads/' });
+
+
 
 mongoose
   .connect('mongodb://localhost/starter-code', {useNewUrlParser: true})

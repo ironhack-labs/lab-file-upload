@@ -1,0 +1,17 @@
+<div id="user-profile">
+  <p>Nombre: {{user.username}}</p>
+  <img class="img" src="{{user.photo}}" alt="profile-img">
+</div><br>
+
+{{!-- // añadiendo post --}}
+
+<form action="/auth/post" method="POST" id="form-container" enctype="multipart/form-data">
+
+  <label for="post"> Post: </label></br></br>
+  <textarea name="comment" rows="10" cols="50" placeholder="Write something"></textarea>
+  <input type="submit" id ="content" value="Crear Post"></form></br></br>
+
+<label for="photo">Photo</label>
+<input id="photo" type="file" name="photo" placeholder="Your photo">
+
+</form>

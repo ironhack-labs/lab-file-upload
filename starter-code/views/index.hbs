@@ -1,2 +1,10 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h1>Tus cosas</h1>
+<div><p>Welcome to {{title}}</p>
+{{#each posts}}
+<img scr={{this.photo}} alt=""/>
+<h3>{{this.author}}</h3>
+<h3>{{this.content}}</h3>
+<h3>{{this.comment}}</h3>
+
+{{/each}}
+</div>

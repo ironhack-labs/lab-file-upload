@@ -2,6 +2,11 @@ const express = require("express");
 const passport = require('passport');
 const router = express.Router();
 const User = require("../models/User");
+const uploadCloud = require('../config/cloudinary.js')
+const multer = require('multer');
+const Post = require('../models/Post');
+const Comment = require('../models/Comment')
+
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -13,7 +18,7 @@ router.get("/login", (req, res, next) => {
 });
 
 router.post("/login", passport.authenticate("local", {
-  successRedirect: "/",
+  successRedirect: "/auth/profile",
   failureRedirect: "/auth/login",
   failureFlash: true,
   passReqToCallback: true
@@ -23,9 +28,16 @@ router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
-router.post("/signup", (req, res, next) => {
+router.get("/profile", (req, res, next) => {
+  res.render("auth/profile", { user: req.user });
+});
+
+
+router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
+  const photo = req.file.url;
+
   if (username === "" || password === "") {
     res.render("auth/signup", { message: "Indicate username and password" });
     return;
@@ -42,22 +54,35 @@ router.post("/signup", (req, res, next) => {
 
     const newUser = new User({
       username,
-      password: hashPass
+      password: hashPass,
+      photo,
     });
 
     newUser.save()
-    .then(() => {
-      res.redirect("/");
-    })
-    .catch(err => {
-      res.render("auth/signup", { message: "Something went wrong" });
-    })
+      .then(() => {
+        res.redirect("/");
+      })
+      .catch(err => {
+        res.render("auth/signup", { message: "Something went wrong" });
+      })
   });
 });
+
+
+
+router.post("/auth/post", uploadCloud.single('photo'), (req, res, next) => {
+  Post
+    .create({ content: req.body.content, author: req.body.user, photo: req.file.url })
+    .then(() => {
+      res.redirect("/")
+    }).catch((err) => console.log(err))
+});
+
 
 router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
 });
+
 
 module.exports = router;

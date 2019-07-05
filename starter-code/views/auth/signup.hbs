@@ -1,6 +1,6 @@
 <h2>Signup</h2>
 
-<form action="/auth/signup" method="POST" id="form-container">
+<form action="/auth/signup" method="POST" id="form-container" enctype="multipart/form-data">
   <label for="username">Username</label>
   <input id="username" type="text" name="username" placeholder="JonSnow">
 
@@ -9,6 +9,10 @@
   <label for="password">Password</label>
   <input id="password" type="password" name="password" placeholder="Your password">
   <br>
+
+    <label for="photo">Photo</label>
+  <input id="photo" type="file" name="photo" placeholder="Your photo">
+
   {{#if message }}
     <div class="error-message">{{ message }}</div>
   {{/if}}
