@@ -33,6 +33,7 @@ router.post('/newpost', upload.single('photo'), (req, res, next) => {
             title: req.body.title,
             content: req.body.content,
             creatorId: req.user._id,
+            author: req.user._id,
             picture: {
                 picName: req.body.name,
                 picPath: `/uploads/${req.file.filename}`,
@@ -49,6 +50,7 @@ router.post('/newpost', upload.single('photo'), (req, res, next) => {
 router.get('/detail/:id', (req, res, next) => {
     PostBlog
         .findOne({ _id: req.params.id })
+        .populate('author')
         .then(postDetail => {
             res.render("post/detail", { postDetail })
         }).catch((err) => {
