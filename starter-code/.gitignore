@@ -28,5 +28,7 @@ build/Release
 node_modules
 bower_components
 
+public/uploads
+
 # Debug log from npm
 npm-debug.log

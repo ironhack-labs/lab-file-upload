@@ -1,6 +1,26 @@
-<div class="post-item">
+<a href="/">Go back</a>
+<div class="post-item-detail">
     <img src="{{picPath}}" alt="{{picName}}">
     <p>{{content}}</p>
+
+    <h2>Comentarios</h2>
+    {{#if comments}}
+    {{#each comments}}
+    <p> {{this.content}} </p>
+    {{#if this.imagePath}}
+    <img src="{{this.imagePath}}" alt="{{this.imageName}}">
+    {{/if}}
+    {{/each}}
+    {{/if}}
 </div>
 
-<a href="/">Go back</a>
+<h1>Add comments</h1>
+<form action="/post/comments/{{_id}}" method="POST" enctype="multipart/form-data">
+    <label for="content" class="label-content">Content</label>
+    <textarea name="content" rows="10" cols="50" placeholder="Write something"></textarea>
+
+    <h4>Image (Optional)</h4>
+    <input type="file" name="photo" class="input-photo">
+
+    <input type="submit" value="Send" class="input-comment">
+</form>

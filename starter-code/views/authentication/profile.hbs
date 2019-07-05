@@ -1,12 +1,15 @@
+<div class="profile">
 <h2>User profile</h2>
-<p>{{user.username}}</p>
+<p>Name: {{user.username}}</p>
 
 {{#if user.profilePicture}}
 <img src="{{user.profilePicture}}" alt="{{user.originalName}}">
 {{else}}
 <form action="/profile" method="POST" enctype="multipart/form-data">
     <label for="photo">Profile Picture</label>
-    <input type="file" name="photo" id="photo">
-    <input type="submit" value="Upload">
+    <input type="file" name="photo" id="photo" class="input-photo">
+    <input type="submit" value="Upload" class="input-comment">
 </form>
 {{/if}}
+<a href="/post/create">Create new post</a>
+</div>
