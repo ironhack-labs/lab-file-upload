@@ -6,3 +6,27 @@ body {
 a {
   color: #00B7FF;
 }
+
+.profile{
+  height: 100px;
+  width: 100px;
+  border-radius: 150px;
+}
+
+.container-profile{
+  display: flex;
+  flex-direction: row;
+  margin-top: 50px;
+}
+
+.data-container{
+  margin-left: 50px;
+}
+
+.img-post{
+  width: 600px;
+}
+
+.img-post2{
+  width: 300px;
+}

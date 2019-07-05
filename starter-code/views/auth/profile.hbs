@@ -1,1 +1,22 @@
-<h1>Welcome</h1>
+<div class="container-profile">
+    <div>
+        <img class="profile" src="{{us.imgPath}}" alt="{{us.imgName}}">
+    </div>
+    <div class="data-container">
+        <h2>Welcome {{us.username}}</h2>
+    </div>
+</div>
+<br><br><br><br>
+<h3>Post here...</h3>
+<form action="/post/new-post" method="POST" id="form-container" enctype="multipart/form-data">
+    <label for="content"></label>
+    <textarea name="content" id="content" cols="50" rows="10"></textarea>
+    <br>
+    <input type="text" name="name">
+    <input type="file" name="photo">
+    <br><br>
+    <button>Create post</button>
+</form>
+
+<br><br>
+<a href="../post/all-post">Go to all Post</a>

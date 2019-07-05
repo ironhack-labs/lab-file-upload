@@ -1,0 +1,9 @@
+<h1>All Post</h1>
+
+{{#each post}}
+<h2>{{this.author}}</h2>
+<h3>{{this.content}}</h3>
+<img src="{{this.imgPath}}" class="img-post2" alt="{{this.imgName}}">
+{{/each}}
+<br><br>
+<a href="../auth/profile">Return to profile</a>
