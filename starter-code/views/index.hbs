@@ -1,10 +1,30 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-  </body>
-</html>
+<h2>IronTumblr</h2>
+{{#each posts}}
+<div class="card mb-4">
+  <div class="card-body">
+    <img src="{{this._doc.picPath}}" class="card-img-top">
+    <p class="card-text">{{this._doc.content}}</p>
+    <p><small class="text-muted">{{this._doc._creatorId.username}}</small></p>
+    <div class="comments-box">
+      <p class="card-text"><strong>Comments:</strong></p>
+      {{#each this.comments}}
+      <p class="card-text">{{this.text}} <small class="text-muted">By: {{  this._author.username}}</small></p>
+      {{/each}}
+    </div>
+    </div>
+    <div class="comment-body">
+ <form action="/add-comment/{{this._id}}" method="post" class="comment-form">
+      <div class="form-group">
+        <textarea name="text" id="comment" class="form-control" type="text"></textarea>
+      </div>
+      <button class="btn btn-sm btn-outline-primary">Comment</button>
+    </form>
+    </div>
+   
+  
+</div>
+
+
+
+<br></br>
+{{/each}}

@@ -1,27 +1,32 @@
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
 
 .customLink {
   list-style: none;
   text-decoration: none;
-  color: #ce8989; }
+  color: rgb(206, 137, 137);
+}
 
 .customNavLink,
 .navbar-brand {
   color: white;
-  text-decoration: none; }
+  text-decoration: none;
+}
 
 #ced4da .customNavLink:hover,
 .navbar-brand:hover {
   color: #ced4da;
-  text-decoration: none; }
+  text-decoration: none;
+}
 
 div.card {
   border: 0px;
   border: 0px;
   /* max-width: 60%; */
   display: block;
-  margin: auto; }
+  margin: auto;
+}
 
 .comment-form {
   display: flex;
@@ -29,39 +34,48 @@ div.card {
   align-items: flex-end;
   margin: auto;
   margin-right: 0px;
-  margin-top: 10px; }
+  margin-top: 10px;
+}
 
 div.container {
   max-width: 800px;
-  max-height: 500px; }
+  max-height: 500px;
+}
 
 .card-text {
-  margin: 0; }
+  margin: 0;
+}
 
 .comments-box {
-  border: 1px; }
+  border: 1px;
+}
 
 .btn.btn-outline-primary {
   color: indianred;
-  border-color: indianred; }
+  border-color: indianred;
+}
 
 .btn.btn-primary {
   background-color: indianred;
-  border-color: white; }
+  border-color: white;
+}
 
 .card-body {
-  border: 1px solid indianred; }
+  border: 1px solid indianred;
+}
 
-.btn.btn-primary:hover, .btn.btn-primary:active, .btn.outline-primary:hover, .btn.outline-primary:active, .btn.outline-primary:focus, .btn.outline-primary:focus {
-  background-color: #ce8989;
-  border-color: white; }
+.btn.btn-primary:hover, .btn.btn-primary:active, .btn.outline-primary:hover, .btn.outline-primary:active, .btn.outline-primary:focus, .btn.outline-primary:focus  {
+  background-color: rgb(206, 137, 137);
+  border-color: white;
+}
+
 
 .card-img-top {
   display: block;
   margin: auto;
-  max-width: 60%; }
+  max-width: 60%;
+}
 
 form {
-  max-width: 60%; }
-
-/*# sourceMappingURL=style.css.map */
+  max-width: 60%;
+}

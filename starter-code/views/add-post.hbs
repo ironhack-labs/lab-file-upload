@@ -1,0 +1,21 @@
+<h2>Add Post</h2>
+
+<form action="/add-post" method="POST" id="form-container" enctype="multipart/form-data">
+
+  <div class="form-group custom-file">
+    <input id="picture" type="file" name="picture" class="form-control custom-file-input">
+    <label for="picture" class="custom-file-label">Picture</label>
+  </div>
+  <br><br>
+  <div class="form-group">
+    <textarea id="content" type="text" name="content" placeholder="lorem impsum ..." class="form-control"></textarea>
+    <small id="disclaimer" class="form-text text-muted">Please remember to be a nice person.</small>
+  </div>
+
+  {{#if message }}
+  <div class="error-message">{{ message }}</div>
+  {{/if}}
+  
+
+  <button type="submit" class="btn btn-primary">Post</button>
+</form>
