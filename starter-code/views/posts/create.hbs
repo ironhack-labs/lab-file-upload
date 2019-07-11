@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 centered-form">
+      <form action="/posts" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="content">Content</label>
+          <input type="text" name="content" class="form-control">
+        </div>
+        <input type="hidden" name="creatorId" value="{{_id}}">
+        <input type="hidden" name="creatorName" value="{{username}}">
+        <h2>Upload your photo</h2>
+        <input type="text" name="picName">
+        <input type="file" name="picPath">
+        </section>
+        <button type="submit">Post</button>
+      </form>
+    </div>
+  </div>
+</div>
