@@ -78,7 +78,9 @@ passport.use('local-signup', new LocalStrategy(
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  imgName: req.file.originalname,
+                  imgPath: req.file.url,
                 });
 
                 newUser.save((err) => {
