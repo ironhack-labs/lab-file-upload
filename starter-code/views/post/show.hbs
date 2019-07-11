@@ -1,0 +1,19 @@
+<img src="{{answer.photo.picPath}}" alt="">
+<p>{{answer.content}}</p>
+
+<form action="/show/{{answer.id}}" method="POST" enctype="multipart/form-data">
+
+    <input type="text" name="picName">
+    <input type="file" name="picPath">
+
+    <div class="form-group">
+        <label for="username">Say something</label>
+        <input type="text" name="content" class="form-control">
+    </div>
+    <button type="submit">Create post</button>
+</form>
+
+{{#each comment}}
+<img src="{{photo.picPath}}" alt="">
+<p>{{content}}</p>
+{{/each}}
