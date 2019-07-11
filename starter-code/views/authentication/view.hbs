@@ -1,0 +1,26 @@
+<p>{{post.picName}}</p>
+<img src="{{post.picPath}}" alt="">
+<p>{{post.content}}</p>
+
+<form action="/comments/add/{{post._id}}" method="post" enctype="multipart/form-data">
+  <div class="form-group">
+    <input type="hidden" name="creatorID" value="{{user._id}}">
+    <label for="content">content</label>
+    <textarea type="text" name="content" class="form-control"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="path">Photo:</label>
+    <input type="file" name="photo" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="picName">Photo Name:</label>
+    <input type="text" name="imageName" class="form-control">
+  </div>
+  <button type="submit">Post!</button>
+</form>
+{{#each post.comments}}
+<textarea name="content" id="" cols="30" rows="10">{{content}}</textarea>
+<img src="{{imagePath}}" alt="{{imageName}}">
+<p>{{imageName}}</p>
+{{/each}}
+<a href="/posts">Return</a>

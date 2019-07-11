@@ -1,0 +1,20 @@
+<form action="/edit/{{post._id}}" method="post" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="content">content</label>
+    <textarea type="text" name="content" class="form-control">{{post.content}}</textarea>
+  </div>
+  <input type="hidden" name="oldPicPath" value="{{post.picPath}}">
+  <div class="form-group">
+    <img src="{{post.picPath}}" alt="{{post.picName}}">
+  </div>
+  <div class="form-group">
+    <label for="path">Photo:</label>
+    <input type="file" name="photo" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="picName">Photo Name:</label>
+    <input type="text" name="picName" class="form-control" value="{{post.picName}}">
+  </div>
+  <button type="submit">Post!</button>
+</form>
+
