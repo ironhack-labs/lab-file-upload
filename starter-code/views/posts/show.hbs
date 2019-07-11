@@ -1,0 +1,22 @@
+<div class="card">
+  <img src="/{{picture.picPath}}" alt="{{picture.picName}}">
+  <p>{{content}}</p>
+  <h5>{{creator.username}}</h5>
+  <hr>
+  <form action="/posts/show/{{_id}}/comment" method="POST" enctype="multipart/form-data">
+  <label for="comment">Comment: </label>
+  <input type="text" name="comment"required /> <br>
+  <label for="photoName">Photo name: </label>
+  <input type="text" name="photoName" />
+  <input type="file" name="photo" />
+  <button type="submit">comment</button>
+  </form>
+  <hr>
+  {{#each comments}}
+    <p>{{author.username}}</p>
+      {{#if picture.picPath}}
+        <img src="/{{picture.picPath}}" alt="{{picture.picName}}">
+      {{/if}}
+    {{content}}
+  {{/each}}
+</div>

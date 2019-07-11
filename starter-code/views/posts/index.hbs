@@ -1,0 +1,10 @@
+<div class="posts-container">
+{{#each posts}}
+<div class="card">
+  <a href="/posts/show/{{_id}}"><img src="/{{picture.picPath}}" alt="{{picture.picName}}"></a>
+  <h5>{{creator.username}}</h5>
+  <p>{{content}}</p>
+
+</div>
+{{/each}}
+</div>

@@ -6,3 +6,36 @@ body {
 a {
   color: #00B7FF;
 }
+
+img {
+  width: 350px;
+  height: auto;
+}
+
+.posts-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.card {
+  display: flex;
+  flex-flow: column nowrap;
+  margin: 10px;
+}
+
+h5, p {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+p {
+  font-size: 1.5rem;
+
+}
+
+h5 {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
