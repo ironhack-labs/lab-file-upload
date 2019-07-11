@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    {{ message }}
+    <div class="col-sm-6 centered-form">
+      <form action="/comment" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="content">Your Comment</label>
+          <input type="text" name="content" class="form-control">
+        </div>
+        <div class="form-group">
+          <input type="hidden" name="id" value="{{id}}">
+        </div>
+        <div class="form-group">
+          <label for="picture">Picture</label>
+          <input type="text" name="picname" class="form-control">
+          <input type="file" name="picpath" class="form-control">
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+      </div>
+  </div>
+</div>
