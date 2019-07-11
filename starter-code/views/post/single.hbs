@@ -1,0 +1,57 @@
+
+
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-md-8">
+           
+
+            <div class="blog-post">
+                <img src="{{post.imgPath}}" alt="" style="width: 100%">
+                <br><br>
+                <p>{{post.content}}</p>
+                
+                </div><!-- /.blog-post -->
+                <a href="/posts">Back to all posts</a>
+
+        </div><!-- /.blog-main -->
+
+        <aside class="col-md-4 blog-sidebar">
+            <div class="p-3 mb-3 bg-light rounded">
+
+        <h2>Write a comment</h2>
+        <form action="/post/{{post._id}}" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="content">Comment</label>
+                <textarea type="text" name="comment" class="form-control">
+                    </textarea>
+            </div>
+            <div class="form-group">
+                <label for="picture">Picture</label>
+                <input type="file" name="picture" class="form-control">
+            </div>
+            <input type="hidden" name="authorId" value="{{user._id}}">
+
+            <button type="submit">Send</button>
+        </form>
+
+
+
+
+        <h2>All comments</h2>
+        {{#each comments}}
+        <p>{{this.comment}}</p>
+        <p>{{this.authorId}}</p>
+        <img src="{{this.imgPath}}" alt="">
+        {{/each}}
+
+
+            </div>
+        </aside><!-- /.blog-sidebar -->
+
+    </div><!-- /.row -->
+
+
+</main><!-- /.container -->
+
+
+
