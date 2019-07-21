@@ -4,5 +4,17 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+.container-post {
+  display: flex;
+  flex-flow: row;
+  flex-direction: row;
+}
+.newComment {
+  margin-left: 80px;
+}
+.comments {
+  margin-left: 80px;
 }

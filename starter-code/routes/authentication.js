@@ -4,6 +4,7 @@ const router = express.Router();
 const { ensureLoggedIn, ensureLoggedOut } = require("connect-ensure-login");
 const User = require("../models/User");
 const uploadCloud = require("../config/cloudinary");
+const Comment = require('../models/comment');
 
 router.get("/login", ensureLoggedOut(), (req, res) => {
   res.render("authentication/login", { message: req.flash("error") });
@@ -32,6 +33,14 @@ router.post(
     failureFlash: true
   })
 );
+router.post('/profile/comment', ensureLoggedIn(), (req, res, next) => {
+  const authorId = req.user.id;
+  const content = req.body.comment;
+  console.log(req.body);
+  const newComment = new Comment({
+      content,
+      authorId,
+  })
 
 router.get("/profile", ensureLoggedIn("/login"), (req, res) => {
   res.render("authentication/profile", {
@@ -62,5 +71,29 @@ router.get("/logout", ensureLoggedIn("/login"), (req, res) => {
   req.logout();
   res.redirect("/");
 });
+
+newComment.save()
+.then(comment => {
+    Post.findByIdAndUpdate({ _id: req.body.postId }, { $push: { comments: comment._id } })
+        .then(() => {
+            res.redirect('/');
+        })
+})
+.catch(err => console.log(err));
+});
+
+
+
+
+router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
+
+Post.find({ idUser: req.user._id })
+.then(post => {
+    res.render('authentication/profile', { post, user: req.user });
+})
+.catch(error => {
+    console.error(err);
+    next(err);
+})
 
 module.exports = router;
