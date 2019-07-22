@@ -1,0 +1,12 @@
+{{#if user}}
+<h1>Hi {{user.username}}</h1>
+
+<img src="{{user.imgPath}}">
+{{/if}}
+
+<form action="/profile" method="POST" enctype="multipart/form-data">
+    <label for="poster">Post or change your photo</label>
+    <input type="file" name="photo" id="poster">
+    <button type="submit">Submit photo</button>
+
+</form>
