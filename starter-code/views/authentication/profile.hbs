@@ -1,7 +1,19 @@
-<h1>Profile</h1>
-<img width= "300" src="{{user.imgPath}}" alt="Profile">
-<a href="/editPic">Edit profile pic</a>
-<h2>{{user.username}}</h2>
-<a href="/posts/createPost">
-  <button>Create new post</button>
-</a>
+<div class="padding">
+<div class="card mb-3 padding" style="max-width: 540px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="{{user.imgPath}}" class="card-img" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{user.username}}</h5>
+        <p class="card-text">Account email: {{user.email}}</p>
+        <a href="/editPic" class="btn btn-secondary">Edit profile picture</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a href="/posts/createPost" class="btn btn-dark">Create new post</a>
+<a href="/" class="btn btn-dark">Home</a>
+</div>

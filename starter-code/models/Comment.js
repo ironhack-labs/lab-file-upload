@@ -8,10 +8,11 @@ const commentSchema = new Schema({
     type: String,
     default: 'https://x.kinja-static.com/assets/images/logos/placeholders/default.png'
   },
-  imageName: String
+  imageName: String,
+  commentId: Schema.ObjectId
 },{
   timestamps: true
 })
 
 const Comment = mongoose.model('Comment', commentSchema)
-module.exporte(Comment)
+module.exports = Comment

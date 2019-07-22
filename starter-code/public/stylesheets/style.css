@@ -5,3 +5,32 @@ body {
 a {
   color: #00B7FF;
 }
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100vw;
+  align-content: center;
+}
+
+.image{
+  width: 200px;
+  margin: 0 auto;
+  padding-top: 10px;
+}
+
+.buttons{
+  text-align: center;
+  padding-top: 20px;
+}
+
+.padding {
+  padding: 20px;
+}
+
+.title{
+  text-align: center;
+  padding: 20px;
+  font-weight: bold;
+}

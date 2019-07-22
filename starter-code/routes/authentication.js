@@ -11,7 +11,7 @@ router.get("/login", ensureLoggedOut(), (req, res) => {
 });
 
 router.post("/login", ensureLoggedOut(), passport.authenticate("local-login", {
-    successRedirect: "/",
+    successRedirect: "/profile",
     failureRedirect: "/login",
     failureFlash: true
   })
@@ -44,7 +44,7 @@ router.get("/editPic", ensureLoggedIn("/login"), (req, res) => {
 });
 
 router.post("/editPic", ensureLoggedIn("/login"), uploadCloud.single("photo"), (req, res) => {
-    const { url } = req.file;
+    const { url } = req.file
     const { id } = req.user
     User.findByIdAndUpdate(id, { imgPath: url }, { new: true })
       .then(() => res.redirect("/profile"))

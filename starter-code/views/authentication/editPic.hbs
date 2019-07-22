@@ -1,5 +1,17 @@
-<form action="/editPic" method="POST" enctype="multipart/form-data">
-    <img src="{{user.imgPath}}" alt="image" />
-    <input type="file" name="photo" id="pic">
-    <input type="submit" value="Save">
+<form action="/editPic" method="POST" enctype="multipart/form-data" class="padding">
+ <div class="card mb-3" style="max-width: 540px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="{{user.imgPath}}" class="card-img padding" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Choose a new picture</h5>
+        <input type="file" name="photo" id="pic">
+        <br/><br/>
+        <input type="submit" value="Save" class = "btn btn-secondary">
+      </div>
+    </div>
+  </div>
+</div>
 </form>

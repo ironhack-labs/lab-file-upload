@@ -1,0 +1,29 @@
+<div class="card text-center ">
+  <div class="card-header">
+    {{title}}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Post by {{author}}</h5>
+    <img src="{{picPath}}" alt="Img" width ="200">
+    <p class="card-text">{{content}}</p>
+  </div>
+  <div class="card-footer text-muted">
+    <h5>Comments</h5>
+    {{#each comments}}
+      <div class = "comment"> 
+        <label>{{this.author}}</label>
+        <p class = "commentDisplay"> {{this.content}} </p>
+      </div>
+    {{/each}}
+    <p class = "commentTitle"> Add comment</p>
+
+    <form action="/posts/{{_id}}" method="POST">
+      <textarea name="content" rows="5" cols="40" placeholder="Write here!" class = "commentText"></textarea>
+       <br/><input type="submit" value="Submit" class = "commentButton">
+    </form>
+  </div>
+</div>
+<div class="buttons">
+  <a href="/profile" class="btn btn-dark">Profile</a>
+  <a href="/" class="btn btn-dark">Home</a>
+</div>
