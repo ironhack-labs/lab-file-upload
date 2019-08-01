@@ -16,6 +16,7 @@ const hbs                = require('hbs')
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
+
 const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -72,13 +73,21 @@ passport.use('local-signup', new LocalStrategy(
                 const {
                   username,
                   email,
-                  password
+                  password,
                 } = req.body;
+                const {
+                  imgName,
+                  imgPath
+                } = req.file
+
+                
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  imgName,
+                  imgPath,
                 });
 
                 newUser.save((err) => {
