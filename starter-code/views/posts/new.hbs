@@ -1,0 +1,25 @@
+<h2>Post a new post:</h2>
+
+<div class="container">
+  <div class="row">
+    {{ message }}
+    <div class="col-sm-6 centered-form">
+      <form action="/new" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="contet-input">Content</label>
+          <input id="contet-input" type="textarea" name="content" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" name="email" class="form-control">
+        </div>
+        <div class="form-group">
+        Image: <input type="file" name="image"><br><br>
+        </div>
+
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+</div>
+
