@@ -72,13 +72,21 @@ passport.use('local-signup', new LocalStrategy(
                 const {
                   username,
                   email,
-                  password
+                  password,
                 } = req.body;
+
+              
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+                
+                const imgPath = req.file.url;
+                const imgName = req.file.originalname;
+                
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  imgName,
+                  imgPath
                 });
 
                 newUser.save((err) => {
@@ -100,8 +108,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
-const authRoutes = require('./routes/authentication');
 app.use('/', index);
+const authRoutes = require('./routes/authentication');
 app.use('/', authRoutes);
 
 // catch 404 and forward to error handler
