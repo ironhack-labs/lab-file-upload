@@ -1,0 +1,20 @@
+<div class="container">
+
+    <h1>All posts</h1>
+    <div>
+        <div>
+            {{#each posts}}
+            <div>
+                <strong>World</strong>
+                <h3 class="mb-0">
+                    <a href="#">Post</a>
+                </h3>
+                <p>{{this.content}}</p>
+                <a href="/post/{{this._id}}">Continua leyendo</a>
+            </div>
+            <img alt="hola" src="{{this.imgPath}}" data-holder-rendered="true">
+
+        </div>
+        {{/each}}
+    </div>
+</div>

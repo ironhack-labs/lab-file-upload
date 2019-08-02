@@ -1,0 +1,19 @@
+<div>
+    {{ message }}
+    <div>
+        <form action="/post/new" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="content">Contenido</label>
+                <textarea type="text" name="content" class="form-control">
+              </textarea>
+            </div>
+            <div>
+                <label for="email">Imagen</label>
+                <input type="file" name="picture" class="form-control">
+            </div>
+            <input type="hidden" name="creatorId" value="{{user._id}}">
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+</div>
+</div>
