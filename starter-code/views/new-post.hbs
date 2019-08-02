@@ -1,0 +1,27 @@
+<h2>Create new post</h2>
+<div class="container">
+  <div class="row">
+    {{ message }}
+    <div class="col-sm-6 centered-form" >
+      <form action="/post/new" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="creatorId">Username</label>
+          <input type="text" name="creatorId" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="content">Content</label>
+          <input type="text" name="content" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="picName">Picture name</label>
+          <input type="text" name="picName" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="picPath">Upload your photo</label> <br>
+          File: <input type="file" name="picPath"><br><br>
+        </div>
+      <button type="submit">Create</button>
+      </form>
+    </div>
+  </div>
+</div>

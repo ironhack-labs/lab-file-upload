@@ -14,6 +14,7 @@ const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const hbs                = require('hbs')
 
+require('./configs/cloudinary.config')
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
 const app = express();
@@ -72,13 +73,19 @@ passport.use('local-signup', new LocalStrategy(
                 const {
                   username,
                   email,
-                  password
+                  password,
+                  // profilePhoto,
                 } = req.body;
+                const profilePhoto = req.file.url;
+                //const imgName = req.file.originalname;
+                console.log(req.file)
+
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  profilePhoto
                 });
 
                 newUser.save((err) => {
@@ -103,6 +110,13 @@ const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
 app.use('/', index);
 app.use('/', authRoutes);
+
+const postRoutes = require('./routes/post.routes')
+app.use('/post', postRoutes)
+
+const commentsRoutes = require('./routes/comments.routes')
+app.use('/post', commentsRoutes)
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
