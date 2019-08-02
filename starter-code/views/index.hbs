@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-  </body>
+
+<head>
+  <title>{{title}}</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <h1>Welcome to IronTumblr</h1>
+  {{#each users}}
+  Username: {{username}}
+  <img src="{{imgPath}}" alt="Foto User" style="height: 200px"><br>
+  {{/each}}
+</body>
+
 </html>
