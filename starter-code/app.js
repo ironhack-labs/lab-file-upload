@@ -41,7 +41,7 @@ passport.deserializeUser((id, cb) => {
 
 passport.use('local-login', new LocalStrategy((username, password, next) => {
   User.findOne({ username }, (err, user) => {
-    if (err) {
+    if (err) {x
       return next(err);
     }
     if (!user) {
@@ -72,13 +72,17 @@ passport.use('local-signup', new LocalStrategy(
                 const {
                   username,
                   email,
-                  password
+                  password,
+                  imgName,
+                  imgPath
                 } = req.body;
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  imgName,
+                  imgPath
                 });
 
                 newUser.save((err) => {
@@ -86,8 +90,8 @@ passport.use('local-signup', new LocalStrategy(
                     return next(null, newUser);
                 });
             }
-        });
-    });
+        })
+    })
 }));
 
 app.use(flash());
@@ -106,9 +110,9 @@ app.use('/', authRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  const err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+  const err = new Error('Not Found')
+  err.status = 404
+  next(err)
 });
 
 // error handler

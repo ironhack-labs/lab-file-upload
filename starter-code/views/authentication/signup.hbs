@@ -1,22 +1,38 @@
+<h1>Registrate</h1>
 <div class="container">
   <div class="row">
     {{ message }}
     <div class="col-sm-6 centered-form">
       <form action="/signup" method="post">
         <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" name="username" class="form-control">
+          <label for="username">Usuario</label>
+          <input type="text" name="username" class="form-control"><br><br>
         </div>
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="text" name="email" class="form-control">
+          <input type="text" name="email" class="form-control"><br><br>
         </div>
         <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" name="password" class="form-control">
+          <label for="password">Contraseña</label>
+          <input type="password" name="password" class="form-control"><br><br>
+        <button type="submit">Unirse</button>
         </div>
-        <button type="submit">Signup</button>
+        <div>
+
+        <h2>Elige una foto de perfil</h2>
+            <form action="/signup" method="post" enctype="multipart/form-data">
+              <label>Title</label>
+              <input type="text" name="titulo"><br><br>
+
+              <label>Description</label>
+              <input type="text" name="descripcion"><br><br>
+
+              <label>Poster</label>
+              <input type="file" name="phto"><br><br>
+
+              <input type="submit" value="SAVE">
       </form>
+        </div>
     </div>
   </div>
 </div>
