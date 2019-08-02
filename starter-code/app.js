@@ -13,9 +13,8 @@ const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const hbs                = require('hbs')
-
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
-
+require("dotenv").config()
 const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -72,18 +71,22 @@ passport.use('local-signup', new LocalStrategy(
                 const {
                   username,
                   email,
-                  password
+                  password,
+                  photo
                 } = req.body;
+
+                console.log(req.body)
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
-                });
-
+                  password: hashPass,
+                  photo
+                });                
                 newUser.save((err) => {
                     if (err){ next(null, false, { message: newUser.errors }) }
-                    return next(null, newUser);
+                    return next(null, newUser)
+              
                 });
             }
         });
@@ -92,17 +95,19 @@ passport.use('local-signup', new LocalStrategy(
 
 app.use(flash());
 app.use(passport.initialize());
-app.use(passport.session());
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.session())
+app.use(logger('dev'))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(cookieParser())
+app.use(express.static(path.join(__dirname, 'public')))
 
-const index = require('./routes/index');
-const authRoutes = require('./routes/authentication');
+const index = require('./routes/index')
+const authRoutes = require('./routes/authentication')
+const postRoutes = require('./routes/post.routes')
 app.use('/', index);
-app.use('/', authRoutes);
+app.use('/', authRoutes)
+app.use('/post', postRoutes)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
