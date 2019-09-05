@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express            = require('express');
 const path               = require('path');
 const favicon            = require('serve-favicon');
@@ -12,14 +14,18 @@ const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
-const hbs                = require('hbs')
+const hbs                = require('hbs');
 
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
+mongoose.connect('mongodb://localhost:27017/tumblr-lab-development', {
+  useNewUrlParser: true
+});
 
 const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+
+hbs.registerPartials(path.join(__dirname, "views/partials"));
 
 app.use(session({
   secret: 'tumblrlabdev',
@@ -59,6 +65,11 @@ passport.use('local-signup', new LocalStrategy(
   { passReqToCallback: true },
   (req, username, password, next) => {
     // To avoid race conditions
+
+
+    console.log('+++++++++++')
+    console.log(req.file)
+
     process.nextTick(() => {
         User.findOne({
             'username': username
@@ -80,6 +91,8 @@ passport.use('local-signup', new LocalStrategy(
                   email,
                   password: hashPass
                 });
+
+                if (req.file) newUser.image = req.file.secure_url;
 
                 newUser.save((err) => {
                     if (err){ next(null, false, { message: newUser.errors }) }
