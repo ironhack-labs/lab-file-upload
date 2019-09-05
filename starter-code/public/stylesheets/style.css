@@ -6,3 +6,9 @@ body {
 a {
   color: #00B7FF;
 }
+
+nav {
+  height: 50px;
+  background-color: black;
+  color: white;
+}

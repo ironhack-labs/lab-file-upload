@@ -12,14 +12,17 @@ const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
-const hbs                = require('hbs')
+const hbs                = require('hbs');
+require("dotenv").config();
+require("./config/cloudinary");
 
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
+mongoose.connect('mongodb://localhost:27017/tumblr-lab-development', {useMongoClient: true });
 
 const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+hbs.registerPartials(path.join(__dirname, "/views/partials"))
 
 app.use(session({
   secret: 'tumblrlabdev',

@@ -1,0 +1,12 @@
+{{>nav}}
+<h2>Write a post</h2>
+
+<form method="post" action="/create" enctype="multipart/form-data">
+  <label for="content">Content</label>
+  <input id="content" type="text" name="content">
+
+  <label for="image">Image</label>
+  <input id="image" type="file" name="image">
+
+  <button>Post !</button>
+</form>
