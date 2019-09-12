@@ -1,10 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
+
+<head>
+  <title>IronTumblr</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <div class="container">
     <h1>Welcome to IronTumblr</h1>
-  </body>
+    <br>
+    <a href="/signup">Sign Up</a>
+    <a href="/login">Login</a>
+    <a href="/profile">Go to Profile</a>
+    <a href="/logout">Logout</a>
+  </div>
+  <div class="container">
+    <h2>Recent Posts</h2>
+
+    <div class="row">
+      {{#each posts}}
+      <div class="col-4">
+        <h3>{{this.createdBy}} <br></h3>
+        {{!-- <a href="/edit-book?bookid={{this._id}}">
+          <button class="btn btn-secondary">Edit</button>
+        </a> --}}
+      </div>
+      {{/each}}
+    </div>
+  </div>
+
+
+
+
+  {{!-- 
+<section>
+  {{#each pictures}}
+  <h3>{{ this.name }}</h3>
+  <img src="{{ this.path }}" alt="{{ this.originalName }}" />
+  {{/each}}
+</section> --}}
+</body>
+
 </html>

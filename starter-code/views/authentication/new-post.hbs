@@ -1,0 +1,17 @@
+<div class="container">
+  <h2>New Post</h2>
+  <form action="/{{_id}}/postNew" method="post" enctype="multipart/form-data">
+    {{!-- <input type="text" name="name"> --}}
+
+
+    <label for="content">Your content goes here:</label>
+    <textarea name="content" class="form-control" id="content" cols="30" rows="10"></textarea>
+    {{!-- <textarea for="content" name="content" id="content" cols="30" rows="10"> --}}
+    <input type="file" name="postPicture">
+    <input type="submit" value="Save">
+  </form>
+</div>
+
+
+
+<a href="/profile">Back</a>

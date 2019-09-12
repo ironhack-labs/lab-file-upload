@@ -1,0 +1,16 @@
+<section>
+  <h1>Welcome to your Profile, {{user.username}}</h1>
+</section>
+
+<section>
+  {{#each pictures}}
+  <h3>{{ this.name }}</h3>
+  <img src="{{ this.path }}" alt="{{ this.originalName }}" />
+  {{/each}}
+  <a href="{{user._id}}/upload">Upload a new profile picture</a>
+  <br>
+  <h4> <a href="{{user._id}}/post">New Post</a></h4>
+
+</section>
+
+<a href="/logout">Logout</a>
