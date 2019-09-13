@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{{title}}</title>
+    <title>'Express - Generated with IronGenerator'</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
+    {{#each posts}}
+    <p>{{this.postText}}</p>
+    <img src="{{this.picPath}}" width="200px"/>
+    {{/each}}
   </body>
 </html>
