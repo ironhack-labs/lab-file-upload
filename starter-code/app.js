@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express            = require('express');
 const path               = require('path');
 const favicon            = require('serve-favicon');
@@ -7,7 +8,7 @@ const bodyParser         = require('body-parser');
 const passport           = require('passport');
 const LocalStrategy      = require('passport-local').Strategy;
 const User               = require('./models/user');
-const bcrypt             = require('bcrypt');
+const bcrypt             = require('bcryptjs');
 const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
@@ -69,20 +70,19 @@ passport.use('local-signup', new LocalStrategy(
                 return next(null, false);
             } else {
                 // Destructure the body
-                const {
-                  username,
-                  email,
-                  password
-                } = req.body;
+                const {username, email, password} = req.body;
+                const imageUrl = req.file.secure_url
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  imageUrl
                 });
 
                 newUser.save((err) => {
                     if (err){ next(null, false, { message: newUser.errors }) }
+                    console.log(req.file)
                     return next(null, newUser);
                 });
             }
