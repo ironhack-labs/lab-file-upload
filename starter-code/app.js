@@ -1,3 +1,4 @@
+
 const express            = require('express');
 const path               = require('path');
 const favicon            = require('serve-favicon');
@@ -7,12 +8,18 @@ const bodyParser         = require('body-parser');
 const passport           = require('passport');
 const LocalStrategy      = require('passport-local').Strategy;
 const User               = require('./models/user');
-const bcrypt             = require('bcrypt');
+const bcryptjs             = require('bcryptjs');
 const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
-const hbs                = require('hbs')
+const hbs                = require('hbs');
+const multer = require('multer');
+const cloudinary = require('cloudinary');
+const cloudinaryStorage = require('multer-storage-cloudinary');
+
+require('dotenv').config();
+
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
@@ -47,13 +54,29 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
     if (!user) {
       return next(null, false, { message: "Incorrect username" });
     }
-    if (!bcrypt.compareSync(password, user.password)) {
+    if (!bcryptjs.compareSync(password, user.password)) {
       return next(null, false, { message: "Incorrect password" });
     }
 
     return next(null, user);
   });
 }));
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_API_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+}); 
+
+const storage = cloudinaryStorage({
+  cloudinary,
+  folder: '/irongram-lab',
+  allowedFormats: ['jpg', 'png']
+});
+
+const upload = multer({ storage });
+
+
 
 passport.use('local-signup', new LocalStrategy(
   { passReqToCallback: true },
@@ -72,13 +95,15 @@ passport.use('local-signup', new LocalStrategy(
                 const {
                   username,
                   email,
-                  password
+                  password,
+                  url
                 } = req.body;
-                const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+                const hashPass = bcryptjs.hashSync(password, bcryptjs.genSaltSync(8), null);
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  url: req.file.url
                 });
 
                 newUser.save((err) => {
