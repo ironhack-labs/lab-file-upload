@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <!-- Posts -->
+    <div class="col-12">
+      <h1 class="h2 mb-5">All Posts</h1>
+    </div>
+    {{#each posts as |post|}}
+    <article class="col-12 col-md-3">
+      <img src="{{post.picPath}}" alt="{{post.picName}}" class="img-fluid mb-4">
+      <p>{{post.content}}</p>
+    </article>
+    {{/each}}
+
+    <!-- Comments -->
+    <div class="col-12 mt-5">
+      <h1 class="h2 mb-5">All Comments</h1>
+    </div>
+    {{#each comments as |comment|}}
+    <article class="col-12 col-md-3">
+      <img src="{{comment.imagePath}}" alt="{{comment.imageName}}" class="img-fluid mb-4">
+      <p>{{comment.content}}</p>
+    </article>
+    {{/each}}
+  </div>
+</div>
