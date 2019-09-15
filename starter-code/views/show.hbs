@@ -1,0 +1,16 @@
+<h1>Welcome to Tumblr</h1>
+{{#each usuario}}
+<h3>This post was created by {{this.username}}</h3>
+{{/each}}
+<div class="images-wrapper">
+  {{#each images}}
+    <div class="images-item">
+      <img src="{{this.picPath}}" alt="" width="500px">
+      <h4>{{this.picName}}</h4>
+      <p>{{this.content}}</p>
+      </div>
+    </div>
+  {{else}}
+    <p>There are no posts yet! :C</p>
+  {{/each}}
+</div>

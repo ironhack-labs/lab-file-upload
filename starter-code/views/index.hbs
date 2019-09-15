@@ -1,10 +1,30 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-  </body>
-</html>
+<nav>
+    <ul>
+      <li><a href="/private">Profile</a></li>
+      <li><a href="/auth/logout">Logout</a></li>
+      
+    </ul>
+
+<h1>HOME PAGE</h1>
+<div class="images-wrapper">
+  {{#each images}}
+    <div class="images-item">
+      <img src="{{this.picPath}}" alt="" width="500px">
+      <h4>{{this.picName}}</h4>
+      <h3>{{this.creatorId}}</h3>
+      <p>{{this.content}}</p>  
+      </div>
+      <a href="/comment/{{_id}}">Add a comment</a>
+      <hr>
+    </div>
+      <br>
+      <br>
+  {{/each}}
+  <div id="commentSection">
+        {{#each comment}}
+        <p>{{this.content}}</p>
+        <img src="" alt="">
+        {{/each}}
+</div>
+</div>
+</nav>

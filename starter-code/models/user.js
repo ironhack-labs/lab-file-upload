@@ -1,12 +1,23 @@
 const mongoose = require('mongoose');
-const Schema   = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-const UserSchema = Schema({
-  username: String,
-  email:    String,
-  password: String
-});
+const userSchema = new Schema({
+  username: {
+    type: String,
+    unique: true,
+    required: true
+  },
+  password: {
+    type: String,
+    trim: true,
+    required: true
+  },
+  userImg:{
+    type: String,
+    default: 'https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
+  }
+},
+{ timestamps: true }
+);
 
-const User = mongoose.model('User', UserSchema);
-
-module.exports = User;
+module.exports = mongoose.model('User', userSchema);
