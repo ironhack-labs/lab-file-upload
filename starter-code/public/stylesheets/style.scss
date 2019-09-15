@@ -1,0 +1,64 @@
+body {
+  padding: 0px;
+  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+main{
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#post,
+#feed{
+  width: 70%;
+}
+
+#post{
+  background: thistle;
+}
+
+.add-comment{
+  background: antiquewhite;
+}
+
+#feed{
+  background: snow;
+}
+
+.feed-posts{
+  display:flex;
+}
+
+.posts{
+  display: flex;
+  align-items: flex-start; 
+  flex-direction: column;
+}
+
+.post{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+  margin-left: 50px;
+}
+
+.comment-user{
+  display: flex;
+  flex-direction: row;
+  font-weight: bold;
+  margin-top: 20px;
+  background: silver;
+
+}
+
+.comment-username{
+  margin-left: 10px;
+}
+
+.comment-content{
+  background: silver;
+  display: flex;
+  flex-direction: column;
+}

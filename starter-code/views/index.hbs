@@ -1,10 +1,64 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-  </body>
-</html>
+<nav>
+    <ul>
+      {{!-- <li><a href="/private">Profile</a></li> --}}
+      <li><a href="{{#if userData.login}}/auth/logout{{else}}/auth/login{{/if}}">{{#if userData.login}}Logout{{else}}Login{{/if}}</a></li>
+    </ul>
+</nav>
+<h1>Welcome to Iron TUMBLR</h1>
+<main>
+  {{#if userData.login}}
+  <section id="post">
+    <form action="/post" method="POST" enctype="multipart/form-data">
+      <input type="text" name="postText" class="post-text" placeholder="What are you thinking?...">
+      <label for="postImg">Image</label>
+      <input type="file" name="postImg">
+      <input type="submit" value="Post">
+    </form>
+  </section>
+  {{/if}}
+  
+  <section id="feed">
+    {{#if allPosts}}
+    <div class="posts">
+      {{#each allPosts as |post|}}
+      <div class="feed-posts">
+        <div class="profile-pic">
+          <img src="{{post.creator.profilePicPath}}" alt="{{post.creator.profilePicName}}" width="80px" title="{{post.creator.username}}">
+        </div>
+        <div class="post">
+          <div class="user-post">
+            <img class="post-img" src="{{post.picPath}}" alt="{{post.picName}}" width="400px">
+            <p>{{post.content}}</p>
+          </div>
+          {{#each comments as |comment|}}
+          <div class="comment-user">
+            <img src="{{comment.creator.profilePicPath}}" alt="{{comment.creator.profilePic}}" width="40px"><span class="comment-username">{{comment.creator.username}}</span>
+          </div>
+          <div class="comment-content">
+            <p class="comment-text">{{comment.comment}}</p>
+            <img class="comment-img" src="{{comment.picPath}}" alt="{{comment.picName}}" width="300px">
+          </div>
+          {{/each}}
+          {{#if ../userData.login}}
+          <div class="add-comment">
+            <form action="/post/{{post._id}}/comment" method="POST" enctype="multipart/form-data">
+              <div class="comments">
+                <input type="text" name="comment" class="comment">
+                <input type="file" name="commentImg" class="comment-file">
+                <input type="submit" value="Add comment" class="submit-comment">
+              </div>
+            </form>
+          </div>
+          {{/if}}
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    {{else}}
+    <div>
+      <br><br>
+      <span>No one has posted yet! :(</span>
+    </div>
+    {{/if}}
+  </section>
+</main>

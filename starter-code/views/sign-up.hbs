@@ -1,0 +1,19 @@
+<form action="/auth/signup" method="POST" enctype="multipart/form-data">
+  <h2>Sign up</h2>
+  <label for="username">Username</label>
+  <input type="text" name="username">
+
+  <label for="email">Email</label>
+  <input type="email" name="email">
+
+  <label for="password">Password</label>
+  <input type="password" name="password">
+
+  <label for="profilePic">Profile picture</label>
+  <input type="file" name="profilePic">
+  
+  <button type="submit" id="button">Create account</button>
+  <p>
+    You have an account? <a href="/auth/login">Login</a>
+  </p>
+</form>
