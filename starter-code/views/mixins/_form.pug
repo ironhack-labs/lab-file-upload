@@ -1,0 +1,22 @@
+mixin form(register, error)
+
+  .form-container
+    form(action= register ? "/signup" : "/login" method="POST")
+      
+      div
+        label(for="email") E-mail
+        input(type="email" id="email" name="email" required)
+
+      div
+        label(for="password") Password
+        input(type="password" id="password" name="password" required)
+      
+      if register
+        div
+          label(for="confirm-password") Confirm password
+          input(type="password" id="confirm-password" name="confirm-password" required)
+      
+      if error
+        p(style="color:red") #{error}
+
+      button(type="submit")= register ? "Sign up!" : "Login!"

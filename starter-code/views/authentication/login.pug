@@ -1,0 +1,8 @@
+extends ../main-layout
+include ../mixins/_form
+
+block content
+
+  .form-container
+    +form(false, error)
+    a(href="/facebook") Facebook Login
