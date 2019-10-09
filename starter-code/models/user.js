@@ -4,7 +4,9 @@ const Schema   = mongoose.Schema;
 const UserSchema = Schema({
   username: String,
   email:    String,
-  password: String
+  password: String,
+  image_url: String,
+  image_filename: String
 });
 
 const User = mongoose.model('User', UserSchema);

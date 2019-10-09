@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express            = require('express');
 const path               = require('path');
 const favicon            = require('serve-favicon');
@@ -59,35 +61,29 @@ passport.use('local-signup', new LocalStrategy(
   (req, username, password, next) => {
     // To avoid race conditions
     process.nextTick(() => {
-        User.findOne({
-            'username': username
-        }, (err, user) => {
-            if (err){ return next(err); }
+      
+      User.findOne({ 'username': username }, (err, user) => {
+        if (err) { return next(err); }
 
-            if (user) {
-                return next(null, false);
-            } else {
-                // Destructure the body
-                const {
-                  username,
-                  email,
-                  password
-                } = req.body;
-                const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-                const newUser = new User({
-                  username,
-                  email,
-                  password: hashPass
-                });
+        if (user) { 
+          return next(null, false);
+        }
+        else {
+          const image_url = req.file.url;
+          const image_filename = req.file.originalname;
+          const { username, email, password } = req.body;
 
-                newUser.save((err) => {
-                    if (err){ next(null, false, { message: newUser.errors }) }
-                    return next(null, newUser);
-                });
-            }
-        });
+          const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+          const newUser = new User({ username, email, password: hashPass, image_url, image_filename });
+
+          newUser.save((err) => {
+            if (err){ next(null, false, { message: newUser.errors }) }
+            return next(null, newUser);
+          });
+        }
+      })
     });
-}));
+  }));
 
 app.use(flash());
 app.use(passport.initialize());
