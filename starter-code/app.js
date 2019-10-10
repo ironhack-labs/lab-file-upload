@@ -43,12 +43,15 @@ passport.deserializeUser((id, cb) => {
 passport.use('local-login', new LocalStrategy((username, password, next) => {
   User.findOne({ username }, (err, user) => {
     if (err) {
+      console.log(err);
       return next(err);
     }
     if (!user) {
+      console.log(err);
       return next(null, false, { message: "Incorrect username" });
     }
     if (!bcrypt.compareSync(password, user.password)) {
+      console.log(err);
       return next(null, false, { message: "Incorrect password" });
     }
 
@@ -96,8 +99,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const userRoutes = require('./routes/user');
+const postRoutes = require('./routes/post');
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/', userRoutes);
+app.use('/', postRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

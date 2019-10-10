@@ -1,0 +1,16 @@
+extends ../main-layout
+
+block content
+
+  h2 Users
+
+  .form-container
+    ul
+      each foundUser in users
+        li
+          a(href=`/users/${foundUser._id}`) #{foundUser.username ? foundUser.username : foundUser.email}
+          br
+          p #{foundUser.email}
+
+  if error
+    p #{error}

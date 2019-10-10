@@ -1,0 +1,45 @@
+extends ../layout
+
+block content
+
+  h2 Edit #{foundUser.displayName ? foundUser.displayName : foundUser.email}
+
+  .form-container
+    form(action=`/users/${foundUser._id}` method='POST')
+
+      .form-element
+        label(for="email") E-mail
+        input(type="email" id="email" name="email" value=`${foundUser.email}`)
+
+      if user.equals(foundUser._id)
+        .form-element
+          label(for="password") Password
+          input(type="password" id="password" name="password")
+
+        .form-element
+          label(for="confirm-password") Confirm Password
+          input(type="password" id="confirm-password" name="confirm-password")
+
+      .form-element
+        label(for="displayName") Name
+        input(type="text" id="displayName" name="displayName" value=`${foundUser.displayName}`)
+
+      if user.role === 'Boss'
+        .form-element
+          label(for="role") Role
+          select(name="role")
+            if foundUser.role !== 'Boss'
+              option(value="Developer") Developer
+              option(value="TA") Teacher Assistant
+            else
+              option(value="Boss") Boss
+
+      else
+        .form-element
+          label(for="role") Role
+          select(name="role")
+            option(value=`${foundUser.role}`) #{foundUser.role}
+
+      if error 
+        p #{error}
+      button(type="submit") Edit #{foundUser.displayName ? foundUser.displayName : foundUser.email}

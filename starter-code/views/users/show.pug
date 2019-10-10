@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+
+  .form-container
+
+    h2 User Information
+
+    h3 #{foundUser.displayName}
+
+    p E-mail: #{foundUser.email}
+
+    p Role: #{foundUser.role}
+
+    .button-container
+      if user.role === 'Boss'
+        form(action=`/users/${foundUser._id}/delete` method="post")
+          button(type="submit" class="delete") Delete
+      if (user.role === 'Boss' || user.equals(foundUser._id))
+        form(action=`/users/${foundUser._id}/edit` method="get")
+          button(type="submit" class="edit") Edit

@@ -5,23 +5,22 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
     title IronTumblr
-    link(rel="stylesheet", href="stylesheets/style.css")
+    link(rel="stylesheet", href="/stylesheets/style.css")
   body
 
     nav.navbar
       .left
         if user
           a(href=`/users/${user._id}`) #{user.displayName ? user.displayName : user.email}
+          a(href="/posts/new")
+            button(class="new") Create new post!
       
       .right
         a(href="/") Home
+        a(href="/posts") Posts
 
         if user
-          if user.role !== 'Student'
-            a(href="/users") Users
-          if user.role === 'TA' || user.role === 'Student'
-            a(href="/students") Students
-            a(href="/courses") Courses
+          a(href="/users") Users
 
         if !user
           a(href="/login") Login

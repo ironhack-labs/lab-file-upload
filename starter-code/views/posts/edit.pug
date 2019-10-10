@@ -1,0 +1,30 @@
+extends ../main-layout
+
+block content
+
+  h2 Edit Post
+
+  .form-container
+    form(action= `/posts/${post._id}` method="POST" enctype="multipart/form-data" id="post-form")
+      
+      div
+        label(for="content") Content:
+
+      div
+        textarea(name="content" cols="30" rows="5") #{post.content}
+
+      div
+        p Current image: 
+          a(href=`${post.image_url}`) #{post.image_filename}
+        img(src=`${post.image_url}` alt="" width="100" height="70")
+      
+      br
+      
+      div
+        label(for="image") Attach image:
+        input(type="file" name="image")
+      
+      if error
+        p(style="color:red") #{error}
+
+      button(type="submit")= "Edit post!"

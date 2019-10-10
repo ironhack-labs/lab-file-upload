@@ -1,0 +1,22 @@
+extends ../main-layout
+
+block content
+
+  h2 Posts
+
+  if user
+    a(href="/posts/new")
+      button(class="new") Create new post!
+
+  br
+  
+  .post-container
+    ul
+      each post in posts
+        li
+          a(href=`/posts/${post._id}`) #{post.content}
+          br
+          img(src=`${post.image_url}` alt="" width="200" height="150")
+
+  if error
+    p #{error}

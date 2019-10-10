@@ -1,0 +1,21 @@
+extends ../main-layout
+
+block content
+
+  .form-container
+
+    a(href=`/users/${post.creatorId}`) Posted by: #{post.creatorId}
+
+    p #{post.content}
+
+    img(src=`${post.image_url}` alt="" width="200" height="150")
+
+    .button-container
+      
+      if user.equals(post.creatorId)
+        
+        form(action=`/posts/${post._id}/delete` method="post")
+          button(type="submit" class="delete") Delete
+      
+        form(action=`/posts/${post._id}/edit` method="get")
+          button(type="submit" class="edit") Edit

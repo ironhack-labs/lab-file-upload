@@ -1,0 +1,23 @@
+extends ../main-layout
+
+block content
+
+  h2 Create a new post!
+
+  .form-container
+    form(action= "/posts" method="POST" enctype="multipart/form-data" id="post-form")
+      
+      div
+        label(for="content") Content:
+
+      div
+        textarea(name="content" cols="30" rows="5")
+
+      div
+        label(for="image") Attach image:
+        input(type="file" name="image")
+      
+      if error
+        p(style="color:red") #{error}
+
+      button(type="submit")= "Make post!"

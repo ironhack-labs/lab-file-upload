@@ -1,0 +1,34 @@
+extends ../layout
+
+block content
+
+  h2 Add User
+
+  .form-container
+    form(action="/users" method='POST')
+
+      .form-element
+        label(for="email") E-mail
+        input(type="email" id="email" name="email")
+
+      .form-element
+        label(for="password") Password
+        input(type="password" id="password" name="password")
+
+      .form-element
+        label(for="confirm-password") Confirm Password
+        input(type="password" id="confirm-password" name="confirm-password")
+
+      .form-element
+        label(for="displayName") Name
+        input(type="text" id="displayName" name="displayName")
+
+      .form-element
+        label(for="role") Role
+        select(name="role")
+          option(value="Developer") Developer
+          option(value="TA") Teacher Assistant
+
+      if error 
+        p #{error}
+      button(type="submit") Add new User!
