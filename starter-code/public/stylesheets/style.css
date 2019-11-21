@@ -1,6 +1,9 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+text-align: center;
+  padding: 50rem;
+  font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {

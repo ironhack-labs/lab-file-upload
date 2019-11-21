@@ -11,7 +11,7 @@ router.get('/login', ensureLoggedOut(), (req, res) => {
 });
 
 router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
-  successRedirect : '/',
+  successRedirect : '/profile',
   failureRedirect : '/login',
   failureFlash : true
 }));
@@ -20,19 +20,6 @@ router.get('/signup', ensureLoggedOut(), (req, res) => {
     res.render('authentication/signup', { message: req.flash('error')});
 });
 
-// router.post('/signup', ensureLoggedOut(),uploadCloud.single('photo'),(req,res, next) =>{
-//     const { username, email, password } = req.body;
-//   const photoUrl = req.file.url;
-//   const photoName = req.file.originalname;
-//   const newUser = new User({username, email, password, photoUrl,photoName});
-//   newUser.save()
-//   .then(newUser => {
-//     res.redirect('/login');
-//   })
-//   .catch(error => {
-//     console.log(error);
-//   })
-// });
 
 router.post('/signup', ensureLoggedOut(),uploadCloud.single('photo'), passport.authenticate('local-signup',
 {successRedirect : '/',
