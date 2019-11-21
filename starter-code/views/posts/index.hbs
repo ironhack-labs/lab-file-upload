@@ -1,0 +1,25 @@
+<p>Mira todos los posts!!!</p>
+
+<div class="container">
+    <h1>Los posts!!!!</h1>
+
+    <div class="row">
+        {{#each posts}}
+        <div class="col-md-3">
+            <img src="{{this.picPath}}" alt="" style="width: 100%">
+            <p>{{this.content}}</p>
+            <p>{{this.picName}}</p>
+        </div>
+        {{else}}
+        <p>No hay posts!!!</p>
+        {{/each}}
+    </div>
+</div>
+
+
+
+
+
+
+
+      <a href="posts/new">Sube tu post!!!</a>

@@ -5,8 +5,8 @@ const Schema   = mongoose.Schema;
 const PostSchema = Schema({
   content: String,
   creatorId: { type: Schema.Types.ObjectId, ref: 'User' },
-  picPath: picPath,
-  picNname: PicName,
+  picPath: String,
+  picNname: String,
 });
 
 const Post = mongoose.model('Post', PostSchema);
