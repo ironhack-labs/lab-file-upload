@@ -1,10 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-  </body>
+
+<head>
+  <title>{{title}}</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <p><a href="/signup">Sing Up</a></p>
+  <p><a href="/login">Log In</a> </p>
+  <p><a href="/logout">Logout</a> </p>
+  <p><a href="/new">Create new post</a></p>
+  <div class="stage">
+    {{#each posts}}
+    <div class="img-container">
+      <p>{{content}}</p>
+      <img src="{{imgURL}}" alt="{{imgName}}">
+    </div>
+    {{else}}
+  </div>
+  <div>
+    <h2>We have no posts yet</h2>
+    {{/each}}
+    
+  </div>
+</body>
+
 </html>

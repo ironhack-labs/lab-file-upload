@@ -6,3 +6,22 @@ body {
 a {
   color: #00B7FF;
 }
+
+.stage {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.img-container {
+  border: 1px solid black;
+  margin: 20px;
+  padding: 10px;
+}
+
+.img-container img {
+  width: 20vw;
+}
+
+.img-container p {
+  width: 20vw;
+}
