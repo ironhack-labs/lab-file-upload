@@ -28,8 +28,11 @@ failureFlash : true}), (req,res) => {
 })
 
 router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
+    let userData = req.user._doc
     res.render('authentication/profile', {
-        user : req.user
+        user : req.user,
+        userData
+
     });
 });
 
