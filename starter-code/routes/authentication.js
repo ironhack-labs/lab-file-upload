@@ -2,6 +2,12 @@ const express    = require('express');
 const passport   = require('passport');
 const router     = express.Router();
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+const uploadCloud = require('../configs/cloudinary.config');
+const User = require("../models/user")
+
+router.get("/login", ensureLoggedOut(), (req, res) => {
+    res.render("authentication/login", { message: req.flash("error") });
+})
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
     res.render('authentication/login', { message: req.flash('error')});
@@ -27,6 +33,20 @@ router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
     res.render('authentication/profile', {
         user : req.user
     });
+});
+
+router.get('/images/upload', (req, res) => {
+    res.render('images/upload', {
+        user: req.user
+    });
+});
+router.post('/images/upload', uploadCloud.single('imgFile'), (req, res) => {
+    const imgPath = req.file.url
+    const imgName = req.body
+    User.findbyIdandUpdate(req.user_id, { imgPath, imgName })
+        .then(user => res.redirect('/'))
+        .catch(error => console.log(error))
+
 });
 
 router.get('/logout', ensureLoggedIn('/login'), (req, res) => {

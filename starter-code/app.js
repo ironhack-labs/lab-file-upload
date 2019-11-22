@@ -13,6 +13,7 @@ const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const hbs                = require('hbs')
+require("dotenv").config()
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
@@ -99,10 +100,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-const index = require('./routes/index');
-const authRoutes = require('./routes/authentication');
-app.use('/', index);
-app.use('/', authRoutes);
+
+app.use('/', require('./routes/index'));
+app.use('/', require('./routes/authentication'));
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
