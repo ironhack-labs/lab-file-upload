@@ -13,7 +13,9 @@ const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const hbs                = require('hbs')
+require('dotenv').config()
 
+const uploadCloud = require('./configs/cloudinary.config')
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
 const app = express();
@@ -39,6 +41,8 @@ passport.deserializeUser((id, cb) => {
   });
 });
 
+//INICIAR SESIÓN//
+
 passport.use('local-login', new LocalStrategy((username, password, next) => {
   User.findOne({ username }, (err, user) => {
     if (err) {
@@ -55,6 +59,8 @@ passport.use('local-login', new LocalStrategy((username, password, next) => {
   });
 }));
 
+//CREAR USUARIO//
+
 passport.use('local-signup', new LocalStrategy(
   { passReqToCallback: true },
   (req, username, password, next) => {
@@ -68,6 +74,7 @@ passport.use('local-signup', new LocalStrategy(
             if (user) {
                 return next(null, false);
             } else {
+               console.log(req.file)
                 // Destructure the body
                 const {
                   username,
@@ -78,7 +85,9 @@ passport.use('local-signup', new LocalStrategy(
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  path: req.file.url,
+                  originalName: req.file.originalname
                 });
 
                 newUser.save((err) => {
@@ -103,6 +112,7 @@ const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/posts', require('./routes/posts'))
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
