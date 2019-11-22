@@ -1,0 +1,14 @@
+<div class="container">
+    <h1>Galery</h1>
+
+    <div class="row">
+        {{#each posts}}
+        <div class="col-md-6">
+            <img src="{{this.imgPath}}" alt="" style="width: 100%">
+            <h4>{{this.content}}</h4>
+        </div>
+        {{else}}
+        <p>no image could be found</p>
+        {{/each}}
+    </div>
+</div>

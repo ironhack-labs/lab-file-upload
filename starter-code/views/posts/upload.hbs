@@ -1,0 +1,15 @@
+<div class="container">
+    <h1>Subida de películas</h1>
+    <form action="/posts/upload" method="post" enctype="multipart/form-data">
+        <div class='form-group'>
+            <label for='input1'>Nombre de la película:</label>
+            <input name='content' type='text' class='form-control' id='input1'>
+        </div>
+        
+        <div class='form-group'>
+            <label for='input2'>Poster:</label>
+            <input name='imgFile' type='file' id='input2'>
+        </div>
+        <button type='submit' class='btn btn-dark'>Subir imagen</button>
+    </form>
+</div>
