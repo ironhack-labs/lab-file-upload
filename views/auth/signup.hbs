@@ -1,0 +1,33 @@
+<h2>Signup</h2>
+
+<form action="/auth/signup" method="POST" id="form-container">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username" placeholder="JonSnow" enctype="multipart/form-data">
+
+  <br><br>
+  <div>
+    <label for="password">Password</label>
+  <input id="password" type="password" name="password" placeholder="Your password">
+  </div>
+
+  <br>
+  <label for="email">email</label>
+  <input id="email" type="text" name="email" placeholder="Your email">
+  <br>
+  <label for="photo">Password</label>
+  <input id="file" type="password" name="photo" placeholder="Your formcontrol">
+  <br>
+  
+  {{#if message }}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+
+  <br><br>
+
+  <button>Create account</button>
+
+  <p class="account-message">
+    Do you already have an account?
+    <a href="/auth/login">Login</a>
+  </p>
+</form>
