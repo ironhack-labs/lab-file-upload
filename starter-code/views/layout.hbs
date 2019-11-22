@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>IronTumblr</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha256-YLGeXaapI0/5IgZopewRJcFXomhRMlYYjugPLSyNjTY=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/signup">Darse de alta</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Acceder</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/profile">Perfil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/:id/create">Crear</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/show">Visualizar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Salir</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="main-container">
+
+    {{{body}}}
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+
+</html>
