@@ -1,0 +1,22 @@
+<div class="container coasters-index">
+    <br>
+    <a href="/posts/new" class="btn btn-dark">Crear posts</a>
+    <br>
+    <br>
+    <h1 style="font-weight: 100">Índice de posts</h1>
+
+
+    {{#each posts}}
+    <hr>
+
+    {{!-- <a href="/coasters/delete?coasterId={{_id}}" class="btn btn-sm btn-dark">Borrar atracción</a>
+    <a href="/coasters/edit?costId={{_id}}" class="btn btn-sm btn-dark">Editar atracción</a>
+    <p><a href="/coasters/{{_id}}" class="btn btn-sm btn-dark">Ver detalles</a></p> --}}
+
+    <h4>Contenido: {{content}}</h4>
+    <p>Creador: {{creatorId.username}}</p>
+    <img src="{{this.picPath}}" alt="" style="width: 100%">
+    <p>{{picName}}</p>
+    <a href="/comments/new">Añadir un comentario</a>
+    {{/each}}
+</div>
