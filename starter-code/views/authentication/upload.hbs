@@ -1,0 +1,14 @@
+<div class="container">
+    <h1>Subida local de imágenes</h1>
+    <form action="/images/upload" method="post" enctype="multipart/form-data">
+        <div class='form-group'>
+            <label for='input1'>Nombre de la imagen:</label>
+            <input name='imgName' type='text' class='form-control' id='input1'>
+        </div>
+        <div class='form-group'>
+            <label for='input2'>Imagen:</label>
+            <input name='imgFile' type='file' id='input2'>
+        </div>
+        <button type='submit' class='btn btn-dark'>Subir imagen</button>
+    </form>
+</div>

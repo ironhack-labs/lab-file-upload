@@ -1,0 +1,16 @@
+<div>
+    <h3>Aquí tienes todas tus fotos</h3>
+    <div class="container">
+        <h1>Galería</h1>
+        <div class="row">
+            {{#each pictures}}
+            <div class="col-md-3">
+                <figure>
+                    <img src="{{this.path}}" alt="{{this.name}}" style="width: 100%">
+                    <figcaption>{{this.name}}</figcaption>
+                </figure>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
