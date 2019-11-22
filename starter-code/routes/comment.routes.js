@@ -12,9 +12,9 @@ const {
 
 
 // Nuevo Post: renderizar formulario
-router.get('/new/:id', ensureLoggedIn('/posts'), (req, res) => {
-    const coasterId = req.params.id
-    Comment.find(coasterId)
+router.get('/new', ensureLoggedIn('/posts'), (req, res) => {
+    //const postId = req.params.id
+    Comment.find()
         .populate('post')
         .then(theComment => res.render('comments/newComment', {
             comment: theComment
