@@ -1,19 +1,24 @@
-<div class="container">
+<div class="padding">
   <div class="row">
     <div class="col-sm-6 centered-form">
       <form action="/login" method="post">
         <div class="form-group">
           <label for="username">Username</label>
-          <input type="text" name="username" class="form-control">
+          <input type="text" name="username">
         </div>
 
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" name="password" class="form-control">
+          <input type="password" name="password">
         </div>
 
-        <button type="submit">Login</button>
+        <button type="submit" class="btn btn-dark">Login</button>
       </form>
     </div>
   </div>
+</div>
+<div class="padding">
+    <p>Don't have an account yet?</p>
+    <a href="/signup" class="btn btn-secondary">Singup</a>
+    <a href="/" class = "btn btn-secondary">Home</a>
 </div>

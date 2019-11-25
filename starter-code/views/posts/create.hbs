@@ -1,0 +1,21 @@
+<h1>Create a new post</h1>
+
+<form action="/posts/createPost" method="POST" novalidate enctype="multipart/form-data">
+  <p>
+    <label for="name">Name: {{user.username}}</label>
+  </p>
+
+  <p>
+    <input type="text" name="title" placeholder="Title" required>
+  </p>
+
+  <p>
+    <label for="content">Write here!</label>
+    <textarea name="content" placeholder="..." required></textarea>
+  </p>
+
+  <label>Wish to add a picture?</label>
+  <input type="file" name="photo" id="pic">
+
+  <input type="submit" value = "Create">
+</form>

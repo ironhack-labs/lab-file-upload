@@ -1,10 +1,32 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-  </body>
-</html>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="#">Home<span class="sr-only"></span></a>
+      <a class="nav-item nav-link" href="/profile">Profile</a>
+            <a class="nav-item nav-link" href="/signup">Signup</a>
+      <a class="nav-item nav-link" href="/login">Login</a>
+      <a class="nav-item nav-link" href="/logout">Logout</a>
+    </div>
+  </div>
+</nav>
+
+<h1 class="title">IronTumblr</h1>
+
+<div class = "container"> 
+{{#each posts as |post|}}
+  <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+    {{#if post.picPath}}
+      <img src={{post.picPath}} class="card-img-top image" alt="...">
+    {{/if}}
+    <div class="card-body">
+      <h3>{{post.title}}</h3>
+      <h5 class="card-title">Post by {{post.author}}</h5>
+      <p class="card-text">{{post.content}}</p>
+      <a href='/posts/{{post._id}}' class="btn btn-light">Go to the post</a>
+    </div>
+</div>
+{{/each}}
+</div>
+
+
+
