@@ -8,7 +8,12 @@
         <h2>{{post.picName}}</h2>
         <h3>{{post.content}}</h3>
         <h3>{{post.creatorId.username}}</h2>
-        <a href="/post/{{post.id}}">Comment</a>
+        <h3>Comments:</h3>
+        {{#each post.comments as |comment|}}
+        <h3>{{comment.author}}</h3>
+        <h4>{{comment.content}}</h4>
+        {{/each}}
+        <a href="/posts/{{post.id}}">Comment</a>
       {{/each}}
     </div>
   </div>
