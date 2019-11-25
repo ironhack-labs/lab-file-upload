@@ -18,6 +18,28 @@ router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
     failureFlash: true
 }));
 
+// router.post('/signup', aync(req, res) => {
+//     const {
+//         _id
+//     } = req.user;
+//     const {
+//         description
+//     } = req.body;
+//     // Gracias a multer, que parsea el archivo que recibimos del formulario, tenermos la propiedad file del request (req.file) con la información del archivo procesado.
+//     const {
+//         secure_url,
+//         originalname
+//     } = req.file;
+//     console.log(secure_url, originalname)
+//     await Post.create({
+//         description,
+//         creatorId: _id,
+//         imgPath: secure_url,
+//         imgName: originalname
+//     });
+//     res.redirect('/');
+// })
+
 router.get('/signup', ensureLoggedOut(), (req, res) => {
     res.render('authentication/signup', {
         message: req.flash('error')

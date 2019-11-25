@@ -1,9 +1,11 @@
-const {
-  model,
-  Schema
-} = require("mongoose");
+// const {
+//   model,
+//   Schema
+// } = require("mongoose");
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const photoPost = new Schema({
+const schePost = new Schema({
   content: String,
   creatorId: {
     type: Schema.Types.ObjectId,
@@ -16,4 +18,4 @@ const photoPost = new Schema({
 });
 
 
-module.exports = model("Photo", photoPost);
+module.exports = mongoose.model("Post", schePost);
