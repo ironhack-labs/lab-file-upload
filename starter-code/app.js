@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config()
 
 const express = require('express');
 const path = require('path');
@@ -20,7 +20,7 @@ const {
   isAuth
 } = require('./middlewares/index.middleware')
 
-mongoose.connect(process.env.DB_URL);
+mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
 const app = express();
 

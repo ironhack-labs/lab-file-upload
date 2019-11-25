@@ -1,25 +1,51 @@
+{{!-- <div class="container">
+  <div class="row">
+    <div class="col-sm-6 centered-form"> --}}
+
+
 <div class="container">
   <div class="row">
-    {{ message }}
-    <div class="col-sm-6 centered-form">
+    <div class="centered-form">
       <form action="/signup" method="post" enctype="multipart/formdata">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" name="username" class="form-control">
+        {{ message }}
+        <div class="row">
+          <div class="input-field ">
+            <input id="username" type="text" name="username" class="validate">
+            <label for="email">Username</label>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="text" name="email" class="form-control">
+
+        <div class="row">
+          <div class="input-field ">
+            <input id="email" type="email" name="email" class="validate">
+            <label for="email">Email</label>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" name="password" class="form-control">
+
+        <div class="row">
+          <div class="input-field ">
+            <input id="password" name="password" type="password" class="validate">
+            <label for="password">Password</label>
+          </div>
         </div>
-        <div>
-          <label for="photo"></label>
-          <input type="file" name="photo" id="photo" accept="image/*">
+
+        <div class="file-field input-field ">
+          <div class="btn">
+            <span>Choose Photo</span>
+            <input type="file" name="photo" id="photo" accept="image/*">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+          </div>
         </div>
-        <button type="submit">Signup</button>
+        <br>
+        <div class="row">
+          <div class="input-field ">
+            <button class="btn waves-effect pink " type="submit" name="action">Signup
+              <i class="material-icons right">send</i>
+            </button>
+          </div>
+        </div>
       </form>
     </div>
   </div>

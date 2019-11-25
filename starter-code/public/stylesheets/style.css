@@ -1,6 +1,11 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+
+}
+
+nav {
+  margin-bottom: 80px;
 }
 
 a {
@@ -11,12 +16,14 @@ a {
   width: 300px;
 }
 
-.post img {
-  width: 290px;
+img {
+  width: 100%;
 }
 
-.wrapper-post {
-  border: #00B7FF solid 1px;
-  margin: 20px;
-  width: 300px;
+.my-supa-div {
+  width: 100%;
+  padding-top: 200px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }

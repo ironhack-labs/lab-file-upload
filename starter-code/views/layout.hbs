@@ -4,13 +4,15 @@
 <head>
   <meta charset="utf-8">
   <title>IronTumblr</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
 <body>
   <div class="main-container">
-    <nav>
+    {{!-- <nav>
       <a href="/">home</a>
       {{#if logged}}
       <ul>
@@ -23,11 +25,31 @@
         <li><a href="/login">Login</a></li>
       </ul>
       {{/if}}
+    </nav> --}}
+
+    <nav class="nav-extended deep-purple darken-1">
+      <div class="nav-wrapper">
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <li><a href="/">Home</a></li>
+        </ul>
+        {{#if logged}}
+        <ul class="right hide-on-med-and-down">
+          <li><a href="/create" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Create a
+              Post</a></li>
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+        {{else}}
+        <ul class="right hide-on-med-and-down">
+          <li><a href="/signup">Sign Up</a></li>
+          <li><a href="/login">Login</a></li>
+        </ul>
+        {{/if}}
+      </div>
+
     </nav>
     {{{body}}}
   </div>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
 </body>
 
 </html>
