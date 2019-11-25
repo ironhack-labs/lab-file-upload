@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express            = require('express');
 const path               = require('path');
 const favicon            = require('serve-favicon');
@@ -13,7 +15,8 @@ const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const hbs                = require('hbs')
-
+// import middlewares
+const {checkUser, isAuth} = require('./middleware/index.middleware');
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
 const app = express();
@@ -101,8 +104,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
-app.use('/', index);
+const postsRoutes = require('./routes/postsRoutes');
+app.use('/',checkUser, index);
 app.use('/', authRoutes);
+app.use('/', isAuth, postsRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    {{ message }}
+    <div class="col-sm-6 centered-form">
+      <form action="/new/create" method="POST" enctype="multipart/form-data">
+        <div class="form-group">         
+          <label for="content">Conten Description</label>
+          <input type="text" name="description" id="descript">
+        </div>
+        <div>
+            <label for="photo"></label>
+            <input type="file" name="photo" id="photo" accept="image/*">
+            <input type="submit" value="Post">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{{!-- {{post.creatorId._id}} --}}

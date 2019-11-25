@@ -7,6 +7,20 @@
     <link rel="stylesheet" href="/stylesheets/style.css">
   </head>
   <body>
+<nav>
+    <div>
+      <a href="/">home</a>
+      {{#if logged}}
+      <div>
+        <a href="/new">Create Post</a>
+        <a href="/logout">logout</a>
+      </div>
+      {{else}}
+        <a href="/signup">signup</a>
+        <a href="/login">login</a>
+      {{/if}}
+    </div>
+</nav>
     <div class="main-container">
       {{{body}}}
     </div>

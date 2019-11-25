@@ -6,5 +6,10 @@
   </head>
   <body>
     <h1>Welcome to IronTumblr</h1>
+    {{#each posts as |post|}}
+      <h3>{{post.description}}</h3>
+      <h4>{{post.creatorId.username}}</h4>
+      <img src="{{post.imgPath}}" alt="{{post.imgName}}">
+    {{/each}}
   </body>
 </html>
