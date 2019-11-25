@@ -17,7 +17,7 @@ const flash              = require('connect-flash');
 const hbs                = require('hbs')
 // import middlewares
 const {checkUser, isAuth} = require('./middleware/index.middleware');
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
+mongoose.connect(process.env.MONGODB_URI);
 
 const app = express();
 
