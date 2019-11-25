@@ -20,7 +20,17 @@ const {
   isAuth
 } = require('./middlewares/index.middleware')
 
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
+mongoose
+  .connect(process.env.DB, {
+    useNewUrlParser: true
+  })
+  .then(x => {
+    console.log(`Connected to Mongo! Database`);
+  })
+  .catch(err => {
+    console.error("Error connecting to mongo", err);
+  });
+
 
 const app = express();
 
