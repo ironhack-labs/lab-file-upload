@@ -1,0 +1,15 @@
+<a href="/posts/new">Create post</a>
+<a href="/logout">Log out</a>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 centered-form">
+      {{#each posts as |post|}}
+        <img src="{{post.picPath}}">
+        <h2>{{post.picName}}</h2>
+        <h3>{{post.content}}</h3>
+        <h3>{{post.creatorId.username}}</h2>
+        <a href="/post/{{post.id}}">Comment</a>
+      {{/each}}
+    </div>
+  </div>
+</div>
