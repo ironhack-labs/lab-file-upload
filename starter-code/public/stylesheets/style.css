@@ -6,3 +6,17 @@ body {
 a {
   color: #00B7FF;
 }
+
+.post {
+  width: 300px;
+}
+
+.post img {
+  width: 290px;
+}
+
+.wrapper-post {
+  border: #00B7FF solid 1px;
+  margin: 20px;
+  width: 300px;
+}

@@ -8,11 +8,17 @@
 
 <body>
   <h1>Welcome to Merry's IronTumblr</h1>
-  {{#each posts as |post|}}
-  <h3>{{post.content}}</h3>
-  <h4>{{post.creatorId.username}}</h4>
-  <img src="{{post.picPath}}" alt="{{post.picName}}">
-  {{/each}}
+  <div class="post">
+    {{#each posts as |post|}}
+    <div class="wrapper-post">
+      <h3>{{post.content}}</h3>
+      <h4>{{post.creatorId.username}}</h4>
+      <img src="{{post.picPath}}" alt="{{post.picName}}">
+      <button><a href="">comment</a></button>
+
+    </div>
+    {{/each}}
+  </div>
 </body>
 
 </html>
