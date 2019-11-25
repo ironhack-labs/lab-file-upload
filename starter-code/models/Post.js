@@ -5,7 +5,10 @@ const {
 
 const photoPost = new Schema({
   content: String,
-  creatorId: String,
+  creatorId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
   picName: String,
   picPath: String
 }, {

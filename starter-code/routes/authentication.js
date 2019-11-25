@@ -24,11 +24,7 @@ router.get('/signup', ensureLoggedOut(), (req, res) => {
     });
 });
 
-
 router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
-
-    // Gracias a multer, que parsea el archivo que recibimos del formulario, tenermos la propiedad file del request (req.file) con la información del archivo procesado.
-
     successRedirect: '/',
     failureRedirect: '/signup',
     failureFlash: true
@@ -44,5 +40,6 @@ router.get('/logout', ensureLoggedIn('/login'), (req, res) => {
     req.logout();
     res.redirect('/');
 });
+
 
 module.exports = router;

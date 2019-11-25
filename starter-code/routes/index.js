@@ -1,13 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const uploadCloud = require('../config/cloudinary.js');
+// const User = require('../models/User.js');
+// const Post = require('../models/Post.js');
 
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
   res.render('index', {
-    title: 'Express - Generated with IronGenerator'
+    title: 'Tumblr Wannab'
   });
 });
+
+
+
 
 module.exports = router;
