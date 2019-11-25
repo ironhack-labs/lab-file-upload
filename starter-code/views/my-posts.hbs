@@ -1,0 +1,15 @@
+<h2>My posts</h2>
+
+<section id= "photos">
+    {{#each photos}}
+    <div class="card mb-3">
+        <img src="{{this.imgPath}}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title"><a href="edit/{{this._id}}"> 
+                        {{this.title}}
+                </a></h5>
+            <p class="card-text">{{this.description}}</p>
+        </div>
+    </div>
+    {{/each}}
+</section>

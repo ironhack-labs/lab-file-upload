@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-  </body>
-</html>
+<section id="photos">
+  {{#each photos}}
+  <div class="card mb-3">
+    <img src="{{this.imgPath}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title"><a href="photo/detail/{{this._id}}">{{this.title}}</a></h5>
+      <p class="card-text">{{this.description}}</p>
+    </div>
+  </div>
+  {{/each}}
+</section>
