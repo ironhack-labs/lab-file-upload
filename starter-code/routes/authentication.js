@@ -69,17 +69,6 @@ router.post('/login', passport.authenticate('local', {
   failureFlash : true
 }));
 
-router.get('/profile', (req, res) => {
-  if (!req.user) {
-    res.redirect('/login');
-    return;
-  }
-
-  res.render('authentication/profile', {
-    user : req.user
-  });
-});
-
 router.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/');
