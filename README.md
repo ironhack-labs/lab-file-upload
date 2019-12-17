@@ -61,6 +61,12 @@ For this iteration you must create the **model**, along with the **new**, **crea
 
 A user should be logged in to create a post, but *not* to view.
 
+| route | template | private |
+|-------|----------|---------|
+| `GET /posts/new` | `views/posts/new.hbs` | `true` |
+| `POST /posts` | NA | `true` |
+| `GET /posts/1234` | `views/posts/show.hbs` | `false` |
+
 The **index** will be the home page, and simply display all of the posts on the website.
 
 ### Iteration 3 | Comments
@@ -77,6 +83,10 @@ The model should have the following attributes:
 - `imageName`
 
 You should create routes to create new comments. Comments should be displayed on the Post *show* page.
+
+| route | template | private |
+|-------|----------|---------|
+| `POST /posts/1234/comments` | NA | `true` |
 
 ### Iteration 4 | Deploy!
 
