@@ -1,31 +1,28 @@
-<div class="container">
-  <div class="row">
-    {{ message }}
-    <div class="col-sm-6 centered-form">
+<form action="/signup" method="post">
+  <p>
+    <label>
+      Username:
+      <input type="text" name="username">
+    </label>
+  </p>
 
-      <form action="/signup" method="post">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" name="username" class="form-control">
-        </div>
+  <p>
+    <label>
+      Email:
+      <input type="text" name="email">
+    </label>
+  </p>
 
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="text" name="email" class="form-control">
-        </div>
+  <p>
+    <label>
+      Password:
+      <input type="password" name="password">
+    </label>
+  </p>
 
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" name="password" class="form-control">
-        </div>
+  {{#if errorMessage}}
+  <div class="error-message">{{errorMessage}}</div>
+  {{/if}}
 
-        {{#if errorMessage}}
-        <div class="error-message">{{errorMessage}}</div>
-        {{/if}}
-
-        <button type="submit">Signup</button>
-      </form>
-      
-    </div>
-  </div>
-</div>
+  <button type="submit">Signup</button>
+</form>
