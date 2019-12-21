@@ -1,0 +1,23 @@
+<h1>Welcome {{user.username}} to IronTumblr</h1>
+
+<ul>
+{{#each posts}}
+<li>
+  <p>
+    <a href="/posts/{{id}}">{{content}}</a>
+  </p>
+</li>
+{{else}}
+no post
+{{/each}}
+</ul>
+
+{{#unless user}}
+<p>
+  <a href="/signup">Signup</a> or <a href="/login">Login</a>
+</p>
+{{else}}
+<p>
+  <a href="/posts/new">New post</a> <a href="/logout">Logout</a>
+</p>
+{{/unless}}
