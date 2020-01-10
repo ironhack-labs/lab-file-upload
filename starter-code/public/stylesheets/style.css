@@ -6,3 +6,18 @@ body {
 a {
   color: #00B7FF;
 }
+
+#boasvindas{
+  display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: center;
+	align-content: stretch;
+
+}
+
+#photoperfil img{
+  width: 20%;
+  height: auto;
+}

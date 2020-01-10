@@ -1,0 +1,11 @@
+<div id="boasvindas">
+<h2>Olá,{{username}}, Bem vindo!</h2>
+</div>
+
+<section class='photoperfil' >
+  {{#each pictures}}
+    <h3>{{ this.name }}</h3>
+    <h2>{{this.creatorID}}</h2>
+    <img src="{{ this.path }}" alt="{{ this.originalName }}" />
+  {{/each}}
+</section>

@@ -1,0 +1,16 @@
+<h1>Cadastre sua foto de perfil!</h1>
+<section id="cadastrophoto">
+  <h2>Upload your photo</h2>
+  <form action="/cadastrophoto" method="post" enctype="multipart/form-data">
+    <input type="text" name="name">
+    <input type="file" name="photo">
+    <input type="submit" value="Save">
+  </form>
+</section>
+
+<section class='photoperfil' >
+  {{#each pictures}}
+    <img src="{{ this.path }}" alt="{{ this.originalName }}" />
+  {{/each}}
+</section>
+
