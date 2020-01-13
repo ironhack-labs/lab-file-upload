@@ -8,9 +8,9 @@ router.get('/login', ensureLoggedOut(), (req, res) => {
 });
 
 router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
-  successRedirect : '/',
-  failureRedirect : '/login',
-  failureFlash : true
+    successRedirect : '/',
+    failureRedirect : '/login',
+    failureFlash : true
 }));
 
 router.get('/signup', ensureLoggedOut(), (req, res) => {
@@ -18,9 +18,9 @@ router.get('/signup', ensureLoggedOut(), (req, res) => {
 });
 
 router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
-  successRedirect : '/',
-  failureRedirect : '/signup',
-  failureFlash : true
+    successRedirect : '/',
+    failureRedirect : '/signup',
+    failureFlash : true
 }));
 
 router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
