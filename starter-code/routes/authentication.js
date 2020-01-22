@@ -26,18 +26,7 @@ router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', 
   failureFlash : true
 }));
 
-router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
-    Picture.find((err, pictures) => {
-        const photouser = pictures.filter((image) => {
-            const userId = req.user._id;
-            const creatorId = image.creatorID;
-            String(userId) ===  String(creatorId)
-        } )
-        console.log(`JJJJJJJJJJJJJ`,photouser)
-        res.render('authentication/profile', {pictures, username:req.user.username})
-      })
-
-});
+router.get('/profile', ensureLoggedIn('/login'), isUserProfilePhoto)
  
 router.get('/logout', ensureLoggedIn('/login'), (req, res) => {
     req.logout();
@@ -62,4 +51,38 @@ router.post('/cadastrophoto', upload.single('photo'), (req, res) => {
         res.redirect('/')
     })
 })
+
+
+
+const isUserProfilePhoto = (req, res, next) => {
+    Picture.find((err, pictures) => {
+        const photouser = pictures.filter((image) => {
+            const userId = req.user._id;
+            const creatorId = image.creatorID;
+             return (String(userId) ===  String(creatorId))         
+        } )
+        res.render('authentication/profile', {photouser, username:req.user.username})
+      })
+}
+
+const filterPictureArray = (userId, picturesArray) => {
+    return picturesArray.filter(image => {
+        creatorID = image.creatorID;
+        return String(userId) === String(creatorID)
+    })
+}
+
+const getPhotos = (model, userId) => {
+    return model.find((err, picturesArr) => {
+        filterPictureArray(userId, picturesArr)
+    }) 
+}
+
+const getPhotosMddlewere = (req, res, next) => {
+    const userId = req.user._id;
+    const photoArr = getPhotos(Picture, userId);
+    res.render('authentication/profile', {})
+}
+
 module.exports = router;
+
