@@ -1,8 +1,8 @@
 <div class="card">
-  <img class="card-img-top" src="{{picPath}}" alt="{{picName}}">
+  <img class="card-img-top" src="{{post.picPath}}" alt="{{post.picName}}">
   <div class="card-body">
-    <h4 class="card-title">{{picName}}</h4>
-    <p class="card-text">{{content}}</p>
+    <h4 class="card-title">{{post.picName}}</h4>
+    <p class="card-text">{{post.content}}</p>
     <br>
     <div class="btn-group" role="group" aria-label="Basic example">
       <a href="/" type="button" class="btn btn-success">Return</a>
@@ -12,7 +12,7 @@
     <h5>Make a Comment</h5>
     <div class="card">
       <div class="card-body">
-        <form action="/comment/{{id}}" method="post">
+        <form action="/comment/{{post._id}}" method="POST" enctype="multipart/form-data">
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text">Content</span>
@@ -24,15 +24,26 @@
             <div class="input-group-prepend">
               <span class="input-group-text">Pic Name</span>
             </div>
-            <input type="text" class="form-control" placeholder="Picture Name">
+            <input type="text" class="form-control" name="imgName" placeholder="Picture Name">
           </div>
           <div class="form-group">
-            <input type="file" name="picpath" accept="image/*" class="form-control">
+            <input type="file" name="imgPath" accept="image/*" class="form-control">
           </div>
-          <a href="/comment/new" type="button" class="btn btn-info btn-block">Comment</a>
+              <button class="btn btn-success" type="submit">Comment</button>
         </form>
       </div>
     </div>
     {{!-- vistas de los comentarios --}}
+    {{#each comments as |comment|}}
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text">
+            {{content}}
+            <br><br>
+            <img width="25%" src="{{imagePath}}" alt="{{imageName}}">
+          </p>
+        </div>
+      </div>
+    {{/each}}
   </div>
 </div>

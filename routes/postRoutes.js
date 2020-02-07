@@ -7,6 +7,7 @@ const {
     editView,
     editPost,
     detailView,
+    commentPost
 } = require('../controllers/post.controller')
 
 router.get('/new', newView)
@@ -24,5 +25,10 @@ router.post(
     )
 
 router.get('/show/:id', detailView)
+
+router.post(
+    '/comment/:id',
+    upload.single('imgPath'), 
+    commentPost)
 
 module.exports = router
