@@ -1,37 +1,32 @@
-const express    = require('express');
-const passport   = require('passport');
-const router     = express.Router();
+const router = require('express').Router()
+const upload = require('../config/cloudinary')
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
-router.get('/login', ensureLoggedOut(), (req, res) => {
-    res.render('authentication/login', { message: req.flash('error')});
-});
+const {
+    loginView,
+    loginPost,
+    signupView,
+    signupPost,
+    profileView,
+    // profilePost,
+    logout
+} =  require('../controllers/auth.controller')
 
-router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
-  successRedirect : '/',
-  failureRedirect : '/login',
-  failureFlash : true
-}));
+router.get('/login', ensureLoggedOut(), loginView)
 
-router.get('/signup', ensureLoggedOut(), (req, res) => {
-    res.render('authentication/signup', { message: req.flash('error')});
-});
+router.post('/login', ensureLoggedOut(), loginPost)
 
-router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
-  successRedirect : '/',
-  failureRedirect : '/signup',
-  failureFlash : true
-}));
+router.get('/signup', ensureLoggedOut(), signupView)
 
-router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
-    res.render('authentication/profile', {
-        user : req.user
-    });
-});
+router.post(
+    '/signup',
+    ensureLoggedOut(),
+    upload.single('imgURL'),
+    signupPost
+)
 
-router.get('/logout', ensureLoggedIn('/login'), (req, res) => {
-    req.logout();
-    res.redirect('/');
-});
+router.get('/profile', ensureLoggedIn('/login'), profileView)
+
+router.get('/logout', ensureLoggedIn('/login'), logout);
 
 module.exports = router;

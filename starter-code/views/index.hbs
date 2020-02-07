@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-  </body>
-</html>
+<h2>{{title}}</h2>
+{{#if user}} 
+<a href="/new"> create new post</a>
+<a href="/profile"> Go to Profile</a>
+<a href="/logout">LogOut</a>
+{{else}}
+<a href="/login">LogIn</a>
+<a href="/signup">SignIn</a>
+{{/if}}
+<div class="card-columns">
+  {{#each posts as |post|}}
+  <div class="card">
+    <img class="card-img-top" src="{{picPath}}" alt="{{picName}}">
+    <div class="card-body">
+      <h4 class="card-title">{{picName}}</h4>
+      <p class="card-text">{{content}}</p>
+      <br>
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <a href="/show/{{_id}}" type="button" class="btn btn-success">Show</a>
+        {{#if user}}
+        <a href="/edit/{{_id}}" type="button" class="btn btn-warning">Edit</a> 
+        {{/if}} 
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</div>
