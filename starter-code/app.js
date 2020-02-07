@@ -4,6 +4,12 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost:27017/tumblr-lab-development', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
 const flash = require('connect-flash');
 const hbs = require('hbs');
