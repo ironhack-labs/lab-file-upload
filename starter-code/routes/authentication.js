@@ -5,6 +5,7 @@ const router     = express.Router();
 const uploadCloud = require('../config/cloudinary.js');
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
+
 router.get('/login', ensureLoggedOut(), (req, res) => {
     res.render('authentication/login', { message: req.flash('error')});
 });

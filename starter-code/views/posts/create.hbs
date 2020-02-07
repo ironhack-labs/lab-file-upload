@@ -1,0 +1,25 @@
+<section id="section-create">
+  <h1>Create new Post</h1>
+  <div class="container" id="fp3">
+  <div class="row" id="fp2">
+  <div class="col-sm-6 centered-form" id="fp1">
+  <form class="form" action="/create" method="POST" enctype="multipart/form-data" id="form-post">
+  
+          <div class="form-group">
+          <label for="picPath">Picture</label><span style="font-size: 1.2rem; color:gray; margin-left:10px">   (Only png or jpg Recomended size max 500x500px)</span>
+          <input required type="file" name="picPath" class="form-control">
+          </div>
+          <div class="form-group">
+          <label for="content">Content</label>
+          <textarea style="display: block;" required rows="4" cols="50" name="content" form="form-post">Write here...</textarea>
+          <h4>by:{{username}}</h4>
+          </div>
+          <button style="margin-top: 10px;" type="submit">Share Post</button>
+          
+          
+  </form>
+  </div>
+  </div>
+  </div>
+
+</section>

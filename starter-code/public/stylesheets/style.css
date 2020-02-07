@@ -37,10 +37,61 @@ flex-direction: column;
   border-color: gray;
 }
 
-#section-home{
+#section-home, #section-create{
   margin-top: 20px;
  display: flex;
  align-items: center;
  justify-content: space-around;
  flex-direction: column;
+}
+
+.form-group, #form-post, #fp1,#fp2,#fp3{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+#section-create h1{
+  margin-bottom: 50px;
+}
+
+.projects_section{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+.card{
+  width: 250px; 
+  height: 250px;
+  margin: 25px; 
+  background-color:beige;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.card img{
+  height: 120px;
+  margin-bottom: 25px;
+}
+.div-cards{
+margin-top: 20px;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: space-around;
+align-items: center;
+}
+.section-detail{
+width: 70%;
+height: 450px;
+background-color: honeydew;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+margin-left: 30px;
+margin-top: 20px;
 }

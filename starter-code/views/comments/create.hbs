@@ -1,0 +1,21 @@
+<section id="section-create">
+  <h1>Create new Comment</h1>
+  <div class="container" id="fp3">
+  <div class="row" id="fp2">
+  <div class="col-sm-6 centered-form" id="fp1">
+  <form class="form" action="/comment/{{_id}}" method="POST" id="form-post">
+  
+          <div class="form-group">
+          <label for="content">Comment</label>
+          <textarea style="display: block;" required rows="4" cols="50" name="content" form="form-post">Write here...</textarea>
+          <h4>by:{{username}}</h4>
+          </div>
+          <button style="margin-top: 10px;" type="submit">Click to Post</button>
+          
+          
+  </form>
+  </div>
+  </div>
+  </div>
+
+</section>

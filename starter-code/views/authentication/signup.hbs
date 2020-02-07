@@ -5,19 +5,19 @@
       <form action="/signup" method="POST" enctype="multipart/form-data">
         <div class="form-group">
           <label for="username">Username</label>
-          <input type="text" name="username" class="form-control">
+          <input required type="text" name="username" class="form-control">
         </div>
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="text" name="email" class="form-control">
+          <input required type="text" name="email" class="form-control">
         </div>
          <div class="form-group">
           <label for="picture">Profile Picture</label><span style="font-size: 1.2rem; color:gray; margin-left:10px">   (Only png or jpg Recomended size max 500x500px)</span>
-          <input type="file" name="picture" class="form-control">
+          <input required type="file" name="picture" class="form-control">
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" name="password" class="form-control">
+          <input required type="password" name="password" class="form-control">
         </div>
 
         <button type="submit">Signup</button>

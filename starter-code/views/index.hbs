@@ -1,7 +1,23 @@
 <section id="section-home">
 <h1>Welcome to IronTumblr</h1>
-<div>
+<div class="div-cards">
   {{#each posts}}
+
+<div class="card">
+  <div class="card-content">
+   <img src="{{picPath}}" alt="">
+  </div>
+  <footer class="card-footer">
+      
+        <a href="/posts/{{_id}}">View More</a>
+      
+    
+  </footer>
+</div>
+
+
+
+
     <div class="post-item">
       <img src="{{this.imgPath}}" alt="">
       <h4>{{this.title}}</h4>
