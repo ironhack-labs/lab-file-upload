@@ -2,7 +2,9 @@ const {model, Schema} = require('mongoose')
 
 const postSchema = Schema({
     content: String,
-    creatorID: Object,
+    creatorID: {
+        
+    },
     picPath: String,
     picName: String,
     comment: Object

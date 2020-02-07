@@ -1,15 +1,19 @@
 <h2>{{title}}</h2>
-{{#if user}}
-<a href="/new"> create new post</a>
-<a href="/profile"> Go to Profile</a>
-<a href="/logout">LogOut</a>
-{{else}}
-<a href="/login">LogIn</a>
-<a href="/signup">SignIn</a>
-{{/if}}
+<br>
+<h4>{{user.username}}</h4>
+<div class="btn-group" role="group">
+  {{#if user}}
+  <a class="btn btn-primary" href="/new"> New post</a>
+  <a class="btn btn-info" href="/profile"> Profile</a>
+  <a class="btn btn-danger" href="/logout">LogOut</a>
+  {{else}}
+  <a class="btn btn-info" href="/login">LogIn</a>
+  <a class="btn btn-primary" href="/signup">SignIn</a>
+  {{/if}}
+</div>
+<br><br>
 <div class="card-columns">
   {{#each posts as |post|}}
-  <br><br><br>
   <div class="card">
     <img class="card-img-top" src="{{picPath}}" alt="{{picName}}">
     <div class="card-body">
