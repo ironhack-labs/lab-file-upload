@@ -1,23 +1,36 @@
-const express = require('express');
-const path = require('path');
-const favicon = require('serve-favicon');
-const logger = require('morgan');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
+require('dotenv').config()
+const express            = require('express');
+const path               = require('path');
+const favicon            = require('serve-favicon');
+const logger             = require('morgan');
+const cookieParser       = require('cookie-parser');
+const bodyParser         = require('body-parser');
+const mongoose           = require('mongoose');
 
-const flash = require('connect-flash');
-const hbs = require('hbs');
+const passport           = require('./config/passport');
+const session            = require('express-session');
+const flash              = require('connect-flash');
+const hbs                = require('hbs')
 
-const userLocals = require('./configs/user-locals');
+mongoose.connect(process.env.DB, { 
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true
+}).then(db => console.log('Conected to ' + db.connections[0].name)).catch(err => console.log(err));
 
 const app = express();
 
-require('./configs/db.config');
-require('./configs/passport.config')(app);
-app.use(userLocals);
-
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true
+}))
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(flash());
 app.use(logger('dev'));
@@ -26,10 +39,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-const index = require('./routes/index.routes');
-const authRoutes = require('./routes/auth.routes');
+const index = require('./routes/index');
+const authRoutes = require('./routes/authentication');
 app.use('/', index);
-app.use('/', authRoutes);
+app.use('/auth', authRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

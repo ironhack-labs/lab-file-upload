@@ -1,1 +1,14 @@
-<h1>Welcome, {{user.username}}! </h1>
+<img src="{{user.photoURL}}" alt="" height="50px" width="auto">
+<div class="container">
+
+Welcome 
+{{user.username}}
+
+<h2>Crear POst</h2>
+<form action="/posts" method="POST" enctype="multipart/form-data" style="display: flex; flex-direction: column;">
+    <input type="file" name="photo" placeholder="Title" required>
+    <input type="title" name="title" placeholder="Content" required>
+    <textarea name="content" rows="10" cols="80" required></textarea>
+    <input type="submit">
+</form>
+</div>

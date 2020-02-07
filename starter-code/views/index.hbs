@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
-
   <body>
     <h1>Welcome to IronTumblr</h1>
+    <h2>Posts</h2>
+      
+    <div class="row">
+    {{#each posts}}
+        <div class="card col-3 m-3" style="width: 18rem;">
+          <img src="{{this.photoURL}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{this.title}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Autor: {{this.author}}</h6>
+            <a href="/post/view/{{this._id}}" class="btn btn-warning w-100">Ver</a>
+          </div>
+        </div>
+    {{/each}}
+    </div>
   </body>
-
 </html>

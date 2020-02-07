@@ -1,0 +1,32 @@
+<h2>Post</h2>
+      
+<div class="row">
+    <div class="card col-8 m-3" style="width: 18rem;">
+        <img src="{{post.photoURL}}" class="card-img-top" alt="...">
+        <div class="card-body">
+        <h6 class="card-title"><b>{{post.title}}</b></h6>
+<footer class="blockquote-footer">Autor <cite title="Source Title">{{post.author}}</cite></footer>
+        <h5 class="card-text" style="font-size: 10pt;">{{post.content}}</h5>
+        </div>
+
+        <p><b>Comentarios</b></p>
+        <div class="row">
+            {{#each comments}}
+            <div class="w-100" style="width: 18rem;">
+                    <div class="card-body">
+                    <h6 class="card-text">{{this.comment}}</h6>
+                    <footer class="blockquote-footer">Autor <cite title="Source Title">{{this.author}}</cite></footer>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        {{#if user}}
+        <div>
+            <form action="/post/addcomment/{{post._id}}" method="POST">
+                <input type="text" name="comment">
+                <input type="submit" value="Agregar comentario">
+            </form>
+        </div>
+        {{/if}}
+    </div>
+</div>
