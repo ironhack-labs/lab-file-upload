@@ -1,22 +1,26 @@
-<div class="container">
-  <div class="row">
-    {{ message }}
-    <div class="col-sm-6 centered-form">
-      <form action="/signup" method="post">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" name="username" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="text" name="email" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" name="password" class="form-control">
-        </div>
-        <button type="submit">Signup</button>
-      </form>
-    </div>
-  </div>
-</div>
+<h1>IronHack Tumbler</h1>
+<h2>Sign up</h2>
+<p>Complete the required fields below:</p>
+<form action="/signup" method="POST" id="form-container" enctype="multipart/form-data">
+  <label>Name</label>
+  <input id="username" type="text" name="username" placeholder="Username">
+  <br><br>
+  <label>Email</label>
+  <input id="email" type="email" name="email" placeholder="name@email.com">
+  <br><br>
+  <label>Password</label>
+  <input id="password" type="password" name="password" placeholder="Password">
+  <br><br>
+  <label for="photoURL">Photo</label>
+  <input type="file" name="photoURL" accept="image/*" />
+  <br><br>
+  {{#if message}}
+  <div class="error-message">{{ message }}</div>
+  {{/if}}
+  <br><br>
+  <button type="submit">Create account</button>
+</form>
+
+<!--<input type="file" name="photoURL" accept="image/*">
+<input type="submit" value="Update photo">-->
+        

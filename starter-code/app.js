@@ -100,7 +100,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
-const authRoutes = require('./routes/authentication');
+const authRoutes = require('./routes/authRouter');
 app.use('/', index);
 app.use('/', authRoutes);
 
