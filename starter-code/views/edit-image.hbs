@@ -1,0 +1,9 @@
+<h2>Edit Image</h2>
+
+    <img class="profile-img" src="{{photoURL}}">
+
+<form action="/edit-image" method="POST" enctype="multipart/form-data">
+  <input type="file" name="photoURL" accept="image/*" placeholder="Select Image"/>
+  <input type="submit" value="Update photo">
+</form>
+

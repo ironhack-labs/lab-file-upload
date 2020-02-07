@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express            = require('express');
 const path               = require('path');
 const favicon            = require('serve-favicon');
@@ -14,8 +16,14 @@ const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const hbs                = require('hbs')
 
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
-
+mongoose
+  .connect('mongodb://localhost/tumblr-lab-development', {useNewUrlParser: true, useUnifiedTopology: true })
+  .then(x => {
+    console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
+  })
+  .catch(err => {
+    console.error('Error connecting to mongo', err)
+  });
 const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -25,7 +33,6 @@ app.use(session({
   secret: 'tumblrlabdev',
   resave: false,
   saveUninitialized: true,
-  store: new MongoStore( { mongooseConnection: mongoose.connection })
 }))
 
 passport.serializeUser((user, cb) => {
@@ -99,10 +106,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-const index = require('./routes/index');
-const authRoutes = require('./routes/authentication');
-app.use('/', index);
-app.use('/', authRoutes);
+const index = require('./routes/index')
+const authRoutes = require('./routes/authentication')
+app.use('/', index)
+app.use('/', authRoutes)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

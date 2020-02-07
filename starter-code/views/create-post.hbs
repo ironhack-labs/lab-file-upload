@@ -1,0 +1,17 @@
+<h2>New Post</h2>
+<form action="/create-post" method="POST" enctype="multipart/form-data">
+<div>
+    <p>Choose Image</p>
+    <input type="file" required accept="image/*" name="postImage" placeholder="image">
+    <input type="text" placeholder="image name" name="imageName" required>
+</div>
+<div>
+    <h5>Title:</h5>
+    <input type="text" required name="postTitle" placeholder="title">
+</div>
+<div>
+    <p>Content</p>
+    <input type="text" required name="postContent" placeholder="content">
+</div>
+  <input type="submit" value="Create">
+</form>

@@ -1,0 +1,19 @@
+<h1>Welcome {{user.username}}</h1>
+<div id="profile-info">
+    <div class="column">
+    <img class="profile-img" src="{{user.photoURL}}">
+    <a href="/edit-image/{{user.id}}">Edit Image</a>
+    </div class="column">
+</div>
+<div>
+    {{#if posts}}
+    <a href="/new-post">Create new post</a>
+    <img src="{{posts.photo}}">
+    <p>{{posts.picName}}</p>
+    <h3>{{posts.title}}</h3>
+    <p>{{posts.content}}</p>
+    {{else}}
+    <h5>There are no posts, create one!</h5>
+    <a href="/new-post">Click here to create one!</a>
+    {{/if}}
+</div>

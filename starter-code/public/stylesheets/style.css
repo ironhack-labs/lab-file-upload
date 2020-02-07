@@ -6,3 +6,20 @@ body {
 a {
   color: #00B7FF;
 }
+
+.profile-img {
+  border-radius: 50%;
+  width: 20vw;
+}
+
+.column{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.profile-info{
+  /* no jalo */
+  display: flex;
+  justify-content: center;
+}
