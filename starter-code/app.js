@@ -14,7 +14,9 @@ const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const hbs                = require('hbs')
 
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development',{
+require('dotenv').config()
+
+mongoose.connect(`mongodb+srv://jaacker25_admin:${process.env.MONGODB_PASSWORD}@tumblr-lab-development-la4eb.mongodb.net/test?retryWrites=true&w=majority`,{
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true

@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-  </body>
-</html>
+<section id="section-home">
+<h1>Welcome to IronTumblr</h1>
+<div>
+  {{#each posts}}
+    <div class="post-item">
+      <img src="{{this.imgPath}}" alt="">
+      <h4>{{this.title}}</h4>
+      <p>{{this.description}}</p>
+    </div>
+  {{else}}
+    <p>There are no post yet! Sign up and share the first one.</p>
+  {{/each}}
+</div>
+  
+</section>

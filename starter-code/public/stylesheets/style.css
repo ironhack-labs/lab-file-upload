@@ -20,3 +20,27 @@ header a{
   margin:15px;
   font-size: 2.5rem;
 }
+
+#section-profile{
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+}
+
+#section-profile img{
+  height:250px;
+}
+
+.new-post{
+  color: gray;
+  border-color: gray;
+}
+
+#section-home{
+  margin-top: 20px;
+ display: flex;
+ align-items: center;
+ justify-content: space-around;
+ flex-direction: column;
+}
