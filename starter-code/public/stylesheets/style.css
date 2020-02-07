@@ -1,8 +1,22 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 0px;
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  font-size: 18px;
+  
 }
 
 a {
   color: #00B7FF;
+  text-decoration: none;
+}
+
+header{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+header a{
+  margin:15px;
+  font-size: 2.5rem;
 }

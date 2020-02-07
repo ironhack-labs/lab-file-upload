@@ -14,7 +14,16 @@ const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const hbs                = require('hbs')
 
-mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
+mongoose.connect('mongodb://localhost:27017/tumblr-lab-development',{
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true
+}).then(x => {
+  console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
+})
+.catch(err => {
+  console.error('Error connecting to mongo', err)
+})
 
 const app = express();
 
@@ -25,7 +34,7 @@ app.use(session({
   secret: 'tumblrlabdev',
   resave: false,
   saveUninitialized: true,
-  store: new MongoStore( { mongooseConnection: mongoose.connection })
+  store: new MongoStore( { mongooseConnection: mongoose.connection },{ useNewUrlParser: true })
 }))
 
 passport.serializeUser((user, cb) => {
