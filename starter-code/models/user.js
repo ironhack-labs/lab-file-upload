@@ -8,7 +8,7 @@ const UserSchema = Schema({
   photoName: String,
   photoURL: {
     type: String,
-    default: 'https://www.simplifai.ai/wp-content/uploads/2019/06/blank-profile-picture-973460_960_720-400x400.png'
+    default: 'https://i.dlpng.com/static/png/1647142-profilepng-512512-profile-png-512_512_preview.png'
   }
 });
 

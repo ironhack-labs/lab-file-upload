@@ -66,7 +66,7 @@ passport.use('local-signup', new LocalStrategy(
     process.nextTick(() => {
         User.findOne({
             'username': username
-        }, (err, user) => {
+        }, async (err, user) => {
             if (err){ return next(err); }
 
             if (user) {
@@ -78,17 +78,19 @@ passport.use('local-signup', new LocalStrategy(
                   email,
                   password
                 } = req.body;
-                const photoUrl = req.file.url;
+                
+                const photoURL = req.file.secure_url;
                 const photoName = req.file.originalname;
+                
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-                const newUser = new User({
+                const newUser = await new User({
                   username,
                   email,
                   password: hashPass,
-                  photoUrl,
-                  photoName
+                  photoName,
+                  photoURL
                 });
-
+                
                 newUser.save((err) => {
                     if (err){ next(null, false, { message: newUser.errors }) }
                     return next(null, newUser);
@@ -109,8 +111,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const postRoutes = require('./routes/post')
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/', postRoutes)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
