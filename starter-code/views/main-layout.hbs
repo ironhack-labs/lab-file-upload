@@ -9,16 +9,6 @@
   </head>
 
   <body>
-    <nav>
-      {{#if user}}
-        <form action="/logout" method="POST">
-          <button>Logout</button>
-        </form>
-      {{else}}
-        <a href="/signup">Signup</a>
-        <a href="/login">Login</a>
-      {{/if}}
-    </nav>
     <div class="main-container">
       {{{body}}}
     </div>

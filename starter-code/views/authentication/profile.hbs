@@ -1,1 +1,23 @@
 <h1>Welcome, {{user.username}}! </h1>
+<h2>{{ user.email}}</h2>
+
+<a href="/logout">Logout</a>
+<a href="/">HOME</a>
+<br>
+
+<img src="{{ user.photoURL }}" alt=Profile Picture"">
+
+<h2>POST</h2>
+<form action="/post" method="POST" enctype="multipart/form-data">
+
+<h4>Titulo</h4>
+<input type="text" name="title" id="">
+<br><br>
+<h5>Content</h5>
+<input type="text" name="content" id="" style="width: 250; height:200">
+<br><br>
+
+<input type="file" name="picPath" id="" accept="image/*">
+<br><br>
+<input type="submit" value="">
+</form>
