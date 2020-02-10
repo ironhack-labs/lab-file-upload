@@ -1,3 +1,5 @@
+//require('dotenv').config()
+
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
@@ -12,12 +14,16 @@ const userLocals = require('./configs/user-locals');
 
 const app = express();
 
+
+
 require('./configs/db.config');
 require('./configs/passport.config')(app);
 app.use(userLocals);
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+
+
 
 app.use(flash());
 app.use(logger('dev'));
@@ -28,8 +34,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index.routes');
 const authRoutes = require('./routes/auth.routes');
+//const index = require('./routes/index');
+//const authRoutes = require('./routes/authentication')
+
 app.use('/', index);
 app.use('/', authRoutes);
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

@@ -1,4 +1,5 @@
 const express = require('express');
+const User = require('../models/User.model')
 const passport = require('passport');
 const router = express.Router();
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
