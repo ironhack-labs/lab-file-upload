@@ -1,1 +1,21 @@
+<a href="/gallery-index">Posts</a>
+
 <h1>Welcome, {{user.username}}! </h1>
+
+<div class="form-group ">
+    <label for="profileImage">Upload your photo</label>
+    <form action="/upload-cloud" method="post" enctype="multipart/form-data">
+        <input type="text" name="name" placeholder="nombre"><br>
+        <input type="file" name="phototoupload" multiple><br>
+        <input type="submit" value="Save">
+    </form>
+</div><br>
+<div class="form-group ">
+    <label for="profileImage">Upload your Profile photo</label>
+    <form action="/upload-profile" method="post" enctype="multipart/form-data">
+        <input type="text" name="name" placeholder="nombre"><br>
+        <input type="file" name="phototoupload" multiple><br>
+        <input type="submit" value="Save">
+    </form>
+</div>
+<img src="{{path}}" alt="profileimage">

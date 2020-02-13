@@ -1,9 +1,11 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const multer = require("multer");
 
 const flash = require('connect-flash');
 const hbs = require('hbs');
@@ -22,14 +24,18 @@ app.set('view engine', 'hbs');
 app.use(flash());
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index.routes');
 const authRoutes = require('./routes/auth.routes');
+const fileRoutes = require('./routes/files.routes');
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/', fileRoutes)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
