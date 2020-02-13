@@ -1,0 +1,17 @@
+<div class="col-md-3">
+    <figure>
+        <img src="{{path}}" alt="{{description}}">
+        <figcaption>
+            <h6>{{name}}</h6>
+            <p>{{description}}
+                {{#each comments}}
+                <p>{{this}}</p>
+                {{/each}}
+        </figcaption>
+    </figure>
+    <form action="/details/{{_id}}" method="post">
+        <input type="text" name="comments" placeholder="Incluye tu comentario gracioso">
+        <input type="submit" value="Comment"><br>
+    </form>
+
+</div>
