@@ -1,6 +1,7 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/User.model');
+const Picture = require('../models/Picture.model');
 const bcrypt = require('bcryptjs');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
@@ -19,6 +20,7 @@ passport.use(
   new LocalStrategy((username, password, next) => {
     let user;
     User.findOne({ username })
+      .populate('image')
       .then(doc => {
         user = doc;
         console.log('user in login: ', user);
@@ -31,8 +33,16 @@ passport.use(
         return bcrypt.compare(password, user.password);
       })
       .then(isPasswordCorrect => {
-        if (isPasswordCorrect) next(null, user);
-        else next(null, false, { message: 'Incorrect password' });
+        if (isPasswordCorrect) {
+          next(null, user);
+          // Picture.findOne({ user: user._id })
+          //   .then(savedPic => {
+          //     console.log('Output for: savedPic', savedPic);
+          //     if (savedPic) next(null, user, savedPic);
+          //     return next(null, user);
+          //   })
+          //   .catch(err => console.log(err));
+        } else next(null, false, { message: 'Incorrect password' });
       })
       .catch(error => next(error));
   })
@@ -40,21 +50,24 @@ passport.use(
 
 passport.use(
   'local-signup',
-  new LocalStrategy({ passReqToCallback: true }, (req, username, password, next) => {
-    const { email } = req.body;
+  new LocalStrategy(
+    { passReqToCallback: true },
+    (req, username, password, next) => {
+      const { email } = req.body;
 
-    bcrypt
-      .hash(password, 10)
-      .then(hash => {
-        return User.create({
-          username,
-          email,
-          password: hash
-        });
-      })
-      .then(user => next(null, user))
-      .catch(err => next(err));
-  })
+      bcrypt
+        .hash(password, 10)
+        .then(hash => {
+          return User.create({
+            username,
+            email,
+            password: hash,
+          });
+        })
+        .then(user => next(null, user))
+        .catch(err => next(err));
+    }
+  )
 );
 
 module.exports = app => {
@@ -63,7 +76,7 @@ module.exports = app => {
       secret: 'tumblrlabdev',
       resave: true,
       saveUninitialized: true,
-      store: new MongoStore({ mongooseConnection: mongoose.connection })
+      store: new MongoStore({ mongooseConnection: mongoose.connection }),
     })
   );
 

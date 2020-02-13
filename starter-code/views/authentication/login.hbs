@@ -15,7 +15,9 @@
 
         <button type="submit">Login</button>
       </form>
+      {{#if message}}
       <div class="error-message">{{ message }}</div>
+      {{/if}}
     </div>
   </div>
 </div>
