@@ -1,0 +1,22 @@
+<h2>Edit Post</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <form action="/posts/edit/{{_id}}" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="content">Content:</label>
+                    <input type="text" class="form-control" id="content" name="content" value="{{content}}">
+                </div>
+                <div class="form-group">
+                    <label for="picName">Picture Name:</label>
+                    <input type="text" class="form-control" id="picName" name="picName" value="{{picName}}">
+                </div>
+                <div class="form-group">
+                    <label for="picPath">Picture:</label>
+                    <input type="file" class="form-control" id="picPath" name="phototoupload">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

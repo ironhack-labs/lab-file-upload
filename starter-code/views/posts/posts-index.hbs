@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2>Posts</h2>
+        </div>
+    </div>
+    <div class="row">
+        <a href="/posts/new">Add new post</a>
+        <div class="col-12 d-flex">
+            {{#each posts}}
+            <div class="card col-3">
+                <img src="{{picPath}}" class="card-img-top" alt="{{picName}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{creatorId.username}}</h5>
+                    <p class="card-text">{{content}}</p>
+                </div>
+                <a href="/posts/details/{{_id}}">Detalles</a>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

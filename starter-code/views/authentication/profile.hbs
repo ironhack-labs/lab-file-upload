@@ -1,1 +1,9 @@
 <h1>Welcome, {{user.username}}! </h1>
+
+<section>
+    <h2>Update your profile pic</h2>
+    <form action="/files/upload-local" method="post" enctype="multipart/form-data">
+        <input type="file" name="phototoupload" multiple><br>
+        <input type="submit" value="Save"><br>
+    </form>
+</section>

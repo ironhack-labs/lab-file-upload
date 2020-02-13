@@ -28,8 +28,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index.routes');
 const authRoutes = require('./routes/auth.routes');
+const filesRoutes = require('./routes/files.routes');
+const postsRoutes = require('./routes/posts.routes');
+const commentsRoutes = require('./routes/comments.routes');
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/files', filesRoutes);
+app.use('/posts', postsRoutes);
+app.use('/comments', commentsRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

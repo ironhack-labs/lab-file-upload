@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 d-flex">
+            <div class="card col-12">
+                <img src="{{post.picPath}}" class="card-img-top" alt="{{post.picName}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{post.creatorId.username}}</h5>
+                    <p class="card-text">{{post.content}}</p>
+                </div>
+                <a href="/posts/edit/{{post._id}}">Editar</a>
+                <a href="/posts/delete/{{post._id}}">Eliminar</a>
+                <h2>New Comment</h2>
+                <form action="/comments/new/{{post._id}}" method="post" enctype="multipart/form-data">
+                    <textarea type="text" name="content"></textarea><br>
+                    <input type="file" name="phototoupload"><br>
+                    <input type="submit" value="Save"><br>
+                </form>
+                {{#each comments}}
+                <p>User: {{authorId}}</p>
+                <img src="{{imagePath}}" alt="{{imageName}}">
+                <p>Comment: {{content}}</p>
+                <hr>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
