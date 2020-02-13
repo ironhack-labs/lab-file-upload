@@ -49,7 +49,8 @@ passport.use(
         return User.create({
           username,
           email,
-          password: hash
+          password: hash,
+          path: req.file.url
         });
       })
       .then(user => next(null, user))

@@ -3,6 +3,10 @@ const passport = require('passport');
 const router = express.Router();
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
+
+const uploadCloud = require('../configs/cloudinary.configs')
+
+
 router.get('/login', ensureLoggedOut(), (req, res) => {
   res.render('authentication/login', { message: req.flash('error') });
 });
@@ -23,7 +27,7 @@ router.get('/signup', ensureLoggedOut(), (req, res) => {
 
 router.post(
   '/signup',
-  ensureLoggedOut(),
+  [ensureLoggedOut(),uploadCloud.single('photoProfile')],
   passport.authenticate('local-signup', {
     successRedirect: '/profile',
     failureRedirect: '/signup',
@@ -31,7 +35,7 @@ router.post(
   })
 );
 
-router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
+router.get('/profile', ensureLoggedIn('/login') , (req, res) => {
   res.render('authentication/profile', {
     user: req.user
   });

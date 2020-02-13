@@ -1,0 +1,18 @@
+<h1>Post</h1>
+<br>
+<div class="container">
+    <div class="row">
+        {{#each allPosts}}
+        <div class="col-md-4">
+
+<figure class="list">
+    <img src="{{this.picPath}}" alt="">
+</figure>
+
+<br>
+<a href="/post/details/{{this._id}}">Leer post</a>
+<p>{{this.creatorId.username}}</p>
+        </div>
+        {{/each}}
+    </div>
+</div>
