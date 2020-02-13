@@ -1,0 +1,25 @@
+<h2>Post details</h2>
+<div class="row">
+    <div class="col-4">
+        <img src="{{post.picPath}}" alt="{{post.picName}}">
+        <p>Description: {{post.content}}</p>
+        <hr>
+        <p>Post by: {{user.username}}</p>
+        <br>
+        <section>
+            {{#each comment}}
+
+            {{comment}}
+            {{/each}}
+
+        </section>
+        <section>
+            <h2>Comment</h2>
+            <form action="/posts/details/{{post.id}}" method="post" enctype="multipart/form-data">
+                <input type="text" name="content" placeholder="Escribe tu comentario"><br>
+                <input type="file" name="phototoupload" multiple><br>
+                <input type="submit" value="Save"><br>
+            </form>
+        </section>
+    </div>
+</div>

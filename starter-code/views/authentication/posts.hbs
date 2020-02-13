@@ -1,0 +1,10 @@
+<h2>Posts</h2>
+<div class="row">
+    {{#each allPosts}}
+    <div class="col-4">
+        <img src="{{picPath}}" alt="{{picName}}">
+        <p>Description: {{content}}</p>
+        <a href="/posts/details/{{_id}}">Detalles</a>
+    </div>
+    {{/each}}
+</div>
