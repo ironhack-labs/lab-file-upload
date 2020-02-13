@@ -6,3 +6,11 @@ body {
 a {
   color: #00B7FF;
 }
+
+.card{
+  margin: 50px 0;
+}
+
+.card-img-top{
+  width: 100%;
+}

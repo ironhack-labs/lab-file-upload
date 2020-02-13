@@ -1,0 +1,28 @@
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{post.picPath}}" alt="{{post.picName}}">
+    <div class="card-body">
+        <h5 class="card-title">{{post.picName}}</h5>
+        <p class="card-text">{{post.content}}</p>
+        <a href="/" class="btn btn-primary">Go back</a>
+    </div>
+</div>
+<br><br><br><br>
+<h5>Comentarios</h5>
+{{#each comment}}
+
+<p>{{content}}</p>
+<img style="width: 18rem;" class="card-img-top" src="{{imagePath}}" alt="{{imageName}}">
+<p>{{imageName}}</p>
+
+{{/each}}
+
+<br><br><br><br>
+<section>
+    <h2>Publica tu comentario</h2>
+    <form action="/post-details/{{post._id}}" method="post" enctype="multipart/form-data">
+        <textarea type="text" name="content" placeholder="Escribe aquí"></textarea><br>
+        <input type="text" name="imageName" placeholder="Nombre de la foto"><br>
+        <input type="file" name="phototoupload"><br>
+        <input type="submit" value="Save"><br>
+    </form>
+</section>
