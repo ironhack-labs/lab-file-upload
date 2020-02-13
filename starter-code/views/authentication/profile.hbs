@@ -1,1 +1,15 @@
-<h1>Welcome, {{user.username}}! </h1>
+<h1>Bienvenido, {{user.username}}! </h1>
+<section>
+    <h2>Sube tu imagen de perfil ;)</h2>
+    <form action="/profile/profile-img" method="post" enctype="multipart/form-data">
+        <input type="file" name="phototoupload" multiple><br>
+        <input type="submit" value="Save"><br>
+    </form>
+</section><br><br><br>
+<section>
+    <h2>Comparte tu imagen con nosotros :)</h2>
+    <form action="/profile/create" method="post" enctype="multipart/form-data">
+        <input type="file" name="phototoupload" multiple><br>
+        <input type="submit" value="Save"><br>
+    </form>
+</section>

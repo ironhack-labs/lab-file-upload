@@ -1,4 +1,6 @@
-module.exports = (req, res, next) => {
-  res.locals.user = req.user;
-  next();
-};
+module.exports = app => {
+  app.use((req, res, next) => {
+    res.locals.user = req.user
+    next()
+  })
+}
