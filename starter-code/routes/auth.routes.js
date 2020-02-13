@@ -3,6 +3,14 @@ const passport = require('passport');
 const router = express.Router();
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
+// Multer setup
+const multer = require('multer')
+const upload = multer({ dest: './public/uploads/' })
+
+
+// Cloudinary
+const uploadCloud = require('../configs/cloudinary.config')
+
 router.get('/login', ensureLoggedOut(), (req, res) => {
   res.render('authentication/login', { message: req.flash('error') });
 });
@@ -23,7 +31,7 @@ router.get('/signup', ensureLoggedOut(), (req, res) => {
 
 router.post(
   '/signup',
-  ensureLoggedOut(),
+  [ensureLoggedOut(), uploadCloud.single('photoupload')],
   passport.authenticate('local-signup', {
     successRedirect: '/profile',
     failureRedirect: '/signup',

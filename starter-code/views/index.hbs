@@ -8,6 +8,14 @@
 
   <body>
     <h1>Welcome to IronTumblr</h1>
+    <div class="container">
+      {{#each allPost}}
+        <img src="{{picPath}}" alt="{{picName}}">
+        <span>Nombre de usuario: {{picName}}</span>
+        <p>Post: {{content}}</p>
+        <a href="/post/comment">Crear comentario</a>
+      {{/each}}
+    </div>
   </body>
 
 </html>
