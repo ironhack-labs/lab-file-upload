@@ -1,1 +1,7 @@
 <h1>Welcome, {{user.username}}! </h1>
+
+<form action="/photo/add:id" method="post" enctype="multipart/form-data">
+  <label>Picture</label>
+  <input type="file" name="photo">
+  <input type="submit" value="SAVE">
+</form>
