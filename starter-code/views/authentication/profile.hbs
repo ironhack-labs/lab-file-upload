@@ -1,1 +1,13 @@
 <h1>Welcome, {{user.username}}! </h1>
+
+<a href="/" style="margin: 20px 0; display: block;">See all the movies</a>
+
+<form action="/photo/add" method="post" enctype="multipart/form-data">
+
+  <label>Upload your photo</label>
+  <input type="file" name="photo">
+
+  <input type="submit" value="SAVE">
+</form>
+
+<div><img src="{{user.imgPath}}" alt="profile image" id="photo"></div>
