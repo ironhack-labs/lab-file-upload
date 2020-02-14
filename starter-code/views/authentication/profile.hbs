@@ -1,12 +1,9 @@
 <h1>Welcome, {{user.username}}! </h1>
 
-{{#if savedPic}}
+<img id="user-image" src="{{user.path}}" alt="{{user.imageName}}">
+{{#if user.path}}
 <hr>
-<img id="user-image" src="{{savedPic.imageUrl}}" alt="{{savedPic.name}}">
+<a href="/profile/photo-upload">Update</a>
 {{else}}
-<h4>Upload your profile picture</h4>
-<form action="/profile" method="post" enctype="multipart/form-data">
-    <input type="file" name="image">
-    <button>Save</button>
-</form>
+<a href="/profile/photo-upload">Upload Photo</a>
 {{/if}}

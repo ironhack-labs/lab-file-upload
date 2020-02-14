@@ -5,10 +5,8 @@ const UserSchema = new Schema({
   username: String,
   email: String,
   password: String,
-  image: {
-    type: Schema.Types.ObjectId,
-    ref: 'Picture',
-  },
+  path: String,
+  imageName: String,
 });
 
 module.exports = model('User', UserSchema);

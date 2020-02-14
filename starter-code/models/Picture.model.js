@@ -3,9 +3,9 @@ const { Schema, model } = mongoose;
 
 const picSchema = new Schema(
   {
-    name: String,
+    pictureName: String,
     imageUrl: String,
-    user: { type: Schema.Types.ObjectId, ref: 'User' },
+    owner: { type: Schema.Types.ObjectId, ref: 'User' },
   },
   {
     timestamps: true,
