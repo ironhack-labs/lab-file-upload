@@ -33,12 +33,13 @@ router.post(
 router.get('/profile/update', ensureLoggedIn('login'), (req, res, next) => {
   User.findById(req.user._id)
     .then(foundOne => {
-      const { firstName, lastName, username, email } = foundOne;
+      const { firstName, lastName, username, email, _id } = foundOne;
       res.render('users/user-profile-update', {
         firstName,
         lastName,
         username,
         email,
+        _id,
       });
     })
     .catch(err => console.log(err));
@@ -46,7 +47,7 @@ router.get('/profile/update', ensureLoggedIn('login'), (req, res, next) => {
 //POST update user profile
 router.post('/profile/update', (req, res, next) => {
   // console.log('req.url: ', req.file.url);
-  const user = req.user;
+  const { user_id } = req.query;
   const {
     username,
     firstName,
@@ -56,36 +57,52 @@ router.post('/profile/update', (req, res, next) => {
     password1,
     password2,
   } = req.body;
-  // console.log({ body: newPic, file: req.file });
-  bcrypt
-    .compare(password, user.password)
-    .then(isMatch => {
-      if (!isMatch)
-        res.render('users/photo-upload-form', {
-          message: 'Incorrect password!',
-        });
-      if (password1 !== password2)
-        res.render('users/photo-upload-form', {
-          message: 'New passwords not match!',
-        });
 
-      bcrypt.hash(password1, 10).then(hashPassword => {
-        User.findByIdAndUpdate(user._id, {
-          username: username !== '' ? username : user.username,
-          firstName: firstName !== '' ? firstName : user.firstName,
-          lastName: lastName !== '' ? lastName : user.lastName,
-          email: email !== '' ? email : user.email,
-          password: hashPassword,
-          path: user.path,
-        })
-          .then(() => {
-            // res.redirect('back');
-            res.render('users/user-profile-update', {
-              success: 'Thanks!Successfully updated!',
+  if (password === '' || password1 === '' || password2 === '') {
+    res.render('users/photo-upload-form', {
+      message: 'All inputs are required!',
+    });
+    return;
+  }
+
+  User.findById(user_id)
+    .then(foundOne => {
+      // console.log({ body: newPic, file: req.file });
+      bcrypt
+        .compare(password, foundOne.password)
+        .then(isMatch => {
+          if (!isMatch) {
+            res.render('users/photo-upload-form', {
+              message: 'Incorrect password!',
             });
-          })
-          .catch(err => next(err));
-      });
+            return;
+          }
+          if (password1 !== password2) {
+            res.render('users/photo-upload-form', {
+              message: 'Passwords not match!',
+            });
+            return;
+          }
+
+          bcrypt.hash(password1, 10).then(hashPassword => {
+            User.findByIdAndUpdate(user._id, {
+              username: username !== '' ? username : user.username,
+              firstName: firstName !== '' ? firstName : user.firstName,
+              lastName: lastName !== '' ? lastName : user.lastName,
+              email: email !== '' ? email : user.email,
+              password: hashPassword,
+              path: user.path,
+            })
+              .then(() => {
+                // res.redirect('back');
+                res.render('users/user-profile-update', {
+                  success: 'Thanks!Successfully updated!',
+                });
+              })
+              .catch(err => next(err));
+          });
+        })
+        .catch(err => next(err));
     })
     .catch(err => next(err));
 });

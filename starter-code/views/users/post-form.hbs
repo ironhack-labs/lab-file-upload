@@ -1,7 +1,11 @@
-<h4>Publish your photos</h4>
-<form action="/profile/post" method="post" enctype="multipart/form-data">
-    <input type="file" name="photo">
-    <input type="text" name="picName" placeholder="name your picture">
-    <textarea name="content" id="" cols="30" rows="10"></textarea>
-    <button>Save</button>
-</form>
+{{!-- <div class="jumbotron"> --}}
+<div class="form col-md-6 m-auto">
+    <h4>Publish your photos</h4>
+    <form action="/profile/post" method="post" enctype="multipart/form-data">
+        <input class="mb-0 mt-2" type="file" name="photo">
+        <input class="mb-0 mt-2" type="text" name="picName" placeholder="name your picture">
+        <textarea class="mb-0 mt-2" name="content" id="" cols="31" rows="10"></textarea>
+        <button>Save</button>
+    </form>
+</div>
+{{!-- </div> --}}

@@ -1,12 +1,27 @@
-<h1>Welcome, {{user.firstName}}! </h1>
+<div id="main-profile">
+    <div class="left-div profile-boxes">
+        <h1>Welcome, {{user.firstName}}! </h1>
 
-<img class="user-image" src="{{user.path}}" alt="{{user.imageName}}">
-{{#if user.path}}
-<a href="/profile/photo-upload">Edit Photo</a><br>
-<a href="/profile/update">Edit Profile</a><br>
-<hr>
-{{else}}
-<hr>
-<a href="/profile/photo-upload">Upload Photo</a><br>
-{{/if}}
-<a href="/profile/post">Post Photos</a>
+        <img class="user-image" src="{{user.path}}" alt="{{user.imageName}}">
+        <a class="btn btn-secondary mb-0 mt-2" href="/profile/photo-upload">Upload Photo</a>
+        <a class="btn btn-secondary mb-0 mt-2" href="/profile/update">Edit Profile</a>
+
+    </div>
+    <div class="center-div profile-boxes">
+
+        {{#if posts}}
+        <div class="row-users">
+            {{#each posts}}
+            <div class="user-box">
+                <img class="user-image" src="{{this.picPath}}" alt="{{this.picName}}">
+                <p>{{this.picName}}</p>
+                <a href="/post-details?post_id={{this._id}}">Read more</a>
+            </div>
+            {{/each}}
+        </div>
+        {{/if }}
+    </div>
+    <div class="right-div profile-boxes">
+
+    </div>
+</div>

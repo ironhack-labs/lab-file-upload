@@ -1,13 +1,13 @@
-<h2>Profile update</h2>
 <div class="container">
+    <h2 class="text-center">Profile update</h2>
     <div class="row">
         {{!-- {{ message }} --}}
-        <div class="col-sm-6 centered-form">
+        <div class="col-md-6 m-auto">
 
             <div class="error-message">{{ message }}</div>
             <div class="success-message">{{ success }}</div>
 
-            <form action="/profile/update" method="post">
+            <form action="/profile/update?user_id={{_id}}" method="post">
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" name="username" value="{{username}}" class="form-control">
@@ -42,7 +42,7 @@
                     <input type="password" name="password2" class="form-control" placeholder="**********">
                 </div>
 
-                <button type="submit">Save</button>
+                <button class="col-md-12 m-auto" type="submit">Save</button>
             </form>
 
         </div>

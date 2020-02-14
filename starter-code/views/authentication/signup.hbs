@@ -1,32 +1,37 @@
-<div class="container">
-  <div class="row">
-    {{!-- {{ message }} --}}
-    <div class="col-sm-6 centered-form">
-      <form action="/signup" method="post">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" name="username" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="firstName">First Name</label>
-          <input type="text" name="firstName" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="lastName">Last Name</label>
-          <input type="text" name="lastName" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" name="email" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" name="password" class="form-control" placeholder="**********">
-        </div>
-        <button type="submit">Signup</button>
-      </form>
+{{!-- <div class="jumbotron mt-4"> --}}
 
-      <div class="error-message">{{ message }}</div>
-    </div>
-  </div>
+<div class="form col-md-6 m-auto">
+  <form action="/signup" method="post">
+    <h1><i class="fas fa-user-plus mr-3" style="color:#00b7ff;"></i>Sign up</h1>
+
+    <label class="mb-0 mt-2" for="username">Username</label>
+    <input type="text" name="username" class="form-control">
+
+
+    <label class="mb-0 mt-2" for="firstName">First Name</label>
+    <input type="text" name="firstName" class="form-control">
+
+
+    <label class="mb-0 mt-2" for="lastName">Last Name</label>
+    <input type="text" name="lastName" class="form-control">
+
+
+    <label class="mb-0 mt-2" for="email">Email</label>
+    <input type="email" name="email" class="form-control">
+
+
+    <label class="mb-0 mt-2" for="password">Password</label>
+    <input type="password" name="password" class="form-control" placeholder="**********">
+
+    <button class="btn btn-primary mt-3 mb-2" type="submit">Signup</button>
+
+    <p>
+      Already have an account?
+      <a href="/login">Login</a>
+    </p>
+  </form>
+
+  <div class="error-message">{{ message }}</div>
 </div>
+
+{{!-- </div> --}}

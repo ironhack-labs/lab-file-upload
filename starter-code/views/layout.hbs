@@ -4,21 +4,31 @@
 <head>
   <meta charset="utf-8">
   <title>IronTumblr</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://bootswatch.com/4/journal/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
 <body>
   <nav>
     {{#if user}}
-    <a href="/">Main | </a>
-    <a href="/profile">Profile</a><br><br>
+    <div>
+      <a href="/">Main | </a>
+      <a href="/profile">Profile | </a>
+      <a href="/profile/post">PostPhotos</a>
+    </div>
     <form action="/logout" method="POST">
       <button>Logout</button>
     </form>
     {{else}}
-    <a href="/login">Login | </a>
-    <a href="/signup">Signup</a>
+    <div>
+      <a href="/"></a>
+    </div>
+    <div>
+      <a class="btn btn-secondary mt-3 mb-2" href="/login">Login</a>
+      <a class="btn btn-secondary mt-3 mb-2" href="/signup">Signup</a>
+    </div>
     {{/if}}
   </nav>
   <div class="main-container">
