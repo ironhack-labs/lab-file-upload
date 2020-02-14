@@ -8,6 +8,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-left: 20px;
 }
 
 a {
@@ -30,18 +31,24 @@ a {
   border-radius: 50%;
 }
 
+/* profile page or hbs */
 .row-users {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 .user-box {
-  width: 120px;
+  padding: 15px;
+  text-align: center;
+}
+.post-image {
+  width: 200px;
   height: 200px;
-  overflow: scroll;
 }
 .image-details {
   width: 300px;
 }
-/* profile page or hbs */
 
 #main-profile {
   width: 100vw;
@@ -50,7 +57,7 @@ a {
   flex-wrap: wrap;
 }
 .profile-boxes {
-  width: 30%;
+  /* width: 30%; */
 }
 
 .left-div {
@@ -58,22 +65,36 @@ a {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  padding: 15px;
+  width: 125px;
 }
 .center-div {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  flex-wrap: wrap;
+  padding: 110px 0 0 80px;
+}
+.right-div {
 }
 @media (max-width: 500px) {
   .profile-boxes {
-    width: 100%;
+    /* width: 100%; */
   }
   .left-div {
     display: flex;
-    /* flex-direction: column; */
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .center-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px 0 0 0px;
   }
 }
 /* login and signup forms */

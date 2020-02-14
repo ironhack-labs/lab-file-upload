@@ -4,7 +4,7 @@
 
         <img class="user-image" src="{{user.path}}" alt="{{user.imageName}}">
         <a class="btn btn-secondary mb-0 mt-2" href="/profile/photo-upload">Upload Photo</a>
-        <a class="btn btn-secondary mb-0 mt-2" href="/profile/update">Edit Profile</a>
+        <a class="btn btn-secondary mb-0 mt-2" href="/profile/update">Update Profile</a>
 
     </div>
     <div class="center-div profile-boxes">
@@ -13,7 +13,7 @@
         <div class="row-users">
             {{#each posts}}
             <div class="user-box">
-                <img class="user-image" src="{{this.picPath}}" alt="{{this.picName}}">
+                <img class="post-image" src="{{this.picPath}}" alt="{{this.picName}}">
                 <p>{{this.picName}}</p>
                 <a href="/post-details?post_id={{this._id}}">Read more</a>
             </div>
