@@ -31,7 +31,9 @@ const index = require('./routes/index.routes');
 const authRoutes = require('./routes/auth.routes');
 app.use('/', index);
 app.use('/', authRoutes);
-app.use('/', require('./routes/file-routes'));
+app.use('/', require('./routes/user-profile-routes'));
+app.use('/', require('./routes/user-post-routes'));
+app.use('/', require('./routes/user-comments-routes'));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

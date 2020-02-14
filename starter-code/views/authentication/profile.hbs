@@ -1,9 +1,11 @@
-<h1>Welcome, {{user.username}}! </h1>
+<h1>Welcome, {{user.firstName}}! </h1>
 
-<img id="user-image" src="{{user.path}}" alt="{{user.imageName}}">
+<img class="user-image" src="{{user.path}}" alt="{{user.imageName}}">
 {{#if user.path}}
+<a href="/profile/photo-upload">Update Profile pic</a><br>
 <hr>
-<a href="/profile/photo-upload">Update</a>
 {{else}}
-<a href="/profile/photo-upload">Upload Photo</a>
+<hr>
+<a href="/profile/photo-upload">Upload Photo</a><br>
 {{/if}}
+<a href="/profile/post">Post Photos</a>

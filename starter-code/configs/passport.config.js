@@ -1,7 +1,7 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/User.model');
-const Picture = require('../models/Picture.model');
+const Picture = require('../models/Post.model');
 const bcrypt = require('bcryptjs');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
@@ -17,54 +17,64 @@ passport.deserializeUser((id, callback) => {
 
 passport.use(
   'local-login',
-  new LocalStrategy((username, password, next) => {
-    let user;
-    User.findOne({ username })
-      .populate('image')
-      .then(doc => {
-        user = doc;
-        console.log('user in login: ', user);
-        // here we will get either null (if username doesn't exist) or user object
+  new LocalStrategy(
+    {
+      passReqToCallback: true,
+      usernameField: 'email',
+      // passwordField: 'password',
+    },
+    (req, email, password, next) => {
+      let user;
+      User.findOne({ email })
+        .then(doc => {
+          user = doc;
+          console.log('user in login: ', user);
+          // here we will get either null (if username doesn't exist) or user object
 
-        // if we get null
-        if (!user) next(null, false, { message: 'Incorrect username' });
+          // if we get null
+          if (!user) next(null, false, { message: 'Incorrect email' });
 
-        // if we get user object
-        return bcrypt.compare(password, user.password);
-      })
-      .then(isPasswordCorrect => {
-        if (isPasswordCorrect) {
-          next(null, user);
-          // Picture.findOne({ user: user._id })
-          //   .then(savedPic => {
-          //     console.log('Output for: savedPic', savedPic);
-          //     if (savedPic) next(null, user, savedPic);
-          //     return next(null, user);
-          //   })
-          //   .catch(err => console.log(err));
-        } else next(null, false, { message: 'Incorrect password' });
-      })
-      .catch(error => next(error));
-  })
+          // if we get user object
+          return bcrypt.compare(password, user.password);
+        })
+        .then(isPasswordCorrect => {
+          isPasswordCorrect
+            ? next(null, user)
+            : next(null, false, { message: 'Incorrect password' });
+        })
+        .catch(error => next(error));
+    }
+  )
 );
 
 passport.use(
   'local-signup',
   new LocalStrategy(
-    { passReqToCallback: true },
+    {
+      passReqToCallback: true,
+    },
     (req, username, password, next) => {
-      const { email } = req.body;
-
-      bcrypt
-        .hash(password, 10)
-        .then(hash => {
-          return User.create({
-            username,
-            email,
-            password: hash,
-          });
+      const { firstName, lastName, email } = req.body;
+      User.findOne({ email })
+        .then(foundUser => {
+          if (foundUser) {
+            next(null, false, { message: 'This email already registered' });
+            return;
+          }
+          bcrypt
+            .hash(password, 10)
+            .then(hash => {
+              return User.create({
+                username,
+                firstName,
+                lastName,
+                email,
+                password: hash,
+              });
+            })
+            .then(user => next(null, user))
+            .catch(err => next(err));
         })
-        .then(user => next(null, user))
         .catch(err => next(err));
     }
   )

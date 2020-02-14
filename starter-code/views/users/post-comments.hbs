@@ -1,0 +1,17 @@
+{{#if message}}
+<br>
+<a href="/">Home</a>
+<h2>{{message}}</h2>
+{{else}}
+<br>
+<a href="/">Home</a>
+<h2>Comments: </h2>
+{{#each allComments}}
+<p> <a href="/profile-details?user_id={{this.authorId}}">{{this.username}}</a>: {{this.content}}</p>
+{{/each}}
+{{/if}}
+
+{{!--     content,
+          username: authorId.username,
+          authorId: authorId._id,
+          userImage: authorId.path, --}}
