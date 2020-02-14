@@ -7,11 +7,14 @@
         <p>Post by: {{user.username}}</p>
         <br>
         <section>
-            {{#each comment}}
-
-            {{comment}}
-            {{/each}}
-
+            <div class="row">
+                {{#each comment}}
+                <div class="col-7">
+                    <p>{{user.username}}: {{content}}</p>
+                    <hr>
+                </div>
+                {{/each}}
+            </div>
         </section>
         <section>
             <h2>Comment</h2>
