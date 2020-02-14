@@ -7,9 +7,11 @@ a {
   color: #00b7ff;
 }
 .error-message {
-  color: red;
+  color: #f00;
 }
-
+.success-message {
+  color: rgb(6, 172, 6);
+}
 .user-image {
   width: 100px;
   border-radius: 3px;

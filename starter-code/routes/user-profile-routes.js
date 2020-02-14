@@ -1,33 +1,96 @@
 const express = require('express');
 const passport = require('passport');
+const bcrypt = require('bcryptjs');
 const router = express.Router();
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 const uploadCloud = require('../configs/cloudinary.config');
 const Post = require('../models/Post.model');
 const User = require('../models/User.model');
 
-//photo upload page
-router.get(
-  '/profile/photo-upload',
-  ensureLoggedIn('login'),
-  (req, res, next) => {
-    res.render('users/photo-upload-form');
-  }
+//Get photo upload form
+router.get('/profile/photo-upload', ensureLoggedIn('login'), (req, res, next) =>
+  res.render('users/photo-upload-form')
 );
-//upload photo
+
+//POST uploaded photo
 router.post(
   '/profile/photo-upload',
   uploadCloud.single('image'),
   (req, res, next) => {
-    // console.log({ body: newPic, file: req.file });
+    // console.log('req.url: ', req.file.url);
     User.findByIdAndUpdate(req.user._id, {
       path: req.file.url,
     })
-      .then(() => res.redirect('/profile'))
+      .then(() => {
+        res.redirect('/profile');
+      })
       .catch(err => next(err));
   }
 );
 
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=--=-=
+//Get user profile update form
+router.get('/profile/update', ensureLoggedIn('login'), (req, res, next) => {
+  User.findById(req.user._id)
+    .then(foundOne => {
+      const { firstName, lastName, username, email } = foundOne;
+      res.render('users/user-profile-update', {
+        firstName,
+        lastName,
+        username,
+        email,
+      });
+    })
+    .catch(err => console.log(err));
+});
+//POST update user profile
+router.post('/profile/update', (req, res, next) => {
+  // console.log('req.url: ', req.file.url);
+  const user = req.user;
+  const {
+    username,
+    firstName,
+    lastName,
+    email,
+    password,
+    password1,
+    password2,
+  } = req.body;
+  // console.log({ body: newPic, file: req.file });
+  bcrypt
+    .compare(password, user.password)
+    .then(isMatch => {
+      if (!isMatch)
+        res.render('users/photo-upload-form', {
+          message: 'Incorrect password!',
+        });
+      if (password1 !== password2)
+        res.render('users/photo-upload-form', {
+          message: 'New passwords not match!',
+        });
+
+      bcrypt.hash(password1, 10).then(hashPassword => {
+        User.findByIdAndUpdate(user._id, {
+          username: username !== '' ? username : user.username,
+          firstName: firstName !== '' ? firstName : user.firstName,
+          lastName: lastName !== '' ? lastName : user.lastName,
+          email: email !== '' ? email : user.email,
+          password: hashPassword,
+          path: user.path,
+        })
+          .then(() => {
+            // res.redirect('back');
+            res.render('users/user-profile-update', {
+              success: 'Thanks!Successfully updated!',
+            });
+          })
+          .catch(err => next(err));
+      });
+    })
+    .catch(err => next(err));
+});
+
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=--=-=
 //user details from comments and post details pages
 router.get('/profile-details', (req, res, next) => {
   const { user_id } = req.query;
@@ -39,8 +102,18 @@ router.get('/profile-details', (req, res, next) => {
         return;
       }
 
-      const { username, email, path, imageName } = foundOne;
+      const {
+        firstName,
+        lastName,
+        username,
+        email,
+        path,
+        imageName,
+      } = foundOne;
+
       res.render('users/user-details', {
+        firstName,
+        lastName,
         username,
         email,
         path,
