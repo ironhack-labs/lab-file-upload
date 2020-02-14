@@ -63,9 +63,6 @@ router.get('/post-details/comments', (req, res, next) => {
   Comment.find({})
     .populate('authorId')
     .then(comments => {
-      if (!comments)
-        res.render('users/post-comments', { message: "There's no comments" });
-
       const allComments = comments
         .filter(comment => {
           return comment.postId == post_id; // == because one is string and the other is a number, they are 2 diff types
@@ -79,6 +76,9 @@ router.get('/post-details/comments', (req, res, next) => {
             userImage: authorId.path,
           };
         });
+      if (allComments.length === 0)
+        res.render('users/post-comments', { message: "There's no comments" });
+
       //   console.log('filtered comments: ', allComments);
       res.render('users/post-comments', { allComments });
     })
