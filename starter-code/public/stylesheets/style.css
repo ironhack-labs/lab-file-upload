@@ -15,6 +15,7 @@ a {
 }
 .error-message {
   color: #f00;
+  text-align: center;
 }
 .success-message {
   color: rgb(6, 172, 6);
