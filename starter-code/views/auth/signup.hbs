@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    {{ message }}
+    <div class="col-sm-6 centered-form">
+      <form action="/signup" method="post">
+        <div class="form-group">
+          <label for="username-input">Username</label>
+          <input id="username-input" type="text" name="username" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="email-input">Email</label>
+          <input id="email-input" type="text" name="email" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="password-input">Password</label>
+          <input id="password-input" type="password" name="password" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="image-input">Profile Pic</label>
+          <input id="image-input" type="file" name="image" class="form-control">
+        </div>
+        <button type="submit">Signup</button>
+      </form>
+
+      <div class="error-message">{{ message }}</div>
+    </div>
+  </div>
+</div>

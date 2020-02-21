@@ -1,0 +1,23 @@
+<h1>Welcome, {{user.username}}! </h1>
+{{!-- <img src={{user.imgPath}} alt="image"> --}}
+
+<a id="create-post" href="/post">Create A Post</a>
+
+<div>
+    {{#if posts}}
+        {{#each posts}}
+        <div>
+            <div>
+                <img class="post-image" src={{this.picPath}} alt={{this.picName}}>
+            </div>
+            <div>
+                <h3>{{this.picName}}</h3>
+                <p><a href="/post-details?post_id={{this._id}}">See Details</a></p>
+            </div>
+        </div>
+        {{/each}}
+        
+        {{else}}
+        <h3>There are no posts!</h3>
+    {{/if}}
+</div>

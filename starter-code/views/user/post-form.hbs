@@ -1,0 +1,16 @@
+<div class="post-form">
+    <h1>Create A Post</h1>
+
+    <form action="/create-post" method="POST" enctype="multipart/form-data">
+        <label for="image-input">Upload Photo</label>
+        <input id="image-input" type="file" name="image">
+
+        <label for="image-name">Photo Name</label>
+        <input id="image-name" type="text" name="picName">
+
+        <label for="content-input"></label>
+        <textarea name="content" id="content-input" cols="8" rows="4" placeholder="Add caption here..."></textarea>
+
+        <button type="submit">POST</button>
+    </form>
+</div>

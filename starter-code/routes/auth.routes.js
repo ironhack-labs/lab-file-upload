@@ -2,9 +2,10 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+const Post = require('../models/Post.model');
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
-  res.render('authentication/login', { message: req.flash('error') });
+  res.render('auth/login', { message: req.flash('error') });
 });
 
 router.post(
@@ -18,7 +19,7 @@ router.post(
 );
 
 router.get('/signup', ensureLoggedOut(), (req, res) => {
-  res.render('authentication/signup', { message: req.flash('error') });
+  res.render('auth/signup', { message: req.flash('error') });
 });
 
 router.post(
@@ -32,9 +33,11 @@ router.post(
 );
 
 router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
-  res.render('authentication/profile', {
-    user: req.user
-  });
+  Post.find()
+  .then(posts => {
+    res.render('auth/profile', { posts: posts });
+  })
+  .catch(err => next(err));
 });
 
 router.post('/logout', ensureLoggedIn('/login'), (req, res) => {

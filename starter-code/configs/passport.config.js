@@ -49,7 +49,7 @@ passport.use(
         return User.create({
           username,
           email,
-          password: hash
+          password: hash,
         });
       })
       .then(user => next(null, user))

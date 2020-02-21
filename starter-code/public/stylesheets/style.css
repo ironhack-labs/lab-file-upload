@@ -6,3 +6,27 @@ body {
 a {
   color: #00B7FF;
 }
+
+#create-post {
+  padding: 5px 10px;
+  background-color: darkcyan;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.post-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.post-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-image {
+  width: 500px;
+  height: 500px;
+}
