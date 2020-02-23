@@ -1,8 +1,30 @@
 body {
-  padding: 50px;
+  background-image: url(https://66.media.tumblr.com/b6e00ea52b8ae5d5af379f614c55cba3/d2f06d7a4582c33e-96/s2048x3072/dca44aa5d6de36bd6940d3cf09c2d42bc9e8c03f.jpg);
+  background-size: cover;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
 }
-
 a {
   color: #00B7FF;
+  height: 40px;
+  width: 100px;
+  text-align: center;
+  background-color: white;
+  border-radius: 3px;
+  margin: 10px;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
 }

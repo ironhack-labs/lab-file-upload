@@ -2,7 +2,7 @@
   <div class="row">
     {{ message }}
     <div class="col-sm-6 centered-form">
-      <form action="/signup" method="post">
+      <form action="/signup" method="post" enctype="multipart/form-data">
         <div class="form-group">
           <label for="username">Username</label>
           <input type="text" name="username" class="form-control">
@@ -15,10 +15,12 @@
           <label for="password">Password</label>
           <input type="password" name="password" class="form-control">
         </div>
+        <div>
+          <label for="photoURL">Photo</label>
+          <input type="file" name="photoURL" accept="image/*" />
+        </div>
         <button type="submit">Signup</button>
       </form>
-
-      <div class="error-message">{{ message }}</div>
     </div>
   </div>
 </div>
