@@ -11,7 +11,7 @@ cloudinary.config({
 
 const storage = cloudinaryStorage({
   cloudinary,
-  folder: 'lab-tumblr-profile', // The name of the folder in cloudinary
+  folder: 'tumblr-thingy', // The name of the folder in cloudinary
   allowedFormats: ['jpg', 'png', 'gif'],
   filename: (req, file, cb) => cb(null, file.originalname) // The file on cloudinary would have the same name as the original file name
 })
