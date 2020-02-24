@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 mongoose
-  .connect('mongodb://localhost/tumblr-lab-dev', {
+  .connect('mongodb://localhost/tumblrDB', {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true

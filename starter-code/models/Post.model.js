@@ -5,7 +5,10 @@ const postSchema = new Schema(
     title: String,
     content: String,
     photoURL: String,
-    author: String
+    author: {
+     type: Object.Type.Schema, 
+     ref: "User"
+    }
   },
   {
     timestamps: true,
