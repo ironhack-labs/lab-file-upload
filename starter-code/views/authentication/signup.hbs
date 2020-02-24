@@ -3,7 +3,7 @@
     {{ message }}
     <div class="col-sm-6 centered-form">
 
-      <form action="/auth/signup" method="post" enctype="multipart/form-data">
+      <form action="/signup" method="post" enctype="multipart/form-data">
       <input required type="file" name="photo" id="">
         <div class="form-group">
           <label for="username">Username</label>
@@ -17,7 +17,7 @@
           <label for="password">Password</label>
           <input  required type="password" name="password" class="form-control">
         </div>
-        <button type="submit">Signup</button>
+        <button type="submit" >Signup</button>
       </form>
 
       <div class="error-message">{{ message }}</div>

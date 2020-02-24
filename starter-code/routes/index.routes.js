@@ -7,7 +7,7 @@ const upload = require("../configs/cloudinary")
 /* GET home page. */
 router.get('/', async (req, res, next) => {
     const posts = await Post.find().sort({createdAt: -1})
-    res.render('index', { title: 'Express - Generated with IronGenerator', posts });
+    res.render('index', { title: 'Tumblr lab', posts });
   })
   .get('/post/view/:id', async (req,res) => {
     const _id = req.params.id
