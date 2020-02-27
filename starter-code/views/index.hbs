@@ -8,6 +8,18 @@
 
   <body>
     <h1>Welcome to IronTumblr</h1>
+     <div>
+    {{#each posts}}
+        <div >
+          <img src="{{this.photoURL}}" width=" 200px" height="200px">
+          <div>
+            <h5>{{this.title}}</h5>
+            <h6>Autor: {{this.author}}</h6>
+            <a href="/post/view/{{this._id}}">View</a>
+          </div>
+        </div>
+    {{/each}}
+    </div>
   </body>
 
 </html>
