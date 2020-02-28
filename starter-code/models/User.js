@@ -1,15 +1,13 @@
-const mongoose = require('mongoose');
-const { Schema, model } = mongoose;
+const {model, Schema} = require('mongoose')
+const PLM = require('passport-local-mongoose')
 
-const UserSchema = new Schema({
+const userSchema = Schema({
   username: String,
-  email: String,
-  password: String,
-  photoName: String,
-  photoURL: {
-    type: String,
-    default: 'https://i.dlpng.com/static/png/1647142-profilepng-512512-profile-png-512_512_preview.png'
-  }
+  email:    String,
+  imgURL: String
 });
 
-module.exports = model('User', UserSchema);
+userSchema.plugin(PLM, {usernameField: 'username'})
+
+module.exports = model('User', userSchema)
+

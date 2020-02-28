@@ -1,0 +1,15 @@
+<form action="/edit/{{_id}}" method="POST"  enctype="multipart/form-data">
+    <label>New Picture</label>
+    <input type="file" name="imgPost" accept="image/*">
+    <br><br>
+    <label>New Name Picture</label>
+    <input type="text" name="picName" value="{{picName}}">
+    <br><br>
+    <label>Content</label>
+    <input type="text" name="content" value="{{content}}">
+    <br><br>
+    <div>
+    <button type="submit">Update Post</button>
+    <a href="/">Return</a>
+    </div>
+</form>
