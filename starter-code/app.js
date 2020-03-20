@@ -4,9 +4,12 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const mongoose     = require('mongoose');
+const hbs          = require('hbs');
+
+hbs.registerPartials(__dirname + "/views/partials");
 
 const flash = require('connect-flash');
-const hbs = require('hbs');
 
 const userLocals = require('./configs/user-locals');
 
@@ -28,8 +31,28 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index.routes');
 const authRoutes = require('./routes/auth.routes');
+const postRoutes = require('./routes/posts.routes');
+
+
+///SESSION
+
+app.use("/post", protect)
+app.use("/create", protect)
+
+
+function protect(req, res, next){
+  console.log(req.session)
+  if(req.session.passport.user){
+    next();
+  }
+  else {
+    res.redirect("/login")
+  }
+}
+
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/', postRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -48,5 +71,7 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 module.exports = app;

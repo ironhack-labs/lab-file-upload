@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="card mb-3">
+      <img src="{{post.imgPath}}" class="card-img-top" width="100px" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{post.title}}</h5>
+        <p>{{post.content}}</p>
+       <p>{{post.creatorId.username}}</p>
+
+      </div>
+      <div class="card-body">
+      <div class="row justify-content-around">
+        <a href="/post/{{post.id}}/update" class="btn btn-warning col-md-5 ">Update post</a>
+        <a href="/post/{{post.id}}/delete" class="btn btn-danger col-md-5">Delete post </a>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>

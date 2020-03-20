@@ -1,13 +1,15 @@
 <div class="container">
-  <div class="row">
-    {{ message }}
+  <div class="row justify-content-center">
+    {{!-- {{ message }} --}}
     <div class="col-sm-6 centered-form">
-      <form action="/signup" method="post">
+      <form action="/signup" method="post" enctype="multipart/form-data">
+      <h2>Signup</h2>
+
         <div class="form-group">
-          <label for="username">Username</label>
+          <label for="username" required>Username</label>
           <input type="text" name="username" class="form-control">
         </div>
-        <div class="form-group">
+        <div class="form-group"> 
           <label for="email">Email</label>
           <input type="text" name="email" class="form-control">
         </div>
@@ -15,7 +17,11 @@
           <label for="password">Password</label>
           <input type="password" name="password" class="form-control">
         </div>
-        <button type="submit">Signup</button>
+        <div class="form-group">
+          <label for="photo">Upload your profile picture</label>
+          <input type="file" name="photo">
+        </div>
+        <button type="submit" class="btn btn-success">Signup</button>
       </form>
 
       <div class="error-message">{{ message }}</div>

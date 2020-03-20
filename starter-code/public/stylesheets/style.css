@@ -1,8 +1,40 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url("/images/jason-leung-Xaanw0s0pMk-unsplash.jpg");
+  background-repeat: no-repeat; 
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 a {
   color: #00B7FF;
+}
+
+
+h1, h2{
+  margin: 20px;
+  text-align: center;
+  color: white
+}
+
+.btn-warning, .btn-danger{
+  margin: 20px 0;
+  padding: 10px;
+}
+
+.btn-primary{
+  margin-top: 20px;
+}
+
+label{
+  color:white
+}
+
+#profile img{
+  max-height: 350px
+}
+
+nav{
+  margin-bottom: 20px;
 }

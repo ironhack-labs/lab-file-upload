@@ -1,0 +1,27 @@
+<div id="form" class="container">
+
+  <h1>Update a post</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <form action="/post/{{post.id}}/update" method="post">
+
+        <div class="form-group col-md-6">
+          <label>Title</label>
+          <input type="text" name="title" class="form-control" value="{{post.title}}" required="required">
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="exampleFormControlSelect1">Text</label>
+          <input type="text" name="content" class="form-control" value="{{post.content}}" required="required"></p>
+        </div>
+
+        {{!-- <div class="form-group col-md-6">
+          <label for="photo">Upload a new photo</label>
+          <input type="file" name="photo" required="required">
+        </div> --}}
+
+        <button type="submit" class="btn btn-warning btn-lg btn-block">Update Post</button>
+      </form>
+    </div>
+  </div>
+</div>
