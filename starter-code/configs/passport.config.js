@@ -42,6 +42,7 @@ passport.use(
   'local-signup',
   new LocalStrategy({ passReqToCallback: true }, (req, username, password, next) => {
     const { email } = req.body;
+    const { path:profileimage } = req.file;  //https://hacks.mozilla.org/2015/05/es6-in-depth-destructuring/
 
     bcrypt
       .hash(password, 10)
@@ -49,7 +50,8 @@ passport.use(
         return User.create({
           username,
           email,
-          password: hash
+          password: hash,
+          profileimage //sh
         });
       })
       .then(user => next(null, user))

@@ -26,11 +26,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(express.static(path.join(__dirname, 'uploads'))); //
+
 const index = require('./routes/index.routes');
 const authRoutes = require('./routes/auth.routes');
+const postRoutes = require('./routes/post.routes');
 app.use('/', index);
 app.use('/', authRoutes);
-
+app.use('/posts', postRoutes);
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');
