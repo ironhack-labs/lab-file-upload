@@ -1,0 +1,11 @@
+<section>
+    <h2>Subida de imagen ({{dest}})</h2>
+      <form action="/profile/create-post/{{picPath}}" method="post" enctype="multipart/form-data">
+        <textarea name="content" class="text" cols="50" rows ="10" placeholder="Add your content"></textarea> <br> <br> 
+        <input type="text" name="imageName" placeholder="Image Name"><br><br>
+        <input class="btn btn-sm btn-light" type="file" name="imageFile"><br><br>
+        <input class="btn btn-md btn-dark" type="submit" value="Post it">
+    </form>
+</section>
+
+

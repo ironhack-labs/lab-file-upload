@@ -6,8 +6,20 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
 
-  <body>
+  <img>
     <h1>Welcome to IronTumblr</h1>
+
+
+
+    
+    {{#each allPosts}}
+      <p>{{content}}</p>
+      <small>{{creatorId}}</small>
+      <img src="{{picPath}}" alt="{{picName}}">
+      {{/each}}
+
+
+
   </body>
 
 </html>

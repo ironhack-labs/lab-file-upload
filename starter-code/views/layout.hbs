@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <title>IronTumblr</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/style.css">
   </head>
 
@@ -12,18 +12,16 @@
     <nav>
       {{#if user}}
         <form action="/logout" method="POST">
-          <button>Logout</button>
+          <button class="btn btn-sm btn-danger">Logout</button>
         </form>
       {{else}}
-        <a href="/signup">Signup</a>
-        <a href="/login">Login</a>
+        <a class="btn btn-sm btn-dark" href="/signup" >Signup</a>
+        <a class="btn btn-sm btn-dark" href="/login">Login</a>
       {{/if}}
     </nav>
     <div class="main-container">
       {{{body}}}
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </body>
 
 </html>
