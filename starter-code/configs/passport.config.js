@@ -6,6 +6,8 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const mongoose = require('mongoose');
 
+
+
 passport.serializeUser((user, callback) => callback(null, user._id));
 
 passport.deserializeUser((id, callback) => {
@@ -42,6 +44,8 @@ passport.use(
   'local-signup',
   new LocalStrategy({ passReqToCallback: true }, (req, username, password, next) => {
     const { email } = req.body;
+    console.log(req.file.filename);
+    const profilePic = `/uploads/profilePics/${req.file.filename}`
 
     bcrypt
       .hash(password, 10)
@@ -49,7 +53,8 @@ passport.use(
         return User.create({
           username,
           email,
-          password: hash
+          password: hash,
+          profilePic
         });
       })
       .then(user => next(null, user))

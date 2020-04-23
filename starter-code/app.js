@@ -26,6 +26,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.locals.title = 'IronTumblr'
+
 const index = require('./routes/index.routes');
 const authRoutes = require('./routes/auth.routes');
 app.use('/', index);
