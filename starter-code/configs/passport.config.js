@@ -47,6 +47,8 @@ passport.use(
 
       console.log(req.file)
 
+      avatarPath = `./uploads/${req.file.filename}`
+
       bcrypt
         .hash(password, 10)
         .then((hash) => {
@@ -54,7 +56,7 @@ passport.use(
             username,
             email,
             password: hash,
-            avatar: req.file.path,
+            avatar: avatarPath,
           })
         })
         .then((user) => next(null, user))
