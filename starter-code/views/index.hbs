@@ -10,4 +10,12 @@
     <h1>Welcome to IronTumblr</h1>
   </body>
 
+  <div class="container">
+    {{#each allPost}}
+    <img src="{{picPath}}" alt="Profile image">
+    <h3>Nombre de usuario {{picName}}</h3>
+    <p>Post {{content}}</p>
+    {{/each}}
+  </div>
+
 </html>

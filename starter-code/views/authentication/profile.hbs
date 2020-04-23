@@ -1,1 +1,13 @@
-<h1>Welcome, {{user.username}}! </h1>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md">
+            <h1>Bienvenid@, {{user.username}}! </h1>
+        </div>
+        <div class="col-md">
+            <img src="{{user.picture}}" alt="Profile picture">
+        </div>
+        <div>
+           <a href="/post"><button class="btn btn-info btn-lg">Crea tu post</button></a>
+        </div>
+    </div>
+</div>

@@ -31,6 +31,7 @@ const authRoutes = require('./routes/auth.routes');
 app.use('/', index);
 app.use('/', authRoutes);
 
+
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');

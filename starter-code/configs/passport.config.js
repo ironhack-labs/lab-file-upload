@@ -5,6 +5,9 @@ const bcrypt = require('bcryptjs');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const mongoose = require('mongoose');
+const multer = require('multer')
+const upload = multer({dest: './public/uploads/'})
+
 
 passport.serializeUser((user, callback) => callback(null, user._id));
 
@@ -42,14 +45,15 @@ passport.use(
   'local-signup',
   new LocalStrategy({ passReqToCallback: true }, (req, username, password, next) => {
     const { email } = req.body;
-
+    
     bcrypt
       .hash(password, 10)
       .then(hash => {
         return User.create({
           username,
           email,
-          password: hash
+          password: hash,
+          picture: `/uploads/${req.file.filename}`
         });
       })
       .then(user => next(null, user))
