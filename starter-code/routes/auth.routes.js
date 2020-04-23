@@ -2,6 +2,8 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+const multer = require('multer')
+const uploadLocal = multer({ dest: './public/uploads/' })
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
   res.render('authentication/login', { message: req.flash('error') });
@@ -23,6 +25,7 @@ router.get('/signup', ensureLoggedOut(), (req, res) => {
 
 router.post(
   '/signup',
+  uploadLocal.single('imageFile'),
   ensureLoggedOut(),
   passport.authenticate('local-signup', {
     successRedirect: '/profile',
@@ -31,11 +34,14 @@ router.post(
   })
 );
 
+
 router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
   res.render('authentication/profile', {
     user: req.user
   });
 });
+
+
 
 router.post('/logout', ensureLoggedIn('/login'), (req, res) => {
   req.logout();
