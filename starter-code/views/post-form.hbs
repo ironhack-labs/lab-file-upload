@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 centered-form">
+
+            <form action="/create" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="content">Nuevo post</label>
+                    <input type="text" name="content" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="picName">Imagen</label>
+                    <input type="file" name="picName" class="form-control">
+                </div>
+                <button type="submit">Crear Post</button>
+            </form>
+            <div class="error-message">{{ message }}</div>
+        </div>
+    </div>
+</div>
