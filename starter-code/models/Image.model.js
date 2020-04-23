@@ -5,7 +5,6 @@ const imageSchema = new Schema(
   {
     name: String,
     path: String,
-    originalName: String,
   },
   {
     timestamps: { createdAt: true, updatedAt: true },
