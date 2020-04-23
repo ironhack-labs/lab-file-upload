@@ -8,6 +8,21 @@
 
   <body>
     <h1>Welcome to IronTumblr</h1>
-  </body>
 
+<div class="row justify-content-center">
+  {{#each allPost}}
+  <div class="col-md-4">
+    <div class="card" style="width: 18rem;">
+      <img src="{{picName}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">By: {{creatorId.username}}</h5>
+        <p class="card-text">{{content}}</p>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</div>
+
+
+  </body>
 </html>

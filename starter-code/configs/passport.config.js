@@ -49,7 +49,8 @@ passport.use(
         return User.create({
           username,
           email,
-          password: hash
+          password: hash,
+          profileImage: `/uploads/${req.file.filename}`
         });
       })
       .then(user => next(null, user))
