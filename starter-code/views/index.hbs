@@ -1,13 +1,18 @@
-<!DOCTYPE html>
-<html>
+<h1>Welcome to IronTumblr</h1>
 
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
+<div class="row justify-content-center">
 
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-  </body>
+  {{#each allPosts}}
+  <div class="col-md-3">
+    <div class="card" style="width: 18rem;">
+      <img src="{{picPath}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">By: {{creatorId.username}}</h5>
+        <p class="card-text">{{content}}</p>
+        <a href="/surprise" class="btn btn-primary">Ver detalle</a>
+      </div>
+    </div>
+  </div>
+  {{/each}}
 
-</html>
+</div>

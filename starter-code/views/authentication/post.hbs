@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        {{ message }}
+        <div class="col-sm-6 centered-form">
+
+            <form action="/post-comment" method="post" enctype="multipart/form-data">
+
+                <div class="form-group">
+                    <label for="email">Comentario</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" name="content" rows="3"></textarea>
+                </div>
+
+                <div class="custom-file">
+                    <input type="text" name="imageName" placeholder="Nombre de imagen" /><br /><br />
+                    <input type="file" class="custom-file-input" id="customFileLangHTML" name="picPath" />
+                </div>
+                <button type="submit">Signup</button>
+
+            </form>
+
+            <div class="error-message">{{ message }}</div>
+        </div>
+    </div>
+</div>
