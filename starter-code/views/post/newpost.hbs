@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row">
+        {{ message }}
+        <div class="col-sm-6 centered-form">
+            <form action="/newpost" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" name="title" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="picture">Picture</label>
+                    <input type="file" name="picture" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="pictureName">Picture name</label>
+                    <input type="text" name="pictureName" class="form-control">
+                </div>
+
+                <button type="submit">Create post</button>
+            </form>
+
+            <div class="error-message">{{ message }}</div>
+        </div>
+    </div>
+</div>

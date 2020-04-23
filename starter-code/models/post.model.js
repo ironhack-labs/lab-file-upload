@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const postSchema = Schema({
-    content: { type: String, require: true },
+const postSchema = new Schema({
+    content: String,
     creatorId: { type: Schema.Types.ObjectId, ref: 'User' },
-    picPath: { type: String, require: true },
-    picName: { type: String, require: true }
+    picPath: String,
+    picName: String
 });
 
 const Post = mongoose.model('Post', postSchema);

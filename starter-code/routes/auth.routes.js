@@ -42,7 +42,6 @@ router.get('/profile', ensureLoggedIn('/login'), (req, res) => {
 });
 
 
-
 router.post('/logout', ensureLoggedIn('/login'), (req, res) => {
   req.logout();
   res.redirect('/');

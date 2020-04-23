@@ -1,3 +1,12 @@
 <h1>Welcome, {{user.username}}! </h1>
 
 <img src="{{user.picture}}" alt="fotito">
+
+{{#each allPosts}}
+<div>
+    <h3>{{content}}</h3>
+    <img src="{{picPath}}" alt="{{picName}}">
+</div>
+{{/each}}
+
+<a href="/newpost">CREATE NEW POST</a>
