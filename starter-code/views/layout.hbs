@@ -10,7 +10,10 @@
 
   <body>
     <nav>
+      <a href="/posts">All Posts</a>
+      <a href="/posts/create">Create Post</a>
       {{#if user}}
+         <a href="/profile">Mi Perfil</a>
         <form action="/logout" method="POST">
           <button>Logout</button>
         </form>
