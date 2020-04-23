@@ -41,7 +41,7 @@ passport.use(
 passport.use(
   'local-signup',
   new LocalStrategy({ passReqToCallback: true }, (req, username, password, next) => {
-    const { email } = req.body;
+    const { email } = req.body
 
     bcrypt
       .hash(password, 10)
@@ -49,7 +49,8 @@ passport.use(
         return User.create({
           username,
           email,
-          password: hash
+          password: hash,
+          image: `/uploads/${req.file.filename}`
         });
       })
       .then(user => next(null, user))
