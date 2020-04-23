@@ -42,11 +42,12 @@ passport.use(
   'local-signup',
   new LocalStrategy({ passReqToCallback: true }, (req, username, password, next) => {
     const { email } = req.body;
-
+    const { filename } = req.file
     bcrypt
       .hash(password, 10)
       .then(hash => {
         return User.create({
+          photoURL: filename,
           username,
           email,
           password: hash

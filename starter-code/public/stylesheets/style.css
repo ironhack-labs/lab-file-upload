@@ -2,7 +2,36 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+h1{margin-top: 20px;
+margin-bottom: 20px;}
 
-a {
-  color: #00B7FF;
+
+.photo {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}    input{
+  padding: 5px}  
+  
+  
+#create{background-color: black;
+color: white;
+display: block;
+margin: auto 0;
+width: 100px;}
+
+#card1{
+  object-fit: cover;
+  height: 300px;
+}
+
+#card2{
+  margin: 15px;
+}
+
+#buttonIndex{
+  display: flex;
+}button{margin: 10px;}
+
+#createPost{
+  align-items: center;
+  
 }

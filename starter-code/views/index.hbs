@@ -1,13 +1,18 @@
-<!DOCTYPE html>
-<html>
+<h1>Express | IronTumblr</h1>
+<hr>
+<div class="container">
 
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-  </body>
+  <div class="row">
+    {{#each allPost}}
+    <div class="col-4">
+      <div class="card" id="card2" style="width: 18rem;">
+        <img class="card-img-top" id="card1" src="{{picPath}}" alt="picture">
+        <a href="/details/{{_id}}" class="btn btn-primary">see more</a>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</div>
+</body>
 
 </html>
