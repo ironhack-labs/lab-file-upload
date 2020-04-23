@@ -1,0 +1,19 @@
+<h2>Make a New Post</h2>
+
+<div class="container">
+    <div class="row">
+        {{ message }}
+        <div class="col-sm-6 centered-form">
+            <form action="/post" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="content">Write a Post</label>
+                    <input type="text" name="content" class="form-control">
+                </div>
+                
+                <button type="submit">Send Post!</button>
+            </form>
+
+            <div class="error-message">{{ message }}</div>
+        </div>
+    </div>
+</div>

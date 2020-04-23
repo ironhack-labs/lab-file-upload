@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
+<head>
     <meta charset="utf-8">
     <title>IronTumblr</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/stylesheets/style.css">
-  </head>
+</head>
 
-  <body>
+<body>
     <nav>
-      {{#if user}}
+        {{#if user}}
         <form action="/logout" method="POST">
-          <button>Logout</button>
+            <button>Logout</button>
         </form>
-      {{else}}
+        <a href="/post">Create a Post</a>
+        {{else}}
         <a href="/signup">Signup</a>
         <a href="/login">Login</a>
-      {{/if}}
+        {{/if}}
     </nav>
     <div class="main-container">
-      {{{body}}}
+        {{{body}}}
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  </body>
+</body>
 
 </html>
