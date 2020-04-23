@@ -4,7 +4,16 @@ const router = express.Router()
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login')
 
 const multer = require('multer')
-const upload = multer({ dest: './public/uploads/' })
+const mime = require('mime')
+
+const storage = multer.diskStorage({
+  destination: './public/uploads/',
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '.' + mime.getExtension(file.mimetype))
+  },
+})
+
+const upload = multer({ storage })
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
   res.render('authentication/login', { message: req.flash('error') })
