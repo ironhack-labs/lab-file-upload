@@ -8,8 +8,21 @@
     <div class="col-md-5">
         <h6>created by: {{creatorId.username}}</h6>
         <p>{{content}}</p>
+        <h5>Comments:</h5>
+        {{#each comments}}
+        <article class="comment">
+            <p>{{content}}</p>
+            {{#if imagePath}}
+            <figure>
+                <img src="{{imagePath}}" alt="{{imageName}}">
+            </figure>
+            {{/if}}
+        </article>
+        {{/each}}
+
     </div>
     <div class="col-3">
+        <a href="/comment/{{_id}}" class="btn btn-dark">Comment</a>
         <a href="/" class="btn btn-dark">Go back</a>
     </div>
 </div>

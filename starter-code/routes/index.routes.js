@@ -3,6 +3,7 @@ const router = express.Router()
 
 const multer = require('multer')
 const uploadLocal = multer({ dest: './public/uploads/posts' })
+const uploadCommentLocal = multer({ dest: './public/uploads/posts/comments' })
 const Post = require('../models/Post.model')
 const User = require('../models/User.model');
 
@@ -32,6 +33,37 @@ router.get('/post/:postId', (req, res) => {
         .populate('creatorId')
         .then(foundPost => {
             res.render('posts/details', foundPost)
+        })
+        .catch(error => next(new Error(error)))
+})
+
+router.get('/comment/:postId', ensureLoggedIn(), (req, res, next) => {
+    Post.findById(req.params.postId)
+        .then(foundPost => res.render('posts/comment', foundPost))
+        .catch(error => next(new Error(error)))
+})
+
+router.post('/comment/:postId', ensureLoggedIn(), uploadCommentLocal.single('imageFile'), (req, res, next) => {
+    Post.findOne({ _id: req.params.postId })
+        .then(foundPost => {
+
+            const comments = foundPost.comments
+
+            const newComment = {
+                content: req.body.content,
+                authorId: req.user._id,
+                imagePath: '',
+                imageName: req.body.imageName
+            }
+            if (req.file) {
+                newComment.imagePath = `/uploads/posts/comments/${req.file.filename}`
+            }
+
+            foundPost.comments.push(newComment)
+
+            Post.findByIdAndUpdate({ _id: foundPost._id }, { comments: foundPost.comments }, { new: true })
+                .then(updatedPost => res.redirect(`/post/${updatedPost._id}`))
+                .catch(error => next(new Error(error)))
         })
         .catch(error => next(new Error(error)))
 })

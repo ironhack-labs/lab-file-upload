@@ -63,3 +63,21 @@ h3{
 .post-details img{
   width: 100%;
 }
+
+.comment{
+  border: 1px solid grey;
+  padding:5px;
+  margin-bottom: 10px;
+}
+
+.comment figure{
+  padding: 10px;
+  text-align: center;
+}
+
+.comment img{
+width: 70%;
+  height: 150;
+  object-fit: cover;
+  object-position: top;
+}

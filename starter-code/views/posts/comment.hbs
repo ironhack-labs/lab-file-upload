@@ -1,0 +1,19 @@
+<div class="container">
+    <h2>Comment</h2>
+    <div class="row">
+        <div class="col-sm-6 centered-form">
+            <form action="/comment/{{_id}}" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <textarea name="content" cols="68" rows="8" placeholder="Write your comment..."
+                        class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Upload the photo</label>
+                    <input type="file" name="imageFile">
+                    <input type="text" name="imageName" class="form-control" placeholder="Title of the picture">
+                </div>
+                <button type="submit">Comment</button>
+            </form>
+        </div>
+    </div>
+</div>
