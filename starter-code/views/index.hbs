@@ -1,13 +1,20 @@
-<!DOCTYPE html>
+{{!-- <!DOCTYPE html>
 <html>
 
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
+<head>
+  <title>{{title}}</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
 
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-  </body>
+<body>
+  <h1>Welcome to IronTumblr</h1>
+</body>
 
-</html>
+</html> --}}
+
+{{#each posts}}
+<div>
+  <img src="{{picPath}}" alt="">
+  <h5>{{creatorId.username}}</h5>
+</div>
+{{/each}}
