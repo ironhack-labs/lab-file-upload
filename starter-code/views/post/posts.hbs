@@ -1,0 +1,13 @@
+{{#each posts}}
+<div>
+  <img src="{{picPath}}" alt="{{picName}}">
+  <h1>{{creatorId.username}}</h1>
+  <h5>{{comment}}</h5>
+  <form action="/newCommentProcess" method="POST" enctype="multipart/form-data">
+  <input name="content" type="text" placeholder="Text">
+  <input name="user" type="text" placeholder="User" hidden>
+  <input name="photo" type="file" placeholder="File">
+  <input type="submit" value="New Comment">
+  </form>
+</div>
+{{/each}}
