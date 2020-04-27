@@ -1,13 +1,28 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
+<head>
+  <title>{{title}}</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
 
-  <body>
-    <h1>Welcome to IronTumblr</h1>
-  </body>
+<body>
+  <h1>Welcome to IronTumblr</h1>
+  <a href="/post/create">Create a Post</a>
+
+  <br> <br>
+  {{#each allPosts}}
+  <a href="/post/details/{{id}}">
+    <img src="{{this.picPath}}" alt="{{picName}}"><br>
+  </a>
+
+  <h3>{{content}}</h3>
+  <h5>{{creatorId.username}}</h5><br>
+  <a class='commentsButton' href="/post/comment/{{id}}">Comment</a>
+  <br><br><br><br>
+  {{/each }}
+
+
+</body>
 
 </html>

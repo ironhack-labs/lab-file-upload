@@ -1,0 +1,23 @@
+<h1>Insert your Comment</h1>
+<br>
+<br>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 centered-form">
+      <form action="/post/comment/{{id}}" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="content">Write a Comment</label>
+          <input type="text" name="content" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="imagePath">Add an Image</label>
+          <input type="file" name="imagePath">
+        </div>
+
+
+        <button type="submit">Add Comment</button>
+      </form>
+    </div>
+  </div>
+</div>

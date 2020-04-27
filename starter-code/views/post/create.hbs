@@ -1,0 +1,20 @@
+<h1>Create your Post</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 centered-form">
+      <form action="/post/create" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="picPath">Upload your Picture</label>
+          <input type="file" name="picPath">
+        </div>
+        <div class="form-group">
+          <label for="content">Describe your Pic!</label>
+          <input type="text" name="content" class="form-control">
+        </div>
+
+        <button type="submit">Create Post</button>
+      </form>
+    </div>
+  </div>
+</div>
