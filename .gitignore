@@ -8,4 +8,4 @@ npm-debug.log
 # but keep in mind - Environment Variables should NEVER be published ☝🏻
 # .env
 
-.package-lock.json
+package-lock.json
