@@ -1,25 +1,25 @@
 {
-  "name": "basicauth",
+  "name": "irontumblir",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
-    "dev:debug": "DEBUG=basicauth* npm run dev",
+    "dev:debug": "DEBUG=irontumblir* npm run dev",
     "dev-windows": "nodemon ./bin/www",
     "lint": "eslint ."
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "connect-mongo": "^3.2.0",
-    "cookie-parser": "^1.4.4",
+    "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "express-session": "^1.17.0",
-    "hbs": "^4.1.0",
+    "express-session": "^1.17.1",
+    "hbs": "^4.1.1",
     "http-errors": "^1.7.3",
-    "mongoose": "^5.7.13",
-    "morgan": "^1.9.1",
+    "mongoose": "^5.9.16",
+    "morgan": "^1.10.0",
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
