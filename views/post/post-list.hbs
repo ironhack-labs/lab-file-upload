@@ -1,12 +1,12 @@
 <div class="container margin-container">
     <h1 class="title">Today's Posts</h1>
-    <div class="row box">
+    <div class="all-posts">
             {{#each posts}}
-                <div class="col-4">
+                <div class="post-card">
                     <h5><a href="/postdetails?id={{_id}}">{{title}}</a></h5>
                     <img src="uploads/{{picName}}" alt="{{origName}}" class="post-img">
                     <p>{{content}}</p>                    
-                    <h5>{{creator.username}}</h5>
+                    <h5>Posted by: {{creator.username}}</h5>
                 </div>
             {{/each}}
     </div>

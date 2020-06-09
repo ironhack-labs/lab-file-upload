@@ -30,7 +30,7 @@ router.post('/create-post',upload.single("picture"),(req, res) => {
   })
   .then(postFromDb => {
     console.log(`Newly created post is: ${postFromDb}`);
-    res.redirect('/posts');
+    res.redirect(`/postdetails?id=${postFromDb._id}`);
   })
 })
 
