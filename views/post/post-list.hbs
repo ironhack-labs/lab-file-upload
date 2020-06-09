@@ -3,7 +3,7 @@
     <div class="row box">
             {{#each posts}}
                 <div class="col-4">
-                    <h5>{{title}}</h5>
+                    <h5><a href="/postdetails?id={{_id}}">{{title}}</a></h5>
                     <img src="uploads/{{picName}}" alt="{{origName}}" class="post-img">
                     <p>{{content}}</p>                    
                     <h5>{{creator.username}}</h5>

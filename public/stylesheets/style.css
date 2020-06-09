@@ -122,3 +122,8 @@ ul li {
 .post-img {
   width: 250px;
 }
+
+.row-post {
+  display: flex;
+  justify-content: space-evenly;
+}

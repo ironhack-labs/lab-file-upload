@@ -1,0 +1,42 @@
+<div class="container margin-container">
+    <div class="row-post">
+        <div class="col">
+          <h2>{{post.title}}</h2>
+          <img src="uploads/{{post.picName}}" alt="{{post.origName}}" class="post-img">
+          <p>{{post.content}}</p>
+          <p>{{post.createdAt}}</p>                            
+          <h5>{{post.creator.username}}</h5>
+        </div>
+
+
+        <div class="col">
+            <h2 class="p-2">Comments Board</h2>
+            {{#each post.comments}}
+            <div class="review-item">
+              <p class="comment-content">{{this.contentComment}}</p>
+              <p class="commenter">{{this.authorId.username}}</p>
+              {{#if this.imageName}}
+              <img src="uploads/{{this.imageName}}" alt="sorry, no longer available" class="post-img">
+              {{/if}}
+            </div>
+            {{/each}}
+        </div>
+
+
+        <div class="col">
+          <div id="form">
+            <h2>Comment</h2>
+            <form action="/comment?post_id={{post._id}}" method="POST"  enctype="multipart/form-data">
+              <input type="text" id="content" name="content" placeholder="Your comment" required>
+              <input type="file" name="picture" id="input-picture">
+              <button type="submit">Comment</button>
+              {{#if errorMessage}}
+                <p class="error">{{errorMessage}}</p>
+              {{/if}}
+            </form>
+          </div>
+        </div>
+
+    </div>
+</div>
+

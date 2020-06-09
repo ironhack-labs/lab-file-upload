@@ -18,7 +18,19 @@ const postSchema = new Schema(
     },
     picPath: {
       type: String,
-    }
+    },
+    comments: [{
+      authorId: {type: mongoose.Schema.ObjectId, ref: "User"},
+      contentComment: {
+        type: String
+      },
+      imagePath: {
+        type: String,
+      },
+      imageName: {
+        type: String,
+      }
+    }]
   },
   {
     timestamps: true

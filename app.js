@@ -22,6 +22,10 @@ const bindUserToViewLocals = require('./configs/user-locals.config');
 const authRouter = require('./routes/auth.routes');
 const postRouter = require('./routes/postcreate.routes');
 const postlistRouter = require('./routes/postlist.routes');
+const postdetailsRouter = require('./routes/postdetails.routes');
+const commentRouter = require('./routes/postcomment.routes');
+
+
 
 
 
@@ -58,7 +62,10 @@ function protectMiddleWare(req,res,next){
 // app.use('/', indexRouter);
 app.use('/', authRouter);
 app.use('/', postlistRouter);
+app.use('/', postdetailsRouter);
 app.use('/',protectMiddleWare, postRouter);
+app.use('/',protectMiddleWare, commentRouter);
+
 
 
 // Catch missing routes and forward to error handler

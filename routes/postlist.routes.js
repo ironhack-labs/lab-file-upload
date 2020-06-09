@@ -14,6 +14,21 @@ router.get("/", (req, res) => {
   .find({})
   .populate("creator")
   .then(posts => {
+    posts = posts.reverse();
+    res.render("post/post-list",{posts: posts});
+  })
+  .catch((err) => {
+    console.log("Err",err);
+  })
+});
+
+module.exports = router;
+router.get("/", (req, res) => {
+  Post
+  .find({})
+  .populate("creator")
+  .then(posts => {
+    posts = posts.reverse();
     res.render("post/post-list",{posts: posts});
   })
   .catch((err) => {
