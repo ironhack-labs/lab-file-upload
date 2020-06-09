@@ -1,0 +1,8 @@
+{{#each post}}
+    <a href="/posts/detail/{{this._id}}">
+        <p>{{ this.content }}</p>
+        <img src="/uploads/post/{{ this.picName }}" alt="">
+    </a>
+    <h4>Posted by: {{ this.creatorId.username }}</h1>
+{{/each}}
+

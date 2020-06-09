@@ -6,6 +6,8 @@ const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User.model');
 const mongoose = require('mongoose');
+const multer  = require('multer');
+const upload = multer({ dest: './public/uploads/profile/' });
 
 const routeGuard = require('../configs/route-guard.config');
 
@@ -13,12 +15,14 @@ const routeGuard = require('../configs/route-guard.config');
 ///////////////////////////// SIGNUP //////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 
+
 // .get() route ==> to display the signup form to users
 router.get('/signup', (req, res) => res.render('auth/signup'));
 
 // .post() route ==> to process form data
-router.post('/signup', (req, res, next) => {
+router.post('/signup', upload.single("profile-picture"), (req, res, next) => {
   const { username, email, password } = req.body;
+  const picture = req.file.filename;
 
   if (!username || !email || !password) {
     res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
@@ -41,6 +45,7 @@ router.post('/signup', (req, res, next) => {
       return User.create({
         // username: username
         username,
+        picture,
         email,
         // passwordHash => this is the key from the User model
         //     ^
@@ -106,6 +111,8 @@ router.post('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/');
 });
+
+// Access user profile
 
 router.get('/userProfile', routeGuard, (req, res) => {
   res.render('users/user-profile');
