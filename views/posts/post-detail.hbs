@@ -1,3 +1,26 @@
 <p>{{ post.content }}</p>
 <img src="/uploads/post/{{ post.picName }}" alt="">
 <h4>Posted by: {{ post.creatorId.username }}</h1>
+
+
+<h3>Comments</h3>
+
+{{#each post.comments }}
+    <p>{{ this.content }}</p>
+    <img src="/uploads/comments/{{ this.imageName }}" alt="">
+    <p>{{ this.authorId.username }}</p>
+{{/each}}
+    
+
+<div>
+    <p>Add a comment:</p>
+    <form action="/posts/comments/{{post._id}}" enctype="multipart/form-data" method="POST">
+        <label for="input-content-comments">Content</label>
+        <input type="text" id="input-content-comments" name="content" placeholder="Your content" />
+
+        <label for="input-picture-comment">Comments picture</label>
+        <input type="file" id="input-picture-comment" name="imageName">
+
+        <button type="submit">Post</button>
+    </form>
+</div>

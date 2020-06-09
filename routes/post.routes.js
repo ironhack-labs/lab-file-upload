@@ -1,10 +1,8 @@
-// routes/auth.routes.js
+// routes/post.routes.js
 
 const { Router } = require('express');
 const router = new Router();
-const User = require('../models/User.model');
 const Post = require('../models/Post.model');
-const mongoose = require('mongoose');
 const multer  = require('multer');
 const upload = multer({ dest: './public/uploads/post/' });
 
@@ -19,6 +17,12 @@ router.post('/posts/create', upload.single("picName"), (req, res) => {
     const creatorId = req.session.currentUser._id;
     const picName = req.file.filename;
     const picPath = req.file.path;
+
+    if (!content) {
+        res.render('posts/post-form', { errorMessage: 'The post must have some content.' });
+        return;
+      }
+
     Post.create({
         content,
         creatorId,
@@ -37,6 +41,7 @@ router.get('/posts', (req, res) => {
     Post.find({})
         .populate("creatorId")
         .then(post=>{
+            post = post.reverse();
             res.render('posts/post-list', {post});
         })
         .catch(err=>{
@@ -48,6 +53,12 @@ router.get('/posts/detail/:id', (req, res) => {
     const postId = req.params.id;
     Post.findById(postId)
     .populate("creatorId")
+    .populate({ 
+        path: "comments",
+        populate: {
+          path: "authorId"
+        } 
+     })
     .then(post=>{
         res.render('posts/post-detail', {post});
     })

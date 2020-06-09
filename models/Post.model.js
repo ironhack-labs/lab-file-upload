@@ -6,7 +6,8 @@ const mongoose = require("mongoose");
 const postSchema = new Schema(
   {
     content: {
-      type: String
+      type: String,
+      required: [true, 'Content is required.']
     },
     creatorId : {
         type: mongoose.Schema.ObjectId,
@@ -17,7 +18,11 @@ const postSchema = new Schema(
     },
     picName: {
         type: String
-    }
+    },
+    comments : [{
+      type: mongoose.Schema.ObjectId,
+      ref: "Comments" 
+  }],
   }
 );
 
