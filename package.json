@@ -10,7 +10,9 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
     "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
@@ -18,8 +20,10 @@
     "express-session": "^1.17.1",
     "hbs": "^4.1.1",
     "http-errors": "^1.7.3",
-    "mongoose": "^5.9.16",
+    "mongoose": "^5.9.18",
     "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "path": "^0.12.7",
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
@@ -33,5 +37,17 @@
     "eslint-plugin-promise": "^4.2.1",
     "nodemon": "^2.0.1",
     "prettier": "^1.19.1"
-  }
+  },
+  "description": "![logo_ironhack_blue 7](https://user-images.githubusercontent.com/23629340/40541063-a07a0a8a-601a-11e8-91b5-2f13e4e6b441.png)",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nienke0905/lab-file-upload.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nienke0905/lab-file-upload/issues"
+  },
+  "homepage": "https://github.com/Nienke0905/lab-file-upload#readme"
 }

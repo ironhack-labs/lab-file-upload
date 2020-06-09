@@ -8,6 +8,8 @@ const favicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
 const hbs = require('hbs');
 const mongoose = require('mongoose');
+const multer  = require('multer');
+
 
 // Set up the database
 require('./configs/db.config');
@@ -16,8 +18,12 @@ require('./configs/db.config');
 const bindUserToViewLocals = require('./configs/user-locals.config');
 
 // Routers
-const indexRouter = require('./routes/index.routes');
+// const indexRouter = require('./routes/index.routes');
 const authRouter = require('./routes/auth.routes');
+const postRouter = require('./routes/postcreate.routes');
+const postlistRouter = require('./routes/postlist.routes');
+
+
 
 const app = express();
 require('./configs/session.config')(app);
@@ -38,9 +44,22 @@ app.use(bindUserToViewLocals);
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
+
+function protectMiddleWare(req,res,next){
+  console.log("Middleware called");
+  if(req.session.currentUser){
+      next();
+  } else {
+      res.redirect("/login");
+  }
+}
+
 // Routes middleware
-app.use('/', indexRouter);
+// app.use('/', indexRouter);
 app.use('/', authRouter);
+app.use('/', postlistRouter);
+app.use('/',protectMiddleWare, postRouter);
+
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => next(createError(404)));
@@ -55,5 +74,12 @@ app.use((error, req, res) => {
   res.status(error.status || 500);
   res.render('error');
 });
+
+
+
+app.listen(process.env.PORT, ()=> {
+  console.log("Webserver is listening");
+});
+
 
 module.exports = app;

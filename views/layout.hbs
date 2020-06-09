@@ -18,8 +18,9 @@
         <li id="to-right">
           {{#if user}}
             <form id="logout-form" action="/logout" method="POST">
-              <button>Logout</button>
+              <button>Logout</button> <span> | </span>
             </form>
+            <a href="/create-post">Post a post</a> <span> | </span>
           {{else}}
             <a href="/signup">Signup</a> <span> | </span>
             <a href="/login">Login</a> <span> | </span>
