@@ -1,0 +1,11 @@
+.post-list{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+
+
+.post-list-item a img{
+    width: 200px;
+}

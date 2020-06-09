@@ -1,16 +1,20 @@
 <p>{{ post.content }}</p>
-<img src="/uploads/post/{{ post.picName }}" alt="">
+{{#if post.picName}}
+    <img src="/uploads/post/{{ post.picName }}" alt="">
+{{/if}}
+
 <h4>Posted by: {{ post.creatorId.username }}</h1>
 
-
-<h3>Comments</h3>
-
-{{#each post.comments }}
-    <p>{{ this.content }}</p>
-    <img src="/uploads/comments/{{ this.imageName }}" alt="">
-    <p>{{ this.authorId.username }}</p>
-{{/each}}
-    
+<div class="comments">
+    <h3>Comments</h3>
+    {{#each post.comments }}
+        <p>{{ this.content }}</p>
+        {{#if this.imageName}}
+            <img src="/uploads/comments/{{ this.imageName }}" alt="">
+        {{/if}}
+        <p>{{ this.authorId.username }}</p>
+    {{/each}}
+</div>  
 
 <div>
     <p>Add a comment:</p>
@@ -22,5 +26,8 @@
         <input type="file" id="input-picture-comment" name="imageName">
 
         <button type="submit">Post</button>
+        {{#if errorMessage}}
+            <p class="error">{{errorMessage}}</p>
+        {{/if}}
     </form>
 </div>

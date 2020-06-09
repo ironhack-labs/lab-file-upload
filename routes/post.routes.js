@@ -15,13 +15,16 @@ router.get('/posts/create', routeGuard, (req, res) => {
 router.post('/posts/create', upload.single("picName"), (req, res) => {
     const content = req.body.content;
     const creatorId = req.session.currentUser._id;
-    const picName = req.file.filename;
-    const picPath = req.file.path;
-
+    let picName = "";
+    let picPath = "";
+    if (req.file){
+        picName = req.file.filename;
+        picPath = req.file.path;
+    }
     if (!content) {
         res.render('posts/post-form', { errorMessage: 'The post must have some content.' });
         return;
-      }
+    }
 
     Post.create({
         content,

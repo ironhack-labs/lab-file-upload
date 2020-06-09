@@ -13,8 +13,16 @@ router.post('/posts/comments/:id', routeGuard, upload.single("imageName"), (req,
     const content = req.body.content;
     let postId = req.params.id;
     const authorId = req.session.currentUser._id;
-    const imageName = req.file.filename;
-    const imagePath = req.file.path;
+    let imageName = "";
+    let imagePath = "";
+    if (req.file) {
+        imageName = req.file.filename;
+        imagePath = req.file.path;
+    }
+    if (!content) {
+        res.render('posts/post-form', { errorMessage: 'The comments must have some content.' });
+        return;
+    }
 
     Comments
     .create({

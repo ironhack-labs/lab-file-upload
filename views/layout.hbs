@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{title}}</title>
+    <title>IronTumblr</title>
+    <link rel="stylesheet" href="/stylesheets/post.css" />
+    <link rel="stylesheet" href="/stylesheets/comments.css" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
 
@@ -14,6 +16,10 @@
       <ul>
         <li id="to-left">
           <p><a href="/posts"> IronTumblr </a></p>
+        </li>
+        <li id="to-center">
+          <a href="/posts">Posts</a>  <span> | </span>
+          <a href="/posts/create">Create post</a>
         </li>
         <li id="to-right">
           {{#if user}}
