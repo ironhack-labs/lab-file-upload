@@ -1,2 +1,23 @@
-<h1>{{title}}</h1>
-<p>Welcome Ironhacker!</p>
+{{#if user}}
+    <h2>Create a post</h2>
+    <form action="/" method="POST" enctype="multipart/form-data">
+        <label for="content">Post:</label>
+        <input type="text" id="content" name="content" placeholder="Your post.." />
+        <input type="hidden" id="creator-post" name="creatorId" value="{{user._id}}" />
+
+        <label for="input-post-picture">Choose your picture:</label>
+        <input type="file" id="input-post-picture" name="postPicture">
+
+        <button type="submit">Create post</button>
+    </form>
+{{else}}
+    <p>Login to create a post</p>
+    <a href="/login">Go to login page</a>
+{{/if}}
+
+<h2>Timeline</h2>
+{{#each posts}}
+    <h4>User:{{posts.users.username}}</h4>
+    <img src="{{picPath}}" alt="{{picName}}">
+    <p>{{content}}</p>
+{{/each}}

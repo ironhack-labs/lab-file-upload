@@ -9,6 +9,9 @@ const mongoose = require('mongoose');
 
 const routeGuard = require('../configs/route-guard.config');
 
+const multer  = require('multer');
+const upload = multer({ dest: './public/uploads/' });
+
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////// SIGNUP //////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
@@ -17,7 +20,8 @@ const routeGuard = require('../configs/route-guard.config');
 router.get('/signup', (req, res) => res.render('auth/signup'));
 
 // .post() route ==> to process form data
-router.post('/signup', (req, res, next) => {
+router.post('/signup', upload.single('profilePicture'), (req, res, next) => {
+  
   const { username, email, password } = req.body;
 
   if (!username || !email || !password) {
@@ -29,7 +33,7 @@ router.post('/signup', (req, res, next) => {
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
   if (!regex.test(password)) {
     res
-      .status(500)
+      .status(400)
       .render('auth/signup', { errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.' });
     return;
   }
@@ -45,7 +49,12 @@ router.post('/signup', (req, res, next) => {
         // passwordHash => this is the key from the User model
         //     ^
         //     |            |--> this is placeholder (how we named returning value from the previous method (.hash()))
-        passwordHash: hashedPassword
+        passwordHash: hashedPassword,
+        profilePicture: {
+          name: req.body.username,
+          path: `/uploads/${req.file.filename}`,
+          originalName: req.file.originalname
+        }
       });
     })
     .then(userFromDB => {
