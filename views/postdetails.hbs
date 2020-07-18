@@ -3,4 +3,11 @@
   <p>{{content}}</p>
   <img src="{{picPath}}" alt="">
   <p>{{picName}}</p>
+  <h4>Comments:</h4>
+  {{#each comments as |com|}}
+    <div>
+      {{com.authorId.username}}
+      {{com.content}}
+    </div>
+  {{/each}}
 </div>

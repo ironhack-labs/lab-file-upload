@@ -1,6 +1,7 @@
 // models/User.model.js
 
 const { Schema, model } = require('mongoose');
+const User = require('../models/User.model');
 
 const userSchema = new Schema(
   {

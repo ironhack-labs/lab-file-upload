@@ -6,6 +6,7 @@ const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User.model');
 const Post = require('../models/Post.model');
+const Comment = require('../models/Comment.model');
 const mongoose = require('mongoose');
 const multer = require('multer')
 const uploads = multer({dest: './public/uploads'})
@@ -135,17 +136,42 @@ router.get('/posts', (req, res, next) => {
         })
       })
       .catch(next);
-    
 })
 
-
 router.get('/posts/:id', (req, res, next) => {
-  Post.findById(req.params.id)
-    .then(post => {
-      res.render("postdetails", post)
-    })
-    .catch(next);
-    
+
+    Post.findById(req.params.id)
+      .populate('creatorId')
+      .populate('comments')
+      .populate({ 
+        path: 'comments',
+        populate: {
+          path: 'username',
+          model: 'User'
+        }
+      })
+        .then(post => {
+          console.log(post.comments);
+          res.render('postdetails', post)
+        })
+        .catch(next);
+})    
+
+
+router.get('/new-comment/:id', routeGuard, (req, res) => {
+  res.render('post/comment-form', req.params)
+})
+
+router.post('/new-comment/:id',  routeGuard,  uploads.single('picPath'), (req, res) => {
+  const commentData = req.body
+  commentData.authorId = req.session.currentUser._id
+  commentData.postId =  req.params.id
+  commentData.imagePath = req.file ? `/uploads/${req.file.filename}` : undefined
+  const comment = new Comment (commentData)
+
+  comment.save()
+    .then(() => res.redirect('/posts'))
+    .catch(err => console.log(err))
 })
 
 module.exports = router;
