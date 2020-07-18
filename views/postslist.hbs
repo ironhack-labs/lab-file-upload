@@ -1,0 +1,10 @@
+{{#each posts}}
+  <a href="/posts/{{this.id}}">
+    <div class="post">
+    <h3>{{this.creatorId.username}}</h3>
+    <p>{{this.content}}</p>
+    <img src="{{this.picPath}}" alt="">
+    <p>{{this.picName}}</p>
+  </div>
+  </a>
+{{/each}}

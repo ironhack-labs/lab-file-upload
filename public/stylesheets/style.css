@@ -118,3 +118,8 @@ ul li {
   font-weight: bold;
   font-size: 2em;
 }
+
+.post {
+  border: solid 1px black;
+  margin: 5px;
+}

@@ -5,6 +5,7 @@ const router = new Router();
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User.model');
+const Post = require('../models/Post.model');
 const mongoose = require('mongoose');
 const multer = require('multer')
 const uploads = multer({dest: './public/uploads'})
@@ -21,7 +22,7 @@ router.get('/signup', (req, res) => res.render('auth/signup'));
 // .post() route ==> to process form data
 router.post('/signup', uploads.single('avatar'), (req, res, next) => {
   const userData = req.body
-  req.avatar = req.file ? `/uploads/${req.file.filename}` : undefined
+  userData.avatar = req.file ? `/uploads/${req.file.filename}` : undefined
   const user = new User(userData)
   console.log(user)
 
@@ -108,5 +109,43 @@ router.post('/logout', (req, res) => {
 router.get('/userProfile', routeGuard, (req, res) => {
   res.render('users/user-profile');
 });
+
+router.get('/post-form', routeGuard, (req, res) => res.render('post/post-form'))
+
+router.post('/post-form',  routeGuard,  uploads.single('picPath'), (req, res) => {
+  
+  const postData = req.body
+  postData.creatorId = req.session.currentUser._id
+  postData.picPath = req.file ? `/uploads/${req.file.filename}` : undefined
+  const post = new Post(postData)
+
+  post.save()
+    .then(() => res.redirect('posts'))
+    .catch(err => console.log(err))
+})
+
+router.get('/posts', (req, res, next) => {
+  Post.find()
+    .sort({ createdAt: -1 })
+    .limit(100)
+    .populate('creatorId')
+      .then(posts => {
+        res.render("postslist", {
+          posts,
+        })
+      })
+      .catch(next);
+    
+})
+
+
+router.get('/posts/:id', (req, res, next) => {
+  Post.findById(req.params.id)
+    .then(post => {
+      res.render("postdetails", post)
+    })
+    .catch(next);
+    
+})
 
 module.exports = router;
