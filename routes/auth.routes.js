@@ -6,6 +6,8 @@ const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User.model');
 const mongoose = require('mongoose');
+const multer = require('multer')
+const uploads = multer({dest: './public/uploads'})
 
 const routeGuard = require('../configs/route-guard.config');
 
@@ -17,17 +19,20 @@ const routeGuard = require('../configs/route-guard.config');
 router.get('/signup', (req, res) => res.render('auth/signup'));
 
 // .post() route ==> to process form data
-router.post('/signup', (req, res, next) => {
-  const { username, email, password } = req.body;
+router.post('/signup', uploads.single('avatar'), (req, res, next) => {
+  const userData = req.body
+  req.avatar = req.file ? `/uploads/${req.file.filename}` : undefined
+  const user = new User(userData)
+  console.log(user)
 
-  if (!username || !email || !password) {
+  if (!user.username || !user.email || !user.password) {
     res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
     return;
   }
 
   // make sure passwords are strong:
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
-  if (!regex.test(password)) {
+  if (!regex.test(user.password)) {
     res
       .status(500)
       .render('auth/signup', { errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.' });
@@ -36,17 +41,10 @@ router.post('/signup', (req, res, next) => {
 
   bcryptjs
     .genSalt(saltRounds)
-    .then(salt => bcryptjs.hash(password, salt))
+    .then(salt => bcryptjs.hash(user.password, salt))
     .then(hashedPassword => {
-      return User.create({
-        // username: username
-        username,
-        email,
-        // passwordHash => this is the key from the User model
-        //     ^
-        //     |            |--> this is placeholder (how we named returning value from the previous method (.hash()))
-        passwordHash: hashedPassword
-      });
+      user.password = hashedPassword
+      user.save();
     })
     .then(userFromDB => {
       console.log('Newly created user is: ', userFromDB);
@@ -88,7 +86,7 @@ router.post('/login', (req, res, next) => {
       if (!user) {
         res.render('auth/login', { errorMessage: 'Email is not registered. Try with other email.' });
         return;
-      } else if (bcryptjs.compareSync(password, user.passwordHash)) {
+      } else if (bcryptjs.compareSync(password, user.password)) {
         req.session.currentUser = user;
         res.redirect('/userProfile');
       } else {
