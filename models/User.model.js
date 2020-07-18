@@ -19,6 +19,10 @@ const userSchema = new Schema(
       lowercase: true,
       trim: true
     },
+    image: {
+      type: String,
+      required: [true, 'Image is required.']
+    },
     passwordHash: {
       type: String,
       required: [true, 'Password is required.']

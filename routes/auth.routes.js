@@ -6,6 +6,8 @@ const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User.model');
 const mongoose = require('mongoose');
+const multer  = require('multer')
+const upload = multer({ dest: './uploads' })
 
 const routeGuard = require('../configs/route-guard.config');
 
@@ -17,10 +19,12 @@ const routeGuard = require('../configs/route-guard.config');
 router.get('/signup', (req, res) => res.render('auth/signup'));
 
 // .post() route ==> to process form data
-router.post('/signup', (req, res, next) => {
+router.post('/signup', upload.single('image'), (req, res, next) => {
   const { username, email, password } = req.body;
+  const image = req.file;
+  console.log(image);
 
-  if (!username || !email || !password) {
+  if (!username || !email || !password || !image) {
     res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
     return;
   }
@@ -38,10 +42,12 @@ router.post('/signup', (req, res, next) => {
     .genSalt(saltRounds)
     .then(salt => bcryptjs.hash(password, salt))
     .then(hashedPassword => {
+      console.log('hola');
       return User.create({
         // username: username
         username,
         email,
+        image,
         // passwordHash => this is the key from the User model
         //     ^
         //     |            |--> this is placeholder (how we named returning value from the previous method (.hash()))
