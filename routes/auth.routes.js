@@ -6,6 +6,10 @@ const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User.model');
 const mongoose = require('mongoose');
+const multer = require('multer');
+const Picture = require('../models/picture');
+
+
 
 const routeGuard = require('../configs/route-guard.config');
 
@@ -18,9 +22,9 @@ router.get('/signup', (req, res) => res.render('auth/signup'));
 
 // .post() route ==> to process form data
 router.post('/signup', (req, res, next) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, picture} = req.body;
 
-  if (!username || !email || !password) {
+  if (!username || !email || !password || !picture) {
     res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
     return;
   }
@@ -110,5 +114,26 @@ router.post('/logout', (req, res) => {
 router.get('/userProfile', routeGuard, (req, res) => {
   res.render('users/user-profile');
 });
+
+// Route to upload from project base path
+const upload = multer({ dest: './public/uploads/' });
+
+router.post('/upload', upload.single('photo'), (req, res, next) => {
+  const picture = new Picture({
+    name: req.body.name,
+    path: `/uploads/${req.file.filename}`,
+    originalName: req.file.originalname
+  });
+
+  picture
+    .save()
+    .then(() => {
+      res.redirect('/');
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
 
 module.exports = router;
