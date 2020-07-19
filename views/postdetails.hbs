@@ -6,8 +6,14 @@
   <h4>Comments:</h4>
   {{#each comments as |com|}}
     <div>
-      {{com.authorId.username}}
-      {{com.content}}
-    </div>
+    {{com.authorId.username}}
+  </div>
+   <div>
+    <img src="{{com.imagePath}}" alt="">
+    {{com.imageName}}
+  </div>
+  <div>
+    {{com.content}}
+  </div>
   {{/each}}
 </div>

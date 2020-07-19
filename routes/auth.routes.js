@@ -25,7 +25,6 @@ router.post('/signup', uploads.single('avatar'), (req, res, next) => {
   const userData = req.body
   userData.avatar = req.file ? `/uploads/${req.file.filename}` : undefined
   const user = new User(userData)
-  console.log(user)
 
   if (!user.username || !user.email || !user.password) {
     res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
@@ -141,15 +140,15 @@ router.get('/posts', (req, res, next) => {
 router.get('/posts/:id', (req, res, next) => {
 
     Post.findById(req.params.id)
-      .populate('creatorId')
-      .populate('comments')
-      .populate({ 
-        path: 'comments',
-        populate: {
-          path: 'username',
-          model: 'User'
-        }
-      })
+    .populate('creatorId')
+    .populate('comments')
+    .populate({ 
+      path: 'comments',
+      populate: {
+        path: 'authorId',
+        model: 'User'
+      }
+    })
         .then(post => {
           console.log(post.comments);
           res.render('postdetails', post)
