@@ -169,7 +169,7 @@ router.post('/new-comment/:id',  routeGuard,  uploads.single('picPath'), (req, r
   const comment = new Comment (commentData)
 
   comment.save()
-    .then(() => res.redirect('/posts'))
+    .then(() => res.redirect(`/posts/${req.params.id}`))
     .catch(err => console.log(err))
 })
 
