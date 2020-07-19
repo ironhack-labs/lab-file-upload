@@ -1,11 +1,13 @@
-{{#each posts}}
-  <a href="/posts/{{this.id}}">
-    <div class="post">
-    <h3>{{this.creatorId.username}}</h3>
-    <p>{{this.content}}</p>
-    <img src="{{this.picPath}}" alt="">
-    <p>{{this.picName}}</p>
-    <a href="/new-comment/{{this.id}}">Add a Comment</a>
-  </div>
-  </a>
-{{/each}}
+<div class="display">
+  {{#each posts}}
+    <a href="/posts/{{this.id}}">
+      <div class="post">
+        <h3>{{this.creatorId.username}}</h3>
+        <p>{{this.content}}</p>
+        <img src="{{this.picPath}}" alt="" class="img-post">
+        <p>{{this.picName}}</p>
+        <a href="/new-comment/{{this.id}}" class="btn">Add a Comment</a>
+      </div>
+    </a>
+  {{/each}}
+</div>

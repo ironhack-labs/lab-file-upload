@@ -9,6 +9,10 @@ a {
   font-size: 1.5em;
 }
 
+.to-hover:hover {
+  font-size: 25px;
+}
+
 form {
   margin: 30px auto;
   width: 380px;
@@ -93,7 +97,7 @@ ul li {
   border: none;
   padding: 0;
   cursor: pointer;
-  color: #00b7ff;
+  color: #8a1202;
   font-size: 1.5em;
   display: inline-block;
   margin: 0;
@@ -119,7 +123,72 @@ ul li {
   font-size: 2em;
 }
 
+.display  {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .post {
   border: solid 1px black;
+  border-radius: 10px;
   margin: 5px;
+  padding: 10px;
+  width: 20%;
+  text-align: center;
+  background-color: rgb(188, 246, 246);
+}
+
+.post:hover {
+  background-color: rgb(69, 236, 236);
+}
+
+.img-post {
+  width: 200px;
+}
+
+.detail {
+  text-align: center;
+}
+
+.post-detail {
+  width: 80%
+}
+
+h4 {
+  padding-top: 30px;
+}
+
+.comments {
+  border: 1px solid rgb(110, 106, 106);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+}
+
+.comments:hover {
+  background-color:  rgb(171, 223, 223);
+}
+
+.img-comment {
+  width: 100px;
+}
+
+.btn {
+  padding: 5px;
+  background-color: rgb(7, 7, 80);
+  border-radius: 5px;
+}
+
+.btn:hover {
+  background-color: rgb(30, 30, 83);
+}
+
+.profile {
+  text-align: center;
+}
+
+.avatar {
+  width: 400px;
+  margin-bottom: 20px;
 }

@@ -1,8 +1,10 @@
 {{#if user}}
-    <h2>Welcome, {{ user.username }}!</h2>
-    <p>This is your profile page my friend! And your email is: {{ user.email }}</p>
-    <img src="{{user.avatar}}" alt="">
-    <a href="/post-form">New post</a>
+    <div class="profile">
+        <h2>Welcome, {{ user.username }}!</h2>
+        <p>This is your profile page my friend! And your email is: {{ user.email }}</p>
+        <img src="{{user.avatar}}" alt="" class="avatar">
+        <div><a href="/post-form" class="btn">New post</a></div>
+    </div>
 {{else}}
     <p>Still no logged in user, sorry!</p>
 {{/if}}

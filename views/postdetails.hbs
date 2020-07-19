@@ -1,19 +1,21 @@
-<div class="post">
-  <h3>{{creatorId.username}}</h3>
-  <p>{{content}}</p>
-  <img src="{{picPath}}" alt="">
+<div class="post post-detail">
+  <h2>{{creatorId.username}}</h2>
+  <h3>{{content}}</h3>
+  <img src="{{picPath}}" alt="" class="img-post">
   <p>{{picName}}</p>
   <h4>Comments:</h4>
   {{#each comments as |com|}}
+  <div class="comments">
     <div>
-    {{com.authorId.username}}
-  </div>
-   <div>
-    <img src="{{com.imagePath}}" alt="">
-    {{com.imageName}}
-  </div>
-  <div>
-    {{com.content}}
+      <b>{{com.authorId.username}}</b>
+    </div>
+    <div>
+      <img src="{{com.imagePath}}" alt="" class="img-comment">
+      <p>{{com.imageName}}</p>
+    </div>
+    <div>
+      {{com.content}}
+    </div>
   </div>
   {{/each}}
 </div>
