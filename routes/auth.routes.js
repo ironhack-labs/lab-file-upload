@@ -7,7 +7,8 @@ const saltRounds = 10;
 const User = require('../models/User.model');
 const mongoose = require('mongoose');
 const multer = require('multer');
-const Picture = require('../models/picture');
+const Picture = require('../models/Picture.model');
+const uploads = multer({ dest: './public/uploads' });
 
 
 
@@ -21,10 +22,10 @@ const routeGuard = require('../configs/route-guard.config');
 router.get('/signup', (req, res) => res.render('auth/signup'));
 
 // .post() route ==> to process form data
-router.post('/signup', (req, res, next) => {
-  const { username, email, password, picture} = req.body;
-
-  if (!username || !email || !password || !picture) {
+router.post('/signup', uploads.single('avatar'), (req, res, next) => {
+  const { username, email, password, avatar} = req.body;
+ console.log(req.body.file)
+  if (!username || !email || !password ) {
     res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
     return;
   }
@@ -42,14 +43,21 @@ router.post('/signup', (req, res, next) => {
     .genSalt(saltRounds)
     .then(salt => bcryptjs.hash(password, salt))
     .then(hashedPassword => {
+      const userParams = req.body;
+      userParams.avatar = req.file ? `/uploads/${req.file.filename}` : undefined;
       return User.create({
-        // username: username
         username,
         email,
-        // passwordHash => this is the key from the User model
-        //     ^
-        //     |            |--> this is placeholder (how we named returning value from the previous method (.hash()))
+        avatar: userParams.avatar,
         passwordHash: hashedPassword
+    //     // username: username
+    //     username,
+    //     email,
+    //     avatar: '/uploads/$',
+    //     passwordHash: hashedPassword
+    //     // passwordHash => this is the key from the User model
+    //     //     ^
+    //     //     |            |--> this is placeholder (how we named returning value from the previous method (.hash()))
       });
     })
     .then(userFromDB => {
@@ -116,9 +124,8 @@ router.get('/userProfile', routeGuard, (req, res) => {
 });
 
 // Route to upload from project base path
-const upload = multer({ dest: './public/uploads/' });
 
-router.post('/upload', upload.single('photo'), (req, res, next) => {
+router.post('/uploads', uploads.single('photo'), (req, res, next) => {
   const picture = new Picture({
     name: req.body.name,
     path: `/uploads/${req.file.filename}`,

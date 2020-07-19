@@ -23,7 +23,8 @@ const userSchema = new Schema(
       type: String,
       required: [true, 'Password is required.']
     },
-    
+    avatar: String
+
   },
   {
     timestamps: true
