@@ -5,9 +5,11 @@
   <p>{{picName}}</p>
   <h4>Comments:</h4>
   {{#each comments as |com|}}
-    <div>
-      {{com.authorId.username}}
-      {{com.content}}
-    </div>
+  <div>
+    {{com.authorId.username}}
+  </div>
+  <div>
+    {{com.content}}
+  </div>
   {{/each}}
 </div>

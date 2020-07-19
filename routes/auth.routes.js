@@ -146,7 +146,7 @@ router.get('/posts/:id', (req, res, next) => {
       .populate({ 
         path: 'comments',
         populate: {
-          path: 'username',
+          path: 'authorId',
           model: 'User'
         }
       })
