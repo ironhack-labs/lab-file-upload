@@ -1,2 +1,27 @@
-<h1>{{title}}</h1>
-<p>Welcome Ironhacker!</p>
+<div class="container-fluid content">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="page-avatar"></div>
+        <h1 class="text-center"><strong>{{title}}</strong></h1>
+        <p class="text-center">Welcome Ironhacker!</p>
+
+        <div class="card-columns">
+          {{#each post}}
+          <div class="card">
+            <img src="{{picPath}}" class="card-img-top" alt="{{picName}}">
+            <div class="card-body">
+              <h5 class="card-title">{{picName}}</h5>
+              <p class="card-text">{{content}}</p>
+              <a class="post-comment" href="/comments/{{_id}}"><i class="far fa-comment"></i></a>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>

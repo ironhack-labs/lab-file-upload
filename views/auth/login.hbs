@@ -1,16 +1,32 @@
-<div id="form">
-    <h2>Login</h2>
-    <form action="/login" method="POST">
-        <label for="input-email">Email</label>
-        <input type="email" id="input-email" name="email" placeholder="Your email" />
+<div class="container-fluid content">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-avatar"></div>
+                <h1 class="text-center"><strong>{{title}}</strong></h1>
+                <p class="text-center">Welcome Ironhacker!</p>
+                <div class="row justify-content-center">
+                    <div class="col-12 col-sm-5">
+                        <form action="/login" method="POST">
+                            <div class="form-group">
+                                <label for="input-email">Email</label>
+                                <input class="form-control" type="email" id="input-email" name="email"
+                                    placeholder="Your email" />
+                            </div>
+                            <div class="form-group">
+                                <label for="input-password">Password</label>
+                                <input class="form-control" type="password" name="password" id="input-password"
+                                    placeholder="********" />
+                            </div>
+                            <button type="submit" class="btn">Log in</button>
 
-        <label for="input-password">Password</label>
-        <input type="password" name="password" id="input-password" placeholder="********" />
-
-        <button type="submit">Login</button>
-
-        {{#if errorMessage}}
-            <p class="error">{{errorMessage}}</p>
-        {{/if}}
-    </form>
+                            {{#if errorMessage}}
+                            <p class="error">{{errorMessage}}</p>
+                            {{/if}}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

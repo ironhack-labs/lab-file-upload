@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;900&family=EB+Garamond:wght@800&display=swap');
+
+$white: #fff;
+$text: #333;
+$orange: #ff552e;
+$blue: #65c9ff;
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font: 1.6rem 'Lato', sans-serif;
+  font-weight: 400;
+  font-weight: 1.2;
+  background: url(../images/banner-bg.svg) repeat;
+  background-size: 7% auto;
+  color: $text;
+
+  strong {
+    font-weight: 900;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+.navbar {
+  .navbar-brand {
+    font-family: 'EB Garamond', serif;
+    font-weight: 800;
+    font-size: 4rem;
+    color: $white;
+  }
+
+  ul {
+    flex-direction: row;
+    align-items: center;
+
+    a {
+      color: $white !important;
+      margin: 0 1rem;
+      padding: 0;
+      &:hover {
+        color: $orange;
+      }
+    }
+
+    button {
+      &.nav-link {
+        border: 0;
+        background: none;
+        color: $white !important;
+      }
+
+      &:focus,
+      &:active {
+        outline: none;
+      }
+    }
+
+    .nav-avatar {
+      img {
+        width: 3rem;
+        border: solid 0.2rem $white;
+        border-radius: 50%;
+        background: $blue;
+      }
+    }
+  }
+}
+
+.content {
+  background: $white;
+  margin-top: 5%;
+  position: relative;
+  min-height: 89vh;
+
+  .page-avatar,
+  .user-avatar {
+    width: 12rem;
+    height: 12rem;
+    border: solid 0.3rem $white;
+    background: $blue;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    margin-left: -6rem;
+    top: -8rem;
+  }
+
+  .page-avatar {
+    background: url(https://assets.tumblr.com/images/default_avatar/pyramid_closed_128.png) no-repeat center center / cover;
+  }
+
+  h1 {
+    font-size: 4rem;
+    margin-top: 6rem;
+  }
+
+  .card-columns {
+    margin-top: 10rem;
+
+    .card {
+      .card-body {
+        position: relative;
+
+        .post-comment {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          padding: 2rem;
+          font-size: 3rem;
+          color: $text;
+
+          &:hover {
+            opacity: 0.5;
+            color: $orange;
+          }
+        }
+      }
+    }
+  }
+
+  form {
+    margin-top: 4rem;
+
+    input {
+      padding: 2rem 1rem;
+      font-size: 1.4rem;
+    }
+
+    textarea,
+    input {
+      margin-bottom: 3rem;
+    }
+
+    .btn {
+      background: $orange;
+      color: $white;
+      font-size: 1.6rem;
+      padding: 1rem 4rem;
+    }
+
+    .error {
+      margin-top: 3rem;
+      color: $orange;
+    }
+  }
+
+  .post {
+    margin-top: 10rem;
+    border-bottom: solid 0.1rem rgba($text, 0.2);
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    img {
+      width: 100%;
+    }
+
+    h1 {
+      margin-top: 1rem;
+      font-size: 1.8rem;
+    }
+
+    form {
+      margin-top: 1rem;
+
+      input,
+      textarea {
+        margin-bottom: 1rem;
+        font-size: 1.6rem;
+      }
+    }
+  }
+
+  .users-comments {
+    border-bottom: solid 0.1rem rgba($text, 0.2);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+
+    img {
+      width: 10%;
+      height: auto;
+    }
+
+    .post-info {
+      margin-left: 2rem;
+      display: inline-block;
+    }
+  }
+}

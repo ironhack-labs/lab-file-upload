@@ -1,19 +1,41 @@
-<div id="form">
-  <h2>Signup</h2>
-  <form action="/signup" method="POST">
-    <label for="input-username">Username</label>
-    <input type="text" id="input-username" name="username" placeholder="Your username" />
+<div class="container-fluid content">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="page-avatar"></div>
+        <h1 class="text-center"><strong>{{title}}</strong></h1>
+        <p class="text-center">Welcome Ironhacker!</p>
+        <div class="row justify-content-center">
+          <div class="col-12 col-sm-5">
+            <form action="/signup" method="POST" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="input-username">Username</label>
+                <input class="form-control" type="text" id="input-username" name="username"
+                  placeholder="Your username" />
+              </div>
+              <div class="form-group">
+                <label for="input-email">Email</label>
+                <input class="form-control" type="email" id="input-email" name="email" placeholder="Your email" />
+              </div>
+              <div class="form-group">
+                <label for="input-avatar">Avatar</label>
+                <input class="form-control-file" type="file" id="input-avatar" name="avatar"
+                  placeholder="Your avatar" />
+              </div>
+              <div class="form-group">
+                <label for="input-password">Password</label>
+                <input class="form-control" type="password" name="password" id="input-password"
+                  placeholder="********" />
+              </div>
+              <button type="submit" class="btn">Register</button>
 
-    <label for="input-email">Email</label>
-    <input type="email" id="input-email" name="email" placeholder="Your email" />
-
-    <label for="input-password">Password</label>
-    <input type="password" name="password" id="input-password" placeholder="********" />
-
-    <button type="submit">Create account</button>
-
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
-  </form>
+              {{#if errorMessage}}
+              <p class="error">{{errorMessage}}</p>
+              {{/if}}
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

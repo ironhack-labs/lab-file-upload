@@ -1,0 +1,52 @@
+<div class="container-fluid content">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+
+        <div class="row justify-content-center post">
+          <div class="col-12 col-sm-7">
+            <img src="{{post.picPath}}" alt="{{post.picName}}">
+            <h1><strong>{{post.picName}}</strong></h1>
+            <p>{{post.content}}</p>
+          </div>
+          <div class="col-12 col-sm-5">
+            <h2><strong>Make a comment!</strong></h2>
+            <form action="/comments/{{post.id}}" method="POST" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="content">Content</label>
+                <textarea type="text" class="form-control" id="content" name="content" rows="5"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="imagePath">Upload image</label>
+                <input type="file" class="form-control-file" id="imagePath" placeholder="Upload file" name="imagePath">
+              </div>
+              <div class="form-group">
+                <label for="imageName">Image title</label>
+                <input type="text" class="form-control" id="imageName" placeholder="File title" name="imageName">
+              </div>
+              <button type="submit" class="btn" id="{{user._id}}">Comment</button>
+            </form>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-12">
+            {{#each comments}}
+            <div class="users-comments">
+              {{#if imagePath}}
+              <img src="{{imagePath}}" alt="{{imageName}}">
+              {{/if}}
+              <div class="post-info">
+                <h4><strong>{{imageName}}</strong></h4>
+                <p>{{content}}</p>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<header class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <nav class="navbar navbar-light">
+        <a class="navbar-brand" href="/">tumblr</a>
+        <ul class="navbar-nav">
+          {{#if user}}
+          <li class="nav-avatar">
+            <img src="{{user.avatar}}">
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/userProfile">Make a post</a>
+          </li>
+          <li class="nav-item">
+            <form id="logout-form" action="/logout" method="POST">
+              <button class="nav-link">Logout</button>
+            </form>
+          </li>
+          {{else}}
+          <li class="nav-item">
+            <a class="nav-link" href="/signup">Signup</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          {{/if}}
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>

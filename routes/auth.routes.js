@@ -5,7 +5,12 @@ const router = new Router();
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User.model');
+const Post = require('../models/Post.model');
+const Comment = require('../models/Comments.model');
 const mongoose = require('mongoose');
+
+const multer = require('multer');
+const uploads = multer({ dest: './public/uploads' });
 
 const routeGuard = require('../configs/route-guard.config');
 
@@ -14,14 +19,14 @@ const routeGuard = require('../configs/route-guard.config');
 ////////////////////////////////////////////////////////////////////////
 
 // .get() route ==> to display the signup form to users
-router.get('/signup', (req, res) => res.render('auth/signup'));
+router.get('/signup', (req, res) => res.render('auth/signup', { title: 'Register here' }));
 
 // .post() route ==> to process form data
-router.post('/signup', (req, res, next) => {
-  const { username, email, password } = req.body;
+router.post('/signup', uploads.single('avatar'), (req, res, next) => {
+  const { username, email, avatar, password } = req.body;
 
   if (!username || !email || !password) {
-    res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
+    res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email, avatar and password.' });
     return;
   }
 
@@ -38,13 +43,14 @@ router.post('/signup', (req, res, next) => {
     .genSalt(saltRounds)
     .then(salt => bcryptjs.hash(password, salt))
     .then(hashedPassword => {
+      const userParams = req.body;
+      userParams.avatar = req.file ? `/uploads/${req.file.filename}` : undefined;
+      // const user = new User(userParams);
       return User.create({
         // username: username
         username,
         email,
-        // passwordHash => this is the key from the User model
-        //     ^
-        //     |            |--> this is placeholder (how we named returning value from the previous method (.hash()))
+        avatar: userParams.avatar,
         passwordHash: hashedPassword
       });
     })
@@ -70,7 +76,7 @@ router.post('/signup', (req, res, next) => {
 ////////////////////////////////////////////////////////////////////////
 
 // .get() route ==> to display the login form to users
-router.get('/login', (req, res) => res.render('auth/login'));
+router.get('/login', (req, res) => res.render('auth/login', { title: 'Log in here' }));
 
 // .post() login route ==> to process form data
 router.post('/login', (req, res, next) => {
@@ -90,7 +96,7 @@ router.post('/login', (req, res, next) => {
         return;
       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
         req.session.currentUser = user;
-        res.redirect('/userProfile');
+        res.redirect(`/userProfile/${user._id}`);
       } else {
         res.render('auth/login', { errorMessage: 'Incorrect password.' });
       }
@@ -109,6 +115,63 @@ router.post('/logout', (req, res) => {
 
 router.get('/userProfile', routeGuard, (req, res) => {
   res.render('users/user-profile');
+});
+
+router.get('/userProfile/:id', routeGuard, (req, res) => {
+  res.render('users/user-profile');
+});
+
+router.post('/userProfile/:id', uploads.single('picPath'), routeGuard, (req, res, next) => {
+  req.body.picPath = req.file ? `/uploads/${req.file.filename}` : undefined;
+  const id = req.params.id;
+
+  return Post.create({
+    // username: username
+    content: req.body.content,
+    creatorId: id,
+    picName: req.body.picName,
+    picPath: req.body.picPath
+  })
+    .then(() => {
+      res.redirect(`/userProfile/${id}`);
+    })
+    .catch(error => next(error));
+});
+
+////////////////////////////////////////////////////////////////////////
+///////////////////////////// COMMENTS /////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+
+router.get('/comments/:id', routeGuard, (req, res, next) => {
+  const id = req.params.id;
+  Post.findById(id)
+    .then(post => {
+      Comment.find().then(comments => {
+        res.render('users/comments', { post, comments });
+      });
+    })
+    .catch(error => next(error));
+});
+
+router.post('/comments/:id', uploads.single('imagePath'), routeGuard, (req, res, next) => {
+  req.body.imagePath = req.file ? `/uploads/${req.file.filename}` : undefined;
+  const user = req.session.currentUser;
+  const id = req.params.id;
+
+  Comment.create({
+    content: req.body.content,
+    authorId: user._id,
+    imagePath: req.body.imagePath,
+    imageName: req.body.imageName
+  });
+
+  Post.findById(id)
+    .then(post => {
+      Comment.find().then(comments => {
+        res.render('users/comments', { post, comments });
+      });
+    })
+    .catch(error => next(error));
 });
 
 module.exports = router;
