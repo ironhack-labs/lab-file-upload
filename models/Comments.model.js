@@ -1,22 +1,29 @@
 // models/Comments.model.js
-const mongoose = require('mongoose');
+const { Schema, model, ObjectId } = require('mongoose');
 
-const { Schema, model, isValidObjectId } = require('mongoose');
-
-const commentSchema = new Schema({
-  content: {
-    type: String
+const commentSchema = new Schema(
+  {
+    content: {
+      type: String
+    },
+    authorId: {
+      type: ObjectId,
+      ref: 'User'
+    },
+    postId: {
+      type: ObjectId,
+      ref: 'Post'
+    },
+    imagePath: {
+      type: String
+    },
+    imageName: {
+      type: String
+    }
   },
-  authorId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  },
-  imagePath: {
-    type: String
-  },
-  imageName: {
-    type: String
+  {
+    timestamps: true
   }
-});
+);
 
 module.exports = model('Comment', commentSchema);

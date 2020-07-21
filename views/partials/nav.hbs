@@ -5,8 +5,13 @@
         <a class="navbar-brand" href="/">tumblr</a>
         <ul class="navbar-nav">
           {{#if user}}
-          <li class="nav-avatar">
-            <img src="{{user.avatar}}">
+          <li class="user-info">
+            <div class="nav-avatar" style="background: #65c9ff url({{user.avatar}}) no-repeat center center / cover;">
+            </div>
+            <p>Hi <strong>@{{user.username}}</strong></p>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/"><i class="fas fa-home"></i></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/userProfile">Make a post</a>

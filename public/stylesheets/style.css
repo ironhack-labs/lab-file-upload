@@ -59,7 +59,7 @@ h6 strong {
 }
 
 .navbar ul a:hover {
-  color: #ff552e;
+  opacity: 0.5;
 }
 
 .navbar ul button.nav-link {
@@ -68,15 +68,41 @@ h6 strong {
   color: #fff !important;
 }
 
+.navbar ul button:hover {
+  opacity: 0.5;
+}
+
 .navbar ul button:focus, .navbar ul button:active {
   outline: none;
 }
 
-.navbar ul .nav-avatar img {
+.navbar ul .user-info {
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 2rem;
+}
+
+.navbar ul .user-info .nav-avatar {
   width: 3rem;
+  height: 3rem;
   border: solid 0.2rem #fff;
   border-radius: 50%;
   background: #65c9ff;
+  margin-right: 1rem;
+}
+
+.navbar ul .user-info p {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.navbar ul .user-info p strong {
+  font-weight: 800;
 }
 
 .content {
@@ -109,25 +135,75 @@ h6 strong {
 }
 
 .content .card-columns {
-  margin-top: 10rem;
+  margin-top: 5rem;
 }
 
 .content .card-columns .card .card-body {
   position: relative;
 }
 
-.content .card-columns .card .card-body .post-comment {
+.content .card-columns .card .card-body .card-title {
+  margin-bottom: 0.75rem;
   position: absolute;
-  bottom: 0;
+  top: -52px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 1rem;
+  width: 80%;
   right: 0;
-  padding: 2rem;
-  font-size: 3rem;
+  font-weight: 900;
+}
+
+.content .card-columns .card .card-body .card-text {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.content .card-columns .card .card-body h4 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.content .card-columns .card .card-body .comment-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.content .card-columns .card .card-body .comment-block .home-avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: solid 0.2rem #ff552e;
+}
+
+.content .card-columns .card .card-body .comment-block .comment-info {
+  margin-left: 1rem;
+}
+
+.content .card-columns .card .card-body .comment-block .comment-info p {
+  margin: 0;
+}
+
+.content .card-columns .card .card-footer {
+  text-align: right;
+  background-color: #fff;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.content .card-columns .card .card-footer i {
+  margin-left: 1rem;
+}
+
+.content .card-columns .card .card-footer .post-comment {
   color: #333;
 }
 
-.content .card-columns .card .card-body .post-comment:hover {
+.content .card-columns .card .card-footer .post-comment:hover {
   opacity: 0.5;
   color: #ff552e;
+  text-decoration: none;
 }
 
 .content form {
@@ -136,12 +212,12 @@ h6 strong {
 
 .content form input {
   padding: 2rem 1rem;
-  font-size: 1.4rem;
 }
 
 .content form textarea,
 .content form input {
   margin-bottom: 3rem;
+  font-size: 1.4rem;
 }
 
 .content form .btn {
@@ -182,10 +258,23 @@ h6 strong {
   font-size: 1.6rem;
 }
 
+.content .post .post-content {
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+
+.content .author {
+  color: #ff552e;
+  font-size: 1.2rem;
+}
+
 .content .users-comments {
   border-bottom: solid 0.1rem rgba(51, 51, 51, 0.2);
   padding-bottom: 1rem;
   margin-bottom: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .content .users-comments img {

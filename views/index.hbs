@@ -12,8 +12,24 @@
             <img src="{{picPath}}" class="card-img-top" alt="{{picName}}">
             <div class="card-body">
               <h5 class="card-title">{{picName}}</h5>
+              <p class="author">posted by @{{creatorId.username}}</p>
               <p class="card-text">{{content}}</p>
-              <a class="post-comment" href="/comments/{{_id}}"><i class="far fa-comment"></i></a>
+
+              <h4><strong>Comments</strong></h4>
+              {{#each comments}}
+              <div class="comment-block">
+                <div class="home-avatar"
+                  style="background: #65c9ff url({{authorId.avatar}}) no-repeat center center / cover;">
+                </div>
+                <div class="comment-info">
+                  <p class="card-text">{{content}}</p>
+                  <p class="author">@{{authorId.username}}</p>
+                </div>
+              </div>
+              {{/each}}
+            </div>
+            <div class="card-footer"><a class="post-comment" href="/comments/{{_id}}">make a comment <i
+                  class="far fa-comment"></i></a>
             </div>
           </div>
           {{/each}}

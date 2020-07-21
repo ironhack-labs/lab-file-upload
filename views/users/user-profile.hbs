@@ -3,7 +3,8 @@
         <div class="row">
             <div class="col-12">
                 {{#if user}}
-                <img class="user-avatar" src="{{user.avatar}}" alt="{{user.username}} image" width="100">
+                <div class="user-avatar" style="background: #65c9ff url({{user.avatar}}) no-repeat center center / cover;">
+                </div>
                 <h1 class="text-center">Welcome, <strong>{{ user.username }}!</strong></h1>
                 <p class="text-center">{{ user.email }}</p>
                 {{else}}

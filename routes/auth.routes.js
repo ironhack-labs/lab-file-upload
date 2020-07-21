@@ -145,10 +145,19 @@ router.post('/userProfile/:id', uploads.single('picPath'), routeGuard, (req, res
 router.get('/comments/:id', routeGuard, (req, res, next) => {
   const id = req.params.id;
   Post.findById(id)
+    .populate('creatorId')
+    .populate('comments')
+    .populate({
+      path: 'comments',
+      populate: {
+        path: 'authorId',
+        model: 'User'
+      }
+    })
     .then(post => {
-      Comment.find().then(comments => {
-        res.render('users/comments', { post, comments });
-      });
+      // res.json(post)
+      // res.json(post.comments)
+      res.render('users/comments', { post });
     })
     .catch(error => next(error));
 });
@@ -161,15 +170,23 @@ router.post('/comments/:id', uploads.single('imagePath'), routeGuard, (req, res,
   Comment.create({
     content: req.body.content,
     authorId: user._id,
+    postId: req.params.id,
     imagePath: req.body.imagePath,
     imageName: req.body.imageName
   });
 
   Post.findById(id)
+    .populate('creatorId')
+    .populate('comments')
+    .populate({
+      path: 'comments',
+      populate: {
+        path: 'authorId',
+        model: 'User'
+      }
+    })
     .then(post => {
-      Comment.find().then(comments => {
-        res.render('users/comments', { post, comments });
-      });
+      res.render('users/comments', { post });
     })
     .catch(error => next(error));
 });

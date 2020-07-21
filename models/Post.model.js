@@ -1,23 +1,33 @@
 // models/Post.model.js
-const mongoose = require('mongoose');
-require('./User.model');
+const { Schema, model, ObjectId } = require('mongoose');
 
-const { Schema, model, isValidObjectId } = require('mongoose');
-
-const postSchema = new Schema({
-  content: {
-    type: String
+const postSchema = new Schema(
+  {
+    content: {
+      type: String
+    },
+    creatorId: {
+      type: ObjectId,
+      ref: 'User',
+      required: true
+    },
+    picPath: {
+      type: String
+    },
+    picName: {
+      type: String
+    }
   },
-  creatorId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  },
-  picPath: {
-    type: String
-  },
-  picName: {
-    type: String
+  {
+    timestamps: true
   }
+);
+
+postSchema.virtual('comments', {
+  ref: 'Comment',
+  localField: '_id',
+  foreignField: 'postId',
+  justOne: false
 });
 
 module.exports = model('Post', postSchema);
