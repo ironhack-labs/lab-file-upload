@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      {{#each post as |post|}}
+      <p>{{post.creatorId.username}}</p>
+      <p>{{post.content}}</p>
+      <img src="{{post.picPath}}" alt="{{post.picName}}" style="max-width: 250px;">
+      <p>{{post.picName}}</p>
+      {{/each}}
+    </div>
+  </div>
+</div>

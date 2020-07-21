@@ -1,35 +1,29 @@
 // routes/auth.routes.js
-
 const { Router } = require('express');
 const router = new Router();
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User.model');
+const Post = require('../models/Post.model');
 const mongoose = require('mongoose');
 const multer = require('multer');
 const Picture = require('../models/Picture.model');
 const uploads = multer({ dest: './public/uploads' });
-
-
-
 const routeGuard = require('../configs/route-guard.config');
-
+const PostModel = require('../models/Post.model');
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////// SIGNUP //////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
-
 // .get() route ==> to display the signup form to users
 router.get('/signup', (req, res) => res.render('auth/signup'));
-
 // .post() route ==> to process form data
 router.post('/signup', uploads.single('avatar'), (req, res, next) => {
   const { username, email, password, avatar} = req.body;
- console.log(req.body.file)
+ console.log(avatar)
   if (!username || !email || !password ) {
     res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
     return;
   }
-
   // make sure passwords are strong:
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
   if (!regex.test(password)) {
@@ -38,7 +32,6 @@ router.post('/signup', uploads.single('avatar'), (req, res, next) => {
       .render('auth/signup', { errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.' });
     return;
   }
-
   bcryptjs
     .genSalt(saltRounds)
     .then(salt => bcryptjs.hash(password, salt))
@@ -76,25 +69,20 @@ router.post('/signup', uploads.single('avatar'), (req, res, next) => {
       }
     }); // close .catch()
 });
-
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////// LOGIN ////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
-
 // .get() route ==> to display the login form to users
 router.get('/login', (req, res) => res.render('auth/login'));
-
 // .post() login route ==> to process form data
 router.post('/login', (req, res, next) => {
   const { email, password } = req.body;
-
   if (email === '' || password === '') {
     res.render('auth/login', {
       errorMessage: 'Please enter both, email and password to login.'
     });
     return;
   }
-
   User.findOne({ email })
     .then(user => {
       if (!user) {
@@ -109,29 +97,45 @@ router.post('/login', (req, res, next) => {
     })
     .catch(error => next(error));
 });
-
+///////////////////////////POST-FORM///////////////////
+router.get('/post-form', routeGuard, (req, res) => {
+  res.render('users/post-form');
+});
+router.post('/post-form', routeGuard, uploads.single('picPath'), (req, res) => {
+  // const { content, picPath, picName} = req.body;
+  const userParams = req.body;
+  userParams.picPath = req.file ? `/uploads/${req.file.filename}` : undefined;
+  userParams.creatorId = req.session.currentUser._id
+  const post = new Post(userParams)
+  post.save()
+  .then(() => res.redirect('posts-view'))
+  .catch(error => error);
+});
+router.get('/posts-view', (req, res) => {
+  Post.find()
+  .populate('creatorId')
+  .then(post => {
+    console.log(post)
+    res.render('posts-view', {post})
+  })
+});
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////// LOGOUT ////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
-
 router.post('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/');
 });
-
 router.get('/userProfile', routeGuard, (req, res) => {
   res.render('users/user-profile');
 });
-
 // Route to upload from project base path
-
 router.post('/uploads', uploads.single('photo'), (req, res, next) => {
   const picture = new Picture({
     name: req.body.name,
     path: `/uploads/${req.file.filename}`,
     originalName: req.file.originalname
   });
-
   picture
     .save()
     .then(() => {
@@ -141,6 +145,5 @@ router.post('/uploads', uploads.single('photo'), (req, res, next) => {
       next(error);
     });
 });
-
 
 module.exports = router;
