@@ -1,14 +1,10 @@
 const Post = require('../models/Post.model');
 
-module.exports.renderHome = (req, res) =>  {
-    //console.log(req.locals.localUser);
-    res.render('index', { title: 'App created with Ironhack generator 🚀'})
-};
-
-module.exports.getAllPosts = (req, res) => {
+module.exports.getAllPosts = (req, res) =>  {
     Post.find({})
+        .populate('creatorId')
         .then(posts => {
-            res.render('posts/post-page', { posts })
+            res.render('index', { posts })
         })
 };
 

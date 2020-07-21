@@ -1,2 +1,24 @@
-<h1>{{title}}</h1>
-<p>Welcome Ironhacker!</p>
+<div id="post-list-container" >
+
+    <h3>Welcome Ironhacker! </h3>
+    <a href="/post-form">Create your post</a>
+
+    {{#if posts}}
+        {{#each posts as |post|}}
+            <div class="card" id="post-card">
+                <div class="card-body">
+                    <img src="{{post.creatorId.image}}" alt="">
+                    <h3>{{post.creatorId.username}}</h3>
+                </div>
+                <div class="card-body">
+                    <div class="card-text">{{post.content}}</div>
+                    {{#if post.picPath}}
+                        <img src="{{post.picPath}}" alt="">
+                        <p>{{picName}}</p>
+                    {{/if}}
+                </div>
+            </div>
+        {{/each}}
+    {{/if}}
+
+</div>

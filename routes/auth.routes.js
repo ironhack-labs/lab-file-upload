@@ -4,8 +4,8 @@ const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User.model');
 const mongoose = require('mongoose');
-const multer  = require('multer')
-const upload = multer({ dest: './uploads' })
+const multer  = require('multer');
+const uploads = multer({ dest: './public/uploads' })
 
 const routeGuard = require('../configs/route-guard.config');
 const authControllers = require('../controllers/auth.controllers');
@@ -13,7 +13,7 @@ const authControllers = require('../controllers/auth.controllers');
 
 router.get('/signup', authControllers.displaySignupForm);
 
-router.post('/signup', upload.single('image'), authControllers.checkInputsAndCreateNewUser);
+router.post('/signup', uploads.single('image'), authControllers.checkInputsAndCreateNewUser);
 
 router.get('/login', authControllers.displayLoginForm);
 
@@ -25,7 +25,7 @@ router.get('/userProfile', routeGuard, authControllers.showUserProfile);
 
 router.get('/post-form', authControllers.displayPostForm);
 
-router.post('/new-post', upload.single('picPath'), authControllers.checkPostInputAndCreateNewPost);
+router.post('/new-post', uploads.single('picPath'), authControllers.checkPostInputAndCreateNewPost);
 
 
 module.exports = router;

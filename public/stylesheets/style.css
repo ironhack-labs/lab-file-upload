@@ -118,3 +118,10 @@ ul li {
   font-weight: bold;
   font-size: 2em;
 }
+
+#post-list-container {
+  width: 80vw;
+  margin: auto;
+  text-align: center;
+  border: 2px solid yellow;
+}

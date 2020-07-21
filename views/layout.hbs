@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{title}}</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   </head>
 
   <body>
@@ -15,12 +16,12 @@
         <li id="to-left">
           <p>
             <a href="/"> IronTumblr </a>
-            <span> - </span>
-            <a href="/posts">All posts</a>
           </p>
         </li>
         <li id="to-right">
+          <a href="/">Home</a> <span> | </span>
           {{#if user}}
+            <a href="/userProfile">My profile</a> <span> | </span>
             <form id="logout-form" action="/logout" method="POST">
               <button>Logout</button>
             </form>
@@ -33,7 +34,6 @@
     </nav>
 
     {{{body}}}
-
     <script src="/javascripts/script.js"></script>
   </body>
 

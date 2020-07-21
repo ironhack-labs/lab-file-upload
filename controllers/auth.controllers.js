@@ -4,13 +4,13 @@ const saltRounds = 10;
 const mongoose = require('mongoose');
 
 const routeGuard = require('../configs/route-guard.config');
-const PostModel = require('../models/Post.model');
+const Post = require('../models/Post.model');
 
 module.exports.displaySignupForm = (req, res) => res.render('auth/signup');
 
 module.exports.checkInputsAndCreateNewUser = (req, res, next) => {
     const { username, email, password } = req.body;
-    const image = req.file.filename;
+    const image = req.file ? `/uploads/${req.file.filename}` : undefined;
   
     if (!username || !email || !password || !image) {
       res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email, image and password.' });
@@ -72,7 +72,7 @@ module.exports.loginUser = (req, res, next) => {
             res.render('auth/login', { errorMessage: 'Email is not registered. Try with other email.' });
             return;
         } else if (bcryptjs.compareSync(password, user.passwordHash)) {
-            res.locals.currentUser = user;
+            req.session.currentUser = user;
             res.redirect('/userProfile');
         } else {
             res.render('auth/login', { errorMessage: 'Incorrect password.' });
@@ -82,38 +82,48 @@ module.exports.loginUser = (req, res, next) => {
 };
 
 module.exports.loggingOutUser = (req, res) => {
-    req.session.currentUser = '';
+    req.session.destroy();
     res.redirect('/');
 };
 
 module.exports.showUserProfile = (req, res) => {
-    res.render('users/user-profile');
+    const user = req.session.currentUser;
+    if (!user) {
+        res.render('auth/login', { errorMessage: 'Please log in.' });
+    } else {
+        res.render('users/user-profile', { user });
+    }
 }
 
 module.exports.checkPostInputAndCreateNewPost = (req, res) => {
 
-    const picture = req.file.filename ? req.file.filename : '';
+    const picture = req.file ? `/uploads/${req.file.filename}` : undefined;
     const newPost = {
         content: req.body.content,
-        creatorId: req.currentUser,
+        creatorId: req.session.currentUser._id,
         picPath: picture,
         picName: req.body.picName,
     }
-    //postParams.picPath = req.file.filename;
+
     console.log(newPost);
-    //console.log('currentUser: ', currentUser);
     
-    /* if (!postParams.content || !postParams.picPath || !postParams.picName) {
-        res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide a text, image and image name.' });
+    if (!newPost.content) {
+        res.render('posts/post-form', { errorMessage: 'Text missing.' });
         return;
     }
 
-    const post = new PostModel(postParams);
+    const post = new Post(newPost);
     post.save()
-        .then(() => res.redirect('posts'))
-        .catch(err => console.log(err)); */
+        .then(() => res.redirect('/'))
+        .catch(err => console.log(err));
 }
 
 module.exports.displayPostForm = (req, res) => {
-    res.render('posts/post-form');
+    const user = req.session.currentUser;
+    if (!user) {
+        res.render('auth/login', { errorMessage: 'Please log in.' });
+    } else {
+        res.render('posts/post-form');
+    }
+    
 }
