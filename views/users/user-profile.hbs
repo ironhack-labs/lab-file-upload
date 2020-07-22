@@ -2,6 +2,7 @@
     <h2>Welcome, {{ user.username }}!</h2>
     <p>This is your profile page my friend! And your email is: {{ user.email }}</p>
     <img src="{{user.avatar}}" alt="{{user.username}}">
+    <a href="/post-form">Create new post</a>
 {{else}}
     <p>Still no logged in user, sorry!</p>
 {{/if}}

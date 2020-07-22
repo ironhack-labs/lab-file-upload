@@ -6,11 +6,13 @@ const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User.model');
 const Post = require('../models/Post.model');
+const Comment = require('../models/comment.model');
 const mongoose = require('mongoose');
 
 const routeGuard = require('../configs/route-guard.config');
 
 const multer = require('multer');
+const { clearConfigCache } = require('prettier');
 const onload = multer({ dest: './public/avatar' });
 
 ////////////////////////////////////////////////////////////////////////
@@ -116,7 +118,7 @@ router.post('/post-form', onload.single('picPath'), (req, res, next) => {
   const { content, picName } = req.body;
   const postParam = req.body;
   postParam.picPath = req.file ? `/avatar/${req.file.filename}` : undefined;
-  const id = req.params.id;
+  const id = req.session.currentUser._id;
   Post.create({
     content,
     picName,
@@ -136,15 +138,48 @@ router.post('/post-form', onload.single('picPath'), (req, res, next) => {
 router.get('/post/:id', (req, res, next) => {
   const id = req.params.id;
   Post.findById(id)
-  .sort({ createdAt: -1 })
-  .limit(100)
   .populate('creatorId')
+  .populate('comment')
+  //Aqui es donde me falla algo, no se el que
+  .populate({
+    path: 'comment',
+    populate: {
+      path: 'authorId',
+      model: 'User'
+    }
+  })
   .then(postDetail => {
-    res.render('post/post', { 
-      postDetail
-    });
+    //console.log(JSON.stringify(postDetail));
+    //Si miras el console.log anterior ves que sale todo pero al pasarlo
+    //al post no sale..
+    res.render('post/post', { postDetail });
   })
   .catch(error => console.error(error));
+});
+
+router.post('/post/:id',onload.single('imagePath'), (req, res, next) => {
+  const {content, imageName} = req.body;
+  const postParam = req.body;
+  postParam.imagePath = req.file ? `/avatar/${req.file.filename}` : undefined;
+  const idAuthor = req.session.currentUser._id;
+  const idPost = req.params.id;
+  Comment.create({
+    content,
+    imageName,
+    imagePath: postParam.imagePath,
+    authorId: idAuthor
+  })
+  .then(comment => {
+    Post.findByIdAndUpdate(idPost, { $push: { "comment" : comment._id } }, {new: true})
+    .then((post) => {
+      res.redirect(`/post/${idPost}`)
+    })
+    .catch(error => console.error(error));
+    
+  })
+  .catch(error => {
+    console.error(error);
+  });
 });
 
 ////////////////////////////////////////////////////////////////////////

@@ -1,30 +1,31 @@
 const { Schema, model } = require('mongoose');
 require('./User.model');
-require('./comment.model');
+require('./Post.model')
 
-const postSchema = new Schema(
+const commentSchema = new Schema(
   {
     content: {
       type: String
     },
-    creatorId: { 
+    authorId: { 
       type: Schema.Types.ObjectId,
       ref: 'User'
     },
-    picPath: {
+    imagePath: {
       type: String
     },
-    picName: {
+    imageName: {
       type: String
-    },
-    comment: [
-      {type: Schema.Types.ObjectId,
-      ref: 'Comment'}
-    ]},
+    }
+  },
   {
     timestamps: true,
     toJSON: { virtuals: true } 
   }
 );
 
-module.exports = model('Post', postSchema);
+
+
+
+
+module.exports = model('Comment', commentSchema);

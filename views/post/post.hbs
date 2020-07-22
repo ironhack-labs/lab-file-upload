@@ -1,4 +1,6 @@
 <h1>Post</h1>
+<div>{{postDetail}}</div>
+{{!-- Este div de arriba es para ver todo lo que tiene el objeto --}}
 <label for="content">Content:</label>
 <p>{{postDetail.content}}</p>
 
@@ -8,4 +10,17 @@
 <h3>{{postDetail.picName}}</h3>
 
 <label for="creator">Creator</label>
-<span>{{postDetail.user.username}}</span>
+<span>{{postDetail.creatorId.username}}</span>
+<h3>Comments</h3>
+{{#each postDetail.comment}}
+  <img src="{{this.imagePath}}" alt="{{this.imageName}}">
+  <p>{{this.content}}</p>
+  {{!-- <span>Create for: {{this.authorId.username}}</span> --}}
+{{/each}}
+
+  <form action="/post/{{postDetail._id}}" method="POST" enctype="multipart/form-data">
+  <textarea name="content" cols="40" rows="10"></textarea>
+  <input type="file" name="imagePath">
+  <input type="text" name="imageName" placeholder="Name Image">
+  <button type="submit">Send Comment</button>
+  </form>
