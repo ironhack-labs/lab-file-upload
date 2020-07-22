@@ -1,2 +1,12 @@
 <h1>{{title}}</h1>
 <p>Welcome Ironhacker!</p>
+
+<div class="card" style="width: 18rem;">
+{{#each post as |post|}}
+  <img src="{{post.picPath}}" alt="{{post.picName}}">
+  <div class="card-body">
+    <h5 class="card-title">{{post.picName}}</h5>
+    <a href="/post/{{post._id}}" class="btn btn-primary">Ver mas</a>
+  </div>
+{{/each}}
+</div>

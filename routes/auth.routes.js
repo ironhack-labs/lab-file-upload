@@ -5,9 +5,13 @@ const router = new Router();
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User.model');
+const Post = require('../models/Post.model');
 const mongoose = require('mongoose');
 
 const routeGuard = require('../configs/route-guard.config');
+
+const multer = require('multer');
+const onload = multer({ dest: './public/avatar' });
 
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////// SIGNUP //////////////////////////////////
@@ -17,11 +21,13 @@ const routeGuard = require('../configs/route-guard.config');
 router.get('/signup', (req, res) => res.render('auth/signup'));
 
 // .post() route ==> to process form data
-router.post('/signup', (req, res, next) => {
+router.post('/signup', onload.single('avatar'), (req, res, next) => {
   const { username, email, password } = req.body;
 
+  // const avatar = req.body.avatar = req.file ? `/avatar/${req.file.fileName}` : undefined;
+
   if (!username || !email || !password) {
-    res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
+    res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email, avatar and password.' });
     return;
   }
 
@@ -38,6 +44,8 @@ router.post('/signup', (req, res, next) => {
     .genSalt(saltRounds)
     .then(salt => bcryptjs.hash(password, salt))
     .then(hashedPassword => {
+      const userParam = req.body;
+      userParam.avatar = req.file ? `/avatar/${req.file.filename}` : undefined;
       return User.create({
         // username: username
         username,
@@ -45,7 +53,8 @@ router.post('/signup', (req, res, next) => {
         // passwordHash => this is the key from the User model
         //     ^
         //     |            |--> this is placeholder (how we named returning value from the previous method (.hash()))
-        passwordHash: hashedPassword
+        passwordHash: hashedPassword,
+        avatar: userParam.avatar
       });
     })
     .then(userFromDB => {
@@ -96,6 +105,46 @@ router.post('/login', (req, res, next) => {
       }
     })
     .catch(error => next(error));
+});
+
+//Rutas de Post
+router.get('/post-form', (req, res, next) => {
+  res.render('post/post-form');
+});
+
+router.post('/post-form', onload.single('picPath'), (req, res, next) => {
+  const { content, picName } = req.body;
+  const postParam = req.body;
+  postParam.picPath = req.file ? `/avatar/${req.file.filename}` : undefined;
+  const id = req.params.id;
+  Post.create({
+    content,
+    picName,
+    picPath: postParam.picPath,
+    creatorId: id
+  })
+    .then(postFromDB => {
+      console.log('Newly created post is: ', postFromDB);
+      res.redirect('/');
+    })
+    .catch(error => {
+      console.error(error);
+    });
+});
+
+//Detalles del Post
+router.get('/post/:id', (req, res, next) => {
+  const id = req.params.id;
+  Post.findById(id)
+  .sort({ createdAt: -1 })
+  .limit(100)
+  .populate('creatorId')
+  .then(postDetail => {
+    res.render('post/post', { 
+      postDetail
+    });
+  })
+  .catch(error => console.error(error));
 });
 
 ////////////////////////////////////////////////////////////////////////
