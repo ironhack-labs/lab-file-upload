@@ -1,0 +1,14 @@
+<div>
+  {{#each posts as |post|}}
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{post.picPath}}" alt="Post image">
+    <div class="card-body">
+      <h5 class="card-title">{{post.picName}}</h5>
+      <p class="card-text">{{post.content}}</p>
+      <a href="/post-details/{{post._id}}" class="btn btn-primary">Post details</a>
+    </div>
+  </div>
+
+  {{/each}}
+
+</div>

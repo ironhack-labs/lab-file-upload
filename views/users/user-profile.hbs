@@ -1,6 +1,10 @@
 {{#if user}}
     <h2>Welcome, {{ user.username }}!</h2>
     <p>This is your profile page my friend! And your email is: {{ user.email }}</p>
+
+    <form action="/post-form">
+        <button>Create a new post</button>
+    </form>
 {{else}}
     <p>Still no logged in user, sorry!</p>
 {{/if}}
