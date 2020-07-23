@@ -1,2 +1,27 @@
-<h1>{{title}}</h1>
-<p>Welcome Ironhacker!</p>
+<div id="post-list-container" >
+
+    <h3>Welcome Ironhacker! </h3>
+    <br>
+    <a href="/post-form" class="create-post-btn">Create your post</a>
+    <br><br>
+    {{#if posts}}
+        {{#each posts as |post|}}
+            <div class="row post-card">
+                <div class="post-card-author col-3">
+                    <img class="post-card-author-img" src="{{post.creatorId.image}}" alt="">
+                    <h3>{{post.creatorId.username}}</h3>
+                </div>
+                <div class="col-8">
+                    <div class="card-text">{{post.content}}</div>
+                    {{#if post.picPath}}
+                        <img class="post-card-post-img" src="{{post.picPath}}" alt="">
+                        <p>{{picName}}</p>
+                    {{/if}}
+                        <div>{{post.comments.length}} comments</div> 
+                        <a href="/post/{{post._id}}">View post</a>
+                </div>
+            </div>
+        {{/each}}
+    {{/if}}
+
+</div>

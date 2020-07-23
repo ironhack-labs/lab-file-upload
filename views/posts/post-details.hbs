@@ -1,0 +1,44 @@
+<a href="/">Return to home</a>
+{{#if post}}
+    <div class="row post-card">
+        <div class="post-card-author col-3">
+            <img class="post-card-author-img" src="{{post.creatorId.image}}" alt="">
+            <h3>{{post.creatorId.username}}</h3>
+        </div>
+        <div class="col-8">
+            <div class="card-text">{{post.content}}</div>
+            {{#if post.picPath}}
+                <img class="post-card-post-img" src="{{post.picPath}}" alt="">
+                <p>{{picName}}</p>
+            {{/if}}
+                <form action='/posts/{{post._id}}/comments' method="POST" enctype="multipart/form-data">
+                    <textarea name="comment" id="post-comment" cols="50" rows="2"></textarea>
+                    
+                    <label for="imagePath">Image</label>
+                    <input type="file" name="imagePath" />
+
+                    <label for="imageName">Image name:</label>
+                    <input type="text" name="imageName" />
+                    <button type="submit">Post comment</button>
+                </form>
+            {{#if post.comments}}
+                {{#each post.comments as |comment|}}
+                    <div class="row post-card">
+                        <div class="post-card-author col-3">
+                            <img class="post-card-author-img" src="{{comment.authorId.image}}" alt="">
+                            <h4>{{comment.authorId.username}}</h4>
+                        </div>
+                        <div class="col-8">
+                            <div class="card-text">{{comment.content}}</div>
+                        </div>
+                        {{#if comment.imagePath}}
+                            <img src="{{comment.imagePath}}" alt="image">
+                            <p>{{comment.imageName}}</p>
+                        {{/if}}
+                    </div>
+                {{/each}}
+            {{/if}}
+        </div>
+    </div>
+{{/if}}
+

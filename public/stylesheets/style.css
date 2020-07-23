@@ -1,10 +1,11 @@
 body {
   padding: 50px;
   font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+  --iblue: #43a3e6;
 }
 
 a {
-  color: #00b7ff;
+  color: #43a3e6 !important;
   text-decoration: none;
   font-size: 1.5em;
 }
@@ -63,8 +64,10 @@ form button:hover {
 }
 
 ul {
-  border-bottom: 2px solid #43a3e6;
-  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--iblue);
+  height: 50px;
   padding: 1em 0;
   list-style-type: none;
 }
@@ -75,9 +78,6 @@ ul li {
 
 #to-right {
   display: flex;
-  align-items: center;
-  padding: 1em;
-  float: right;
 }
 
 #logout-form {
@@ -93,7 +93,7 @@ ul li {
   border: none;
   padding: 0;
   cursor: pointer;
-  color: #00b7ff;
+  color: var(--iblue);
   font-size: 1.5em;
   display: inline-block;
   margin: 0;
@@ -117,4 +117,50 @@ ul li {
   color: #000;
   font-weight: bold;
   font-size: 2em;
+}
+
+#post-list-container {
+  width: 80vw;
+  margin: auto;
+  text-align: center;
+}
+
+.post-card {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2rem;
+  border: 1px solid rgb(224, 224, 224);
+}
+
+.post-card-author-img {
+  max-width: 100px;
+  height: auto; 
+}
+
+.post-card-post-img {
+  width: 80%;
+  height: auto;
+  margin: 1rem auto;
+}
+
+.create-post-btn {
+  padding: 0.8rem;
+  color: var(--iblue);
+  border: 1px solid var(--iblue);
+  border-radius: 5px;
+}
+
+.profile-card {
+  padding: 2rem;
+  border: 1px solid rgb(224, 224, 224);
+}
+
+.profile-left {
+  text-align: center;
+  width: 100%;
+}
+
+.profile-img {
+  max-width: 100px;
+  height: auto; 
 }

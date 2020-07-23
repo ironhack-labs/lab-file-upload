@@ -1,6 +1,32 @@
 {{#if user}}
-    <h2>Welcome, {{ user.username }}!</h2>
-    <p>This is your profile page my friend! And your email is: {{ user.email }}</p>
+    <div class="row profile-card">
+        <div class="profile-left col-3">
+            <img class="profile-img" src="{{user.image}}" alt="">
+            <p class="text-muted">{{ user.email }}</p>
+        </div>
+        <div class="col-9">
+            <h3>Welcome, {{ user.username }}!</h3>
+            <p>This is your profile page my friend!</p>
+            {{#if posts}}
+                {{#each posts as |post|}}
+                    <div class="row post-card">
+                        <div class="post-card-author col-3">
+                            <img class="post-card-author-img" src="{{post.creatorId.image}}" alt="">
+                            <h3>{{post.creatorId.username}}</h3>
+                        </div>
+                        <div class="col-8">
+                            <div class="card-text">{{post.content}}</div>
+                            {{#if post.picPath}}
+                                <img class="post-card-post-img" src="{{post.picPath}}" alt="">
+                                <p>{{picName}}</p>
+                            {{/if}}
+                        </div>
+                    </div>
+                {{/each}}
+            {{/if}}
+        </div>
+    </div>
+    
 {{else}}
     <p>Still no logged in user, sorry!</p>
 {{/if}}

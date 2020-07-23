@@ -9,6 +9,8 @@ const cookieParser = require('cookie-parser');
 const hbs = require('hbs');
 const mongoose = require('mongoose');
 
+
+
 // Set up the database
 require('./configs/db.config');
 
@@ -20,12 +22,14 @@ const indexRouter = require('./routes/index.routes');
 const authRouter = require('./routes/auth.routes');
 
 const app = express();
-require('./configs/session.config')(app);
+//require('./configs/session.config')(app);
+const session = require('./configs/session.config');
 
 // Express View engine setup
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+hbs.registerPartials(path.join(__dirname, 'views/partials'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
@@ -33,10 +37,12 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(session);
 app.use(bindUserToViewLocals);
 
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
+
 
 // Routes middleware
 app.use('/', indexRouter);
