@@ -11,8 +11,14 @@
                 <img class="post-card-post-img" src="{{post.picPath}}" alt="">
                 <p>{{picName}}</p>
             {{/if}}
-                <form action='/posts/{{post._id}}/comments' method="POST">
+                <form action='/posts/{{post._id}}/comments' method="POST" enctype="multipart/form-data">
                     <textarea name="comment" id="post-comment" cols="50" rows="2"></textarea>
+                    
+                    <label for="imagePath">Image</label>
+                    <input type="file" name="imagePath" />
+
+                    <label for="imageName">Image name:</label>
+                    <input type="text" name="imageName" />
                     <button type="submit">Post comment</button>
                 </form>
             {{#if post.comments}}
@@ -25,6 +31,10 @@
                         <div class="col-8">
                             <div class="card-text">{{comment.content}}</div>
                         </div>
+                        {{#if comment.imagePath}}
+                            <img src="{{comment.imagePath}}" alt="image">
+                            <p>{{comment.imageName}}</p>
+                        {{/if}}
                     </div>
                 {{/each}}
             {{/if}}

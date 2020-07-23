@@ -147,7 +147,6 @@ module.exports.viewPostDetails = (req, res) => {
             populate: { path: 'authorId' }
         })
         .then(post => {
-            console.log('Post details: ', post);
             res.render('posts/post-details', { post })
         })
         .catch(err => console.log(err))
@@ -155,6 +154,8 @@ module.exports.viewPostDetails = (req, res) => {
 
 module.exports.createPostComment = (req, res) => {
     const { postId } = req.params;
+    const picture = req.file ? `/uploads/${req.file.filename}` : undefined;
+    const { imageName } = req.body;
     const commentAuthor = req.session.currentUser._id;
     const commentText = req.body.comment;
 
@@ -162,8 +163,8 @@ module.exports.createPostComment = (req, res) => {
         content: commentText,
         postId: postId,
         authorId: commentAuthor,
-        imagePath: '',
-        imageName: ''
+        imagePath: picture,
+        imageName: imageName
     })
 
     comment.save()

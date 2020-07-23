@@ -29,7 +29,7 @@ router.post('/new-post', uploads.single('picPath'), authControllers.checkPostInp
 
 router.get('/post/:postId', authControllers.viewPostDetails);
 
-router.post('/posts/:postId/comments', authControllers.createPostComment);
+router.post('/posts/:postId/comments', uploads.single('imagePath'), authControllers.createPostComment);
 
 
 module.exports = router;
