@@ -17,6 +17,8 @@
                         <img class="post-card-post-img" src="{{post.picPath}}" alt="">
                         <p>{{picName}}</p>
                     {{/if}}
+                        <div>{{post.comments.length}} comments</div> 
+                        <a href="/post/{{post._id}}">View post</a>
                 </div>
             </div>
         {{/each}}

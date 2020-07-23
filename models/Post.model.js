@@ -23,4 +23,11 @@ const postSchema = new Schema(
   }
 );
 
+postSchema.virtual('comments', {
+  ref: 'Comment',
+  localField: '_id',
+  foreignField: 'postId',
+  justOne: false
+})
+
 module.exports = model('Post', postSchema);

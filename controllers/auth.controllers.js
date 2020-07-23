@@ -1,4 +1,5 @@
 const User = require('../models/User.model');
+const Comment = require('../models/Comment.model');
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const mongoose = require('mongoose');
@@ -73,9 +74,11 @@ module.exports.loginUser = (req, res, next) => {
             return;
         } else if (bcryptjs.compareSync(password, user.passwordHash)) {
             req.session.currentUser = user;
+            console.log(user);
+            console.log(req.session.currentUser);
             res.redirect('/userProfile');
         } else {
-            res.render('auth/login', { errorMessage: 'Incorrect password.' });
+            res.render('auth/login', { errorMessage: 'User not found.' });
         }
       })
       .catch(error => next(error));
@@ -88,11 +91,18 @@ module.exports.loggingOutUser = (req, res) => {
 
 module.exports.showUserProfile = (req, res) => {
     const user = req.session.currentUser;
-    if (!user) {
-        res.render('auth/login', { errorMessage: 'Please log in.' });
-    } else {
-        res.render('users/user-profile', { user });
-    }
+
+    Post.find({creatorId: user._id})
+        .then(posts => {
+            if (!user) {
+                res.render('auth/login', { errorMessage: 'Please log in.' });
+            } else {
+                res.render('users/user-profile', { user, posts });
+            }
+        })
+        .catch(err => next(err))
+
+    
 }
 
 module.exports.checkPostInputAndCreateNewPost = (req, res) => {
@@ -125,5 +135,39 @@ module.exports.displayPostForm = (req, res) => {
     } else {
         res.render('posts/post-form');
     }
-    
 }
+
+module.exports.viewPostDetails = (req, res) => {
+    const {postId } = req.params;
+    
+    Post.findById(postId)
+        .populate('creatorId')
+        .populate({
+            path: 'comments',
+            populate: { path: 'authorId' }
+        })
+        .then(post => {
+            console.log('Post details: ', post);
+            res.render('posts/post-details', { post })
+        })
+        .catch(err => console.log(err))
+}
+
+module.exports.createPostComment = (req, res) => {
+    const { postId } = req.params;
+    const commentAuthor = req.session.currentUser._id;
+    const commentText = req.body.comment;
+
+    const comment = new Comment({
+        content: commentText,
+        postId: postId,
+        authorId: commentAuthor,
+        imagePath: '',
+        imageName: ''
+    })
+
+    comment.save()
+        .then(c => res.redirect(`/post/${postId}`))
+        .catch(e => console.log(e));
+}
+
