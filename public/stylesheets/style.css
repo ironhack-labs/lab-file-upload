@@ -118,3 +118,17 @@ ul li {
   font-weight: bold;
   font-size: 2em;
 }
+
+.user-profile {
+  padding: 10px;
+  margin: 10px;
+}
+
+button {
+  margin: 10px;
+}
+
+.nav-form {
+  width: 100px;
+  margin-right: 200px;
+}

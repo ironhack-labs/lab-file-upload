@@ -1,12 +1,12 @@
-<h1>{{title}}</h1>
-<p>Welcome Ironhacker!</p>
-
-<div class="card" style="width: 18rem;">
-{{#each post as |post|}}
-  <img src="{{post.picPath}}" alt="{{post.picName}}">
-  <div class="card-body">
-    <h5 class="card-title">{{post.picName}}</h5>
-    <a href="/post/{{post._id}}" class="btn btn-primary">Ver mas</a>
+<div class="container">
+  {{#each post as |post|}}
+  <div class="card w-50 mb-3">
+    <div class="card-body">
+      <p class="card-subtitle mb-2 text-muted">{{post.createdAt}}</p>
+      <img class="rounded-sm w-50 mb-1" src="{{post.picPath}}" alt="{{post.picName}}">
+      <h5 class="card-title">{{post.picName}}</h5>
+      <a href="/post/{{post._id}}" class="btn btn-primary">See more</a>
+    </div>
   </div>
-{{/each}}
+  {{/each}}
 </div>

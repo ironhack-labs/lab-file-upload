@@ -1,19 +1,29 @@
 <div id="form">
-  <h2>New Post</h2>
-  <form action="/post-form" method="POST" enctype= "multipart/form-data">
-    <label for="content">Content</label>
-    <textarea name="content" id="content" cols="30" rows="10"></textarea>
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        New Post
+      </div>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <form action="/post-form" method="POST" enctype="multipart/form-data">
+            <label for="content">Content</label>
+            <textarea name="content" id="content" cols="30" rows="10"></textarea>
 
-    <label for="picPath">Picture</label>
-    <input type="file" name="picPath" id="picPath"/>
+            <label for="picPath">Picture</label>
+            <input type="file" name="picPath" id="picPath" />
 
-    <label for="picName">Picture Name</label>
-    <input type="text" id="picName" name="picName" placeholder="Your picture name" />
+            <label for="picName">Picture Name</label>
+            <input type="text" id="picName" name="picName" placeholder="Your picture name" />
 
-    <button type="submit">Create Post</button>
+            <button type="submit">Create Post</button>
 
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
-  </form>
+            {{#if errorMessage}}
+            <p class="error">{{errorMessage}}</p>
+            {{/if}}
+          </form>
+        </blockquote>
+      </div>
+    </div>
+  </div>
 </div>

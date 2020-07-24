@@ -110,11 +110,11 @@ router.post('/login', (req, res, next) => {
 });
 
 //Rutas de Post
-router.get('/post-form', (req, res, next) => {
+router.get('/post-form', routeGuard, (req, res, next) => {
   res.render('post/post-form');
 });
 
-router.post('/post-form', onload.single('picPath'), (req, res, next) => {
+router.post('/post-form', routeGuard, onload.single('picPath'), (req, res, next) => {
   const { content, picName } = req.body;
   const postParam = req.body;
   postParam.picPath = req.file ? `/avatar/${req.file.filename}` : undefined;
@@ -135,29 +135,25 @@ router.post('/post-form', onload.single('picPath'), (req, res, next) => {
 });
 
 //Detalles del Post
-router.get('/post/:id', (req, res, next) => {
+router.get('/post/:id', routeGuard, (req, res, next) => {
   const id = req.params.id;
   Post.findById(id)
-  .populate('creatorId')
-  .populate('comment')
-  //Aqui es donde me falla algo, no se el que
-  .populate({
-    path: 'comment',
-    populate: {
-      path: 'authorId',
-      model: 'User'
-    }
-  })
+    .populate('creatorId')
+    .populate('comments')
+    .populate({
+      path: 'comments',
+      populate: {
+        path: 'authorId',
+        model: 'User'
+      }
+    })
   .then(postDetail => {
-    //console.log(JSON.stringify(postDetail));
-    //Si miras el console.log anterior ves que sale todo pero al pasarlo
-    //al post no sale..
     res.render('post/post', { postDetail });
   })
   .catch(error => console.error(error));
 });
 
-router.post('/post/:id',onload.single('imagePath'), (req, res, next) => {
+router.post('/post/:id', routeGuard, onload.single('imagePath'), (req, res, next) => {
   const {content, imageName} = req.body;
   const postParam = req.body;
   postParam.imagePath = req.file ? `/avatar/${req.file.filename}` : undefined;
@@ -166,13 +162,15 @@ router.post('/post/:id',onload.single('imagePath'), (req, res, next) => {
   Comment.create({
     content,
     imageName,
+    postId: idPost,
     imagePath: postParam.imagePath,
     authorId: idAuthor
   })
   .then(comment => {
-    Post.findByIdAndUpdate(idPost, { $push: { "comment" : comment._id } }, {new: true})
+    console.log(JSON.stringify(comment))
+    Post.findByIdAndUpdate(idPost, { $push: { "comment" : comment } }, {new: true})
     .then((post) => {
-      res.redirect(`/post/${idPost}`)
+      res.redirect(`/post/${idPost}`);
     })
     .catch(error => console.error(error));
     
@@ -186,7 +184,7 @@ router.post('/post/:id',onload.single('imagePath'), (req, res, next) => {
 ///////////////////////////// LOGOUT ////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 
-router.post('/logout', (req, res) => {
+router.post('/logout', routeGuard, (req, res) => {
   req.session.destroy();
   res.redirect('/');
 });

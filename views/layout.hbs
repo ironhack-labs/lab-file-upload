@@ -11,24 +11,8 @@
   </head>
 
   <body>
-    <nav>
-      <ul>
-        <li id="to-left">
-          <p><a href="/"> IronTumblr </a></p>
-        </li>
-        <li id="to-right">
-          {{#if user}}
-            <form id="logout-form" action="/logout" method="POST">
-              <button>Logout</button>
-            </form>
-          {{else}}
-            <a href="/signup">Signup</a> <span> | </span>
-            <a href="/login">Login</a> <span> | </span>
-          {{/if}}
-        </li>
-      </ul>
-    </nav>
-
+    
+    {{>navbar}}
     {{{body}}}
 
     <script src="/javascripts/script.js"></script>

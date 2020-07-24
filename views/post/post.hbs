@@ -1,26 +1,55 @@
-<h1>Post</h1>
-<div>{{postDetail}}</div>
-{{!-- Este div de arriba es para ver todo lo que tiene el objeto --}}
-<label for="content">Content:</label>
-<p>{{postDetail.content}}</p>
+<a href="/">back to post</a>
+<div class="container">
+  <div class="card" style="width: 100%;">
+    <img class="rounded-sm w-50 mb-1 card-img-top" src="{{postDetail.picPath}}" alt="{{postDetail.picName}}">
+    <div class="card-body">
+      <h5 class="card-title">Content: </h5>
+      <p style="font-size: 14px;" class="card-text">{{postDetail.content}}</p>
 
-<img src="{{postDetail.picPath}}" alt="{{postDetail.picName}}">
+      <h5 class="card-title">Pic Name: </h5>
+      <p class="card-text" id="picName">{{postDetail.picName}}</p>
 
-<label for="picName">Picture Name</label>
-<h3>{{postDetail.picName}}</h3>
+      <h5 class="card-title">Creator: </h5>
+      <span class="card-text">{{postDetail.creatorId.username}}</span>
 
-<label for="creator">Creator</label>
-<span>{{postDetail.creatorId.username}}</span>
-<h3>Comments</h3>
-{{#each postDetail.comment}}
-  <img src="{{this.imagePath}}" alt="{{this.imageName}}">
-  <p>{{this.content}}</p>
-  {{!-- <span>Create for: {{this.authorId.username}}</span> --}}
-{{/each}}
+    </div>
+  </div>
+</div>
 
-  <form action="/post/{{postDetail._id}}" method="POST" enctype="multipart/form-data">
-  <textarea name="content" cols="40" rows="10"></textarea>
-  <input type="file" name="imagePath">
-  <input type="text" name="imageName" placeholder="Name Image">
-  <button type="submit">Send Comment</button>
-  </form>
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      Comments
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        {{#each postDetail.comments as |comment|}}
+        <p class="card-text">{{comment.content}}</p>
+        <img src="{{comment.imagePath}}" alt="{{comment.imageName}}">
+        <footer class="blockquote-footer">Create for: <cite title="Source Title">{{comment.authorId.username}}</cite>
+        </footer>
+        {{/each}}
+      </blockquote>
+    </div>
+  </div>
+</div>  
+
+
+
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        Add your comment
+      </div>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <form action="/post/{{postDetail._id}}" method="POST" enctype="multipart/form-data">
+            <textarea class="form-control" aria-label="Comment"></textarea>
+            <input class="form-control" type="file" name="imagePath">
+            <input class="form-control" type="text" name="imageName" placeholder="Name Image">
+            <button type="submit">Send Comment</button>
+          </form>
+        </blockquote>
+      </div>
+    </div>
+  </div>

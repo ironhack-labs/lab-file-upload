@@ -1,6 +1,6 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, ObjectId } = require('mongoose');
 require('./User.model');
-require('./Post.model')
+require('./Post.model');
 
 const commentSchema = new Schema(
   {
@@ -8,8 +8,12 @@ const commentSchema = new Schema(
       type: String
     },
     authorId: { 
-      type: Schema.Types.ObjectId,
+      type: ObjectId,
       ref: 'User'
+    },
+    postId: {
+      type: ObjectId,
+      ref: 'Post'
     },
     imagePath: {
       type: String

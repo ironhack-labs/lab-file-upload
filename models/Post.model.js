@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, ObjectId } = require('mongoose');
 require('./User.model');
 require('./comment.model');
 
@@ -7,8 +7,8 @@ const postSchema = new Schema(
     content: {
       type: String
     },
-    creatorId: { 
-      type: Schema.Types.ObjectId,
+    creatorId: {
+      type: ObjectId,
       ref: 'User'
     },
     picPath: {
@@ -17,14 +17,19 @@ const postSchema = new Schema(
     picName: {
       type: String
     },
-    comment: [
-      {type: Schema.Types.ObjectId,
-      ref: 'Comment'}
-    ]},
+    comment: { type: ObjectId, ref: 'Comment' }
+  },
   {
     timestamps: true,
-    toJSON: { virtuals: true } 
+    toJSON: { virtuals: true }
   }
 );
+
+postSchema.virtual('comments', {
+  ref: 'Comment',
+  localField: '_id',
+  foreignField: 'postId',
+  justOne: false
+});
 
 module.exports = model('Post', postSchema);

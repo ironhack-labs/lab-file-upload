@@ -1,0 +1,25 @@
+<header class="container-fluid">
+  {{#if user}}
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="/">Tumblr</a>
+    <div class="form-inline my-2 my-lg-0">
+      <a class="nav-link" href="/userProfile">Profile</a>
+      <a class="nav-link" href="/">View Posts</a>
+      <form action="/logout" method="POST" class="form-inline my-2 my-lg-0">
+        <button style="width: 100px;" type="submit" class="btn btn-danger">Logout</button>
+      </form>
+    </div>
+  </nav>
+  <div class="container">
+    <h3>Hi @{{user.username}}</h3>
+  </div>
+  {{else}}
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="/">Tumblr</a>
+    <div class="form-inline my-2 my-lg-0">
+      <a class="nav-link" href="/signup">Signup</a>
+      <a class="nav-link" href="/login">Login</a>
+    </div>
+  </nav>
+  {{/if}}
+</header>
