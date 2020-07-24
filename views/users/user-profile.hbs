@@ -1,5 +1,5 @@
 {{#if user}}
-    <div class="row profile-card">
+    <div class="row profile-card user-profile">
         <div class="profile-left col-3">
             <img class="profile-img" src="{{user.image}}" alt="">
             <p class="text-muted">{{ user.email }}</p>
@@ -15,10 +15,10 @@
                             <h3>{{post.creatorId.username}}</h3>
                         </div>
                         <div class="col-8">
-                            <div class="card-text">{{post.content}}</div>
                             {{#if post.picPath}}
                                 <img class="post-card-post-img" src="{{post.picPath}}" alt="">
-                                <p>{{picName}}</p>
+                                <p class="user-pic-name">{{picName}}</p>
+                                <div class="card-text">{{post.content}}</div>
                             {{/if}}
                         </div>
                     </div>

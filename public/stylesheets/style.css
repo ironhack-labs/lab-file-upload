@@ -80,6 +80,12 @@ ul li {
   display: flex;
 }
 
+#to-right a {
+  text-decoration: none;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
 #logout-form {
   margin: 0;
   padding: 0;
@@ -130,6 +136,9 @@ ul li {
   flex-wrap: wrap;
   padding: 2rem;
   border: 1px solid rgb(224, 224, 224);
+  border-radius: 20px;
+  margin: 10px;
+  background-color: var(--iblue);
 }
 
 .post-card-author-img {
@@ -138,7 +147,7 @@ ul li {
 }
 
 .post-card-post-img {
-  width: 80%;
+  width: 40%;
   height: auto;
   margin: 1rem auto;
 }
@@ -163,4 +172,96 @@ ul li {
 .profile-img {
   max-width: 100px;
   height: auto; 
+}
+
+#create-your-post {
+  background-color: rgba(142, 217, 225, 0.413);
+  list-style-type: none;
+  text-decoration: none;
+  box-shadow: 2px 2px 10px 0 rgb(36, 101, 152);  ;
+}
+
+.pic-name {
+  border-bottom: 2px solid rgba(0, 11, 111);
+  border-radius: 20px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  background-color: rgba(241, 248, 255, 0.2);
+  font-weight: bold;
+}
+
+.card-text {
+  border: 3px solid rgb(203, 207, 255);
+  background-color: rgb(223, 225, 255);
+  border-radius: 20px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.comments-length {
+  padding-top: 10px;
+  margin-bottom: 15px;
+}
+
+.view-post {
+  color: black !important;
+  background-color: aliceblue;
+  border-radius: 10px;
+  padding: 10px;
+  text-decoration: none !important;
+  box-shadow: 2px 2px 10px 0 rgb(36, 101, 152);  ;
+}
+
+.comment-form {
+  border: 1px solid white;
+  border-radius: 10px;
+  background-color: aliceblue;
+}
+
+.comment-padding {
+  padding-left: 20px;
+}
+
+.comment-flex {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 180px;
+}
+
+.specific-post {
+  background-color: rgb(161, 211, 255);
+  border-radius: 20px;
+  padding: 50px;
+  margin-bottom: 20px;
+}
+
+.post-card h2 {
+  margin: 30px;
+}
+
+.post-image-margin {
+  margin-top: -50px;
+}
+
+.post-form {
+  border: 1px solid rgb(38, 123, 198);
+  background-color: rgb(161, 211, 255);
+  box-shadow: 2px 2px 10px 0 rgb(36, 101, 152);  ;
+}
+.user-profile {
+  border: 1px solid rgb(38, 123, 198);
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px 0 rgba(36, 102, 152, 0.742);  ;
+}
+
+.user-pic-name {
+  border-bottom: 2px solid rgba(0, 11, 111);
+  border-radius: 20px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  padding-left: 20px;
+  background-color: rgba(241, 248, 255, 0.2);
+  font-weight: bold;
 }

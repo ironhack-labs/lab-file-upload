@@ -6,21 +6,27 @@
             <h3>{{post.creatorId.username}}</h3>
         </div>
         <div class="col-8">
-            <div class="card-text">{{post.content}}</div>
             {{#if post.picPath}}
+            <div class="specific-post">
                 <img class="post-card-post-img" src="{{post.picPath}}" alt="">
                 <p>{{picName}}</p>
+                <div class="card-text">{{post.content}}</div>
+            </div>
             {{/if}}
+            <div class="comment-form">
                 <form action='/posts/{{post._id}}/comments' method="POST" enctype="multipart/form-data">
+                    <label for="comment">Comment 💬</label>
                     <textarea name="comment" id="post-comment" cols="50" rows="2"></textarea>
                     
-                    <label for="imagePath">Image</label>
+                    <label for="imagePath">Image 🌄</label>
                     <input type="file" name="imagePath" />
 
                     <label for="imageName">Image name:</label>
                     <input type="text" name="imageName" />
                     <button type="submit">Post comment</button>
                 </form>
+            </div>
+            <h2>Comments</h2>
             {{#if post.comments}}
                 {{#each post.comments as |comment|}}
                     <div class="row post-card">
@@ -29,11 +35,13 @@
                             <h4>{{comment.authorId.username}}</h4>
                         </div>
                         <div class="col-8">
-                            <div class="card-text">{{comment.content}}</div>
+                            <p class="pic-name comment-padding">{{comment.imageName}}</p>
                         </div>
                         {{#if comment.imagePath}}
-                            <img src="{{comment.imagePath}}" alt="image">
-                            <p>{{comment.imageName}}</p>
+                        <div class="comment-flex">
+                            <img class="post-card-post-img post-image-margin" src="{{comment.imagePath}}" alt="image">
+                            <div class="card-text">{{comment.content}}</div>
+                        </div>
                         {{/if}}
                     </div>
                 {{/each}}

@@ -1,20 +1,21 @@
 <h3>Post form:</h3>
 
-<form action="/new-post" method="POST" enctype="multipart/form-data">
+<div class="post-form">
+  <form action="/new-post" method="POST" enctype="multipart/form-data">
 
-    <label for="picPath">Image</label>
-    <input type="file" name="picPath" />
+      <label for="picPath">Image 🌄</label>
+      <input type="file" name="picPath" />
 
-    <label for="picName">Image name:</label>
-    <input type="text" name="picName" />
+      <label for="picName">Image name:</label>
+      <input type="text" name="picName" />
 
-    <label for="content">Comment:</label>
-    <textarea name="content" cols="40" rows="10"></textarea>
+      <label for="content">Comment 💬:</label>
+      <textarea name="content" cols="40" rows="10"></textarea>
 
-    <button type="submit">Send post</button>
+      <button type="submit">Send post</button>
 
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
-</form>
-
+      {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+      {{/if}}
+  </form>
+</div>
