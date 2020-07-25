@@ -25,7 +25,9 @@
       <blockquote class="blockquote mb-0">
         {{#each postDetail.comments as |comment|}}
         <p class="card-text">{{comment.content}}</p>
-        <img src="{{comment.imagePath}}" alt="{{comment.imageName}}">
+        {{#if comment.imagePath}}
+          <img src="{{comment.imagePath}}" alt="{{comment.imageName}}">
+        {{/if }}
         <footer class="blockquote-footer">Create for: <cite title="Source Title">{{comment.authorId.username}}</cite>
         </footer>
         {{/each}}
@@ -44,7 +46,7 @@
       <div class="card-body">
         <blockquote class="blockquote mb-0">
           <form action="/post/{{postDetail._id}}" method="POST" enctype="multipart/form-data">
-            <textarea class="form-control" aria-label="Comment"></textarea>
+            <textarea class="form-control" name="content" aria-label="Comment"></textarea>
             <input class="form-control" type="file" name="imagePath">
             <input class="form-control" type="text" name="imageName" placeholder="Name Image">
             <button type="submit">Send Comment</button>
