@@ -9,3 +9,8 @@ npm-debug.log
 # .env
 
 package-lock.json
+
+
+# we don't need /uploads folder in git
+
+public/uploads/
