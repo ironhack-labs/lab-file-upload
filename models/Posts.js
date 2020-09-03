@@ -1,4 +1,4 @@
-const {Schema, model, SchemaType} = require('mongoose');
+const {Schema, model} = require('mongoose');
 
 const postSchema = new Schema({
   content: {
@@ -7,10 +7,12 @@ const postSchema = new Schema({
   creatorId: {
     type: Schema.Types.ObjectId,
     ref: 'User'
-  }
+  },
+  picPacth: String,
+  picName: String
 },
 {
   timestamps: true
 });
 
-module.exports = model('Post', postSchema)
+module.exports = model('Post', postSchema);
