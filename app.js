@@ -41,6 +41,7 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 // Routes middleware
 app.use('/', indexRouter);
 app.use('/', authRouter);
+app.use('/', require('./routes/posts.routes'));
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => next(createError(404)));

@@ -1,2 +1,10 @@
-<h1>{{title}}</h1>
-<p>Welcome Ironhacker!</p>
+<h1>Welcome to my lab!</h1>
+
+{{#each posts}}
+<h3>{{this.creatorId.username}}</h3>
+<img style="width:100px;height:100px;object-fit:cover" src="{{this.creatorId.profileImageUrl}}" alt="profilePic">
+<br>
+<p>{{this.content}}</p>
+<br>
+<a href="/posts/single/{{this._id}}">Details</a>
+{{/each}}

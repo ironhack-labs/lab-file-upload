@@ -1,7 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const Post = require('../models/Post.model');
 
 /* GET home page */
-router.get('/', (req, res) => res.render('index', { title: 'App created with Ironhack generator 🚀' }));
+router.get('/', async (req, res) => {
+  const posts = await Post.find().populate('creatorId');
+  res.render('index', { posts });
+});
 
 module.exports = router;

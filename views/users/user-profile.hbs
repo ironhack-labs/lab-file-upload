@@ -1,6 +1,13 @@
 {{#if user}}
-    <h2>Welcome, {{ user.username }}!</h2>
-    <p>This is your profile page my friend! And your email is: {{ user.email }}</p>
+<h2>Welcome, {{ user.username }}!</h2>
+<p>This is your profile page my friend! And your email is: {{ user.email }}</p>
+<img style="width:200px;height:200px;object-fit:cover" src="{{user.profileImageUrl}}" alt="profilePic">
 {{else}}
-    <p>Still no logged in user, sorry!</p>
+<p>Still no logged in user, sorry!</p>
 {{/if}}
+<a href="/posts/create">CREATE POST</a>
+<h2>My posts</h2>
+{{#each myPosts}}
+<p>{{this.content}}</p>
+<a href="/posts/single/{{this._id}}">Go to post</a>
+{{/each}}

@@ -6,8 +6,9 @@ const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User.model');
 const mongoose = require('mongoose');
-
+const fileUploader = require('../configs/cloudinary');
 const routeGuard = require('../configs/route-guard.config');
+const Post = require('../models/Post.model');
 
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////// SIGNUP //////////////////////////////////
@@ -17,10 +18,10 @@ const routeGuard = require('../configs/route-guard.config');
 router.get('/signup', (req, res) => res.render('auth/signup'));
 
 // .post() route ==> to process form data
-router.post('/signup', (req, res, next) => {
+router.post('/signup', fileUploader.single('image'), (req, res, next) => {
   const { username, email, password } = req.body;
-
-  if (!username || !email || !password) {
+  const { path } = req.file;
+  if (!username || !email || !password || !path) {
     res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
     return;
   }
@@ -45,7 +46,8 @@ router.post('/signup', (req, res, next) => {
         // passwordHash => this is the key from the User model
         //     ^
         //     |            |--> this is placeholder (how we named returning value from the previous method (.hash()))
-        passwordHash: hashedPassword
+        passwordHash: hashedPassword,
+        profileImageUrl: path
       });
     })
     .then(userFromDB => {
@@ -107,8 +109,9 @@ router.post('/logout', (req, res) => {
   res.redirect('/');
 });
 
-router.get('/userProfile', routeGuard, (req, res) => {
-  res.render('users/user-profile');
+router.get('/userProfile', routeGuard, async (req, res) => {
+  const myPosts = await Post.find({ creatorId: req.session.currentUser._id });
+  res.render('users/user-profile', { myPosts });
 });
 
 module.exports = router;

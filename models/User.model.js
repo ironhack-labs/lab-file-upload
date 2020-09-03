@@ -22,6 +22,10 @@ const userSchema = new Schema(
     passwordHash: {
       type: String,
       required: [true, 'Password is required.']
+    },
+    profileImageUrl: {
+      type: String,
+      required: [true, 'Profile image required']
     }
   },
   {
