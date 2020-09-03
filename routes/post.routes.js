@@ -9,7 +9,7 @@ const {
 } = require('../controllers/posts')
 
 router.get('/posts', listPosts)
-router.get('/posts', viewPostForm)
+router.get('/posts/new', viewPostForm)
 router.get('/posts/:postId', postDetails)
 router.post('/posts/new', createPost)
 router.get('/post/:postId/delete', deletePost)
