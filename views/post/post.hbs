@@ -1,13 +1,16 @@
 <div class="single-post-page">
   <h1>{{post.picName}}</h1>
   <img src="{{post.picPath}}" alt="Image: {{post.picName}}">
-  <p>{{post.content}}</p>
+  <p style="font-size: 1.3rem;">{{post.content}}</p>
   <div class="comments">
     {{#if user}}
     <div class="add-comment">
-      <h2><img src="{{user.pictureUrl}}"
-          style="width: 30px; height:30px; border-radius:50%; object-fit:cover; position: relative; top: 8px; right: 10px;" />Add
-        comment:</h2>
+      <h2>
+        {{#if user.pictureUrl}}
+        <img src="{{user.pictureUrl}}"
+          style="width: 30px; height:30px; border-radius:50%; object-fit:cover; position: relative; top: 8px; right: 10px;" />
+        {{/if}}
+        Add comment:</h2>
       <form action="/posts/{{post._id}}/comment" method="POST" enctype="multipart/form-data">
 
         <label for="comment-content">Content:</label>

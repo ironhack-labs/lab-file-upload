@@ -1,9 +1,22 @@
 {{#if user}}
-    <h2>Welcome, {{ user.username }}!</h2>
-    {{#if user.pictureUrl}}
-    <img src="{{user.pictureUrl}}" alt="{{ user.username }} picture" style="width: 200px; height: 200px; object-fit:cover; background-position:center; border-radius: 50%;">
-    {{/if}}
-    <p>This is your profile page my friend! And your email is: {{ user.email }}</p>
+<h2>Welcome, {{ user.username }}!</h2>
+{{#if user.pictureUrl}}
+<img src="{{user.pictureUrl}}" alt="{{ user.username }} picture"
+    style="width: 200px; height: 200px; object-fit:cover; background-position:center; border-radius: 50%;">
+{{/if}}
+<p>This is your profile page my friend! And your email is: {{ user.email }}</p>
+<a href="/posts/new">Add new post</a>
+<h3>Your posts:</h3>
+<div class="all-posts">
+    {{#each posts}}
+    <div class="single-post">
+        <h2>{{picName}}</h2>
+        <hr>
+        <img src="{{picPath}}" alt="Image: {{picName}}">
+        <a href="/posts/{{_id}}">See details</a>
+    </div>
+    {{/each}}
+</div>
 {{else}}
-    <p>Still no logged in user, sorry!</p>
+<p>Still no logged in user, sorry!</p>
 {{/if}}
