@@ -1,2 +1,26 @@
 <h1>{{title}}</h1>
-<p>Welcome Ironhacker!</p>
+
+{{#if user}}
+    <h2>Welcome, {{ user.username }}!</h2>
+    <br>
+    <a href="/posts/add">Add a Post</a>
+    <br>
+    <br>
+    <br>
+    <a href="/userProfile">User Profile</a>
+{{else}}
+    <h2>Not Logged</h2>
+{{/if}}
+
+<hr>
+<h2>Posts:</h2>
+<div style="display:flex;">
+{{#each posts}}
+<div style="border:2px solid black; width:300px; margin-right:10px;">
+  <h2>{{picName}}</h2>
+  <img src="{{picPath}}" alt="{{title}}" style="width:200px;height:200px;object-fit:contain">
+  <p> <a href="/posts/details/{{_id}}">View Details</a></p>
+  <b>Created By: {{creatorId.username}}</b>
+</div>
+{{/each}}
+</div>

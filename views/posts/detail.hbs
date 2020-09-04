@@ -1,0 +1,41 @@
+<a href="/">Return to Index</a>
+
+<br>
+<br>
+
+<h1>{{picName}}</h1>
+<img src="{{picPath}}" alt="{{title}}" style="width:500px;object-fit:cover"><br>
+<p><strong>Content:</strong>: <br>{{content}}</p>
+<h3>Created By {{creatorId.username}}</h3>
+<br>
+<hr>
+<br>
+
+{{#if user}}
+  <a href="/comments/add/{{_id}}">Agregar un Comment</a>
+{{else}}
+    <h2>Not Logged for Posting a Comment</h2>
+{{/if}}
+
+<br>
+<hr>
+<hr>
+<br>
+<h1>Comentarios</h1>
+
+{{#each userComments}}
+  Comentario {{@index}}
+  <div>
+    <p><strong>usuario comentando: </strong>{{authorId.username}}</p>
+    <p><strong>comentario: </strong>{{content}}</p>
+    <p><strong>Img Name: </strong>{{imageName}}</p>
+    
+  {{#if imagePath}}
+    <img src="{{imagePath}}" alt="{{imageName}}" style="width:150px;object-fit:cover"><br>
+  {{else}}
+    <p><strong>Sin-img</strong></p>
+  {{/if}}
+  </div>
+  <br>
+  <br>
+{{/each}}

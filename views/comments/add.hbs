@@ -1,0 +1,19 @@
+  <div id="form">
+  <h2>Add Comment</h2>
+  <form action="/comments/add/{{postId}}" method="POST" enctype="multipart/form-data">
+
+    <label for="input-imageName">Picture Name</label>
+    <input type="text" id="input-imageName" name="imageName" placeholder="Your picure Name" />
+
+    <label for="input-content">Content</label>
+    <input type="text" id="input-content" name="content" placeholder="Your content" />
+
+    <label for="input-picture">Add Picture</label>
+    <input type="file" name="pictureComment" id="input-picture"/>
+
+    <button type="submit">Create New Comment</button>
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </form>
+</div>

@@ -1,0 +1,18 @@
+<div id="form">
+  <h2>Add Post</h2>
+  <form action="/posts/add" method="POST" enctype="multipart/form-data">
+    <label for="input-picName">Picture Name</label>
+    <input type="text" id="input-picName" name="picName" placeholder="Your picure Name" />
+
+    <label for="input-content">Content</label>
+    <input type="text" id="input-content" name="content" placeholder="Your content" />
+
+    <label for="input-picture">Add Picture</label>
+    <input type="file" name="picture" id="input-picture"/>
+
+    <button type="submit">Create New Post</button>
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </form>
+</div>
