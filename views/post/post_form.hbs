@@ -1,0 +1,24 @@
+<div id="post_form">
+  <h2>Crea tu post...</h2>
+
+  <form action="/post_form" method="POST" id="upload">
+
+    <label for="contenido">Contenido</label>
+    <textarea type="text" id="input_contenido" name="content" rows="4" cols="50"></textarea>
+
+    <br><br>
+    
+    <label for="image-input">Imagen</label><br>
+    <input type="file" name="image" class="form-control-file" id="id_imagen"/>
+
+    <button type="submit">Crear un post AHORA!!!</button>
+
+<!--
+    {{#if errorMessage}}
+            <p class="error">{{errorMessage}}</p>
+    {{/if}}
+
+-->
+
+  </form>
+</div>
