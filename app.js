@@ -16,8 +16,10 @@ require('./configs/db.config');
 const bindUserToViewLocals = require('./configs/user-locals.config');
 
 // Routers
-const indexRouter = require('./routes/index.routes');
+// const indexRouter = require('./routes/index.routes');
 const authRouter = require('./routes/auth.routes');
+const postRouter = require('./routes/post.routes');
+const commentRouter = require('./routes/comment.routes')
 
 const app = express();
 require('./configs/session.config')(app);
@@ -31,7 +33,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({
+    extended: true
+}));
 app.use(cookieParser());
 app.use(bindUserToViewLocals);
 
@@ -39,21 +43,23 @@ const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 // Routes middleware
-app.use('/', indexRouter);
+// app.use('/', indexRouter);
 app.use('/', authRouter);
+app.use('/', postRouter);
+app.use('/', commentRouter)
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => next(createError(404)));
 
 // Catch all error handler
 app.use((error, req, res) => {
-  // Set error information, with stack only available in development
-  res.locals.message = error.message;
-  res.locals.error = req.app.get('env') === 'development' ? error : {};
+    // Set error information, with stack only available in development
+    res.locals.message = error.message;
+    res.locals.error = req.app.get('env') === 'development' ? error : {};
 
-  // render the error page
-  res.status(error.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(error.status || 500);
+    res.render('error');
 });
 
 module.exports = app;

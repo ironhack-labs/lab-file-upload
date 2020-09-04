@@ -1,0 +1,11 @@
+<h1>Last posts:</h1>
+<div class="all-posts">
+  {{#each posts}}
+  <div class="single-post">
+    <h2>{{picName}}</h2>
+    <hr>
+    <img src="{{picPath}}" alt="Image: {{picName}}">
+    <a href="/posts/{{_id}}">See details</a>
+  </div>
+  {{/each}}
+</div>

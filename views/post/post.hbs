@@ -1,0 +1,43 @@
+<div class="single-post-page">
+  <h1>{{post.picName}}</h1>
+  <img src="{{post.picPath}}" alt="Image: {{post.picName}}">
+  <p>{{post.content}}</p>
+  <div class="comments">
+    {{#if user}}
+    <div class="add-comment">
+      <h2><img src="{{user.pictureUrl}}"
+          style="width: 30px; height:30px; border-radius:50%; object-fit:cover; position: relative; top: 8px; right: 10px;" />Add
+        comment:</h2>
+      <form action="/posts/{{post._id}}/comment" method="POST" enctype="multipart/form-data">
+
+        <label for="comment-content">Content:</label>
+        <textarea id="comment-content" name="content" style="margin-bottom:20px;" cols='50' rows="3"
+          placeholder="Your comment"></textarea>
+
+        <label for="comment-img-name">Image name:</label>
+        <input type="text" name="imageName" id="comment-img-name" />
+
+        <label for="comment-image">Upload image:</label>
+        <input type="file" id="comment-image" name="image" />
+
+        <button type="submit">Send comment</button>
+      </form>
+    </div>
+    {{/if}}
+    <div class="comments-details">
+      <h2 style="width: 100%; text-align:center;">Comments:</h2>
+      {{#each post.comments}}
+      <div class="comment">
+        <b>Commented by {{authorId.username}}:</b><br>
+        {{#if imageName}}
+        <h3>{{imageName}}</h3>
+        {{/if}}
+        {{#if imagePath}}
+        <img src="{{imagePath}}" alt="Image: {{imageName}}">
+        {{/if}}
+        <p>{{content}}</p>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
