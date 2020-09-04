@@ -1,10 +1,10 @@
 require('dotenv').config();
+const bodyParser = require('body-parser')
 const path = require('path');
 const express = require('express');
 const createError = require('http-errors');
 const logger = require('morgan');
 const favicon = require('serve-favicon');
-
 const cookieParser = require('cookie-parser');
 const hbs = require('hbs');
 const mongoose = require('mongoose');
@@ -33,6 +33,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bindUserToViewLocals);
 
 const app_name = require('./package.json').name;

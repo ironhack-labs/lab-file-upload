@@ -1,5 +1,5 @@
-const express = require('express');
-const router = express.Router();
+const { Router } = require('express');
+const router = new Router();
 const {
   viewPostForm,
   createPost,
@@ -10,5 +10,13 @@ const {
 
 /* GET home page */
 router.get('/', listPosts)
+router.get('/new', viewPostForm)
+router.post('/new', createPost)
 
+
+// router.get('/posts', listPosts)
+// router.get('/posts/new', viewPostForm)
+// router.post('/new', createPost)
+// router.get('/posts/:postId', postDetails)
+// router.get('/post/:postId/delete', deletePost)
 module.exports = router;

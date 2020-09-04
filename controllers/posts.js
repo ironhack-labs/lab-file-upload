@@ -1,19 +1,20 @@
 const Post = require('../models/Posts')
 
 exports.viewPostForm = (req, res, next) => {
-  res.render('posts/new')
+  res.render('./posts/new')
 }
 
-exports.createPost = async (req, res, next) => {
+exports.createPost = async (req, res) => {
   // Get all the attributes from de body
   const {content, picName} = req.body
-  const newPost = await Post.create({
+  console.log(content, picName)
+  await Post.create({
     content,
-    creatorId: req.user.id,
-    picPath: req.file.path,
-    picName: picName
+    // creatorId: req.user.id,
+    // picPath: req.file.path,
+    picName,
   });
-  res.render('/')
+  res.redirect('/')
  }
 
 exports.listPosts = async (req, res, next) => {

@@ -1,5 +1,5 @@
-const express = require("express")
-const router = express.Router()
+const { Router } = require('express');
+const router = new Router();
 const {
   viewPostForm,
   createPost,
@@ -10,6 +10,6 @@ const {
 
 router.get('/posts', listPosts)
 router.get('/posts/new', viewPostForm)
+router.post('/new', createPost)
 router.get('/posts/:postId', postDetails)
-router.post('/posts/new', createPost)
 router.get('/post/:postId/delete', deletePost)
