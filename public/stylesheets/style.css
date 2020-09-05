@@ -118,3 +118,12 @@ ul li {
   font-weight: bold;
   font-size: 2em;
 }
+
+.card{
+  width: 500px;
+}
+
+.card img{
+  width: 100%;
+  object-fit: cover;
+}

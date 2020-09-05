@@ -1,5 +1,5 @@
 require('dotenv').config();
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 const path = require('path');
 const express = require('express');
 const createError = require('http-errors');

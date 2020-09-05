@@ -8,7 +8,7 @@ const postSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-  picPacth: String,
+  picPath: String,
   picName: String
 },
 {

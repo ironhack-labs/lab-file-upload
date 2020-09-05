@@ -1,13 +1,13 @@
 <h1>Create a new Post</h1>
 <div>
-  <form action="/new" method="POST" enctype="multipart/form-data">
+  <form action="/posts/new" method="POST" enctype="multipart/form-data">
     <label for="picName">Name:</label>
     <input type="text" name="picName">
 
     <label for="content">Post content:</label>
     <textarea type="text" name="content"></textarea>
   
-    <input type="file" name="postImage">
+    <input type="file" name="postImage" id="postImage">
 
     <button type="submit">Create post</button>
   </form>

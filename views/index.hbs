@@ -1,10 +1,11 @@
 <h1>Welcome Ironhacker!</h1>
 {{#each allPosts}}
   <div class="card">
-    <img src="" alt="Image placeholder">
-    <b>{{picName}}</b>
+    <img src="{{picPath}}" alt="{{picName}}">
+    <br><br>
+    <a href="/posts/{{_id}}"><b>{{picName}}</b></a>
     <p>{{content}}</p>
     <small>{{creatorId.username}}</small>
   </div>
 {{/each}}
-<a href="/new">Create a New Post</a>
+<a href="/posts/new">Create a New Post</a>

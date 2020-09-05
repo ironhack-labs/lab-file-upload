@@ -1,19 +1,19 @@
-const Post = require('../models/Posts')
+const Post = require('../models/Posts');
 
-exports.viewPostForm = (req, res, next) => {
-  res.render('./posts/new')
+exports.viewPostForm = (req, res) => {
+  res.render('posts/new')
 }
 
 exports.createPost = async (req, res) => {
-  // Get all the attributes from de body
+  // Get all the attributes from de body & param
   const {content, picName} = req.body
-  console.log(content, picName)
-  await Post.create({
+  const newPost = await Post.create({
     content,
-    // creatorId: req.user.id,
-    // picPath: req.file.path,
+    picPath: req.file.path,
     picName,
+    creatorId: req.session.currentUser._id
   });
+  console.log(newPost)
   res.redirect('/')
  }
 
@@ -23,15 +23,15 @@ exports.listPosts = async (req, res, next) => {
   res.render('index', {allPosts})
 }
 
-exports.postDetails = async (req, res, next) => {
+exports.postDetails = async (req, res) => {
   // get post id from params to visulize post 
   const postId = req.params.postId
   // find post and render detail view with params
-  const selectedPost = await Posts.findById(postId)
-  res.render("/", selectedPost)
+  const selectedPost = await Post.findById(postId).populate('creatorId')
+  res.render("posts/show", selectedPost)
 }
 
-exports.deletePost = async (req, res, next) => {
+exports.deletePost = async (req, res) => {
   // get id from params
   const postId = req.params.postId;
   // delete post
