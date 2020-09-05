@@ -1,18 +1,23 @@
 <main>
-  <h2>Post de {{creatorId.username}}</h2>
-  <div class="detail">
+  <div class="postdetail">
     <div>
-      <p>{{content}}</p>
+      <img id="profilepic" src="{{creatorId.profilePhoto}}" alt="">
+      <h4>Post de {{creatorId.username}}</h4>
     </div>
     <div>
       <img src="{{picPath}}" alt="{{picName}}">
-      <p>{{picName}}</p>
+    </div>
+    <div>
+      <p>{{content}}</p>
     </div>
   </div>
+  
   <h2>Todos los comentarios</h2>
+  <br>
   {{#each comments}}
-    <div class="detail">
+    <div class="commentdetail">
       <div>
+        <p><b>Comentario de {{creatorId.username}}</b></p>
         <p>{{content}}</p>
       </div>
       <div>
@@ -22,15 +27,16 @@
     </div>
   {{/each}}
 
- <h2>Crea un nuevo comentario</h2>
+<h2>Crea un nuevo comentario</h2>
 <form action="/posts/{{_id}}" method="POST" enctype="multipart/form-data">
   <div class="form-group">
     <label for="content">Comentario</label>
-    <textarea class="form-control" id="content" name="content" rows="3"></textarea>
+    <textarea class="form-control" id="content" name="content" rows="2"></textarea>
   </div>
-  <label for ="image-input">Image</label>
-  <input type="file" name="image" id="image-input" class="form-control-file">
+  <div class="input">
+    <label for ="image-input">Sube una image</label>
+    <input type="file" name="image" id="image-input">
+  </div>
   <button type="submit">Envía</button>
 </form>
-
 </main>

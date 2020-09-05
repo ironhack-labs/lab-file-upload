@@ -1,6 +1,5 @@
 /*  Titles and subtitles: font-family: 'Raleway', sans-serif;
     Body: font-family: 'Work Sans', sans-serif;
-    Redish: rgb (150, 29, 78)
     Dark blue: rgb (44, 87, 132)
     Light blue: rgb (86, 136, 199)*/
 
@@ -17,6 +16,7 @@ body {
 
 
 /* Nav bar */
+
 #to-left {
   float: left;
 }
@@ -34,6 +34,7 @@ ul {
   background-color: var(--lightblue);
   position: fixed;
   width: 100%;
+  z-index: 5;
 }
 
 #to-right {
@@ -101,8 +102,9 @@ main{
 
 /*Cards*/
 .card img{
-  width: 25%;
+  width: 100%;
   height: auto;
+  
 }
 
 main .btn{
@@ -123,21 +125,80 @@ main .btn{
 
 /* Card details */
 
-.detail{
+.postdetail{
   display: flex;
-  align-content: space-around;
+  flex-direction: column;
+  background-color: rgba(44, 87, 132, .8);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 10vh;
+}
+
+#profilepic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.postdetail div:nth-child(1){
+  display: flex;
+  align-items: center;
+  background-color: var(--darkblue);
+  padding: 1vw;
+  
+}
+
+.postdetail div:nth-child(1) h4{
+  margin: 0 2vw;
+  color: white;
+}
+
+.postdetail div:nth-child(2){
   width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  margin: 5vh auto 3vh;
 }
 
-.detail img{
-  width: 35%;
-  height: auto;
+.postdetail div:nth-child(3){
+  margin: 3vh 10vw;
+  color: white;
+  font: 20px 'Work Sans', sans-serif;
 }
 
-.detail>div{
-  margin: 5vh 10vw;
-  font-size: 20px;
+
+/* Comments */
+
+.commentdetail{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  background-color: var(--darkblue);
+  border-radius: 20px;
+  margin-bottom: 5vh;
 }
+
+.commentdetail div{
+  padding: 3vh;
+}
+.commentdetail img{
+  width: 80%;
+
+  object-fit: contain;
+}
+
+.commentdetail div:nth-child(1){
+  color: white;
+  width: 60%;
+}
+
+.commentdetail div:nth-child(2){
+  width: 30%;
+}
+
+
+
 
 a {
   text-decoration: none;
@@ -147,6 +208,10 @@ a {
 form {
   margin: 30px auto;
   width: 380px;
+}
+
+#form{
+  padding: 20vh;
 }
 
 form label {

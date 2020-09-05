@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 const Post = require("../models/Post.model")
 const Comment = require("../models/Comments.model")
+const { populate, model } = require("../models/Comments.model")
 
 
 ///////POSTS/////
@@ -30,7 +31,16 @@ exports.allPosts = async (req, res) => {
 
 exports.detailPost = async (req, res) => {
   const { id } = req.params
-  const onePost = await Post.findById(id).populate("creatorId comments")
+  const onePost = await Post.findById(id)
+    .populate("creatorId")
+    .populate("comments")
+    .populate({
+      path: "comments",
+      populate: {
+        path: "creatorId",
+        model: "User"
+      }
+    })
   res.render("posts/post-detail", onePost)
 }
 
