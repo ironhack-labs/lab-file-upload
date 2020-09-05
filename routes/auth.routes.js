@@ -6,8 +6,8 @@ const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User.model');
 const mongoose = require('mongoose');
+const upload = require('../configs/cloudinary');
 
-const routeGuard = require('../configs/route-guard.config');
 
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////// SIGNUP //////////////////////////////////
@@ -17,8 +17,9 @@ const routeGuard = require('../configs/route-guard.config');
 router.get('/signup', (req, res) => res.render('auth/signup'));
 
 // .post() route ==> to process form data
-router.post('/signup', (req, res, next) => {
+router.post('/signup', upload.single("image"), (req, res, next) => {
   const { username, email, password } = req.body;
+  const { path } =  req.file;
 
   if (!username || !email || !password) {
     res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
@@ -39,12 +40,9 @@ router.post('/signup', (req, res, next) => {
     .then(salt => bcryptjs.hash(password, salt))
     .then(hashedPassword => {
       return User.create({
-        // username: username
         username,
         email,
-        // passwordHash => this is the key from the User model
-        //     ^
-        //     |            |--> this is placeholder (how we named returning value from the previous method (.hash()))
+        imageURL : path,
         passwordHash: hashedPassword
       });
     })
@@ -54,7 +52,7 @@ router.post('/signup', (req, res, next) => {
     })
     .catch(error => {
       if (error instanceof mongoose.Error.ValidationError) {
-        res.status(500).render('auth/signup', { errorMessage: error.message });
+        res.status(500).render('auth/signup', upload.single("image"), { errorMessage: error.message });
       } else if (error.code === 11000) {
         res.status(500).render('auth/signup', {
           errorMessage: 'Username and email need to be unique. Either username or email is already used.'
@@ -90,6 +88,7 @@ router.post('/login', (req, res, next) => {
         return;
       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
         req.session.currentUser = user;
+        // console.log(req.session.currentUser)
         res.redirect('/userProfile');
       } else {
         res.render('auth/login', { errorMessage: 'Incorrect password.' });
@@ -107,8 +106,51 @@ router.post('/logout', (req, res) => {
   res.redirect('/');
 });
 
-router.get('/userProfile', routeGuard, (req, res) => {
+router.get('/userProfile', (req, res) => {
   res.render('users/user-profile');
 });
 
+
+////post////
+const {
+  createView,
+  postProcess,
+  detailView,
+  editPostView,
+  editProcess,
+  deleteView,
+  deleteProcess
+} = require("../control/post")
+
+
+//para crear
+router.get('/users/create', createView);
+router.post('/users/create', upload.single("image"), postProcess);
+ 
+//para detalle
+router.get("/users/details/:postId", detailView)
+
+//para editar
+router.get("/users/edit", editPostView)
+router.post("/users/edit", upload.single("newImage"),editProcess)
+
+//delete
+router.get("/users/delete", deleteView)
+router.post("/users/delete", deleteProcess)
+
+//comment
+const {
+  comentView,
+  comentProcess,
+  viewComents
+} = require("../control/comments")
+
+//comentar
+router.get("/coment", comentView)
+router.post("/coment", upload.single("image"), comentProcess)
+
+//revisar los comentario
+router.get("/coments", viewComents)
+
+// routeGuard
 module.exports = router;

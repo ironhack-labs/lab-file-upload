@@ -1,0 +1,22 @@
+<div class="user-poten">
+  <h2>Create New Post</h2>
+  <br>
+  <form action="/users/create" method="POST" enctype="multipart/form-data">
+
+  <label for="content">Content</label>
+  <input type="text" name="content" id="" cols="30" rows="10">
+
+  <label for="imagename">Imagename</label>
+  <input type="text" name="imagename" placeholder="Imagename"/>
+
+  <label for="image-input">Image:</label> <br>
+  <input type="file" name="image" id="image-input"/>
+
+  <button type="submit">Create Post</button>
+
+  {{#if error}}
+  <p>{{error}}</p>
+  {{/if}}
+
+  </form>
+</div>

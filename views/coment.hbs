@@ -1,0 +1,20 @@
+{{#if user}}
+<div class="post-coment">
+    <h3>Post your comment!</h3>
+    <form action="/coment" method="POST" enctype="multipart/form-data">
+
+    <label for="content">Content</label>
+    <input required type="text" name="content" id="" cols="30" rows="10">
+
+    <label for="imagename">Imagename</label>
+    <input required type="text" name="imagename" placeholder="Imagename"/> 
+
+    <label for="image-input">Image:</label> <br>
+    <input type="file" name="image" id="image-input"/> 
+
+    <button type="submit">Create Comment</button>
+    </form>
+  </div>
+  {{else}}
+  <h2 style="color: tomato;">Please Login!</h2>
+{{/if}}

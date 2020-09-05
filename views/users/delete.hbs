@@ -1,0 +1,16 @@
+<div class="user-poten">
+  <h2>Delete Your Post ;-;</h2>
+  <br>
+  <form action="/users/delete" method="POST">
+
+  <label for="imagename">Imagename:</label>
+  <input type="text" name="imagename">
+
+  <button type="submit">Delete Post ._.</button>
+
+  {{#if error}}
+  <p>{{error}}</p>
+  {{/if}}
+
+  </form>
+</div>

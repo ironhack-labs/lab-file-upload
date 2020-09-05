@@ -118,3 +118,70 @@ ul li {
   font-weight: bold;
   font-size: 2em;
 }
+
+.posts{
+  display: flex;
+  flex-wrap: wrap;
+  margin:0 auto;
+}
+
+.post{
+  border:1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  width: 30%;
+  margin:5px;
+}
+
+.posts img{
+  width: 50%;
+}
+
+.post-coment{
+  text-align: center;
+  width: 100%;
+  margin:0;
+}
+
+.post-coment label{
+  text-align: left;
+}
+
+.coment-img img{
+  width: 200px;
+}
+
+.container{
+  text-align: center;
+}
+
+.profile-container{
+  text-align: center;
+}
+
+.profile-container img { 
+  border:1px solid #ddd;
+  border-radius:50%;
+  height:300px;
+  width: 300px;
+}
+
+.main{
+  text-align: center;
+}
+
+.user-poten{
+  text-align: center;
+}
+
+.come{
+  border:1px solid #ddd;
+}
+
+.come img{
+  width: 100px;
+}
+
+.detail img{
+  width: 400px;
+}

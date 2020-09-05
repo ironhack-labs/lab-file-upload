@@ -1,6 +1,16 @@
-{{#if user}}
-    <h2>Welcome, {{ user.username }}!</h2>
-    <p>This is your profile page my friend! And your email is: {{ user.email }}</p>
-{{else}}
-    <p>Still no logged in user, sorry!</p>
-{{/if}}
+
+<div class="profile-container">
+    {{#if user}}
+        <h2>Welcome, {{ user.username }}!</h2>
+        <p>This is your profile page my friend! And your email is: {{ user.email }}</p>
+        <img src="{{user.imageURL}}" alt="{{user.username}}">
+        <p><a href="/users/create">Create post</a></p>
+        <p><a href="/users/edit">Edit post</a></p>
+        <p><a href="/users/delete">Delete post</a></p>
+        <br>
+        <br>
+
+    {{else}}
+        <p>Still no logged in user, sorry!</p>
+    {{/if}}
+</div>

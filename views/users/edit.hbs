@@ -1,0 +1,26 @@
+
+<div class="user-poten">
+  <h2>Edit Your Post</h2>
+  <br>
+  <form action="/users/edit" method="POST" enctype="multipart/form-data">
+
+  <label for="nameforsearch">Imagename:</label>
+  <input type="text" name="nameforsearch">
+
+  <label for="imagename">New imagename:</label>
+  <input type="text" name="imagename">
+
+  <label for="content">New content</label>
+  <input type="text" name="content" id="" cols="30" rows="10">
+
+  <label for="image-input">newImage:</label> <br>
+  <input type="file" name="newImage" id="image-input"/>
+
+  <button type="submit">Edit Post</button>
+
+  {{#if error}}
+  <p>{{error}}</p>
+  {{/if}}
+
+  </form>
+</div>

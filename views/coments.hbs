@@ -1,0 +1,11 @@
+
+<div class="comentarios">
+  <h2>Comments</h2>
+    {{#each todos}}
+      <div class="come">
+        <h5>posted by : {{this.owner.username}}</h5>
+        <h4>{{this.content}}</h4>
+        <img src="{{imageURL}}" alt="">
+      </div>
+    {{/each}}
+</div>

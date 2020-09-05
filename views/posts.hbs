@@ -1,0 +1,10 @@
+<div class="posts">
+    {{#each posts}}
+      <div class="post">
+        <img src="{{imageURL}}" alt="{{imagename}}">
+        <h4>{{imagename}}</h4>
+        <p>Posted by ..{{owner.username}}</p>
+        <p><a href="/users/details/{{_id}}">Show detail...</a></p>
+      </div>
+    {{/each}}
+</div>
