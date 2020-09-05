@@ -16,11 +16,6 @@ exports.comentProcess = async (req, res)=>{
     imageURL : path,
     owner : req.session.currentUser._id
   })
-  //agregue.....
-  // await Post.findByIdAndUpdate(post._id,{
-  //   $push:{comments:newcoment.id}
-  // })
-  // console.log(newcoment);
   res.render("index");
 }
 
