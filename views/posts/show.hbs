@@ -1,13 +1,31 @@
 <div class="card">
-<h1>{{picName}}</h1>
+  <h1>{{picName}}</h1>
   <img src="{{picPath}}" alt="{{picName}}">
   <br><br>
   <p>{{content}}</p>
   <small>{{creatorId.username}}</small>
+</div>
 
   {{!-- /////////////// COMMENTS //////////////// --}}
+<div class="comment">
+  <img src="{{comment.imagePath}}" alt="">
+  <b>{{comment.imagName}}</b>
+  <small>{{comment.authorId}}</small>
+  <p>{{comment.content}}</p>
+</div>
 
-  <div>
-    <p>Room for further commets</p>
-  </div>
+<div class="comment-actions">
+  <form action="/posts/show/{{id}}" enctype="multipart/form-data">
+    <label for="imageName">Comment title</label>
+    <br><br>
+    <input type="text" name="imageName">
+    <br><br>
+    <label for="comment-content">Comment content</label>
+    <br><br>
+    <input type="text" name="comment-content">
+    <br><br>
+    <input type="file" name="imagePath">
+    <br><br>
+    <button type="submit">Create new comment</button>
+  </form>
 </div>

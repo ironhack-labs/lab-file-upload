@@ -1,4 +1,5 @@
 const Post = require('../models/Posts');
+const Comment = require('../models/Comment')
 
 exports.viewPostForm = (req, res) => {
   res.render('posts/new')
@@ -28,6 +29,14 @@ exports.postDetails = async (req, res) => {
   const postId = req.params.postId
   // find post and render detail view with params
   const selectedPost = await Post.findById(postId).populate('creatorId')
+  .populate({
+    path: 'comments',
+    model: 'Comment',
+    populate: {
+      path: 'authorId',
+      model: 'User'
+    }
+  });
   res.render("posts/show", selectedPost)
 }
 
@@ -37,4 +46,20 @@ exports.deletePost = async (req, res) => {
   // delete post
   await Post.findByIdAndDelete(postId);
   res.render('/')
+}
+
+exports.createComment = async (req, res) => {
+  // Get post to be attached
+  const attachedPost = req.params.postId
+  // Get elements from body
+  const { imageName, imagePath, content } = req.body;
+  // Create new comment
+  const newComment = await Comment.create({
+    imageName,
+    imagePath,
+    content,
+    authorid: req.session.currentUser._id
+  })
+  // Push comment to post comments
+  await Post.findByIdAndUpdate(attachedPost, { $push: { newComment } },  {new: true} );
 }

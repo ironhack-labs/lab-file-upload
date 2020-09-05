@@ -6,6 +6,7 @@ const {
   createPost,
   listPosts,
   postDetails,
+  createComment,
   deletePost
 } = require('../controllers/posts');
 
@@ -16,6 +17,7 @@ router.get('/', listPosts);
 router.get('/posts/new', routeGuard, viewPostForm);
 router.post('/posts/new', routeGuard, upload.single('postImage'), createPost);
 router.get('/posts/:postId', routeGuard, postDetails);
+router.post('/posts/:postId', routeGuard, upload.single('imagePath'), createComment);
 router.get('/posts/:postId/delete', routeGuard, deletePost);
 
 
