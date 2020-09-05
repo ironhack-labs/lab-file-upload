@@ -139,7 +139,6 @@ router.get('/userProfile', routeGuard, async(req, res) => {
     const posts = await PostModel.find({
         creatorId: user._id
     })
-    console.log(user, posts)
     res.render('users/user-profile', {
         user,
         posts

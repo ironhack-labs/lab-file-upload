@@ -38,12 +38,12 @@ exports.getPost = async(req, res) => {
                 model: 'User'
             }
         })
-    const comments = post.comments.reverse()
+        // const comments = post.comments.reverse()
     let user;
     if (req.session.currentUser) user = await User.findById(req.session.currentUser._id)
     res.render('post/post', {
         post,
-        comments,
+        // comments,
         user
     })
 }
