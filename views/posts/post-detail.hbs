@@ -9,7 +9,20 @@
       <p>{{picName}}</p>
     </div>
   </div>
+  <h2>Todos los comentarios</h2>
+  {{#each comments}}
+    <div class="detail">
+      <div>
+        <p>{{content}}</p>
+      </div>
+      <div>
+        <img src="{{imagePath}}" alt="{{imageName}}">
+        <p>{{imageName}}</p>
+      </div>
+    </div>
+  {{/each}}
 
+ <h2>Crea un nuevo comentario</h2>
 <form action="/posts/{{_id}}" method="POST" enctype="multipart/form-data">
   <div class="form-group">
     <label for="content">Comentario</label>
