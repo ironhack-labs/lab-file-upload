@@ -1,6 +1,9 @@
 const mongoose = require("mongoose")
 const Post = require("../models/Post.model")
+const Comment = require("../models/Comments.model")
 
+
+///////POSTS/////
 
 // C
 exports.newPostView = (req, res) => res.render("posts/post-new")
@@ -35,5 +38,23 @@ exports.detailPost = async (req, res) => {
 
 exports.deletePost = async (req, res) => {
   await Post.findByIdAndRemove(req.params.postId)
+  res.redirect("/posts")
+}
+
+
+/////COMMENTS//////
+
+exports.newCommentProcess = async (req, res) => {
+  const { content, imageName } = req.body
+  const { path } = req.file
+
+  const comment = await Comment.create({
+    creatorId: req.session.currentUser._id,
+    content,
+    imageName,
+    imagePath: path
+  })
+  // const { id } = req.params
+  // await Post.findByIdAndUpdate(id, { $push: { comment: comment._id } }, { new:true })
   res.redirect("/posts")
 }

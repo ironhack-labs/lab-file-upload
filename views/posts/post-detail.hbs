@@ -1,12 +1,23 @@
-<br>
-<br>
-<br>
-<br>
-<h2>Creador: {{creatorId.username}}</h2>
-  <div class="card" style="width: 18rem;">
-    <img src="{{picPath}}" class="card-img-top" alt="{{picName}}">
-    <div class="card-body">
-      <p class="card-text">{{content}}</p>
+<main>
+  <h2>Post de {{creatorId.username}}</h2>
+  <div class="detail">
+    <div>
+      <p>{{content}}</p>
     </div>
-    <a href="/posts" class="btn btn-primary">Regresa</a>
+    <div>
+      <img src="{{picPath}}" alt="{{picName}}">
+      <p>{{picName}}</p>
+    </div>
   </div>
+
+<form action="/posts/{{_id}}" method="POST" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="content">Comentario</label>
+    <textarea class="form-control" id="content" name="content" rows="3"></textarea>
+  </div>
+  <label for ="image-input">Image</label>
+  <input type="file" name="image" id="image-input" class="form-control-file">
+  <button type="submit">Envía</button>
+</form>
+
+</main>

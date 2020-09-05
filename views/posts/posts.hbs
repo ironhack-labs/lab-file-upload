@@ -1,15 +1,18 @@
-<br>
-<br>
-<br>
-<br>
+<main>
 <h2>Todos los posts</h2>
+<br>
+<div class="row">
 {{#each posts }}
-  <div class="card" style="width: 18rem;">
-    <img src="{{picPath}}" class="card-img-top" alt="{{picName}}">
-    <div class="card-body">
-      <p class="card-text">{{content}}</p>
-      <p>Creado por: {{creatorId.username}}</p>
+  <div class="col-xs-12 col-md-6 col-lg-4">
+    <div class="card">
+      <img src="{{picPath}}" class="card-img-top" alt="{{picName}}">
+      <div class="card-body">
+        <p><b>Autor: {{creatorId.username}}</b></p>
+        <p class="card-text">{{content}}</p>
+      </div>
+      <a href="/posts/{{_id}}" class="btn">Detalles</a>
     </div>
-    <a href="/posts/{{_id}}" class="btn btn-primary">Go somewhere</a>
   </div>
 {{/each}}
+</div>
+</main>

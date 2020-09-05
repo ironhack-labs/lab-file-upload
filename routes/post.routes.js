@@ -7,8 +7,8 @@ const {
         newPostProcess,
         newPostView,
         allPosts,
-        deletePost,
-        detailPost} = require("../controllers/posts")
+        detailPost,
+        newCommentProcess} = require("../controllers/posts")
 
 
 //C
@@ -18,11 +18,9 @@ router.post("/newpost", routeGuard, fileUploader.single("image"), newPostProcess
 //R
 
 router.get("/posts", allPosts)
+
 router.get("/posts/:id", detailPost)
+router.post("/posts/:id", routeGuard, fileUploader.single("image"), newCommentProcess)
 
-
-//D
-
-router.get("/posts/delete/:id", deletePost)
 
 module.exports = router
