@@ -7,9 +7,8 @@ exports.addComment = async(req, res) => {
         content,
         imageName
     } = req.body
-    const file = req.file
     let imagePath;
-    if (file) imagePath = file.path
+    if (req.file) imagePath = req.file.path
     const comment = await Comment.create({
         content,
         authorId,
