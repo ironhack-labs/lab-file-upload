@@ -27,7 +27,9 @@ exports.postPost = async(req, res) => {
     res.redirect('/posts')
 }
 exports.getPost = async(req, res) => {
-    const post = await Post.findById(req.params.postId)
+    const post = await Post.findOne({
+            _id: req.params.postId
+        })
         .populate({
             path: 'comments',
             model: 'Comment',
@@ -36,11 +38,12 @@ exports.getPost = async(req, res) => {
                 model: 'User'
             }
         })
+    const comments = post.comments.reverse()
     let user;
     if (req.session.currentUser) user = await User.findById(req.session.currentUser._id)
-    console.log('MY POST:', post)
     res.render('post/post', {
         post,
+        comments,
         user
     })
 }
