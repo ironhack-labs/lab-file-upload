@@ -1,10 +1,93 @@
-body {
-  padding: 50px;
-  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+/*  Titles and subtitles: font-family: 'Raleway', sans-serif;
+    Body: font-family: 'Work Sans', sans-serif;
+    Redish: rgb (150, 29, 78)
+    Dark blue: rgb (44, 87, 132)
+    Light blue: rgb (86, 136, 199)*/
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Work+Sans:wght@400;700&display=swap');
+
+:root {
+  --redish: rgb(150, 29, 78);
+  --darkblue: rgb(44, 87, 132);
+  --lightblue: rgb(187, 209, 234);
 }
 
+body {
+  margin: 0; }
+
+
+/* Nav bar */
+#to-left {
+  float: left;
+}
+  
+#to-left p a {
+  color: var(--darkblue);
+  font: 2.5em 'Raleway', sans-serif;
+  font-weight: bold;
+}
+
+ul {
+  height: 12vh;
+  padding: 3vh 3vw;
+  list-style-type: none;
+  background-color: var(--lightblue);
+  position: fixed;
+  width: 100%;
+}
+
+#to-right {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: space-around;
+  float: right;
+  width: 20vw;
+}
+
+#to-right a{
+  color: var(--redish);
+  font-size: 1.5em;
+}
+
+/* Header */
+
+header {
+  padding: 18vh 3vw 3vh;
+}
+
+h1 {
+  color: var(--darkblue);
+  font: 2.5em 'Raleway', sans-serif;
+}
+
+header>div{
+  display: flex;
+  justify-content: space-around;
+}
+
+header img{
+  width: 45vw;
+}
+
+header p {
+  width: 45vw;
+  text-align: justify;
+  font: 19px 'Work Sans', sans-serif;  
+}
+
+header button{
+  font-size: 18px;
+  width: 18vw;
+  margin: 2vw;
+  background-color: var(--lightblue);
+  border: var(--lightblue);
+  padding: 2vh 2vw;
+  color: var(--darkblue);
+}
+
+
 a {
-  color: #00b7ff;
   text-decoration: none;
   font-size: 1.5em;
 }
@@ -62,23 +145,7 @@ form button:hover {
   width: 100%;
 }
 
-ul {
-  border-bottom: 2px solid #43a3e6;
-  height: 30px;
-  padding: 1em 0;
-  list-style-type: none;
-}
 
-ul li {
-  line-height: 20px;
-}
-
-#to-right {
-  display: flex;
-  align-items: center;
-  padding: 1em;
-  float: right;
-}
 
 #logout-form {
   margin: 0;
@@ -109,12 +176,4 @@ ul li {
   justify-content: center;
 }
 
-#to-left {
-  float: left;
-}
 
-#to-left p a {
-  color: #000;
-  font-weight: bold;
-  font-size: 2em;
-}

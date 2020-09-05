@@ -1,0 +1,15 @@
+<br>
+<br>
+<br>
+<br>
+<h2>Todos los posts</h2>
+{{#each posts }}
+  <div class="card" style="width: 18rem;">
+    <img src="{{picPath}}" class="card-img-top" alt="{{picName}}">
+    <div class="card-body">
+      <p class="card-text">{{content}}</p>
+      <p>Creado por: {{creatorId.username}}</p>
+    </div>
+    <a href="/posts/{{_id}}" class="btn btn-primary">Go somewhere</a>
+  </div>
+{{/each}}
