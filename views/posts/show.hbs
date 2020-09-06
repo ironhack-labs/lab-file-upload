@@ -12,9 +12,11 @@
 {{#each comments}}
   <div class="comment">
     <img src="{{this.imagePath}}" alt="">
+    <br>
     <b>{{this.imageName}}</b>
-    <p>{{this.content}}</p>
+    <br>
     <i><small>{{this.authorId.username}}</small></i>
+    <p>{{this.content}}</p>
   </div>
 {{/each}}
 
