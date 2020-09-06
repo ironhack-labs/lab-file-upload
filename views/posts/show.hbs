@@ -5,24 +5,28 @@
   <p>{{content}}</p>
   <small>{{creatorId.username}}</small>
 </div>
+<br>
 
   {{!-- /////////////// COMMENTS //////////////// --}}
-<div class="comment">
-  <img src="{{comment.imagePath}}" alt="">
-  <b>{{comment.imagName}}</b>
-  <small>{{comment.authorId}}</small>
-  <p>{{comment.content}}</p>
-</div>
+<h4>Comments</h4>
+{{#each comments}}
+  <div class="comment">
+    <img src="{{this.imagePath}}" alt="">
+    <b>{{this.imageName}}</b>
+    <p>{{this.content}}</p>
+    <i><small>{{this.authorId.username}}</small></i>
+  </div>
+{{/each}}
 
 <div class="comment-actions">
-  <form action="/posts/show/{{id}}" enctype="multipart/form-data">
+  <form action="/posts/show/{{id}}" method="POST" enctype="multipart/form-data">
     <label for="imageName">Comment title</label>
     <br><br>
     <input type="text" name="imageName">
     <br><br>
-    <label for="comment-content">Comment content</label>
+    <label for="content">Comment content</label>
     <br><br>
-    <input type="text" name="comment-content">
+    <input type="text" name="content">
     <br><br>
     <input type="file" name="imagePath">
     <br><br>

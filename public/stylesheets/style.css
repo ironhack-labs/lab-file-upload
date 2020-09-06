@@ -127,3 +127,12 @@ ul li {
   width: 100%;
   object-fit: cover;
 }
+
+.comment{
+  width: 300px;
+}
+
+.comment img{
+  width: 100%;
+  object-fit: cover;
+}

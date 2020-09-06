@@ -49,17 +49,28 @@ exports.deletePost = async (req, res) => {
 }
 
 exports.createComment = async (req, res) => {
+  // Get path variable declared
+  const imageFile = req.file;
+  let commentImagePath
   // Get post to be attached
-  const attachedPost = req.params.postId
+  const attachedPost = req.params.postId;
   // Get elements from body
-  const { imageName, imagePath, content } = req.body;
+  const { imageName, content } = req.body;
+  // Checar si nos mandaron imagen
+  if (imageFile === 'undefined') {
+    commentImagePath = "https://i.pinimg.com/originals/eb/53/61/eb5361ca8b4a02e9fdeb511b9dccd5a3.png";
+  } else {
+    commentImagePath = req.file.path;
+  }
   // Create new comment
   const newComment = await Comment.create({
     imageName,
-    imagePath,
+    imagePath: commentImagePath,
     content,
-    authorid: req.session.currentUser._id
+    authorId: req.session.currentUser._id
   })
   // Push comment to post comments
-  await Post.findByIdAndUpdate(attachedPost, { $push: { newComment } },  {new: true} );
+  await Post.findByIdAndUpdate(attachedPost, { $push: { comments: newComment } }, { new: true });
+  // Redirect to same page
+  res.redirect(`/posts/${attachedPost}`);
 }

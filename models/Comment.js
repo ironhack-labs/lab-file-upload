@@ -6,7 +6,10 @@ const commentSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-  imagePath: String,
+  imagePath: {
+    type: String,
+    default: "https://i.pinimg.com/originals/eb/53/61/eb5361ca8b4a02e9fdeb511b9dccd5a3.png"
+  },
   imageName: String
 })
 

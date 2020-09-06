@@ -10,10 +10,10 @@ const postSchema = new Schema({
   },
   picPath: String,
   picName: String,
-  comments: {
-    type: [Schema.Types.ObjectId],
+  comments: [{
+    type: Schema.Types.ObjectId,
     ref: 'Comment'
-  }
+  }]
 },
 {
   timestamps: true
