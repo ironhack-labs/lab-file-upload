@@ -1,6 +1,18 @@
 {{#if user}}
     <h2>Welcome, {{ user.username }}!</h2>
     <p>This is your profile page my friend! And your email is: {{ user.email }}</p>
+    <img src="{{user.imageUrl}}" alt="{{user.username}}"> 
+    <h3>Recent posts:</h3>
+<div class="all-posts">
+    {{#each posts}}
+    <div class="single-post">
+        <h2>{{picName}}</h2>
+        <hr>
+        <img src="{{picPath}}" alt="Image: {{picName}}">
+        <a href="/posts/{{_id}}">See details</a>
+    </div>
+    {{/each}}
+    <a href="/post/new">Add a new Post!</a>
 {{else}}
     <p>Still no logged in user, sorry!</p>
 {{/if}}
