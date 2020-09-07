@@ -1,0 +1,10 @@
+<h1>Posts:</h1>
+<div>
+  {{#each posts}}
+  <div>
+    <h2>{{picName}}</h2>
+    <img src="{{picPath}}" alt="{{picName}}">
+    <a href="/posts/{{_id}}">Details</a>
+  </div>
+  {{/each}}
+</div>

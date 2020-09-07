@@ -1,0 +1,45 @@
+<div class="single-post-page">
+  <h1>{{post.picName}}</h1>
+  <img src="{{post.picPath}}" alt="Image: {{post.picName}}">
+  <p style="font-size: 1.3rem;">{{post.content}}</p>
+  <div class="comments">
+    {{#if user}}
+    <div class="add-comment">
+      <h2>
+        {{#if user.pictureUrl}}
+        <img src="{{user.pictureUrl}}"
+          style="width: 30px; height:30px; border-radius:50%; object-fit:cover; position: relative; top: 8px; right: 10px;" />
+        {{/if}}
+        Add comment:</h2>
+      <form action="/posts/{{post._id}}/comment" method="POST" enctype="multipart/form-data">
+
+        <label>Content:</label>
+        <textarea id="comment-content" name="content"></textarea>
+
+        <label>Image:</label>
+        <input type="text" name="imageName" id="comment-img-name" />
+
+        <label>Upload image:</label>
+        <input type="file" id="comment-image" name="image" />
+
+        <button type="submit">Send</button>
+      </form>
+    </div>
+    {{/if}}
+    <div>
+      <h2 >Comment:</h2>
+      {{#each post.comments}}
+      <div>
+        <b>Author: {{authorId.username}}:</b>
+        {{#if imageName}}
+        <h3>{{imageName}}</h3>
+        {{/if}}
+        {{#if imagePath}}
+        <img src="{{imagePath}}" alt="{{imageName}}">
+        {{/if}}
+        <p>{{content}}</p>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
