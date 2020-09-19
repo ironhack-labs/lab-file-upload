@@ -1,0 +1,32 @@
+<h2>All posts</h2>
+<br>
+{{#if user}}
+  <h3>Welcome, {{ user.username }}!</h3>
+  <p> <a href="/create">Create a new post</a>
+
+{{else}}
+  <p> <a href="/login">Login</a> to create a post</p>
+
+
+{{/if}}
+<br>
+<br>
+
+
+{{#each postFromDB}}
+<hr>
+<br>
+  <img src="{{picPath}}" alt="{{picName}}">
+  <p><b>Picture name:</b> {{picName}}</p>
+  <p><b>Message:</b>{{content}}</p>
+  <form action="/details/{{id}}" method="get">
+      <input type="submit" value="Check details" >
+  </form>
+
+<br>
+<br>
+
+{{else}}
+  <p>There are no posts yet...</p>
+
+{{/each}}
