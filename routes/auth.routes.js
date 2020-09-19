@@ -8,6 +8,7 @@ const User = require('../models/User.model');
 const mongoose = require('mongoose');
 
 const routeGuard = require('../configs/route-guard.config');
+const uploadCloud = require('../configs/cloudinary');
 
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////// SIGNUP //////////////////////////////////
@@ -17,8 +18,9 @@ const routeGuard = require('../configs/route-guard.config');
 router.get('/signup', (req, res) => res.render('auth/signup'));
 
 // .post() route ==> to process form data
-router.post('/signup', (req, res, next) => {
+router.post('/signup', uploadCloud.single('picture'), (req, res, next) => {
   const { username, email, password } = req.body;
+  console.log(req.body)
 
   if (!username || !email || !password) {
     res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
