@@ -11,9 +11,12 @@ exports.viewPostsCreate = (req, res) => {
 }
 
 exports.createPost = async(req, res) => {
-    const { content, creatorId, picPath, picName} = req.body;
-    await Post.create({ content, creatorId, picPath , picPath: req.file.path, picName })
-    res.redirect('/posts')
+    // const { content, creatorId, picPath, picName} = req.body;
+    const { content} = req.body;
+    console.log(content);
+    // await Post.create({ content, creatorId, picPath , picPath: req.file.path, picName })
+    await Post.create({ content })
+    res.redirect('/userProfile')
 }
 
 exports.updatePost = async(req, res) => {
