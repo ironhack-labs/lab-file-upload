@@ -12,10 +12,11 @@ exports.viewPostsCreate = (req, res) => {
 
 exports.createPost = async(req, res) => {
     // const { content, creatorId, picPath, picName} = req.body;
+
     const { content} = req.body;
-    console.log(content);
+    const { _id} = req.session.currentUser;
     // await Post.create({ content, creatorId, picPath , picPath: req.file.path, picName })
-    await Post.create({ content })
+    await Post.create({ content , _id})
     res.redirect('/userProfile')
 }
 
