@@ -112,4 +112,16 @@ router.get('/userProfile', routeGuard, (req, res) => {
   res.render('users/user-profile');
 });
 
+
+
+///routes of the form
+router.get('/userProfile', routeGuard, (req, res) => {
+  res.render('users/user-profile');
+});
+
+
+
+
+
+
 module.exports = router;
