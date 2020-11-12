@@ -6,6 +6,7 @@ const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User.model');
 const mongoose = require('mongoose');
+const fileUploader = require('../configs/cloudinary.config')
 
 const routeGuard = require('../configs/route-guard.config');
 
@@ -14,7 +15,7 @@ const routeGuard = require('../configs/route-guard.config');
 ////////////////////////////////////////////////////////////////////////
 
 // .get() route ==> to display the signup form to users
-router.get('/signup', (req, res) => res.render('auth/signup'));
+router.get('/signup', fileUploader.single('image'), (req, res) => res.render('auth/signup'));
 
 // .post() route ==> to process form data
 router.post('/signup', (req, res, next) => {
@@ -45,7 +46,8 @@ router.post('/signup', (req, res, next) => {
         // passwordHash => this is the key from the User model
         //     ^
         //     |            |--> this is placeholder (how we named returning value from the previous method (.hash()))
-        passwordHash: hashedPassword
+        passwordHash: hashedPassword,
+        image: req.file.path
       });
     })
     .then(userFromDB => {
