@@ -1,0 +1,17 @@
+<div id="form">
+  <h2>New Post</h2>
+  <br>
+  <form action="/post" method="POST" enctype="multipart/form-data">
+    <label for="input-username">Username</label>
+    <input type="text" id="input-username" name="username" placeholder="Your username" />
+    <br>
+    <label for="input-post">Post</label>
+    <input type="text" id="input-post" name="post" placeholder="Your post" />
+    <br>
+    <button type="submit">Create Post</button>
+
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </form>
+</div>

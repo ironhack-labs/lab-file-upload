@@ -6,6 +6,7 @@ const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User.model');
 const mongoose = require('mongoose');
+const fileUploader = require('../configs/cloudinary')
 
 const routeGuard = require('../configs/route-guard.config');
 
@@ -17,13 +18,16 @@ const routeGuard = require('../configs/route-guard.config');
 router.get('/signup', (req, res) => res.render('auth/signup'));
 
 // .post() route ==> to process form data
-router.post('/signup', (req, res, next) => {
+router.post('/signup', fileUploader.single('image')), async (req, res, next) => {
   const { username, email, password } = req.body;
+  await User.create({ username, email, password, imageUrl: req.file.path})
+  res.redirect('/profile')
+  
 
   if (!username || !email || !password) {
     res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
     return;
-  }
+  }}
 
   // make sure passwords are strong:
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
@@ -63,7 +67,7 @@ router.post('/signup', (req, res, next) => {
         next(error);
       }
     }); // close .catch()
-});
+// });
 
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////// LOGIN ////////////////////////////////////
