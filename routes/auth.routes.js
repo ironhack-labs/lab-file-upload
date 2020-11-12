@@ -5,6 +5,7 @@ const router = new Router();
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User.model');
+const Post = require('../models/Post.model');
 const mongoose = require('mongoose');
 
 const routeGuard = require('../configs/route-guard.config');
@@ -112,12 +113,24 @@ router.get('/userProfile', routeGuard, (req, res) => {
   res.render('users/user-profile');
 });
 
-
+//////////////////////////
 
 ///routes of the form
-router.get('/userProfile', routeGuard, (req, res) => {
-  res.render('users/user-profile');
+const fileUploader = require('../configs/cloudinary')
+const { getAllPosts, viewPostsCreate, createPost } = require('../controllers/postControllers');
+
+router.get('/postForm', (req, res) => {
+
 });
+console.log(viewPostsCreate);
+//the GET route to display the post-form,
+router.get('/create', viewPostsCreate)
+//the POST route to actually create the post (this route should include file uploading),
+router.post('/create', fileUploader.single('image'), createPost)
+//the GET route to display the posts and
+router.get('/posts', getAllPosts)
+// the GET route to display post-details.
+router.get('/:id/details', fileUploader.single('image'))
 
 
 
