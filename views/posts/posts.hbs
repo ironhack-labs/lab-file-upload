@@ -1,0 +1,15 @@
+<h1>Posts</h1>
+
+{{#each posts}}
+  <div class="post-container">
+    <a href="/posts/{{_id}}/details">
+      <img src="{{picPath}}" alt="{{picName}}" width="auto" height="150">
+      <h3>{{picName}}</h3>
+      <p>{{content}}</p>
+    </a>
+  </div>
+{{/each}}
+
+{{#if user}}
+<a href="/post-form">Create a new post</a>
+{{/if}}

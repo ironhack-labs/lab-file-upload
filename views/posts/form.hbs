@@ -1,0 +1,16 @@
+<h1>Express your feelings</h1>
+
+<form action="/post-form" method="POST" enctype="multipart/form-data">
+  <input type="file" name="image" id="image" required>
+  <input type="text" name="creatorId" hidden value="{{user._id}}">
+  <label for="picName">Picture name:
+    <input type="text" name="picName" id="picName">
+  </label>
+  <label for="content">Tell us what you want:
+    <textarea name="content" id="content" cols="30" rows="10"></textarea>
+  </label>
+  <button type="submit">Post!</button>
+{{#if e}}
+  <p>{{e}}</p>
+{{/if}}
+</form>
