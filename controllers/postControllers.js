@@ -27,10 +27,11 @@ exports.createPost = async(req, res) => {
     // const { content, creatorId, picPath, picName} = req.body;
 
     const { content} = req.body;
-    const { _id} = req.session.currentUser;
+    // const { _id} = req.session.currentUser;
     // await Post.create({ content, creatorId, picPath , picPath: req.file.path, picName })
-    await Post.create({ content , _id})
-    res.redirect('/userProfile')
+    // await Post.create({ content , _id})
+    await Post.create({ content})
+    res.redirect('/')
 }
 
 exports.updatePost = async(req, res) => {

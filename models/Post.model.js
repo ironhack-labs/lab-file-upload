@@ -10,7 +10,7 @@ const postSchema = new Schema({
     type: String
   },
   // - ObjectId of the post's creator (the user who created a post)
-  creatorId:  [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  creatorId:  { type: Schema.Types.ObjectId, ref: 'User' },
   //- where the picture is stored
   picPath: {imageUrl: String},
   //- the picture's name
