@@ -118,3 +118,19 @@ ul li {
   font-weight: bold;
   font-size: 2em;
 }
+
+.display-posts img {
+  width: 300px;
+  height: auto;
+}
+
+.post-details img {
+  
+  width: 300px;
+  height: auto;
+}
+
+.profilePicture {
+  width: 300px;
+  height: auto;
+}

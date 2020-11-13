@@ -1,6 +1,15 @@
 {{#if user}}
+
+    <img class="profilePicture" src="{{user.profilePicturePath}}" alt="">
+    <br>
+    <a href="/edit-profile-picture">Edit profile picture</a>
     <h2>Welcome, {{ user.username }}!</h2>
     <p>This is your profile page my friend! And your email is: {{ user.email }}</p>
+    
 {{else}}
     <p>Still no logged in user, sorry!</p>
 {{/if}}
+<br>
+
+
+<a type="button"  href="/create-post">Create post</a>

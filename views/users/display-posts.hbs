@@ -1,0 +1,20 @@
+<h1>Posts</h1>
+<hr>
+{{!-- <div class="row"> --}}
+  {{#each posts}}
+  <div >
+    <div class="display-posts" >
+      <img src="{{picPath}}" class="card-img-top" alt="{{picName}}">
+      <div>
+        <h2>{{picName}}</h2>
+        <a href="/post-details/{{_id}}" class="">See details</a>
+      </div>
+      <br>
+      <br>
+      <br>
+    </div>
+  </div>
+  {{else}}
+  <p>There are no movies yet!</p>
+  {{/each}}
+  <hr />

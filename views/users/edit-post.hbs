@@ -1,0 +1,25 @@
+<h2>Editing post...</h2>
+<div>
+  <div>
+    <form action="/edit/{{_id}}" method="post" enctype="multipart/form-data">
+
+      <div class="form-group">
+        <label for="title-input">Name:</label>
+        <input value='{{picName}}' type="text" name="picName" id="name-input" class="form-control" >
+      </div>
+
+      <div class="form-group">
+        <label for="description-input">Content:</label>
+        <textarea name="content" id="content-input" cols="30" rows="4" class="form-control">{{content}} </textarea>
+        {{!-- <textarea value={{content}} name="content" id="content-input" cols="30" rows="4" class="form-control"> </textarea> --}}
+      </div>
+      <div class="form-group">
+        <label for="image-input">Chose another image:</label>
+        <input type="file" name="image" id="image-input" class="form-control-file" />
+        <input type="text" name="existingImage" hidden id="" value="{{picPath}}">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Save changes</button>
+    </form>
+  </div>
+</div>

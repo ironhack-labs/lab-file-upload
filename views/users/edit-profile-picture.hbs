@@ -1,0 +1,19 @@
+<h2>edit shit</h2>
+
+<h2>Editing post...</h2>
+<div>
+  <div>
+    <form action="/edit-profile-picture" method="post" enctype="multipart/form-data">
+      <img class="profilePicture" src="{{user.profilePicturePath}}" alt="profile-picture">
+      <br>
+
+      <div class="form-group">
+        <label for="image-input">Chose another image:</label>
+        <input type="file" name="image" id="image-input" class="form-control-file" />
+        <input type="text" name="existingImage" hidden id="" value="{{user.profilePicturePath}}">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Save changes</button>
+    </form>
+  </div>
+</div>
