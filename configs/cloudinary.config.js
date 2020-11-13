@@ -11,7 +11,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   // cloudinary: cloudinary,
   cloudinary,
-  folder: 'lab-file-upload', // The name of the folder in cloudinary
+  folder: 'prueba', // The name of the folder in cloudinary
   allowedFormats: ['jpg', 'png'],
   // params: { resource_type: 'raw' }, => this is in case you want to upload other type of files, not just images
   filename: function (req, file, cb) {

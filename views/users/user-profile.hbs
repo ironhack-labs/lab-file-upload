@@ -2,6 +2,7 @@
     <h2>Welcome, {{ user.username }}!</h2>
     <img src="{{user.imageUrl}}" alt="{{title}}" style="width: 500px;">
     <p>This is your profile page my friend! And your email is: {{ user.email }}</p>
+    <button><a href="/post/{{user._id}}">Post Something man!</a></button>
 {{else}}
     <p>Still no logged in user, sorry!</p>
 {{/if}}
