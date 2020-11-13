@@ -1,0 +1,49 @@
+<div style="display: flex; align-items:center">
+  <img src="{{post.picPath}}" style="width: 20rem; height:auto" class="card-img-top" alt="{{post.picName}}">
+  <h1 style="display: inline-block; margin-left: 1rem;">{{ post.picName }}!</h1>
+</div>
+<p>{{ post.content }}</p>
+{{#if comments}}
+<br>
+<hr>
+<h3>Comments</h3>
+{{#each comments}}
+<hr>
+<div style="display: flex; flex-direction:column; justify-content:center">
+  {{#if imagePath}}
+  <img src="{{imagePath}}" style="width: 5rem; height:auto" class="card-img-top" alt="{{imageName}}">
+  {{/if}}
+  {{#if imageName}}
+  <h3 style="margin:0; padding:0; display: inline-block; margin-left: 1rem;">{{ imageName }}!</h3>
+  {{/if}}
+  <p style="padding-left: 1.5rem;">{{ content }}</p>
+</div>
+{{/each}}
+{{else}}
+<p>No comments.</p>
+{{/if}}
+{{#if user}}
+<br>
+<hr>
+<form action="/comments/create" method="POST" enctype="multipart/form-data">
+  <h3>New Comment</h3>
+  <label for="input-picName">Picture Name:</label>
+  <input type="text" id="input-picName" name="imageName" placeholder="If you upload a pic, whats its title?" />
+
+  <label for="image-input">Profile Picture:</label>
+  <input type="file" name="image" id="image-input" class="form-control-file" />
+
+
+  <label for="input-content">Content:</label>
+  <input type="text" id="input-content" name="content" placeholder="Comment!" />
+  <input type="text" id="input-content" name="idPost" placeholder="Comment!" hidden value="{{post._id}}" />
+
+  <button type="submit">Comment!</button>
+
+  {{#if errorMessage}}
+  <p class="error">{{errorMessage}}</p>
+  {{/if}}
+</form>
+{{else}}
+<p>You have to be logged to comment.</p>
+{{/if}}

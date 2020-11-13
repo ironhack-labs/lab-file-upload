@@ -9,6 +9,8 @@ const mongoose = require('mongoose');
 
 const routeGuard = require('../configs/route-guard.config');
 
+
+const fileUploader = require('../configs/cloudinary.config');
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////// SIGNUP //////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
@@ -17,8 +19,14 @@ const routeGuard = require('../configs/route-guard.config');
 router.get('/signup', (req, res) => res.render('auth/signup'));
 
 // .post() route ==> to process form data
-router.post('/signup', (req, res, next) => {
+router.post('/signup', fileUploader.single('image'), (req, res, next) => {
   const { username, email, password } = req.body;
+  let imageUrl;
+  if (req.file) {
+    imageUrl = req.file.path;
+  } else { // Default user pic
+    imageUrl = 'https://www.flaticon.com/svg/static/icons/svg/747/747376.svg';
+  }
 
   if (!username || !email || !password) {
     res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
@@ -45,7 +53,8 @@ router.post('/signup', (req, res, next) => {
         // passwordHash => this is the key from the User model
         //     ^
         //     |            |--> this is placeholder (how we named returning value from the previous method (.hash()))
-        passwordHash: hashedPassword
+        passwordHash: hashedPassword,
+        imageUrl,
       });
     })
     .then(userFromDB => {
@@ -107,7 +116,8 @@ router.post('/logout', (req, res) => {
   res.redirect('/');
 });
 
-router.get('/userProfile', routeGuard, (req, res) => {
+router.get('/userProfile', routeGuard, async (req, res) => {
+  console.log(req.user)
   res.render('users/user-profile');
 });
 

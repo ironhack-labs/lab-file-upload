@@ -1,6 +1,10 @@
 {{#if user}}
-    <h2>Welcome, {{ user.username }}!</h2>
-    <p>This is your profile page my friend! And your email is: {{ user.email }}</p>
+<div style="display: flex; align-items:center">
+  <img src="{{user.imageUrl}}" style="width: 3rem; height:auto; display:inline-block" class="card-img-top"
+    alt="{{user.title}}">
+  <h2 style="display: inline-block; margin-left: 1rem;">Welcome, {{ user.username }}!</h2>
+</div>
+<p>This is your profile page my friend! And your email is: {{ user.email }}</p>
 {{else}}
-    <p>Still no logged in user, sorry!</p>
+<p>Still no logged in user, sorry!</p>
 {{/if}}

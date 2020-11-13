@@ -1,0 +1,12 @@
+<h2>Posts</h2>
+{{#if errorMessage}}
+<p class="error">{{errorMessage}}</p>
+{{/if}}
+
+{{#each posts}}
+<div style="display: flex; align-items:center">
+  <img src="{{picPath}}" style="width: 5rem; height:auto; display:inline-block" class="card-img-top" alt="{{title}}">
+  <h3 style="display: inline-block; margin-left: 1rem;">{{ picName }}!</h3>
+  <a href="/posts/{{_id}}" style="font-size: 0.7rem;"> Read more.</a> <br>
+</div>
+{{/each}}
