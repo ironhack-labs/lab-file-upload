@@ -1,6 +1,12 @@
-{{#if user}}
+<div class="container">{{#if user}}
+    <img class="thumbnail" src="{{user.imageUrl}}" alt="">
     <h2>Welcome, {{ user.username }}!</h2>
     <p>This is your profile page my friend! And your email is: {{ user.email }}</p>
+    <a href="/new-post"><button>New Post</button></a>
+    <br>
+    <br>
+    <a href="/"><button>Home</button></a>
 {{else}}
-    <p>Still no logged in user, sorry!</p>
+    <p>Still not logged in user, sorry!</p>
 {{/if}}
+</div>

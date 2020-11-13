@@ -1,0 +1,39 @@
+<div class="form">
+  <h1>Create a new Post</h1>
+  {{!-- <div class=form-create> --}}
+    <form action="/new-post" method="post" enctype="multipart/form-data">
+      
+      {{!-- creatorId --}}
+        {{!-- <label>User:</label>
+        <p style="text-align: center;">{{user.username}}</p>
+      <br> --}}
+
+      {{!-- picPath --}}
+      <div class="form-group">
+        <label for="image-input">Pick an Image:</label>
+        <input type="file" name="image" id="image-input" class="form-control-file" />
+      </div>
+      <br>
+
+      {{!-- picName --}}
+      <div class="form-group">
+        <label for="picName-input">Caption it:</label>
+        <input name="picName" id="picName-input" class="form-control"  />
+      </div>
+      <br>
+
+      {{!-- content --}}
+      <div class="form-group">
+        <label for="content-input">What do you want to share about it?</label>
+        <textarea name="content" id="content-input" rows="4" class="form-control"> </textarea>
+      </div>
+      <br>
+
+      <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+    <a href="/userProfile"><button style="width: 100%;">Back to Profile</button></a>
+    <br>
+    <br>
+    <a href="/"><button style="width: 100%;">Back to Home</button></a>
+  {{!-- </div> --}}
+</div>

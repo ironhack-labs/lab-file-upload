@@ -1,29 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+
 body {
-  padding: 50px;
-  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+  /* padding: 50px; */
+  font: 14px 'Roboto', Helvetica, sans-serif;
+  font-weight: 300;
+  background-color: #34526f;
+  color: white;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 a {
-  color: #00b7ff;
+  color: white;
+  /* color: #00b7ff; */
   text-decoration: none;
   font-size: 1.5em;
+  margin-right: 10px;
 }
 
-form {
+
+.form-create {
   margin: 30px auto;
   width: 380px;
 }
 
 form label {
-  color: #666;
+  color: rgb(184, 184, 184);
   display: inline-block;
   margin-bottom: 10px;
   text-align: center;
   width: 100%;
 }
 
+.thumbnail {
+  object-fit: cover;
+  width: 75px;
+  height: 75px;
+  border-radius: 20px;
+}
+
+.form {
+  width: 70vw;
+  max-width: 400px;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.index {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* .post-container {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+} */
+
+.post {
+  width: 80vw;
+  /* height: 400px; */
+  max-width: 700px;
+  border-radius: 15px;
+  margin-top: 25px;
+  padding: 10px;
+  background-color: white;
+  color: black;
+  text-align: left;
+}
+
+
+.post img {
+  width: 100%;
+}
+
+
+
 form input,
-form button {
+form button,
+form textarea {
   box-sizing: border-box;
   font-size: 14px;
   outline: 0;
@@ -32,7 +95,7 @@ form button {
   margin-bottom: 20px;
 }
 
-form button {
+form button, button {
   background: #43a3e6;
   border: 1px solid #43a3e6;
   border-radius: 4px;
@@ -47,7 +110,8 @@ form button {
   /* width: 100%; */
 }
 
-form button:hover {
+form button:hover,
+button:hover {
   background: #fff;
   color: #43a3e6;
   transition: 0.3s ease background;
@@ -60,6 +124,10 @@ form button:hover {
   margin: 20px auto;
   padding: 20px;
   width: 100%;
+}
+
+nav {
+  width: 80vw;
 }
 
 nav ul {
@@ -114,7 +182,8 @@ ul li {
 }
 
 #to-left p a {
-  color: #000;
+  font-family: 'Roboto Slab', serif;
+  color: white;
   font-weight: bold;
   font-size: 2em;
 }

@@ -25,7 +25,8 @@ const userSchema = new Schema(
     },
     //ITERACION 1: User Profile Picture
     imageUrl: {
-      type: String
+      type: String,
+      default: "public/images/tumblr_o51oavbMDx1ugpbmuo1_540.png"
     }
   },
   {

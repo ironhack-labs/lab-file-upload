@@ -1,6 +1,12 @@
-<div id="form">
+<div class="form">
   <h2>Signup</h2>
-  <form action="/signup" method="POST">
+  <form action="/signup" method="POST" enctype="multipart/form-data">
+
+    <div class="form-group">
+      <label for="image-input">Choose a profile photo:</label>
+      <input type="file" name="image" id="image-input" class="form-control-file" />
+    </div>
+
     <label for="input-username">Username</label>
     <input type="text" id="input-username" name="username" placeholder="Your username" />
 

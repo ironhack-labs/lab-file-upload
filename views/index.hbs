@@ -1,2 +1,34 @@
-<h1>{{title}}</h1>
-<p>Welcome Ironhacker!</p>
+<div class="index">
+  <h1>{{title}}</h1>
+  {{#if user}}
+    <p>Welcome {{user.username}}!</p>
+  {{else}}
+    <p>Welcome Ironhacker! Sign up or log in!</p>
+  {{/if}}
+  {{#if posts}}
+    {{#if user}}
+      <a href="/new-post"><button>New Post</button></a>
+      {{#each posts}}
+        <div class=post-container>
+          <div class=left>
+            {{!-- <img src="{{}}" alt="{{}}">
+            <p>{{}}</p> --}}
+          </div>
+          <div class=post>
+            <h2>{{creatorUserName}}</h2>
+            <img src="{{picPath}}" alt="{{picName}}">
+            <h3>{{picName}}</h3>
+            <p>{{content}}</p>
+          </div>
+        </div>
+      {{/each}}
+    {{/if}}
+  {{else}}
+    {{#unless user}}
+    <h3>No posts yet :( Log in or Sign up to post!</h3>
+    {{else}}
+    <h3>No posts yet :( Create one now!</h3>
+    <a href="/new-post"><button>New Post</button></a>
+    {{/unless}}
+  {{/if}}
+</div>
