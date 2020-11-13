@@ -1,13 +1,25 @@
 const Post = require('../models/Post.model');
-
+const posts =  Post.find()
 
 exports.getAllPosts = async(req, res) => {
-    const posts = await Post.find()
-    res.render('posts/posts-list', { posts })
+    // const posts = await Post.find()
+    res.render('index', { posts })
 }
 
+// exports.getAllPosts = (req, res,) => {
+//     const posts =  Post.find()
+//       .then(x => {
+//         res.render('index', { posts })
+//
+//       })
+//       .catch(err => {
+//           console.error('Error:', err)
+//       });
+//
+// }
+
 exports.viewPostsCreate = (req, res) => {
-    res.render('posts/post-create')
+    // res.render('posts/post-create')
 }
 
 exports.createPost = async(req, res) => {

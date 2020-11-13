@@ -7,8 +7,8 @@ const saltRounds = 10;
 const User = require('../models/User.model');
 const Post = require('../models/Post.model');
 const mongoose = require('mongoose');
-
 const routeGuard = require('../configs/route-guard.config');
+const { getAllPosts, viewPostsCreate, createPost } = require('../controllers/postControllers');
 
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////// SIGNUP //////////////////////////////////
