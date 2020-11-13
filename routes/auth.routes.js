@@ -9,6 +9,7 @@ const Post = require('../models/Post.model');
 const mongoose = require('mongoose');
 const routeGuard = require('../configs/route-guard.config');
 const { getAllPosts, viewPostsCreate, createPost } = require('../controllers/postControllers');
+const fileUploader = require('../configs/cloudinary')
 
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////// SIGNUP //////////////////////////////////
@@ -20,15 +21,14 @@ router.get('/signup', (req, res) => res.render('auth/signup'));
 // .post() route ==> to process form data
 router.post('/signup', (req, res, next) => {
   const { username, email, password, image} = req.body;
-  console.log(req.body);
+  // console.log(req.body);
   if (!username || !email || !password) {
     res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
     return;
   }
 
   // make sure passwords are strong:
-  const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
-
+  // const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
   // if (!regex.test(password)) {
   //   res
   //     .status(500)
@@ -36,6 +36,7 @@ router.post('/signup', (req, res, next) => {
   //   return;
   // }
 
+  // console.log(req.file.path);
   bcryptjs
     .genSalt(saltRounds)
     .then(salt => bcryptjs.hash(password, salt))
