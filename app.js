@@ -15,6 +15,7 @@ require('./configs/db.config');
 // bind user to view - locals
 const bindUserToViewLocals = require('./configs/user-locals.config');
 
+
 // Routers
 const indexRouter = require('./routes/index.routes');
 const authRouter = require('./routes/auth.routes');

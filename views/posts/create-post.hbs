@@ -1,0 +1,20 @@
+<h2>Create a post</h2>
+<div class="row">
+  <div class="col-md-6">
+    <form action="/createPost" method="post" enctype="multipart/form-data">
+
+ 
+      <div class="form-group">
+        <label for="content-input">Content:</label>
+        <textarea name="content" id="content-input" cols="30" rows="4" class="form-control"> </textarea>
+      </div>
+ 
+      <div class="form-group">
+        <label for="image-input">Image:</label>
+        <input type="file" name="image" id="image-input" class="form-control-file" />
+      </div>
+ 
+      <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+  </div>
+</div>

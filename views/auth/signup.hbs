@@ -1,6 +1,6 @@
 <div id="form">
   <h2>Signup</h2>
-  <form action="/signup" method="POST">
+  <form action="/signup" method="POST" enctype="multipart/form-data">
     <label for="input-username">Username</label>
     <input type="text" id="input-username" name="username" placeholder="Your username" />
 
@@ -9,6 +9,9 @@
 
     <label for="input-password">Password</label>
     <input type="password" name="password" id="input-password" placeholder="********" />
+
+    <label for="image-input">Image:</label>
+    <input type="file" name="image" id="image-input" class="form-control-file" />
 
     <button type="submit">Create account</button>
 

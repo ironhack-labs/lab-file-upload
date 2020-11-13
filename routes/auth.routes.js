@@ -5,6 +5,7 @@ const router = new Router();
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User.model');
+const Post = require('../models/Post.model');
 const mongoose = require('mongoose');
 
 const routeGuard = require('../configs/route-guard.config');
@@ -12,13 +13,17 @@ const routeGuard = require('../configs/route-guard.config');
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////// SIGNUP //////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
+const fileUploader = require('../configs/cloudinary')
 
 // .get() route ==> to display the signup form to users
 router.get('/signup', (req, res) => res.render('auth/signup'));
 
 // .post() route ==> to process form data
-router.post('/signup', (req, res, next) => {
-  const { username, email, password } = req.body;
+router.post('/signup', fileUploader.single('image'),(req, res, next) => {
+  
+  const { username, email, password} = req.body;
+  let imageUrl;
+  imageUrl = req.file.path;
 
   if (!username || !email || !password) {
     res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
@@ -45,7 +50,8 @@ router.post('/signup', (req, res, next) => {
         // passwordHash => this is the key from the User model
         //     ^
         //     |            |--> this is placeholder (how we named returning value from the previous method (.hash()))
-        passwordHash: hashedPassword
+        passwordHash: hashedPassword,
+        imageUrl
       });
     })
     .then(userFromDB => {
@@ -112,3 +118,34 @@ router.get('/userProfile', routeGuard, (req, res) => {
 });
 
 module.exports = router;
+
+////////////////////////////////////////////////////////////////////////
+///////////////////////////// POSTS////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+
+
+
+router.get('/createPost' ,routeGuard, async(req, res) => {
+  
+  res.render('posts/create-post');
+});
+
+router.post('/createPost', fileUploader.single('image'),routeGuard, async (req, res) => {
+  const {content} = req.body
+  let picPath, picName;
+  picPath = req.file.path;
+  picName = req.file.originalname;
+  await Post.create({content, creatorId: req.session.currentUser._id, picPath, picName})
+  res.redirect('/posts');
+});
+
+router.get('/posts', async (req, res) => {
+  const posts = await Post.find()
+  res.render('posts/posts', {posts});
+});
+
+router.get('/posts/:id', async (req,res) => {
+  const {id} = req.params
+  const post = await Post.findById(id)
+  res.render('posts/post-details', post)
+})
