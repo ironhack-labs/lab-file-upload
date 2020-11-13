@@ -4,7 +4,7 @@ const { Router } = require('express');
 const router = new Router();
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
-const User = require('../models/User.model');
+const User = require('../models/User');
 const mongoose = require('mongoose');
 
 const routeGuard = require('../configs/route-guard.config');
@@ -50,7 +50,7 @@ router.post('/signup', (req, res, next) => {
     })
     .then(userFromDB => {
       console.log('Newly created user is: ', userFromDB);
-      res.redirect('/userProfile');
+      res.redirect('/login');
     })
     .catch(error => {
       if (error instanceof mongoose.Error.ValidationError) {
@@ -90,7 +90,7 @@ router.post('/login', (req, res, next) => {
         return;
       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
         req.session.currentUser = user;
-        res.redirect('/userProfile');
+        res.redirect('/');
       } else {
         res.render('auth/login', { errorMessage: 'Incorrect password.' });
       }

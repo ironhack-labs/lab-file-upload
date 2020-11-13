@@ -1,0 +1,31 @@
+<div class="row justify-content-md-center mt-5">
+  <div class="col-8">
+    <div class="card">
+      <div class="card-header">{{creatorId.username}}</div>
+      <img src="{{picPath}}" class="card-img-top" alt="{{picName}}">
+      <div class="card-body">
+        <p class="card-text">{{content}}</p>
+        {{#if user}}
+        <a href="/{{_id}}/new-comment" class="btn btn-primary">new comment</a>
+        {{/if}}
+      </div>
+    </div>
+
+    <h4 class="text-center mt-4">Comments</h4>
+    <div class="row justify-content-md-center">
+      {{#each comments}}
+      <div class="col-8 mb-5 mt-2">
+        <div class="card">
+          <div class="card-header">{{creatorId.username}}</div>
+          {{#if imagePath}}
+          <img src="{{imagePath}}" class="card-img-top" alt="{{imageName}}">
+          {{/if}}
+          <div class="card-body">
+            <p class="card-text">{{content}}</p>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</div>

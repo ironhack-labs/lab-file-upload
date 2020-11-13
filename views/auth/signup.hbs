@@ -1,19 +1,25 @@
-<div id="form">
-  <h2>Signup</h2>
-  <form action="/signup" method="POST">
-    <label for="input-username">Username</label>
-    <input type="text" id="input-username" name="username" placeholder="Your username" />
-
-    <label for="input-email">Email</label>
-    <input type="email" id="input-email" name="email" placeholder="Your email" />
-
-    <label for="input-password">Password</label>
-    <input type="password" name="password" id="input-password" placeholder="********" />
-
-    <button type="submit">Create account</button>
-
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
-  </form>
+<div class="row justify-content-md-center">
+  <div class="w-50 mt-5">
+    <h1 class="mb-4">Signup</h1>
+    <form action="/signup" method="post">
+      <div class="form-group">
+        <label for="input-username">Username</label>
+        <input type="text" class="form-control" id="input-username" name="username" aria-describedby="emailHelp">
+      </div>
+      <div class="form-group">
+        <label for="input-email">Email address</label>
+        <input type="email" class="form-control" id="input-email" name="email" aria-describedby="emailHelp">
+      </div>
+      <div class="form-group">
+        <label for="input-password">Password</label>
+        <input type="password" class="form-control" id="input-password" name="password">
+      </div>
+      {{#if errorMessage}}
+      <div class="alert alert-warning" role="alert">
+        {{errorMessage}}
+      </div>
+      {{/if}}
+      <button type="submit" class="btn btn-primary">Create Account</button>
+    </form>
+  </div>
 </div>

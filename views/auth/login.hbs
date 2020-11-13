@@ -1,16 +1,21 @@
-<div id="form">
-    <h2>Login</h2>
-    <form action="/login" method="POST">
-        <label for="input-email">Email</label>
-        <input type="email" id="input-email" name="email" placeholder="Your email" />
-
+<div class="row justify-content-md-center">
+  <div class="w-50 mt-5">
+    <h1 class="mb-4">Login</h1>
+    <form action="/login" method="post">
+      <div class="form-group">
+        <label for="input-email">Email address</label>
+        <input type="email" class="form-control" id="input-email" name="email" aria-describedby="emailHelp">
+      </div>
+      <div class="form-group">
         <label for="input-password">Password</label>
-        <input type="password" name="password" id="input-password" placeholder="********" />
-
-        <button type="submit">Login</button>
-
-        {{#if errorMessage}}
-            <p class="error">{{errorMessage}}</p>
-        {{/if}}
+        <input type="password" class="form-control" id="input-password" name="password">
+      </div>
+      {{#if errorMessage}}
+      <div class="alert alert-warning" role="alert">
+        {{errorMessage}}
+      </div>
+      {{/if}}
+      <button type="submit" class="btn btn-primary">submit</button>
     </form>
+  </div>
 </div>

@@ -1,0 +1,20 @@
+<div class="row justify-content-md-center">
+  <div class="w-50 mt-5">
+    <h1 class="mb-4">Create a post</h1>
+    <form action="/new-post" method="post" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="input-content">Content</label>
+        <textarea class="form-control" id="input-content" name="content" cols="30" rows="4"
+          aria-describedby="emailHelp"> </textarea>
+      </div>
+      <div class="input-group mb-3">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="image-input" name="image"
+            aria-describedby="inputGroupFileAddon01">
+          <label class="custom-file-label" for="image-input">Choose file</label>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Create Post</button>
+    </form>
+  </div>
+</div>
