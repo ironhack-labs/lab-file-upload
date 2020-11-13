@@ -1,6 +1,21 @@
 {{#if user}}
     <h2>Welcome, {{ user.username }}!</h2>
     <p>This is your profile page my friend! And your email is: {{ user.email }}</p>
+    <a href="/post">Post something for your followers</a>
 {{else}}
     <p>Still no logged in user, sorry!</p>
 {{/if}}
+
+<h1>Take a look at all the posts</h1>
+
+{{#if postss}}
+{{#each postss}}
+<p>Details: {{content}}</p>
+<p><a href="/posts/{{id}}">More info</a></p>
+{{/each}}
+{{else}}
+    <p>there are no posts</p>
+{{/if}}
+
+
+

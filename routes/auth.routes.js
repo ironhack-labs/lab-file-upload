@@ -5,9 +5,12 @@ const router = new Router();
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User.model');
+const fileUploader = require('../configs/cloudinary');
 const mongoose = require('mongoose');
 
 const routeGuard = require('../configs/route-guard.config');
+const Post = require('../models/Post');
+const Comment = require('../models/Comment');
 
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////// SIGNUP //////////////////////////////////
@@ -15,30 +18,33 @@ const routeGuard = require('../configs/route-guard.config');
 
 // .get() route ==> to display the signup form to users
 router.get('/signup', (req, res) => res.render('auth/signup'));
-
 // .post() route ==> to process form data
-router.post('/signup', (req, res, next) => {
+router.post('/signup', fileUploader.single('image'), (req, res, next) => {
+  const { path } = req.file;
+  console.log(req.file)
+  //lo que está en formulario 
   const { username, email, password } = req.body;
 
-  if (!username || !email || !password) {
+  if (!path||!username || !email ||!password) {
     res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
     return;
   }
 
   // make sure passwords are strong:
-  const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
-  if (!regex.test(password)) {
-    res
-      .status(500)
-      .render('auth/signup', { errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.' });
-    return;
-  }
+  // const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+  // if (!regex.test(passwordHash)) {
+  //   res
+  //     .status(500)
+  //     .render('auth/signup', { errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.' });
+  //   return;
+  // }
 
   bcryptjs
     .genSalt(saltRounds)
     .then(salt => bcryptjs.hash(password, salt))
     .then(hashedPassword => {
       return User.create({
+        image: path,
         // username: username
         username,
         email,
@@ -64,6 +70,8 @@ router.post('/signup', (req, res, next) => {
       }
     }); // close .catch()
 });
+
+module.exports = router;
 
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////// LOGIN ////////////////////////////////////
@@ -107,8 +115,55 @@ router.post('/logout', (req, res) => {
   res.redirect('/');
 });
 
-router.get('/userProfile', routeGuard, (req, res) => {
-  res.render('users/user-profile');
+
+
+module.exports = router;
+
+////POSTS
+router.get('/userProfile', routeGuard, async (req, res) => {
+  const postss=  await Post.find({creatorId: req.session.currentUser._id})
+  // console.log('afdgafgsfgs', req)
+  res.render('users/user-profile', {postss} );
+});
+
+// the GET route to display the post-form,
+router.get('/post', (req, res) =>{
+  res.render('users/posts-form')
+  });
+
+
+// the POST route to actually create the post (this route should include file uploading),
+
+router.post('/posted', fileUploader.single('image'), async (req, res)=>{
+  const {content}= req.body
+  const { path } = req.file;
+  await Post.create({
+    content,
+    creatorId:req.session.currentUser._id ,
+    picPath: path,
+    picName: req.file.originalname,
+  })
+  res.redirect('userProfile')
+})
+
+
+
+// the GET route to display post-details.
+
+router.get('/posts/:id', async (req, res)=>{
+  const { id } = req.params;
+  //creatorId lo sacas del schema
+  const post = await Post.findById(id).populate('creatorId');
+  res.render('users/postDetails', post)
+})
+
+//comments
+
+router.post('/posts/:id', async (req, res) => {
+  const { id } = req.params;
+  const { content } = req.body;
+  const comments = await Comment.create({ content});
+  res.redirect(`/posts/${id}`, comments);
 });
 
 module.exports = router;

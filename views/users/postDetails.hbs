@@ -1,0 +1,21 @@
+<h1>Details posts </h1>
+<h2>Username: {{creatorId.username}}</h2>
+
+<p>{{content}}</p>
+<br>
+<img  src="{{picPath}}" alt="postPic" width="150px">
+<p style="font-size: 10px;">{{picName}}</p>
+
+<form action="/posts/{{_id}}" method="post">
+  <label for="content">New Comment</label>
+  <textarea name="content" id="content" cols="45" rows="7"></textarea>
+  <button type="submit">Create Comment</button>
+</form>
+
+<h3>Comments:</h3>
+{{#each comments}}
+<p>comment</p>
+<p>{{content}}</p>
+{{/each}}
+
+<a href="/userProfile">Go back</a>

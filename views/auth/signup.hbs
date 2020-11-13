@@ -1,6 +1,9 @@
 <div id="form">
   <h2>Signup</h2>
-  <form action="/signup" method="POST">
+  <form action="/signup" method="POST" enctype="multipart/form-data">
+    <label for="image-input">Profile picture</label>
+    <input type="file" name="image" id="image-input" class="form-control-file" />
+
     <label for="input-username">Username</label>
     <input type="text" id="input-username" name="username" placeholder="Your username" />
 
