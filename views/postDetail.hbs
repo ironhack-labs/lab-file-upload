@@ -1,0 +1,19 @@
+<div>
+  <h2>{{post.picName}}</h2>
+  <img src="{{post.picUrl}}" alt="{{post.picName}}" style="width:200px;height:200px;object-fit:cover">
+  <p>{{post.content}}</p>
+</div>
+
+{{#each post.comments}}
+<div>{{this.content}}</div>
+<div>{{this.authorId.username}}</div>
+{{/each}}
+
+<h2>Make a comment</h2>
+<form action="/posts/{{post.id}}" method="POST" id="upload">
+    <label for="content">Content:</label>
+    <input type="text" id="input-content" name="content" placeholder="Your comment content" />
+
+    <button type="submit">Submit comment</button>
+
+  </form>

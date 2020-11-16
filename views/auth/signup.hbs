@@ -9,11 +9,13 @@
 
     <label for="input-password">Password</label>
     <input type="password" name="password" id="input-password" placeholder="********" />
+    <label for="image-input">Image:</label> <br>
+    <input type="file" name="image" id="image-input" class="form-control-file" />
 
     <button type="submit">Create account</button>
 
     {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
+    <p class="error">{{errorMessage}}</p>
     {{/if}}
   </form>
 </div>

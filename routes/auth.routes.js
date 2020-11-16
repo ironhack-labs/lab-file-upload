@@ -7,6 +7,8 @@ const saltRounds = 10;
 const User = require('../models/User.model');
 const mongoose = require('mongoose');
 
+// think here goes cludinary
+
 const routeGuard = require('../configs/route-guard.config');
 
 ////////////////////////////////////////////////////////////////////////

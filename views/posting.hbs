@@ -1,0 +1,16 @@
+<h1>Your Post</h1>
+
+<h2>posting!</h2>
+<form action="/posting" method="POST" id="upload" enctype="multipart/form-data">
+    <label for="content">Content:</label>
+    <input type="text" id="input-content" name="content" placeholder="Your post content" />
+
+    <label for="picName">Your pic's title</label>
+    <input type="text" name="picName" id="picName" placeholder="Your pic's name" />
+
+    <label for="picUrl">Image:</label> <br>
+        <input type="file" name="picUrl" id="image-input" class="form-control-file" />
+
+    <button type="submit">Submit your post</button>
+
+  </form>
