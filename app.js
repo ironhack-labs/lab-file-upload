@@ -8,6 +8,7 @@ const favicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
 const hbs = require('hbs');
 const mongoose = require('mongoose');
+const multer = require('multer');
 
 // Set up the database
 require('./configs/db.config');
@@ -57,3 +58,6 @@ app.use((error, req, res) => {
 });
 
 module.exports = app;
+
+
+app.listen(3000, console.log("Up and running"));
