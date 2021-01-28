@@ -118,3 +118,10 @@ ul li {
   font-weight: bold;
   font-size: 2em;
 }
+
+img {
+  object-fit: cover;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
