@@ -1,1 +1,14 @@
 <h1>Insert your post!</h1>
+
+<form method="POST" enctype="multipart/form-data" action="">
+  <label for="postContent">What's on your mind?</label>
+  <input type="textarea" id="postContent" name="postContent" maxlength="500" required>
+
+  <label for="postPicture">Add a picture</label>
+  <input type="file" name="postPicture" id="postPicture" required>
+
+  <label for="pictureName">Add a picture</label>
+  <input type="text" name="pictureName" id="pictureName" required>
+
+  <button type="submit">Submit post</button>
+</form>

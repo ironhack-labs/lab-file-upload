@@ -29,6 +29,7 @@ router.post('/signup', uploadMiddleware.single('profilePicture'), (req, res, nex
   const { username, email, password } = req.body;
   const profilePicture = req.file.path;
   console.log(profilePicture);
+  console.log(req.file);
 
   if (!username || !email || !password) {
     res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });

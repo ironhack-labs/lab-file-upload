@@ -1,18 +1,21 @@
 const mongoose = require('mongoose');
+
 const postSchema = new mongoose.Schema({
   content: {
     type: String,
     required: true
   },
-  creatorId: {
+  // creatorId: {
+  //   type: String,
+  //   required: true
+  // },
+  picPath: {
     type: String,
     required: true
   },
-  picPath: {
-    type: String
-  },
   picName: {
-    type: String
+    type: String,
+    required: true
   }
 });
 
