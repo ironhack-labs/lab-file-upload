@@ -8,6 +8,7 @@ const User = require('../models/User.model');
 const mongoose = require('mongoose');
 
 const routeGuard = require('../configs/route-guard.config');
+const uploadMiddleware = require('../middleware/file-upload');
 
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////// SIGNUP //////////////////////////////////
@@ -17,7 +18,7 @@ const routeGuard = require('../configs/route-guard.config');
 router.get('/signup', (req, res) => res.render('auth/signup'));
 
 // .post() route ==> to process form data
-router.post('/signup', (req, res, next) => {
+router.post('/signup', uploadMiddleware.single('picture'), (req, res, next) => {
   const { username, email, password } = req.body;
 
   if (!username || !email || !password) {
@@ -38,6 +39,10 @@ router.post('/signup', (req, res, next) => {
     .genSalt(saltRounds)
     .then(salt => bcryptjs.hash(password, salt))
     .then(hashedPassword => {
+      let picture;
+      if (req.file) {
+        picture = req.file.path;
+      }
       return User.create({
         // username: username
         username,
@@ -45,7 +50,8 @@ router.post('/signup', (req, res, next) => {
         // passwordHash => this is the key from the User model
         //     ^
         //     |            |--> this is placeholder (how we named returning value from the previous method (.hash()))
-        passwordHash: hashedPassword
+        passwordHash: hashedPassword,
+        picture: picture
       });
     })
     .then(userFromDB => {
