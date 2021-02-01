@@ -3,14 +3,22 @@ const router = new Router();
 const Post = require('../models/Post.model');
 
 const routeGuard = require('../configs/route-guard.config');
-const uploadMiddleware = require('../middleware/file-upload');
+const multer = require('multer');
+const cloudinary = require('cloudinary');
+const multerStorageCloudinary = require('multer-storage-cloudinary');
 
-router.get('/create', routeGuard, (req, res, next) => {
+const storage = new multerStorageCloudinary.CloudinaryStorage({
+  cloudinary: cloudinary.v2
+});
+
+const uploadMiddleware = multer({ storage: storage });
+
+router.get('/post-form', routeGuard, (req, res, next) => {
   res.render('post/create');
 });
 
 router.post(
-  '/create',
+  '/post-form',
   routeGuard,
   uploadMiddleware.single('image'),
   (req, res, next) => {
@@ -20,11 +28,13 @@ router.post(
 
     Post.create({
       content: data.content,
-      creatorId: req.user._id,
-      image: image
+      // creatorId: req.user._id,
+      picPath: image,
+      picName: data.picName
     })
-      .then(post => {
-        res.render('post/home');
+      .then(() => {
+        // req.session.userId = user._id;
+        res.redirect('/');
       })
       .catch(error => {
         next(error);
@@ -32,20 +42,17 @@ router.post(
   }
 );
 
-// router.get('/posts', routeGuard, (req, res, next) => {
-//   res.render('post/home');
-// });
 
-// router.get('/posts/:id', (req, res, next) => {
-//   const id = req.params.id;
-//   Post.findById(id)
-//     .then(post => {
-//         res.render('post/post-details', { post: post });
-//     })
-//     .catch(error => {
-//       next(error);
-//     });
-// });
+router.get('/post/:id', (req, res, next) => {
+  const id = req.params.id;
+  Post.findById(id)
+    .then(post => {
+        res.render('post/post-details', { post: post });
+    })
+    .catch(error => {
+      next(error);
+    });
+});
 
 
 

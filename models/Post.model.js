@@ -16,9 +16,6 @@ const postSchema = new Schema(
     },
     picName: {
       type: String
-    },
-    image: {
-      type: String
     }
   },
   {

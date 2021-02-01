@@ -7,8 +7,17 @@ const saltRounds = 10;
 const User = require('../models/User.model');
 const mongoose = require('mongoose');
 
+const multer = require('multer');
+const cloudinary = require('cloudinary');
+const multerStorageCloudinary = require('multer-storage-cloudinary');
+
+const storage = new multerStorageCloudinary.CloudinaryStorage({
+  cloudinary: cloudinary.v2
+});
+
+const uploadMiddleware = multer({ storage: storage });
+
 const routeGuard = require('../configs/route-guard.config');
-const uploadMiddleware = require('../middleware/file-upload');
 
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////// SIGNUP //////////////////////////////////
@@ -18,7 +27,7 @@ const uploadMiddleware = require('../middleware/file-upload');
 router.get('/signup', (req, res) => res.render('auth/signup'));
 
 // .post() route ==> to process form data
-router.post('/signup', uploadMiddleware.single('picture'), (req, res, next) => {
+router.post('/signup', uploadMiddleware.single('profilePicture'), (req, res, next) => {
   const { username, email, password } = req.body;
 
   if (!username || !email || !password) {
@@ -39,9 +48,9 @@ router.post('/signup', uploadMiddleware.single('picture'), (req, res, next) => {
     .genSalt(saltRounds)
     .then(salt => bcryptjs.hash(password, salt))
     .then(hashedPassword => {
-      let picture;
+      let profilePicture;
       if (req.file) {
-        picture = req.file.path;
+        profilePicture = req.file.path;
       }
       return User.create({
         // username: username
@@ -51,7 +60,7 @@ router.post('/signup', uploadMiddleware.single('picture'), (req, res, next) => {
         //     ^
         //     |            |--> this is placeholder (how we named returning value from the previous method (.hash()))
         passwordHash: hashedPassword,
-        picture: picture
+        profilePicture: profilePicture
       });
     })
     .then(userFromDB => {
