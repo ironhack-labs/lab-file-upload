@@ -13,6 +13,10 @@ const storage = new multerStorageCloudinary.CloudinaryStorage({
 
 const uploadMiddleware = multer({ storage: storage });
 
+router.get('/home', (req, res) => {
+  res.render('post/home');
+});
+
 router.get('/post-form', routeGuard, (req, res, next) => {
   res.render('post/create');
 });
@@ -34,7 +38,7 @@ router.post(
     })
       .then(() => {
         // req.session.userId = user._id;
-        res.redirect('/');
+        res.redirect('/home');
       })
       .catch(error => {
         next(error);
