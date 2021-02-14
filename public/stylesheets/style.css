@@ -62,6 +62,15 @@ form button:hover {
   width: 100%;
 }
 
+.ok {
+  background: rgb(18, 122, 18);
+  box-sizing: border-box;
+  color: #fff;
+  margin: 20px auto;
+  padding: 20px;
+  width: 100%;
+}
+
 nav ul {
   border-bottom: 2px solid #43a3e6;
   height: 30px;

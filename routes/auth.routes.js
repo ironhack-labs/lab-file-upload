@@ -5,7 +5,11 @@ const router = new Router();
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User.model');
+const Photo = require('../models/Photo.model');
 const mongoose = require('mongoose');
+
+const multer = require('multer');
+const upload = multer({ dest: './public/uploads/' });
 
 const routeGuard = require('../configs/route-guard.config');
 
@@ -17,52 +21,64 @@ const routeGuard = require('../configs/route-guard.config');
 router.get('/signup', (req, res) => res.render('auth/signup'));
 
 // .post() route ==> to process form data
-router.post('/signup', (req, res, next) => {
+router.post('/signup', upload.single('photo'), (req, res, next) => {
+  
   const { username, email, password } = req.body;
+  const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
 
   if (!username || !email || !password) {
     res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
     return;
-  }
 
-  // make sure passwords are strong:
-  const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
-  if (!regex.test(password)) {
+  } else if (!regex.test(password)) {
     res
       .status(500)
       .render('auth/signup', { errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.' });
     return;
-  }
 
-  bcryptjs
-    .genSalt(saltRounds)
-    .then(salt => bcryptjs.hash(password, salt))
-    .then(hashedPassword => {
-      return User.create({
-        // username: username
-        username,
-        email,
-        // passwordHash => this is the key from the User model
-        //     ^
-        //     |            |--> this is placeholder (how we named returning value from the previous method (.hash()))
-        passwordHash: hashedPassword
-      });
-    })
-    .then(userFromDB => {
-      console.log('Newly created user is: ', userFromDB);
-      res.redirect('/userProfile');
-    })
-    .catch(error => {
-      if (error instanceof mongoose.Error.ValidationError) {
-        res.status(500).render('auth/signup', { errorMessage: error.message });
-      } else if (error.code === 11000) {
-        res.status(500).render('auth/signup', {
-          errorMessage: 'Username and email need to be unique. Either username or email is already used.'
-        });
-      } else {
-        next(error);
-      }
-    }); // close .catch()
+  } else {
+    const photo = new Photo({
+      name: req.file.filename,
+      path: `/uploads/${req.file.filename}`,
+      originalName: req.file.originalname
+    });
+
+    photo
+      .save()
+      .then((p) => {
+
+        bcryptjs
+          .genSalt(saltRounds)
+          .then(salt => bcryptjs.hash(password, salt))
+          .then(hashedPassword => {
+            return User.create({
+              username,
+              email,
+              passwordHash: hashedPassword,
+              photo: p.path,
+            });
+          })
+          .then(userFromDB => {
+            console.log('Newly created user is: ', userFromDB);
+            res.render('auth/login', { okMessage: 'Account successfuly created. Now you can log-in.' });
+          })
+          .catch(error => {
+            if (error instanceof mongoose.Error.ValidationError) {
+              res.status(500).render('auth/signup', { errorMessage: error.message });
+            } else if (error.code === 11000) {
+              res.status(500).render('auth/signup', {
+                errorMessage: 'Username and email need to be unique. Either username or email is already used.'
+              });
+            } else {
+              next(error);
+            }
+          });
+
+          })
+          .catch(err => {
+            next(error);
+          });
+  }
 });
 
 ////////////////////////////////////////////////////////////////////////
@@ -110,5 +126,9 @@ router.post('/logout', (req, res) => {
 router.get('/userProfile', routeGuard, (req, res) => {
   res.render('users/user-profile');
 });
+
+
+
+router.get('/profile', (req, res) => res.render('users/user-profile'));
 
 module.exports = router;
