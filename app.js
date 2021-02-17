@@ -4,6 +4,8 @@ const express = require('express');
 const createError = require('http-errors');
 const logger = require('morgan');
 const favicon = require('serve-favicon');
+const multer = require('multer'); // aqui requerimos el multer para las fotos
+
 
 const cookieParser = require('cookie-parser');
 const hbs = require('hbs');
@@ -47,13 +49,13 @@ app.use((req, res, next) => next(createError(404)));
 
 // Catch all error handler
 app.use((error, req, res) => {
-  // Set error information, with stack only available in development
-  res.locals.message = error.message;
-  res.locals.error = req.app.get('env') === 'development' ? error : {};
+    // Set error information, with stack only available in development
+    res.locals.message = error.message;
+    res.locals.error = req.app.get('env') === 'development' ? error : {};
 
-  // render the error page
-  res.status(error.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(error.status || 500);
+    res.render('error');
 });
 
 module.exports = app;
