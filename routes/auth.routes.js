@@ -8,7 +8,8 @@ const User = require('../models/User.model');
 const mongoose = require('mongoose');
 
 const routeGuard = require('../configs/route-guard.config');
-
+const multer = require("multer");
+const upload = multer({ dest: "./public/uploads/" })
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////// SIGNUP //////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
@@ -17,14 +18,17 @@ const routeGuard = require('../configs/route-guard.config');
 router.get('/signup', (req, res) => res.render('auth/signup'));
 
 // .post() route ==> to process form data
-router.post('/signup', (req, res, next) => {
-  const { username, email, password } = req.body;
-
-  if (!username || !email || !password) {
+router.post('/signup',upload.single("image"), (req, res, next) => {
+  const { username, email, password, image } = req.body;
+  //Make sure all mandatory fields are filled
+  if (!username || !email || !password ) {
     res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
     return;
   }
 
+  if(req.file){
+    req.body.image = `/uploads/${req.file.filename}`
+  }
   // make sure passwords are strong:
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
   if (!regex.test(password)) {
@@ -45,11 +49,15 @@ router.post('/signup', (req, res, next) => {
         // passwordHash => this is the key from the User model
         //     ^
         //     |            |--> this is placeholder (how we named returning value from the previous method (.hash()))
-        passwordHash: hashedPassword
-      });
+        passwordHash: hashedPassword,
+        image: `/uploads/${req.file.filename}`
+        
+      })
+      ;
     })
     .then(userFromDB => {
       console.log('Newly created user is: ', userFromDB);
+    
       res.redirect('/userProfile');
     })
     .catch(error => {
