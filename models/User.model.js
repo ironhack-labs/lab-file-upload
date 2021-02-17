@@ -26,7 +26,7 @@ const userSchema = new Schema({
         name: String,
         path: String,
         originalName: String
-    }
+    }//Prueba
 }, {
     timestamps: true
 });
