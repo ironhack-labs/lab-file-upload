@@ -25,7 +25,7 @@ router.get('/signup', (req, res) => res.render('auth/signup'));
 router.post('/signup',upload.single('photo'), (req, res, next) => {
     //upload.single es para subir una sola foto y la guarda con un nombre aleatorio en la carpeta public/upload
     
-    //El req.file es un objeto que se crea
+    //El req.file es un objeto que  crea Multer y ahí podemos ver el filename
 
     if (req.file) {
         req.body.photo = `/uploads/${req.file.filename}`
@@ -56,6 +56,7 @@ router.post('/signup',upload.single('photo'), (req, res, next) => {
                 // username: username
                 username,
                 email,
+                //Añadimos el campo photo
                 photo,
                 // passwordHash => this is the key from the User model
                 //     ^
