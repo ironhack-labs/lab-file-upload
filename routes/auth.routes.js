@@ -5,10 +5,14 @@ const router = new Router();
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User.model');
+const Photo = require('../models/Photo.model'); // llamamos al esquema de las fotos
 const mongoose = require('mongoose');
-const Picture = require('../models/picture');
+//const Picture = require('../models/picture');
 
 const routeGuard = require('../configs/route-guard.config');
+
+const multer = require('multer'); //llamamos al multer
+const upload = multer({ dest: './public/uploads/' });
 
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////// SIGNUP //////////////////////////////////
