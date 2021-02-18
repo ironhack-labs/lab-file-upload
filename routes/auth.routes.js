@@ -121,4 +121,19 @@ router.get('/userProfile', routeGuard, (req, res) => {
   res.render('users/user-profile');
 });
 
+
+////////////////////////////////////////////////////////////////////////
+///////////////////////////// POST ////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+
+router.get('/create', (req, res, next) => {
+  res.render("postForm")
+})
+
+router.post('/create', upload.single("imagePost"),(req, res, next) => {
+  const post = req.body
+  console.log(req.body)
+  console.log(req.file)
+})
+
 module.exports = router;

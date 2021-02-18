@@ -9,10 +9,10 @@ const postSchema = new Schema({
     type: mongoose.Types.ObjectId,
     ref: "User"
   },
-  picPath: {
+  path: {
     type: String
   },
-  picName: {
+  name: {
     type: String
   }
 },
