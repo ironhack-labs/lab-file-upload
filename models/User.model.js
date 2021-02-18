@@ -22,7 +22,10 @@ const userSchema = new Schema(
     passwordHash: {
       type: String,
       required: [true, 'Password is required.']
-    }
+    },
+    image: {
+      type: String
+    },
   },
   {
     timestamps: true
