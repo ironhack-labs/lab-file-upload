@@ -5,6 +5,7 @@ const router = new Router();
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User.model');
+const Post = require('../models/Post.model')
 const mongoose = require('mongoose');
 const multer = require('multer')
 const upload = multer({dest: "./public/uploads/"})
@@ -131,9 +132,18 @@ router.get('/create', (req, res, next) => {
 })
 
 router.post('/create', upload.single("imagePost"),(req, res, next) => {
-  const post = req.body
   console.log(req.body)
   console.log(req.file)
+
+  if (req.file) {
+    req.body.imagePost = `/uploads/${req.file.filename}`
+  }
+
+  Post.create(req.body)
+    .then((post) => {
+      res.render('index', post)
+    })
+    .catch ((e) => next(e))
 })
 
 module.exports = router;
