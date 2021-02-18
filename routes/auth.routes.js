@@ -6,6 +6,8 @@ const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User.model');
 const mongoose = require('mongoose');
+const multer = require('multer');
+const upload = multer({ dest: './public/uploads/' });
 
 const routeGuard = require('../configs/route-guard.config');
 
@@ -17,7 +19,7 @@ const routeGuard = require('../configs/route-guard.config');
 router.get('/signup', (req, res) => res.render('auth/signup'));
 
 // .post() route ==> to process form data
-router.post('/signup', (req, res, next) => {
+router.post('/signup', upload.single('avatar'), (req, res, next) => {
   const { username, email, password } = req.body;
 
   if (!username || !email || !password) {
@@ -39,13 +41,10 @@ router.post('/signup', (req, res, next) => {
     .then(salt => bcryptjs.hash(password, salt))
     .then(hashedPassword => {
       return User.create({
-        // username: username
         username,
         email,
-        // passwordHash => this is the key from the User model
-        //     ^
-        //     |            |--> this is placeholder (how we named returning value from the previous method (.hash()))
-        passwordHash: hashedPassword
+        passwordHash: hashedPassword,
+        avatar: `/uploads/${req.file.filename}`
       });
     })
     .then(userFromDB => {
@@ -83,7 +82,9 @@ router.post('/login', (req, res, next) => {
     return;
   }
 
-  User.findOne({ email })
+  User
+    .findOne({ email })
+    .populate('posts')
     .then(user => {
       if (!user) {
         res.render('auth/login', { errorMessage: 'Email is not registered. Try with other email.' });
@@ -108,6 +109,7 @@ router.post('/logout', (req, res) => {
 });
 
 router.get('/userProfile', routeGuard, (req, res) => {
+  console.log(req.session.currentUser)
   res.render('users/user-profile');
 });
 

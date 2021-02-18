@@ -1,2 +1,13 @@
 <h1>{{title}}</h1>
 <p>Welcome Ironhacker!</p>
+<br>
+
+{{#if user}}
+<h2>Latest posts</h2>
+  {{#each user.posts as |post|}}
+      <a href="/post/{{post._id}}">
+          <img src="{{post.picPath}}" height="50px" alt="">
+          {{post.content}}
+      </a><hr>
+  {{/each}}
+{{/if}}

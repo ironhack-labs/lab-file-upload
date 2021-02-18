@@ -1,5 +1,4 @@
 // models/User.model.js
-
 const { Schema, model } = require('mongoose');
 
 const userSchema = new Schema(
@@ -22,11 +21,24 @@ const userSchema = new Schema(
     passwordHash: {
       type: String,
       required: [true, 'Password is required.']
+    },
+    avatar: {
+      type: String,
+      default: '/uploads/no-photo.jpg'
     }
   },
   {
-    timestamps: true
+    timestamps: true,
+    toJSON: {
+      virtuals: true 
+    }
   }
 );
+
+userSchema.virtual("posts", {
+  ref: "Post",
+  foreignField: "creatorId",
+  localField: "_id"
+});
 
 module.exports = model('User', userSchema);
