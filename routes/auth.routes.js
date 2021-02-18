@@ -12,7 +12,7 @@ const mongoose = require('mongoose');
 const routeGuard = require('../configs/route-guard.config');
 
 const multer = require('multer'); //llamamos al multer
-const upload = multer({ dest: './public/uploads/' });
+const upload = multer({ dest: './public/uploads/' });// le decimos a multer que el archivo lo meta en la carpeta upLoads...................................................
 
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////// SIGNUP //////////////////////////////////
@@ -22,7 +22,16 @@ const upload = multer({ dest: './public/uploads/' });
 router.get('/signup', (req, res) => res.render('auth/signup'));
 
 // .post() route ==> to process form data
-router.post('/signup', (req, res, next) => {
+router.post('/signup',upload.single('photo'), (req, res, next) => {
+    //upload.single es para subir una sola foto y la guarda con un nombre aleatorio en la carpeta public/upload
+    
+    //El req.file es un objeto que se crea
+
+    if (req.file) {
+        req.body.photo = `/uploads/${req.file.filename}`
+      }
+    
+    
     const { username, email, password } = req.body;
 
     if (!username || !email || !password) {
@@ -37,7 +46,7 @@ router.post('/signup', (req, res, next) => {
             .status(500)
             .render('auth/signup', { errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.' });
         return;
-    }
+    } 
 
     bcryptjs
         .genSalt(saltRounds)
@@ -47,6 +56,7 @@ router.post('/signup', (req, res, next) => {
                 // username: username
                 username,
                 email,
+                photo,
                 // passwordHash => this is the key from the User model
                 //     ^
                 //     |            |--> this is placeholder (how we named returning value from the previous method (.hash()))
