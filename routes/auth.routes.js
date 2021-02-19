@@ -132,7 +132,7 @@ router.get('/create', (req, res, next) => {
   res.render("user-profile")
 })
 
-router.post('/create', upload.single("imagePost"),(req, res, next) => {
+router.post('/create', upload.single("path"),(req, res, next) => {
   console.log(req.body)
   console.log(req.file)
   req.body.creatorId = req.session.currentUser._id
