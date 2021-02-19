@@ -95,6 +95,7 @@ router.post('/login', (req, res, next) => {
   }
 
   User.findOne({ email })
+    .populate('post')
     .then(user => {
       if (!user) {
         res.render('auth/login', { errorMessage: 'Email is not registered. Try with other email.' });
@@ -128,20 +129,21 @@ router.get('/userProfile', routeGuard, (req, res) => {
 ////////////////////////////////////////////////////////////////////////
 
 router.get('/create', (req, res, next) => {
-  res.render("postForm")
+  res.render("user-profile")
 })
 
 router.post('/create', upload.single("imagePost"),(req, res, next) => {
   console.log(req.body)
   console.log(req.file)
+  req.body.creatorId = req.session.currentUser._id
 
   if (req.file) {
-    req.body.imagePost = `/uploads/${req.file.filename}`
+    req.body.path = `/uploads/${req.file.filename}`
   }
 
   Post.create(req.body)
-    .then((post) => {
-      res.render('index', post)
+    .then(() => {
+      res.redirect('/')
     })
     .catch ((e) => next(e))
 })

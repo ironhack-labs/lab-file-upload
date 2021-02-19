@@ -4,18 +4,12 @@
     <p>This is your profile page my friend! And your email is: {{ user.email }}</p>
     <h3>Create a post:</h3>
     <form action="/create" method="POST" enctype="multipart/form-data">
+        <label for="path">Upload your image</label>
+        <input name="path" type="file">
+
         <label for="content">Content</label>
         <textarea type="text" name="content"></textarea>
     
-        <label for="creator">Creator</label>
-        <input type="text" name="creator" value="{{post.creator}}">
-    
-        <label for="path">Upload your image</label>
-        <input name="imagePost" type="file">
-    
-        <label for="name">Image name</label>
-        <input type="text">
-
         <button type="submit">Create post</button>
 
     </form>

@@ -2,8 +2,6 @@
 <p>Welcome Ironhacker!</p>
 
 {{#each post as |post|}}
-  <h3>{{name}}</h3>
-  <p>{{content}}</p>
-  <p>{{creator}}</p>
-  <img src="{{path}}" alt="ImagePost">
+  <img src="{{post.path}}" alt="ImagePost">
+  <p>{{post.content}}</p>
 {{/each}}
