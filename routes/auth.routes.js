@@ -8,11 +8,12 @@ const User = require('../models/User.model');
 const Photo = require('../models/Photo.model'); // llamamos al esquema de las fotos
 const mongoose = require('mongoose');
 //const Picture = require('../models/picture');
+const Post = require('../models/Post.model');
 
 const routeGuard = require('../configs/route-guard.config');
 
 const multer = require('multer'); //llamamos al multer
-const upload = multer({ dest: './public/uploads/' });// le decimos a multer que el archivo lo meta en la carpeta upLoads...................................................
+const upload = multer({ dest: './public/uploads/' }); // le decimos a multer que el archivo lo meta en la carpeta upLoads...................................................
 
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////// SIGNUP //////////////////////////////////
@@ -22,19 +23,19 @@ const upload = multer({ dest: './public/uploads/' });// le decimos a multer que 
 router.get('/signup', (req, res) => res.render('auth/signup'));
 
 // .post() route ==> to process form data
-router.post('/signup',upload.single('photo'), (req, res, next) => {
+router.post('/signup', upload.single('photo'), (req, res, next) => {
     //upload.single es para subir una sola foto y la guarda con un nombre aleatorio en la carpeta public/upload
-    
+
     //El req.file es un objeto que  crea Multer y ahí podemos ver el filename
 
     if (req.file) {
         req.body.photo = `/uploads/${req.file.filename}`
-      }
-    
-    
-    const { username, email, password } = req.body;
+    }
 
-    if (!username || !email || !password) {
+
+    const { username, email, password, photo } = req.body; //le agregué la photo
+
+    if (!username || !email || !password || !photo) { //le agregué la photo
         res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
         return;
     }
@@ -46,7 +47,7 @@ router.post('/signup',upload.single('photo'), (req, res, next) => {
             .status(500)
             .render('auth/signup', { errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.' });
         return;
-    } 
+    }
 
     bcryptjs
         .genSalt(saltRounds)
@@ -126,5 +127,29 @@ router.post('/logout', (req, res) => {
 router.get('/userProfile', routeGuard, (req, res) => {
     res.render('users/user-profile');
 });
+
+/////////////////////////// AQUI VA LO DE LOS POST///////////////////////////////
+
+//CREAMOS LA RUTA PARA CREAR LOS POSTS
+router.get('/create', (req, res, next) => {
+    res.render("postForm") // POST-FORM ESTO LO DICE EL LAB
+})
+
+//ESTA ES LA RUTA QUE INCLUYE SUBIR LA FOTO Y QUE CREA EL POST
+router.post('/create', upload.single("photoPost"), (req, res, next) => {
+    // console.log(req.body)
+    //console.log(req.file)
+
+    if (req.file) {
+        req.body.photoPost = `/uploads/${req.file.filename}`
+    }
+
+    Post.create(req.body)
+        .then((post) => {
+            res.render('index', post) //aqui esta el problema no se ve
+        })
+        .catch((e) => next(e))
+})
+
 
 module.exports = router;

@@ -1,9 +1,44 @@
+<div class="home">
+    {{#if user}}
+    <h2 class="welcome">Welcome, {{ user.username }}!</h2>
+    <div class="infoUser">
+        <p class="dataUser">This is your profile page my friend! And your email is: {{ user.email }}</p>
+        <img src="{{ user.photo }}" class="w3-circle" id="profilePicture" alt="Profile Image">
 
+        <!--hay que crear un form para crear los post -->
+    </div>
+    <div class="container">
+        <h3 class="createPostdata">Let your imagination fly and create a post:</h3>
+        <div class="registro">
+            <form action="/create" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="content">Content</label>
+                </div>
 
-{{#if user}}
-    <h2>Welcome, {{ user.username }}!</h2>
-    <p>This is your profile page my friend! And your email is: {{ user.email }}</p>
-    <p><img src="{{ user.photo }}" alt="Profile Image"></p>
-{{else}}
+                <!-- El input textarea representa un campo para la entrada de texto 
+        multilínea. que permite editar el texto regular -->
+                <div class="mb-3">
+                    <textarea type="text" name="content" class="form-control" size="50" minlength="3"
+          maxlength="100"></textarea>
+                </div>
+                <div class="mb-3">
+                <label for="creator">Creator</label>
+                <input type="text"  class="form-control" name="creator" value="{{post.creator}}">
+</div>
+<div class="mb-3">
+                <label for="path">Upload your photo</label>
+                <input  class="form-control" name="photoPost" type="file">
+                </div>
+<div class="mb-3">
+                <label for="name">Image name</label>
+                <input  class="form-control" type="text">
+</div>
+                <button type="submit">Create post</button>
+
+            </form>
+        </div>
+    </div>
+    {{else}}
     <p>Still no logged in user, sorry!</p>
-{{/if}} 
+    {{/if}}
+</div>
