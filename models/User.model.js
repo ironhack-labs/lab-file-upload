@@ -22,11 +22,24 @@ const userSchema = new Schema(
     passwordHash: {
       type: String,
       required: [true, 'Password is required.']
-    }
+    },
+    image: {
+      type: String
+    },
   },
   {
-    timestamps: true
-  }
-);
+    timestamps: true,	    
+    toJSON: {
+      virtuals: true
+    }
+    }
+	);
+
+
+userSchema.virtual("post", {
+  ref: "Post",
+  foreignField: "creatorId",
+  localField: "_id"
+})
 
 module.exports = model('User', userSchema);

@@ -1,2 +1,8 @@
-<h1>{{title}}</h1>
+<h1 class="index-title">{{title}}</h1>
 <p>Welcome Ironhacker!</p>
+
+{{#each post as |post|}}
+
+<img src="{{post.path}}" alt="ImagePost">
+<p class="p-post-content">{{post.content}}</p>
+{{/each}}

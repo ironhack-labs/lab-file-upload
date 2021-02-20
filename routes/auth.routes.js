@@ -5,8 +5,10 @@ const router = new Router();
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User.model');
+const Post = require('../models/Post.model')
 const mongoose = require('mongoose');
-
+const multer = require('multer');
+const upload = multer({dest:'./public/uploads/'});
 const routeGuard = require('../configs/route-guard.config');
 
 ////////////////////////////////////////////////////////////////////////
@@ -17,10 +19,14 @@ const routeGuard = require('../configs/route-guard.config');
 router.get('/signup', (req, res) => res.render('auth/signup'));
 
 // .post() route ==> to process form data
-router.post('/signup', (req, res, next) => {
-  const { username, email, password } = req.body;
+router.post('/signup', upload.single("image"), (req, res, next) => {
+  if (req.file) {
+    req.body.image = `/uploads/${req.file.filename}`
+  }
+  const { username, email, password, image } = req.body;
 
-  if (!username || !email || !password) {
+  if (!username || !email || !password || !image) {
+
     res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
     return;
   }
@@ -42,6 +48,7 @@ router.post('/signup', (req, res, next) => {
         // username: username
         username,
         email,
+        image,
         // passwordHash => this is the key from the User model
         //     ^
         //     |            |--> this is placeholder (how we named returning value from the previous method (.hash()))
@@ -84,6 +91,7 @@ router.post('/login', (req, res, next) => {
   }
 
   User.findOne({ email })
+    .populate('post')
     .then(user => {
       if (!user) {
         res.render('auth/login', { errorMessage: 'Email is not registered. Try with other email.' });
@@ -111,4 +119,21 @@ router.get('/userProfile', routeGuard, (req, res) => {
   res.render('users/user-profile');
 });
 
+
+
+router.get('/create', (req, res, next) => {
+  res.render("user-profile")
+})
+router.post('/create', upload.single("path"),(req, res, next) => {
+  req.body.creatorId = req.session.currentUser._id
+  if (req.file) {
+    req.body.path = `/uploads/${req.file.filename}`
+  }
+
+  Post.create(req.body)
+    .then((post) => {
+      res.redirect('/')
+    })
+    .catch((e) => next(e))
+})
 module.exports = router;
