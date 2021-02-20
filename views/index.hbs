@@ -1,15 +1,9 @@
 <h1>{{title}}</h1>
 <p>Welcome Ironhacker!</p>
 
-{{#if user}}
-<h2>Prueba</h2>
-
 {{#each post as |post|}}
-  <p>{{name}}</p>
-  <p>{{content}}</p>
-  <p>{{creator}}</p>
   <img src="{{post.path}}" alt="photoPost">
-{{/each}} 
-{{/if}}
+  <p>{{post.content}}</p>
+{{/each}}
 
 <!--esto es para iterar en las cards para crear los posts -->

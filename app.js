@@ -30,6 +30,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 app.use(express.static(path.join(__dirname, 'public')));
+//app.use('/public', express.static(__dirname + '/public'));
+//esta es la ruta q me funciona
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(express.json());

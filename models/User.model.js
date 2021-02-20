@@ -22,11 +22,20 @@ const userSchema = new Schema({
         type: String,
         required: [true, 'Password is required.']
     },
-    photo:{
-        type:String,
+    photo: {
+        type: String,
     }
 }, {
-    timestamps: true
+    timestamps: true,
+    toJSON: {
+        virtuals: true
+    }
 });
+
+userSchema.virtual("post", {
+    ref: "Post",
+    foreignField: "creatorId",
+    localField: "_id"
+})
 
 module.exports = model('User', userSchema);

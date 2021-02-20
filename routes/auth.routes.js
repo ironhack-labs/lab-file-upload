@@ -101,6 +101,7 @@ router.post('/login', (req, res, next) => {
     }
 
     User.findOne({ email })
+        .populate('post')
         .then(user => {
             if (!user) {
                 res.render('auth/login', { errorMessage: 'Email is not registered. Try with other email.' });
@@ -132,21 +133,23 @@ router.get('/userProfile', routeGuard, (req, res) => {
 
 //CREAMOS LA RUTA PARA CREAR LOS POSTS
 router.get('/create', (req, res, next) => {
-    res.render("postForm") // POST-FORM ESTO LO DICE EL LAB
+    res.render("user-profile")
 })
 
 //ESTA ES LA RUTA QUE INCLUYE SUBIR LA FOTO Y QUE CREA EL POST
-router.post('/create', upload.single("photoPost"), (req, res, next) => {
+//le paso el path que es donde está la foto
+router.post('/create', upload.single("path"), (req, res, next) => {
     // console.log(req.body)
     //console.log(req.file)
+    req.body.creatorId = req.session.currentUser._id
 
     if (req.file) {
-        req.body.photoPost = `/uploads/${req.file.filename}`
+        req.body.path = `/uploads/${req.file.filename}`
     }
 
     Post.create(req.body)
-        .then((post) => {
-            res.render('index', post) //aqui esta el problema no se ve
+        .then(() => {
+            res.render('/') //aqui esta el problema no se ve
         })
         .catch((e) => next(e))
 })
