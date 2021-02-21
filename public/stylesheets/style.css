@@ -127,3 +127,22 @@ ul li {
   font-weight: bold;
   font-size: 2em;
 }
+
+.postPic {
+    width: 50%;
+    height: auto;
+}
+
+.homePic {
+  width: 20%;
+  height: auto;
+}
+
+.center {
+  text-align: center;
+}
+
+blockquote {
+  background-color: rgb(238, 237, 237);
+  font-style: italic;
+}

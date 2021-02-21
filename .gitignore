@@ -1,6 +1,6 @@
 # Dependency directory
 node_modules
-
+public/uploads/*
 
 # Debug log from npm
 npm-debug.log

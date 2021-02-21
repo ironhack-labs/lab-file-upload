@@ -1,2 +1,8 @@
 <h1>{{title}}</h1>
-<p>Welcome {{#if user}} {{user.username}}! {{else}}Ironhacker! Log-in or Sign-up to star using IronTumblr!{{/if}}</p>
+<p>Welcome {{#if user}} {{user.username}}! {{else}}Ironhacker! <br><br><a href="/login">Log-in </a>or <a href="/signup">Sign-up</a> to star using IronTumblr!{{/if}}</p>
+
+<h4>Latest posts:</h4>
+
+{{#each posts}}
+<a href="/post/{{_id}}"><img src="{{picPath}}" alt="{{picName}}" title="{{picName}}" class="homePic"></a>&nbsp;
+{{/each}}

@@ -1,0 +1,21 @@
+<div id="form">
+  <h2>Create post</h2>
+  <form action="/create" method="POST" enctype="multipart/form-data">
+    <input type="text" id="input-creatorId" name="creatorId" value="{{user._id}}" hidden/>
+
+    <label for="input-photo">Post picture</label>
+    <input type="file" id="input-photo" name="photo" required/>
+
+    <label for="input-picName">Picture name</label>
+    <input type="text" id="input-picName" name="picName" placeholder="Picture name" required/>
+
+    <label for="input-content">Comments</label>
+    <textarea rows="5" cols="45" id="input-content" name="content" placeholder="Your comments" required></textarea>
+
+    <button type="submit">Create post</button>
+
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </form>
+</div>

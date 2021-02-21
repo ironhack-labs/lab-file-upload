@@ -6,6 +6,7 @@ const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User.model');
 const Photo = require('../models/Photo.model');
+const Post = require('../models/Post.model');
 const mongoose = require('mongoose');
 
 const multer = require('multer');
@@ -22,7 +23,7 @@ router.get('/signup', (req, res) => res.render('auth/signup'));
 
 // .post() route ==> to process form data
 router.post('/signup', upload.single('photo'), (req, res, next) => {
-  
+    
   const { username, email, password } = req.body;
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
 
@@ -128,7 +129,47 @@ router.get('/userProfile', routeGuard, (req, res) => {
 });
 
 
+////////////////////////////////////////////////////////////////////////
+//////////////////////////// PROFILE ///////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 
 router.get('/profile', (req, res) => res.render('users/user-profile'));
+
+
+////////////////////////////////////////////////////////////////////////
+///////////////////////////// POSTS ////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+
+router.get('/create', (req, res) => res.render('auth/create'));
+
+router.post('/create', upload.single('photo'), (req, res, next) => {
+  
+  console.log(req.body);
+
+  const { content, creatorId, picName } = req.body;
+  
+    const photo = new Photo({
+      name: req.file.filename,
+      path: `/uploads/${req.file.filename}`,
+      originalName: req.file.originalname
+    });
+
+    photo
+      .save()
+      .then((photo) => {
+        Post.create({
+          creatorId,
+          content,
+          picName,
+          picPath: photo.path,
+        })
+        .then((post) => {
+          res.redirect(`post/${post._id}`);
+        })
+      })
+      .catch(err => {
+        next(err);
+      });
+});
 
 module.exports = router;
