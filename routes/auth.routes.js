@@ -1,23 +1,28 @@
-// routes/auth.routes.js
-
-const { Router } = require('express');
-const router = new Router();
-const bcryptjs = require('bcryptjs');
-const saltRounds = 10;
-const User = require('../models/User.model');
+const router = require("express").Router();
 const mongoose = require('mongoose');
 
-const routeGuard = require('../configs/route-guard.config');
+// ℹ️ Handles password encryption
+const bcryptjs = require('bcryptjs');
+
+// How many rounds should bcrypt run the salt (default [10 - 12 rounds])
+const saltRounds = 10;
+
+// Require the User model in order to interact with the database
+const User = require('../models/User.model');
+
+// Require necessary middlewares in order to control access to specific routes
+const shouldNotBeLoggedIn = require("../middlewares/shouldNotBeLoggedIn");
+const isLoggedIn = require("../middlewares/isLoggedIn");
 
 ////////////////////////////////////////////////////////////////////////
 ///////////////////////////// SIGNUP //////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 
 // .get() route ==> to display the signup form to users
-router.get('/signup', (req, res) => res.render('auth/signup'));
+router.get('/signup', shouldNotBeLoggedIn, (req, res) => res.render('auth/signup'));
 
 // .post() route ==> to process form data
-router.post('/signup', (req, res, next) => {
+router.post('/signup', shouldNotBeLoggedIn, (req, res, next) => {
   const { username, email, password } = req.body;
 
   if (!username || !email || !password) {
@@ -39,7 +44,6 @@ router.post('/signup', (req, res, next) => {
     .then(salt => bcryptjs.hash(password, salt))
     .then(hashedPassword => {
       return User.create({
-        // username: username
         username,
         email,
         // passwordHash => this is the key from the User model
@@ -50,7 +54,7 @@ router.post('/signup', (req, res, next) => {
     })
     .then(userFromDB => {
       console.log('Newly created user is: ', userFromDB);
-      res.redirect('/userProfile');
+      res.redirect('/user-profile');
     })
     .catch(error => {
       if (error instanceof mongoose.Error.ValidationError) {
@@ -70,10 +74,10 @@ router.post('/signup', (req, res, next) => {
 ////////////////////////////////////////////////////////////////////////
 
 // .get() route ==> to display the login form to users
-router.get('/login', (req, res) => res.render('auth/login'));
+router.get('/login', shouldNotBeLoggedIn, (req, res) => res.render('auth/login'));
 
 // .post() login route ==> to process form data
-router.post('/login', (req, res, next) => {
+router.post('/login', shouldNotBeLoggedIn, (req, res, next) => {
   const { email, password } = req.body;
 
   if (email === '' || password === '') {
@@ -89,8 +93,8 @@ router.post('/login', (req, res, next) => {
         res.render('auth/login', { errorMessage: 'Email is not registered. Try with other email.' });
         return;
       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
-        req.session.currentUser = user;
-        res.redirect('/userProfile');
+        req.session.user = user;
+        res.redirect('/user-profile');
       } else {
         res.render('auth/login', { errorMessage: 'Incorrect password.' });
       }
@@ -102,12 +106,12 @@ router.post('/login', (req, res, next) => {
 ///////////////////////////// LOGOUT ////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 
-router.post('/logout', (req, res) => {
+router.post('/logout', isLoggedIn, (req, res) => {
   req.session.destroy();
   res.redirect('/');
 });
 
-router.get('/userProfile', routeGuard, (req, res) => {
+router.get('/user-profile', isLoggedIn, (req, res) => {
   res.render('users/user-profile');
 });
 

@@ -53,7 +53,7 @@ For this iteration, besides the model, you have to create:
 - the GET route to display the **posts** and
 - the GET route to display **post-details**.
 
-**A user should be logged in to create a post, but _not_ to view it.** (Check the route guard file in the _configs_ folder.)
+**A user should be logged in to create a post, but _not_ to view it.** (Check the `isLoggedIn.js` file in the _middlewares_ folder.)
 
 The **posts** will be the home page, and simply display all of the posts on the website.
 
