@@ -1,59 +1,42 @@
-require('dotenv').config();
-const path = require('path');
+// ℹ️ Gets access to environment variables/settings
+// https://www.npmjs.com/package/dotenv
+require('dotenv/config');
+
+// ℹ️ Connects to the database
+require('./db');
+
+// Handles http requests (express is node js framework)
+// https://www.npmjs.com/package/express
 const express = require('express');
-const createError = require('http-errors');
-const logger = require('morgan');
-const favicon = require('serve-favicon');
 
-const cookieParser = require('cookie-parser');
+// Handles the handlebars
+// https://www.npmjs.com/package/hbs
 const hbs = require('hbs');
-const mongoose = require('mongoose');
-
-// Set up the database
-require('./configs/db.config');
-
-// bind user to view - locals
-const bindUserToViewLocals = require('./configs/user-locals.config');
-
-// Routers
-const indexRouter = require('./routes/index.routes');
-const authRouter = require('./routes/auth.routes');
 
 const app = express();
-require('./configs/session.config')(app);
 
-// Express View engine setup
+// ℹ️ This function is getting exported from the config folder. It runs most middlewares
+require('./config')(app);
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+const projectName = 'lab-express-irontumblr';
+const capitalized = string => string[0].toUpperCase() + string.slice(1).toLowerCase();
 
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
-app.use(bindUserToViewLocals);
+app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 
-const app_name = require('./package.json').name;
-const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
+// bind user to view - locals
+app.use('/', (req, res, next) => {
+  res.locals.user = req.session.user
+  next()
+})
 
-// Routes middleware
-app.use('/', indexRouter);
-app.use('/', authRouter);
+// 👇 Start handling routes here
+const index = require('./routes/index');
+app.use('/', index);
 
-// Catch missing routes and forward to error handler
-app.use((req, res, next) => next(createError(404)));
+const authRoutes = require('./routes/auth.routes');
+app.use('/', authRoutes);
 
-// Catch all error handler
-app.use((error, req, res) => {
-  // Set error information, with stack only available in development
-  res.locals.message = error.message;
-  res.locals.error = req.app.get('env') === 'development' ? error : {};
-
-  // render the error page
-  res.status(error.status || 500);
-  res.render('error');
-});
+// ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
+require('./error-handling')(app);
 
 module.exports = app;
