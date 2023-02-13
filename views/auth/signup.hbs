@@ -1,6 +1,6 @@
 <div id="form">
   <h2>Signup</h2>
-  <form action="/signup" method="POST">
+  <form action="/signup" method="POST" enctype = "multipart/form-data">
 
     <label> Username
       <input type="text" name="username" placeholder="ironhacker" />
@@ -14,7 +14,13 @@
       <input type="password" name="password" placeholder="********" />
     </label>
 
+    <label> Profile photo
+      <input type="file" name="profileImg" id="profileImg">
+    </label>
+
     <button type="submit">Create account</button>
+
+
 
     {{!-- error message will be added here --}}
 

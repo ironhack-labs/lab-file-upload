@@ -22,9 +22,9 @@ router.get("/signup", isLoggedOut, (req, res) => res.render("auth/signup"));
 
 // .post() route ==> to process form data
 router.post("/signup", isLoggedOut, (req, res, next) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, profileImg } = req.body;
 
-  if (!username || !email || !password) {
+  if (!username || !email || !password || ! profileImg) {
     res.render("auth/signup", {
       errorMessage: "All fields are mandatory. Please provide your username, email and password."
     });
@@ -114,7 +114,7 @@ router.post("/logout", isLoggedIn, (req, res) => {
 });
 
 router.get("/user-profile", isLoggedIn, (req, res) => {
-  res.render("users/user-profile");
+  res.render("users/user-profile",);
 });
 
 module.exports = router;
