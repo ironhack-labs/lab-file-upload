@@ -16,8 +16,10 @@
           <p><a href="/"> IronTumblr </a></p>
         </li>
         <li id="to-right">
-          {{#if user}}
+          {{#if userInSession}}
             <a href="/user-profile">Private</a> <span> | </span>
+            <a href="/my-posts">All my posts</a> <span> | </span>
+            <a href="/new-post">Creat new post</a> <span> | </span>
             <form id="logout-form" action="/logout" method="POST">
               <button>Logout</button>
             </form>

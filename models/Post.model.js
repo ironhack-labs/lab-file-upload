@@ -2,31 +2,19 @@
 
 const { Schema, model } = require("mongoose");
 
-const userSchema = new Schema(
+const postShema = new Schema(
   {
-    username: {
+    content: {
       type: String,
-      trim: true,
-      required: [true, "Username is required."],
-      unique: true
+      required: [true, "content is required."],
     },
-    email: {
-      type: String,
-      required: [true, "Email is required."],
-      // this match will disqualify all the emails with accidental empty spaces, missing dots in front of (.)com and the ones with no domain at all
-      match: [/^\S+@\S+\.\S+$/, "Please use a valid email address."],
-      unique: true,
-      lowercase: true,
-      trim: true
-    },
-    passwordHash: {
-      type: String,
-      required: [true, "Password is required."]
-    }
+    creatorId: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    picPath: String,
+    picName:String,
   },
   {
     timestamps: true
   }
 );
 
-module.exports = model("User", userSchema);
+module.exports = model("Post", postShema);
