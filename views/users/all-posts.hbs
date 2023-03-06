@@ -1,0 +1,17 @@
+<h1>All posts from site</h1>
+
+<div class="posts-body">
+{{#each posts}}
+
+<div class="card" >
+  <img class="card-img-top" src="{{picPath}}" alt="Card image cap">
+  <div class="card-body">
+    <h2 class="card-title">{{picName}}</h2>
+    <h3 class="card-text">{{content}}</h3>
+  </div>
+  <a href="post/{{_id}}">Leave a comment</a>
+</div>
+
+{{/each}}
+
+</div>

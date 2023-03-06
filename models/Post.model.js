@@ -9,8 +9,14 @@ const postShema = new Schema(
       required: [true, "content is required."],
     },
     creatorId: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-    picPath: String,
-    picName:String,
+    picPath: {
+      type: String,
+      required: [true, "content is required."],
+    },
+    picName:{
+      type: String,
+      required: [true, "content is required."],
+    }
   },
   {
     timestamps: true

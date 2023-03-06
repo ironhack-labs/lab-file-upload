@@ -118,3 +118,28 @@ ul li {
   font-weight: bold;
   font-size: 2em;
 }
+.posts-body{
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+
+}
+
+.card{
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  width: 400px;
+  border: 1px solid rgb(198, 197, 197);
+  border-radius: 10px;
+  object-fit:cover;
+}
+
+.card-body{
+  padding: 10px;
+  object-fit:cover;
+}
+.card-img-top{
+  max-width: 100%;
+  max-height: 300px;
+  object-fit:cover;
+}

@@ -1,5 +1,6 @@
 {{#if userInSession}}
     <h2>Welcome, {{ userInSession.username }}!</h2>
+    <img src={{userInSession.profileImg}} alt="">
     <p>This is your profile page my friend! And your email is: {{ userInSession.email }}</p>
 
 

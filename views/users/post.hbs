@@ -1,0 +1,36 @@
+<h1>one post and it's comments here</h1>
+
+<div class="card">
+    <img class="card-img-top" src="{{post.picPath}}" alt="Card image cap">
+    <div class="card-body">
+        <h2 class="card-title">{{post.picName}}</h2>
+        <h3 class="card-text">{{post.content}}</h3>
+    </div>
+</div>
+
+<div>
+    <h1>Comments:</h1>
+    <ul>
+        {{#each comments}}
+        <li>{{authorId.username}} said: {{content}}</li>
+        {{/each}}
+    </ul>
+</div>
+
+
+<form action="/post-comment/{{post._id}}" method="post" enctype="multipart/form-data">
+    </label>Comments
+    <textarea name="content" placeholder="description..." cols="44" rows="5"></textarea>
+    </label>
+
+    <label> Chose the picture from pc
+        <input type="file" name="imagePath" id="imagePath">
+    </label>
+    <label> Chose the picture from pc
+        <input type="text" name="imageName" id="imageName">
+    </label>
+    <button type="submit"> post </button>
+    {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+    {{/if}}
+</form>
