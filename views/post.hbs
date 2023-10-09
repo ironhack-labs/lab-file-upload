@@ -1,0 +1,13 @@
+<form action="/post" method="POST" enctype="multipart/form-data">
+  <label>Content
+    <textarea name="content" rows="10" cols="48"></textarea>
+  </label>
+  <label>Picture name
+    <input type="text" name="picName" />
+  </label>
+  <label>Upload picture
+    <input type="file" name="picPath" />
+  </label>
+  <input type="hidden" value={{user._id}} />
+  <button type="submit">Post</button>
+</form>
