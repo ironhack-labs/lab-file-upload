@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
+const fileUploader = require("../config/cloudinary.config");
 
 // ℹ️ Handles password encryption
 const bcryptjs = require("bcryptjs");
@@ -21,7 +22,7 @@ const { isLoggedIn, isLoggedOut } = require("../middleware/route-guard.js");
 router.get("/signup", isLoggedOut, (req, res) => res.render("auth/signup"));
 
 // .post() route ==> to process form data
-router.post("/signup", isLoggedOut, (req, res, next) => {
+router.post("/signup", isLoggedOut, fileUploader.single("profile-picture"), (req, res, next) => {
   const { username, email, password } = req.body;
 
   if (!username || !email || !password) {
@@ -45,9 +46,14 @@ router.post("/signup", isLoggedOut, (req, res, next) => {
     .genSalt(saltRounds)
     .then((salt) => bcryptjs.hash(password, salt))
     .then((hashedPassword) => {
+      let picture = "https://portal.staralliance.com/imagelibrary/aux-pictures/prototype-images/avatar-default.png/@@images/image.png";
+      if(req.file && req.file.path){
+        picture = req.file.path;
+      }
       return User.create({
         username,
         email,
+        picture,
         // passwordHash => this is the key from the User model
         //     ^
         //     |            |--> this is placeholder (how we named returning value from the previous method (.hash()))
@@ -114,7 +120,11 @@ router.post("/logout", isLoggedIn, (req, res) => {
 });
 
 router.get("/user-profile", isLoggedIn, (req, res) => {
-  res.render("users/user-profile");
+  let user = null;
+  if(req.session.currentUser){
+    user = req.session.currentUser;
+  }
+  res.render("users/user-profile", {user: user})
 });
 
 module.exports = router;

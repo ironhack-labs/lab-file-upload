@@ -1,0 +1,38 @@
+<div>
+  {{#if post.picPath}}
+  <img src={{post.picPath}} />
+  <h3>{{post.picName}}</h3>
+  {{/if}}
+  <p>{{post.content}}</p>
+  <div class="author-container">
+    <img src={{post.creatorId.picture}} />
+    <p>{{post.creatorId.username}}</p>
+  </div>
+  <form action="/comment/{{post._id}}" method="POST" enctype="multipart/form-data">
+    <label>Content
+      <textarea name="content" rows="10" cols="48"></textarea>
+    </label>
+    <label>Picture name
+    <input type="text" name="imageName" />
+  </label>
+  <label>Upload picture
+    <input type="file" name="imagePath" />
+  </label>
+    <input type="hidden" value={{user._id}} />
+    <button type="submit">Leave a comment</button>
+  </form>
+  <div>
+    <h3>Comments</h3>
+    {{#each post.comments}}
+      <div class="author-container">
+        <img src={{authorId.picture}} />
+        <p>{{authorId.username}}:</p>
+      </div>
+      {{#if imagePath}}
+        <img src={{imagePath}} />
+        <h4>{{imageName}}</h4>
+      {{/if}}
+      <p>{{content}}</p>
+    {{/each}}
+  </div>
+</div>

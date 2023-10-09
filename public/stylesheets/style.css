@@ -118,3 +118,13 @@ ul li {
   font-weight: bold;
   font-size: 2em;
 }
+
+.author-container{
+  display: flex;
+  flex-direction: row;
+}
+
+.author-container img{
+  width: 40px;
+  height: 40px;
+}

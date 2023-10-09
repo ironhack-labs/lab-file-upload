@@ -1,2 +1,18 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+{{#if user}}
+  <a href="/post">Create post</a>
+{{/if}}
+<section>
+  {{#each posts}}
+    <div>
+      {{#if picPath}}
+        <img src={{picPath}} />
+      {{/if}}
+      <p>{{content}}</p>
+      <a href="/post/{{_id}}">
+        <p>See comments</p>
+      </a>
+    </div>
+  {{/each}}
+</section>
