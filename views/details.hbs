@@ -1,0 +1,11 @@
+<div>
+  {{#if post.picPath}}
+  <img src={{post.picPath}} />
+  <h3>{{post.picName}}</h3>
+  {{/if}}
+  <p>{{post.content}}</p>
+  <div class="author-container">
+    <img src={{post.creatorId.picture}} />
+    <p>{{post.creatorId.username}}</p>
+  </div>
+</div>

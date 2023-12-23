@@ -48,6 +48,7 @@ router.post("/signup", isLoggedOut, (req, res, next) => {
       return User.create({
         username,
         email,
+      
         // passwordHash => this is the key from the User model
         //     ^
         //     |            |--> this is placeholder (how we named returning value from the previous method (.hash()))
